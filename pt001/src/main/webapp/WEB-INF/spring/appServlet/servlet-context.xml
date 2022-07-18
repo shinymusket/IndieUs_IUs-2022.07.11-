@@ -41,18 +41,18 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean> -->
 	
-	<context:component-scan base-package="com.green.pt001" />
+	<context:component-scan base-package="com.indieus.ius" />
 	
 	<!-- Controller -->
-	<beans:bean id="financeController" class="com.green.pt001.controller.FinanceController" />
-	<beans:bean id="staffController" class="com.green.pt001.controller.StaffController" />
+	<beans:bean id="financeController" class="com.indieus.ius.controller.FinanceController" />
+	<beans:bean id="staffController" class="com.indieus.ius.controller.StaffController" />
 	
 	<!-- DAO -->
-	<beans:bean id="financeDAO" class="com.green.pt001.db.FinanceDAO" />
-	<beans:bean id="staffDAO" class="com.green.pt001.db.StaffDAO" />
+	<beans:bean id="financeDAO" class="com.indieus.ius.db.FinanceDAO" />
+	<beans:bean id="staffDAO" class="com.indieus.ius.db.StaffDAO" />
 	
 	<!-- Service -->
-	<beans:bean id="financeService" class="com.green.pt001.service.FinanceServiceImpl" />
-	<beans:bean id="staffService" class="com.green.pt001.service.StaffServiceImpl" />
+	<beans:bean id="financeService" class="com.indieus.ius.service.FinanceServiceImpl" />
+	<beans:bean id="staffService" class="com.indieus.ius.service.StaffServiceImpl" />
 	
 </beans:beans>

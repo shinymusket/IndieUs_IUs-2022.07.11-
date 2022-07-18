@@ -20,41 +20,17 @@
 				</td>
 				<th>구분</th>
 				<td>
-					<c:if test="${staff.staff_cls == '원장'}">
-						<select name="staff_cls" id="staff_cls">
-							<option value="원장" selected="selected">원장</option>
-							<option value="교사">교사</option>
-							<option value="영양사">영양사</option>
-							<option value="버스기사">버스기사</option>
-						</select>
-					</c:if>
+					<select name="staff_cls" id="staff_cls">
+						<c:forEach items="${jobList}" var="job" >
+							<c:if test="${staff.staff_cls == job.staff_cls}">
+								<option value="${job.staff_cls}" selected="selected">${job.job_Kname}</option>					
+							</c:if>
+							<c:if test="${staff.staff_cls != job.staff_cls}">
+								<option value="${job.staff_cls}">${job.job_Kname}</option>
+							</c:if>
+						</c:forEach>
+					</select>
 					
-					<c:if test="${staff.staff_cls == '교사'}">
-						<select name="staff_cls" id="staff_cls">
-							<option value="원장">원장</option>
-							<option value="교사" selected="selected">교사</option>
-							<option value="영양사">영양사</option>
-							<option value="버스기사">버스기사</option>
-						</select>
-					</c:if>
-					
-					<c:if test="${staff.staff_cls == '영양사'}">
-						<select name="staff_cls" id="staff_cls">
-							<option value="원장">원장</option>
-							<option value="교사">교사</option>
-							<option value="영양사" selected="selected">영양사</option>
-							<option value="버스기사">버스기사</option>
-						</select>
-					</c:if>
-				
-					<c:if test="${staff.staff_cls == '버스기사'}">
-						<select name="staff_cls" id="staff_cls">
-							<option value="원장">원장</option>
-							<option value="교사">교사</option>
-							<option value="영양사">영양사</option>
-							<option value="버스기사" selected="selected">버스기사</option>
-						</select>
-					</c:if>
 				</td>
 			</tr>
 			<tr>

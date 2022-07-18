@@ -2,9 +2,9 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
 <configuration>
 	<typeAliases>
-		<typeAlias alias="financeVO" type="com.green.pt001.vo.FinanceVO"/>
-		<typeAlias alias="staffVO" type="com.green.pt001.vo.StaffVO"/>
-		<typeAlias alias="jobClassVO" type="com.green.pt001.vo.JobClassifiVO"/>
+		<typeAlias alias="financeVO" type="com.indieus.ius.vo.FinanceVO"/>
+		<typeAlias alias="staffVO" type="com.indieus.ius.vo.StaffVO"/>
+		<typeAlias alias="jobClassVO" type="com.indieus.ius.vo.JobClassifiVO"/>
 	</typeAliases>
 
 </configuration>
