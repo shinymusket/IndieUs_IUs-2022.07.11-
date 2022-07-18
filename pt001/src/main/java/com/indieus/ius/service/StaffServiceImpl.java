@@ -1,9 +1,14 @@
 package com.indieus.ius.service;
 
+import java.io.PrintWriter;
 import java.util.Calendar;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.taglibs.standard.tag.el.fmt.RequestEncodingTag;
 
 import com.indieus.ius.db.StaffDAO;
 import com.indieus.ius.vo.JobClassifiVO;
@@ -88,6 +93,49 @@ public class StaffServiceImpl implements StaffService {
 		return manager.selectJobClassifiByNum(staff_cls);
 	}
 	
+	// 직무 목록 가져오기
+	@Override
+	public void getJobList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		
+		List<JobClassifiVO> list = manager.selectJobClassifi();
+		
+		String json = "{\"jobList\":[";
+		for (int i = 0; i < list.size(); i ++) {
+			String staff_cls = list.get(i).getStaff_cls();
+			String job_Kname = list.get(i).getJob_Kname();
+			String job_Ename = list.get(i).getJob_Ename();
+			
+			json += "[{\"staff_cls\":\"" + staff_cls + "\"},";
+			json += "{\"job_Kname\":\"" + job_Kname + "\"},";
+			json += "{\"job_Ename\":\"" + job_Ename + "\"}]";
+			
+			if (i != list.size() - 1) {
+				json += ",";
+			}
+			
+		}
+		json += "]}";
+		
+		out.print(json);
+	}
+	
+	// 직무 목록 추가하기
+	@Override
+	public void insertJobList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("UTF-8");
+		
+		JobClassifiVO jVo = new JobClassifiVO();
+		jVo.setStaff_cls(request.getParameter("staff_cls"));
+		jVo.setJob_Kname(request.getParameter("job_Kname"));
+		jVo.setJob_Ename(request.getParameter("job_Ename"));
+		manager.insertJob(jVo);
+
+	}
+	
+	
 	// 교직원 등록
 	@Override
 	public int insertStaff(StaffVO sVo) throws Exception {
@@ -115,6 +163,10 @@ public class StaffServiceImpl implements StaffService {
 		int result = manager.updateStaff(sVo);
 		return result;
 	}
+
+
+	
+
 
 
 

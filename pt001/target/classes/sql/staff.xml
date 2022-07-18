@@ -17,8 +17,13 @@
 	
 	<!-- 직무 분류 항목 가져오기 -->
 	<select id="select_job_classifi" resultType="jobClassVO">
-		SELECT * FROM jobClassifi
+		SELECT * FROM jobclassifi ORDER BY staff_cls ASC
 	</select>
+	
+	<!-- 직무 분류 항목 추가하기 -->
+	<insert id="insert_job" parameterType="jobClassVO">
+		INSERT INTO jobClassifi VALUES (jobclassifi_seq.nextval, #{job_Kname}, #{job_Ename})
+	</insert>
 	
 	<!-- 직무 코드로 명칭 가져오기 -->
 	<select id="select_job_classifi_by_num" resultType="jobClassVO">
