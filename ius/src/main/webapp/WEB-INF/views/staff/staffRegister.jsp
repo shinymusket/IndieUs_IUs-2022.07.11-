@@ -8,7 +8,44 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 	$(function(){
-		$("#register").click(function(){
+			/* function getJobList() {
+				$.ajax({
+					url: "/ius/staff/get_job_list",
+					type: "POST",
+					data: {
+						
+					},
+					success : function(json) {
+					json = json.replace(/\n/gi, "\\r\\n");
+						$("#staff_cls").text(""); // 직무 리스트 영역 초기화
+						var obj = JSON.parse(json); // service 클래스로부터 전달된 문자열 파싱
+						var jobList = obj.jobList;
+						var output = "";
+						for (var i = 0; i < jobList.length; i++) {
+							output += "";
+							for (var j = 0; j < jobList[i].length; j++) {
+								
+								var job = jobList[i][j];
+								if (j === 0) {
+									var staff_cls = job.staff_cls;
+								} else if (j === 1) {
+									output += "";
+								} else if (j === 2) {
+									output += "<option value="+ staff_cls + ">" + job.job_Kname + "</option>";
+								} else if (j === 3) {
+									output += "";
+								}
+								 
+							};
+						};
+						$("#staff_cls").html(output);
+					}
+				})
+			}
+			
+			getJobList(); */
+		
+		    $("#register").click(function(){
 			if ($("#staff_cls").val() == "") {
 				alert("직무를 선택해주세요.");
 				$("#staff_cls").val().focus();
@@ -71,13 +108,12 @@
 				</td>
 				<th>직무*</th>
 				<td>
-					<select name="staff_cls" id="staff_cls">
-						<option value="">--선택--</option>
-						<c:forEach items="${jobList}" var="job">
+					<input type="hidden" name="staff_cls" id="staff_cls">
+					<input type="text" name="job_Kname" id="job_Kname" readonly="readonly">
+						<%-- <c:forEach items="${jobList}" var="job">
 							<option value="${job.staff_cls}">${job.job_Kname}</option>
-						</c:forEach>
-					</select>
-					<input type="button" id="staff_cls_edit" value="편집">
+						</c:forEach> --%>
+					<input type="button" id="staff_cls_edit" value="선택">
 				</td>
 			</tr>
 			<tr>

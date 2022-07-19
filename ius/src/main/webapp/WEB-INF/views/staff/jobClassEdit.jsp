@@ -25,6 +25,25 @@ function view(viewNum) {
 		})
 	};
 	
+function sel_btn(selNum) {
+	var  staff_cls = selNum;
+	
+	$.ajax({
+		url : "/ius/staff/get_job_by_staff_cls",
+		type : "POST",
+		data : {
+			staff_cls : staff_cls
+		},
+		success : function(data) {
+			opener.frm.staff_cls.value = data.staff_cls;
+			opener.frm.job_Kname.value = data.job_Kname;
+			self.close();
+		}
+	})	
+};	
+	
+	
+	
 	
 	$(function(){
 		function getList(){
@@ -39,7 +58,7 @@ function view(viewNum) {
 					$("#jobList").text(""); // 직무 리스트 영역 초기화
 					var obj = JSON.parse(json); // service 클래스로부터 전달된 문자열 파싱
 					var jobList = obj.jobList;
-					var output = "<tr><th>직무 코드</th><th>한글명</th><th>영문명</th></tr>";
+					var output = "<tr><th>직무 코드</th><th>한글명</th><th>영문명</th><th></th></tr>";
 					for (var i = 0; i < jobList.length; i++) {
 						output += "<tr>";
 						for (var j = 0; j < jobList[i].length; j++) {
@@ -52,7 +71,8 @@ function view(viewNum) {
 							} else if (j === 2) {
 								output += "<td><a href=\"javascript:view(" + staff_cls + ");\">" + job.job_Kname + "</a></td>";
 							} else if (j === 3) {
-								output += "<td>" + job.job_Ename + "</td></tr>";
+								output += "<td>" + job.job_Ename + "</td>";
+								output += "<td><a href=\"javascript:sel_btn(" + staff_cls + ");\">선택</a>";
 							}
 							 
 						};
