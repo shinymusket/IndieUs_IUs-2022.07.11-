@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.indieus.ius">
+	<logger name="com.green.pt001">
 		<level value="info" />
 	</logger>
 	

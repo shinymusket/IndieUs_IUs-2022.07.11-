@@ -7,11 +7,10 @@
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
-	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+		<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<mvc:annotation-driven/> <!-- handlerMapping, handlerAdapter -->
-	
 	<mvc:default-servlet-handler/>
 	
 	<mvc:view-resolvers>	 <!-- view-resolver -->
@@ -42,8 +41,18 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean> -->
 	
-	<context:component-scan base-package="com.green.ex00" />
+	<context:component-scan base-package="com.indieus.ius" />
 	
+	<!-- Controller -->
+	<beans:bean id="financeController" class="com.indieus.ius.controller.FinanceController" />
+	<beans:bean id="staffController" class="com.indieus.ius.controller.StaffController" />
 	
+	<!-- DAO -->
+	<beans:bean id="financeDAO" class="com.indieus.ius.db.FinanceDAO" />
+	<beans:bean id="staffDAO" class="com.indieus.ius.db.StaffDAO" />
+	
+	<!-- Service -->
+	<beans:bean id="financeService" class="com.indieus.ius.service.FinanceServiceImpl" />
+	<beans:bean id="staffService" class="com.indieus.ius.service.StaffServiceImpl" />
 	
 </beans:beans>
