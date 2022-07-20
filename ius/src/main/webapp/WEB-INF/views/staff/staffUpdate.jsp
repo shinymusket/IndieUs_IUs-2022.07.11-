@@ -36,7 +36,7 @@
 			<tr>
 				<th>아이디</th>
 				<td>
-					<input type="text" name="staff_id" id="staff_id" value="${staff.staff_id}">
+					<input type="text" name="staff_id" id="staff_id" value="${staff.staff_id}" readonly="readonly">
 				</td>
 				<th>이름</th>
 				<td>

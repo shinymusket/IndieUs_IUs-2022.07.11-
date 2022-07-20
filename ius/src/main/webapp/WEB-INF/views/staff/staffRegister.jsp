@@ -8,44 +8,24 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 	$(function(){
-			/* function getJobList() {
-				$.ajax({
-					url: "/ius/staff/get_job_list",
-					type: "POST",
-					data: {
-						
-					},
-					success : function(json) {
-					json = json.replace(/\n/gi, "\\r\\n");
-						$("#staff_cls").text(""); // 직무 리스트 영역 초기화
-						var obj = JSON.parse(json); // service 클래스로부터 전달된 문자열 파싱
-						var jobList = obj.jobList;
-						var output = "";
-						for (var i = 0; i < jobList.length; i++) {
-							output += "";
-							for (var j = 0; j < jobList[i].length; j++) {
-								
-								var job = jobList[i][j];
-								if (j === 0) {
-									var staff_cls = job.staff_cls;
-								} else if (j === 1) {
-									output += "";
-								} else if (j === 2) {
-									output += "<option value="+ staff_cls + ">" + job.job_Kname + "</option>";
-								} else if (j === 3) {
-									output += "";
-								}
-								 
-							};
-						};
-						$("#staff_cls").html(output);
-					}
-				})
-			}
-			
-			getJobList(); */
+			$("#staff_idChk").click(function(){
+				if ($("#staff_id").val() == "") {
+					alert("아이디를 입력해주세요.");
+					$("#staff_id").val().focus();
+					return;
+				};
+				
+				let url = "./staff_id_check?staff_id=" + $("#staff_id").val();
+				window.open(url, "_blank_1", "toolbar=no, menubar=no, scrollbar=yes, resizeable=no, width=450, height=200");
+					
+			});
+		
 		
 		    $("#register").click(function(){
+		    	var email = $("#staff_email").val();
+		    	var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+		    	
+		   
 			if ($("#staff_cls").val() == "") {
 				alert("직무를 선택해주세요.");
 				$("#staff_cls").val().focus();
@@ -81,6 +61,23 @@
 				$("#staff_rrn2").val().focus();
 				return;
 			};
+			
+			if (email == "") {
+				alert("이메일은 필수 입력 항목입니다.");
+				$("#staff_email").val().focus();
+				return;
+			} else if (exptext.test(email) == false) {
+				alert("이메일 형식이 올바르지 않습니다.");
+				$("#staff_email").val().focus();
+				return;
+			};
+			
+			if ($("#staff_reid").val().length == 0 && $("#staff_reid").val() != $("#staff_id").val()) {
+				alert("아이디 중복 검사를 하지 않았습니다.");
+				$("#staff_idChk").val().focus();
+				return;
+			};
+			
 				
 			$("form").submit();
 		});
@@ -120,6 +117,8 @@
 				<th>아이디*</th>
 				<td>
 					<input type="text" name="staff_id" id="staff_id">
+					<input type="hidden" name="staff_reid" id="staff_reid">
+					<input type="button" value="아이디 중복 검사" name="staff_idChk" id="staff_idChk">
 				</td>
 				<th>이름*</th>
 				<td>
@@ -172,7 +171,7 @@
 				</td>
 			</tr>
 			<tr>
-				<th colspan="2">이메일</th>
+				<th colspan="2">이메일*</th>
 				<td colspan="2">
 					<input type="email" name="staff_email" id="staff_email">
 				</td>

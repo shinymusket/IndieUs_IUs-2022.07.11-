@@ -8,12 +8,33 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.mail.HtmlEmail;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.stereotype.Service;
+
 import com.indieus.ius.db.StaffDAO;
 import com.indieus.ius.vo.JobClassifiVO;
+import com.indieus.ius.vo.StaffIdVO;
 import com.indieus.ius.vo.StaffVO;
 
 public class StaffServiceImpl implements StaffService {
 	
+	@Value("${host.smtp.id}")
+	private String hostSMTPid;
+	@Value("${host.smtp.pwd}")
+	private String hostSMTPpwd;
+	
+	@Bean
+	public static PropertySourcesPlaceholderConfigurer properties() {
+		PropertySourcesPlaceholderConfigurer configurer =
+				new PropertySourcesPlaceholderConfigurer();
+		configurer.setLocation(new ClassPathResource("message/smtp.properties"));
+		return configurer;
+	}
+		
 	@Inject
 	private StaffDAO manager;
 
@@ -160,12 +181,87 @@ public class StaffServiceImpl implements StaffService {
 	}
 	
 	
+	// 교직원 아이디 중복 검사
+	@Override
+	public int idCheck(String staff_id) throws Exception  {
+		return manager.idCheck(staff_id);
+	}
+	
 	// 교직원 등록
 	@Override
 	public int insertStaff(StaffVO sVo) throws Exception {
+		String staff_id = sVo.getStaff_id();
+		StaffIdVO sIvo = createTempPwd(sVo);
+		manager.insertStaffId(sIvo);
+		sendMail(sVo, sIvo);
+		
 		int result = manager.insertStaff(sVo);
 		return result;
 	}
+	
+	// 교직원 계정 발급시 이메일 발송
+	@Override
+	public void sendMail(StaffVO sVo, StaffIdVO sIvo) throws Exception {
+		// Mail Server 설정
+		String charSet = "utf-8";
+		String hostSMTP = "smtp.naver.com";
+		
+		// 보내는 사람 Email, 제목, 내용
+		String fromEmail = "zz1489@naver.com";
+		String fromName = "IUS Homepage";
+		String subject = "";
+		String msg = "";
+		
+		subject = "귀하의 IUS Homepage 계정이 등록되었습니다.";
+		
+		msg += "<div align='center' style='border:1px solid black; font-family:verdana'>";
+		msg += "<h3 style='color: blue;'>";
+		msg += sVo.getStaff_name() + "님 계정이 등록되었습니다.";
+		msg += "하단의 임시비밀번호를 확인 후 링크로 이동하여 새로운 비밀번호를 설정하세요.</h3></div><br/>";
+		msg += "<p>임시 비밀번호 : ";
+		msg += sIvo.getStaff_pwd() + "</p>";
+		msg += "<a href='http://localhost:8085/ius/'>홈페이지로 이동</a></div>";
+		
+		
+		String mail = sVo.getStaff_email();
+		try {
+			HtmlEmail email = new HtmlEmail();
+			email.setDebug(true);
+			email.setCharset(charSet);
+			email.setSSL(true);
+			email.setHostName(hostSMTP);
+			email.setSmtpPort(587);
+			
+			email.setAuthentication(hostSMTPid, hostSMTPpwd);
+			email.setTLS(true);
+			email.addTo(mail, charSet);
+			email.setFrom(fromEmail, fromName, charSet);
+			email.setSubject(subject);
+			email.setHtmlMsg(msg);
+			email.send();
+		} catch(Exception e) {
+			System.out.println("메일발송 실패 : " + e);
+		}
+		
+	}
+	
+	// 교직원 계정 등록
+	@Override
+	public StaffIdVO createTempPwd(StaffVO sVo) throws Exception {
+		// 임시 비밀번호 생성
+		String pw = "";
+		for (int i = 0; i < 12; i++) {
+			pw += (char) ((Math.random() * 26) + 97);
+		}
+		
+		StaffIdVO sIvo = new StaffIdVO();
+		sIvo.setStaff_id(sVo.getStaff_id());
+		sIvo.setStaff_pwd(pw);
+		
+		return sIvo;
+	}
+	
+	
 	
 	// 교직원 정보 상세조회
 	@Override
@@ -177,7 +273,9 @@ public class StaffServiceImpl implements StaffService {
 	// 교직원 삭제
 	@Override
 	public int deleteStaff(String staff_num) throws Exception {
+		StaffVO sVo = manager.selectStaffInfo(staff_num);
 		int result = manager.deleteStaff(staff_num);
+		manager.deleteStaffid(sVo.getStaff_id());
 		return result;
 	}
 	
@@ -187,6 +285,8 @@ public class StaffServiceImpl implements StaffService {
 		int result = manager.updateStaff(sVo);
 		return result;
 	}
+
+
 
 
 

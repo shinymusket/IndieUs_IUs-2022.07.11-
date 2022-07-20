@@ -45,6 +45,20 @@
 		UPDATE jobClassifi SET job_Kname = #{job_Kname}, job_Ename = #{job_Ename} WHERE staff_cls = #{staff_cls}
 	</update>
 	
+	<!-- 교직원 아이디 중복 검사 -->
+	<select id="id_check" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM staffId WHERE staff_id = #{staff_id}
+	</select>
+	
+	<!-- 교직원 계정과 임시 비밀번호 등록 -->
+	<insert id="insert_staffId" parameterType="staffIdVO">
+		INSERT INTO staffId VALUES (#{staff_id}, #{staff_pwd})
+	</insert>
+	
+	<!-- 교직원 계정 삭제 -->
+	<delete id="delete_staffId" parameterType="String">
+		DELETE FROM staffId WHERE staff_id = #{staff_id}
+	</delete>
 	
 	<!-- 교직원 등록 -->
 	<insert id="insert_staff" parameterType="staffVO">
@@ -68,8 +82,7 @@
 	<!-- 교직원 정보 수정 -->
 	<update id="update_staff" parameterType="staffVO">
 		UPDATE staff SET 
-		staff_cls = #{staff_cls}, 
-		staff_id = #{staff_id},
+		staff_cls = #{staff_cls},
 		staff_name = #{staff_name},
 		staff_rrn1 = #{staff_rrn1},
 		staff_rrn2 = #{staff_rrn2},

@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.indieus.ius.vo.JobClassifiVO;
+import com.indieus.ius.vo.StaffIdVO;
 import com.indieus.ius.vo.StaffVO;
 
 public interface StaffService {
@@ -28,7 +29,13 @@ public interface StaffService {
 	
 	public void updateJobList(JobClassifiVO jVo) throws Exception;
 	
+	public int idCheck(String staff_id) throws Exception;
+	
 	public int insertStaff(StaffVO sVo) throws Exception;
+	
+	public void sendMail(StaffVO sVo, StaffIdVO sIvo) throws Exception;
+	
+	public StaffIdVO createTempPwd(StaffVO sVo) throws Exception;
 	
 	public StaffVO selectStaffInfo(String staff_num) throws Exception;
 	

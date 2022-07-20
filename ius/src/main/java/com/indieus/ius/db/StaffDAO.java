@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.indieus.ius.vo.JobClassifiVO;
+import com.indieus.ius.vo.StaffIdVO;
 import com.indieus.ius.vo.StaffVO;
 
 @Repository
@@ -62,6 +63,23 @@ public class StaffDAO {
 		
 	}
 	
+	// 교직원 아이디 중복 검사
+	public int idCheck(String staff_id) {
+		int result = sqlsession.selectOne("staff.id_check", staff_id);
+		return result;
+	}
+
+	// 교직원 계정(임시비밀번호 포함) 등록
+	@Transactional
+	public int insertStaffId(StaffIdVO sIvo) throws Exception {
+		return sqlsession.insert("staff.insert_staffId", sIvo);
+	}
+	
+	// 교직원 계정 삭제
+	public int deleteStaffid(String staff_id) {
+		return sqlsession.delete("staff.delete_staffId", staff_id);
+	}
+	
 	// 교직원 등록
 	@Transactional
 	public int insertStaff(StaffVO sVo) throws Exception {
@@ -84,6 +102,8 @@ public class StaffDAO {
 	public int updateStaff(StaffVO sVo) throws Exception {
 		return sqlsession.update("staff.update_staff", sVo);
 	}
+
+
 
 
 

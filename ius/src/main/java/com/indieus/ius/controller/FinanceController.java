@@ -22,8 +22,8 @@ public class FinanceController {
 	
 	// 재정관리 처음 화면 - 리스트 불러오기
 	@RequestMapping(value = "/finance_list", method = RequestMethod.GET)
-	public String list(HttpServletResponse response, Model model) throws Exception {
-		List<FinanceVO> list = service.selectFinanceList(response);
+	public String list(Model model) throws Exception {
+		List<FinanceVO> list = service.selectFinanceList();
 		model.addAttribute("financeList", list);
 		return "/finance/financeList";
 	}

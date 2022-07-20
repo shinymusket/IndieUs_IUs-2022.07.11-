@@ -10,6 +10,7 @@
 <body>
 	<h1>재정 관리</h1>
 	<input type="button" value="홈으로" onclick="location.href='../index'">
+	<input type="button" value="예산 항목" onclick="location.href='../budget/budget_list'">
 	<c:if test="${financeList != null}">
 		<table border="1">
 				<tr>

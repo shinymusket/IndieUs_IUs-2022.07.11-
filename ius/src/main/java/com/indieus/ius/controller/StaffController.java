@@ -95,7 +95,17 @@ public class StaffController {
 		service.updateJobList(jVo);
 	}
 	
-	
+	// 교직원 아이디 중복 검사
+	@RequestMapping(value = "/staff_id_check", method = RequestMethod.GET)
+	public String idCheck(Model model, @RequestParam("staff_id") String staff_id) throws Exception {
+		int result = service.idCheck(staff_id);
+		
+		model.addAttribute("result", result);
+		model.addAttribute("staff_id", staff_id);
+		
+		return "/staff/staffIdCheck";
+	}
+
 	// 교직원 등록
 	@RequestMapping(value = "/staff_register", method = RequestMethod.POST)
 	public String register(@ModelAttribute StaffVO sVo, RedirectAttributes rttr) throws Exception {
