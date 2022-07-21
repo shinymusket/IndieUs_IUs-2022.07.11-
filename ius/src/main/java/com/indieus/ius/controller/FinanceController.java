@@ -56,10 +56,49 @@ public class FinanceController {
 		return "/finance/financeRegisterForm";
 	}
 	
-	// 재정등록
+	// 재정 등록
 	@RequestMapping(value = "/finance_register", method = RequestMethod.POST)
 	public String register(@ModelAttribute FinanceVO fVo, RedirectAttributes rttr) throws Exception {
 		rttr.addFlashAttribute("result", service.insertFinance(fVo));
 		return "redirect:./finance_list";
 	}
+	
+	// 재정 정보 상세보기
+	@RequestMapping(value = "/finance_info", method = RequestMethod.GET)
+	public String info(Model model, @RequestParam String finance_num) throws Exception {
+		FinanceVO fVo = service.selectFinanceByNum(finance_num);
+		model.addAttribute("finance", fVo);
+
+		return "/finance/finance_info";
+	}
+	
+	// 재정 내역 삭제
+	@RequestMapping(value = "/finance_delete", method = RequestMethod.GET)
+	public String delete(@RequestParam String finance_num, RedirectAttributes rttr) throws Exception {
+		rttr.addFlashAttribute("result", service.deleteFinance(finance_num));
+		return "redirect:./finance_list";
+	}
+	
+	// 재정 수정 폼
+	@RequestMapping(value = "/finance_update_form", method = RequestMethod.GET)
+	public String updateForm(Model model, @RequestParam String finance_num) throws Exception {
+		FinanceVO fVo = service.selectFinanceByNum(finance_num);
+		String iE = fVo.getFinance_iE();
+		
+		List<BudgetVO> budgetList = budgetService.selectBudgetByBudgetIe(iE);
+		List<StaffVO> staffList = staffService.selectStaffList();
+		
+		model.addAttribute("budgetList", budgetList);
+		model.addAttribute("staffList", staffList);
+		model.addAttribute("finance", fVo);
+		return "/finance/finance_update_form";
+	}
+	
+	// 재정 수정
+	@RequestMapping(value = "/finance_update", method = RequestMethod.POST)
+	public String update(@ModelAttribute FinanceVO fVo, RedirectAttributes rttr) throws Exception {
+		rttr.addAttribute("result", service.updateFinance(fVo));
+		return "redirect:./finance_list";
+	}
+	
 }

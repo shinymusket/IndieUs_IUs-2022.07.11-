@@ -36,5 +36,23 @@ public class FinanceServiceImpl implements FinanceService {
 		return manager.insertFinance(fVo);
 	}
 	
+	// 재정 상세보기
+	@Override
+	public FinanceVO selectFinanceByNum(String finance_num) throws Exception {
+		return manager.selectFinanceByNum(finance_num);
+	}
+	
+	// 재정 삭제
+	@Override
+	public int deleteFinance(String finance_num) throws Exception {
+		return manager.deleteFinance(finance_num);
+	}
+	
+	// 재정 정보 수정
+	@Override
+	public int updateFinance(FinanceVO fVo) throws Exception {
+		return manager.updateFinance(fVo);
+	}
+	
 	
 }

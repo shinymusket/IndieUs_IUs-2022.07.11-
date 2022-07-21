@@ -31,4 +31,21 @@ public class FinanceDAO {
 	public int insertFinance(FinanceVO fVo) throws Exception {
 		return sqlsession.insert("finance.insert_finance", fVo);
 	}
+	
+	// 재정 상세보기
+	public FinanceVO selectFinanceByNum(String finance_num) throws Exception {
+		return sqlsession.selectOne("finance.select_finance_info", finance_num);
+	}
+	
+	// 재정 삭제
+	@Transactional
+	public int deleteFinance(String finance_num) throws Exception  {
+		return sqlsession.delete("finance.delete_finance", finance_num);
+	}
+	
+	// 재정 내역 수정
+	@Transactional
+	public int updateFinance(FinanceVO fVo) throws Exception {
+		return sqlsession.update("finance.update_finance", fVo);
+	}
 }

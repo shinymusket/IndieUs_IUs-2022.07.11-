@@ -12,4 +12,10 @@ public interface FinanceService {
 	public int selectFinanceSeq() throws Exception;
 	
 	public int insertFinance(FinanceVO fVo) throws Exception;
+	
+	public FinanceVO selectFinanceByNum(String finance_num) throws Exception;
+	
+	public int deleteFinance(String finance_num) throws Exception;
+	
+	public int updateFinance(FinanceVO fVo) throws Exception;
 }
