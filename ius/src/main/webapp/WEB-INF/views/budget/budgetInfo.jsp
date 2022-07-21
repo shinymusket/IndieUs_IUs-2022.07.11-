@@ -33,7 +33,7 @@
 		<tr>
 			<td colspan="5">
 				<input type="button" value="삭제" onclick="location.href='../budget/budget_delete?budget_num=${budget.budget_num}'">
-				<input type="button" value="수정">
+				<input type="button" value="수정" onclick="location.href='../budget/budget_update_form?budget_num=${budget.budget_num}'">
 			</td>
 		</tr>
 	</table>

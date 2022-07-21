@@ -9,6 +9,8 @@ public interface BudgetService {
 	
 	public List<BudgetVO> selectAllBudget() throws Exception;
 	
+	public List<BudgetVO> selectBudgetByBudgetIe(String budget_iE) throws Exception;
+	
 	public Object getBudgetList() throws Exception;
 	
 	public Object getBudgetListByYear(Map<String, Object> map) throws Exception;
@@ -20,5 +22,7 @@ public interface BudgetService {
 	BudgetVO selectBudgetNyNum(String budget_num) throws Exception;
 	
 	public int deleteBudget(String budget_num) throws Exception;
+	
+	public int updateBudget(BudgetVO bVo) throws Exception;
 		
 }

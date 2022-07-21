@@ -8,6 +8,43 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 	$(function(){
+			//키를 누르거나 떼었을때 이벤트 발생
+		    $("#staff_salary").bind('keyup keydown',function(){
+		        inputNumberFormat(this);
+		    });
+	
+		    //입력한 문자열 전달
+		    function inputNumberFormat(obj) {
+		        obj.value = comma(uncomma(obj.value));
+		    };
+		      
+		    //콤마찍기
+		    function comma(str) {
+		        str = String(str);
+		        return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+		    };
+	
+		    //콤마풀기
+		    function uncomma(str) {
+		        str = String(str);
+		        return str.replace(/[^\d]+/g, '');
+		    };
+	
+		    //숫자만 리턴(저장할때)
+		    //alert(cf_getNumberOnly('1,2./3g')); -> 123 return
+		    function cf_getNumberOnly (str) {
+		        var len      = str.length;
+		        var sReturn  = "";
+	
+		        for (var i=0; i<len; i++){
+		            if ( (str.charAt(i) >= "0") && (str.charAt(i) <= "9") ){
+		                sReturn += str.charAt(i);
+		            }
+		        }
+		        return sReturn;
+		    };
+		
+		
 			$("#staff_idChk").click(function(){
 				if ($("#staff_id").val() == "") {
 					alert("아이디를 입력해주세요.");
@@ -72,14 +109,19 @@
 				return;
 			};
 			
-			if ($("#staff_reid").val().length == 0 && $("#staff_reid").val() != $("#staff_id").val()) {
+			if ($("#staff_reid").val().length == 0 || $("#staff_reid").val() != $("#staff_id").val()) {
 				alert("아이디 중복 검사를 하지 않았습니다.");
 				$("#staff_idChk").val().focus();
 				return;
 			};
 			
-				
+			
+			
+			value = cf_getNumberOnly ($("#staff_salary").val());
+			
+			$("#staff_salary").val(value);
 			$("form").submit();
+			
 		});
 		
 		$("#staff_cls_edit").click(function(){
@@ -167,7 +209,7 @@
 				</td>
 				<th>월급</th>
 				<td>
-					<input type="number" name="staff_salary" id="staff_salary"> 
+					<input type="text" name="staff_salary" id="staff_salary" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"> 
 				</td>
 			</tr>
 			<tr>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,7 +48,9 @@
 					<td>${staff.staff_hireD}</td>
 					<td>${staff.staff_retireD}</td>
 					<td>${staff.staff_workYn}</td>
-					<td>${staff.staff_salary}</td>
+					<td>
+						<fmt:formatNumber value="${staff.staff_salary}" maxFractionDigits="3"/>
+					</td>
 					<td>${staff.staff_email}</td>
 				</tr>
 		</c:forEach>

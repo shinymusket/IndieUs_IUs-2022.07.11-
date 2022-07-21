@@ -10,6 +10,11 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 	$(function(){
+		function addComma(value){
+			result = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); 
+	        return result;
+	    };
+			
 		function getList() {
 			$.ajax({
 				url : "/ius/budget/get_budget_list",
@@ -34,7 +39,7 @@
 						output += "<td>" + value.budget_year + "</td>";
 						output += "<td>" + budgetType + "</td>";
 						output += "<td><a href='../budget/budget_info?budget_num=" + value.budget_num + "'>" + value.budget_cls + "</a></td>";
-						output += "<td>" + value.budget_total + "</td>";
+						output += "<td>" + addComma(value.budget_total) + "</td>";
 						output += "</tr>";
 					});
 					
@@ -47,6 +52,14 @@
 		getList();
 		
 		$("#yearSearch").click(function(){
+			if ($("#budget_year").val() == "") {
+				alert("년도를 선택하세요.");
+				$("#budget_year").val().focus();
+				return;
+			};
+			
+			
+			
 			var objParams = {
 					seachYear : $("#budget_year").val()
 			}
@@ -72,8 +85,8 @@
 						output += "<td>" + value.budget_num + "</td>";
 						output += "<td>" + value.budget_year + "</td>";
 						output += "<td>" + budgetType + "</td>";
-						output += "<td>" + value.budget_cls + "</td>";
-						output += "<td>" + value.budget_total + "</td>";
+						output += "<td><a href='../budget/budget_info?budget_num=" + value.budget_num + "'>" + value.budget_cls + "</a></td>";
+						output += "<td>" + addComma(value.budget_total) + "</td>";
 						output += "</tr>";
 					});
 					

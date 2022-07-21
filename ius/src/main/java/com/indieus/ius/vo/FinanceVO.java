@@ -9,6 +9,28 @@ public class FinanceVO {
 	private String finance_iE;
 	private int finance_amount;
 	
+	private String budget_cls;
+	private String staff_name;
+	
+	
+	
+	
+	
+	public String getBudget_cls() {
+		return budget_cls;
+	}
+	public void setBudget_cls(String budget_cls) {
+		this.budget_cls = budget_cls;
+	}
+	public String getStaff_name() {
+		return staff_name;
+	}
+	public void setStaff_name(String staff_name) {
+		this.staff_name = staff_name;
+	}
+	
+	
+	
 	public String getFinance_num() {
 		return finance_num;
 	}

@@ -11,6 +11,8 @@
 	<h1>재정 관리</h1>
 	<input type="button" value="홈으로" onclick="location.href='../index'">
 	<input type="button" value="예산 항목" onclick="location.href='../budget/budget_list'">
+	<input type="button" value="수입 등록" onclick="location.href='../finance/finance_register_form?iE=In'">
+	<input type="button" value="지출 등록" onclick="location.href='../finance/finance_register_form?iE=Ex'">
 	<c:if test="${financeList != null}">
 		<table border="1">
 				<tr>
@@ -25,11 +27,18 @@
 		<c:forEach items="${financeList}" var="finance">
 				<tr>
 					<td>${finance.finance_num}</td>
-					<td>${finance.budget_num}</td>
-					<td>${finance.staff_num}</td>
+					<td>${finance.budget_cls}</td>
+					<td>${finance.staff_name}</td>
 					<td>${finance.finance_eDate}</td>
 					<td>${finance.finance_cls}</td>
-					<td>${finance.finance_iE}</td>
+					<td>
+						<c:if test="${finance.finance_iE == 'In'}">
+							수입
+						</c:if>
+						<c:if test="${finance.finance_iE == 'Ex'}">
+							지출
+						</c:if>
+					</td>
 					<td>${finance.finance_amount}</td>
 				</tr>
 		</c:forEach>

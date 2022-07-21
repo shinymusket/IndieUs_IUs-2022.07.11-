@@ -72,6 +72,20 @@ public class BudgetController {
 		rttr.addFlashAttribute("result", service.deleteBudget(budget_num));
 		return "redirect:./budget_list";
 	}
-
+	
+	// 예상 항목 수정 폼
+	@RequestMapping(value = "/budget_update_form", method = RequestMethod.GET)
+	public String updateForm(Model model, @RequestParam String budget_num) throws Exception {
+		BudgetVO bVo = service.selectBudgetNyNum(budget_num);
+		model.addAttribute("budget", bVo);
+		return "/budget/budgetUpdateForm";
+	}
+	
+	// 예산 항목 수정
+	@RequestMapping(value = "/budget_update", method = RequestMethod.POST)
+	public String update(@ModelAttribute BudgetVO bVo, RedirectAttributes rttr) throws Exception {
+		rttr.addFlashAttribute("result", service.updateBudget(bVo));
+		return "redirect:./budget_list";
+	}
 	
 }

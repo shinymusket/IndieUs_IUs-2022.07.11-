@@ -23,5 +23,18 @@ public class FinanceServiceImpl implements FinanceService {
 		List<FinanceVO> list = manager.selectFinanceList();
 		return list;
 	}
+
+	// 재정등록을 위한 다음 시퀀스 값 확인하기 
+	@Override
+	public int selectFinanceSeq() throws Exception {
+		return manager.selectFinanceSeq();
+	}
+
+	// 재정 등록
+	@Override
+	public int insertFinance(FinanceVO fVo) throws Exception {
+		return manager.insertFinance(fVo);
+	}
+	
 	
 }

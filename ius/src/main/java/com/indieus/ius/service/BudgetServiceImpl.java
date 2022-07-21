@@ -20,6 +20,12 @@ public class BudgetServiceImpl implements BudgetService {
 		return manager.selectAllBudget();
 	}
 	
+	// 수입 지출별 예산 항목 조회
+	@Override
+	public List<BudgetVO> selectBudgetByBudgetIe(String budget_iE) throws Exception {
+		return manager.selectBudgetByBudgetIe(budget_iE);
+	}
+	
 	
 	// 예산 리스트 가져오기 Ajax
 	@Override
@@ -65,6 +71,12 @@ public class BudgetServiceImpl implements BudgetService {
 		return manager.deleteBudget(budget_num);
 	}
 
+	
+	// 예산 항목 수정
+	@Override
+	public int updateBudget(BudgetVO bVo) throws Exception {
+		return manager.updateBudget(bVo);
+	}
 
 
 

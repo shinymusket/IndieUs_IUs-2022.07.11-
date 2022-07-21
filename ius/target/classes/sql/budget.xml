@@ -6,6 +6,12 @@
   		SELECT * FROM budget
   	</select>
   	
+  	<!-- 수입별, 지출별 에산 항목 조회 -->
+  	<select id="select_all_budget_by_iE" parameterType="String" resultType="budgetVO">
+  		SELECT * FROM budget WHERE budget_iE = #{budget_iE}
+  	</select>
+  	
+  	
   	<!-- 예산 년도 조회 -->
   	<select id="select_all_budget_year" resultType="String">
   		SELECT DISTINCT(budget_year) FROM budget
@@ -30,5 +36,10 @@
   	<delete id="delete_budget_by_num" parameterType="String">
   		DELETE FROM budget WHERE budget_num = #{budget_num}
   	</delete>
+  	
+  	<!-- 예산 항목 수정 -->
+  	<update id="update_budget" parameterType="budgetVO">
+  		UPDATE budget SET budget_cls = #{budget_cls}, budget_total = #{budget_total}, budget_iE = #{budget_iE}, budget_year = #{budget_year} WHERE budget_num = #{budget_num}
+  	</update>
   	
 </mapper>
