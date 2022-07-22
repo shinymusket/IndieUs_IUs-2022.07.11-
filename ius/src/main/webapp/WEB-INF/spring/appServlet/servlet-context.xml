@@ -44,18 +44,25 @@
 	<context:component-scan base-package="com.indieus.ius" />
 	
 	<!-- Controller -->
+	<beans:bean id="mainController" class="com.indieus.ius.controller.MainController"/>
 	<beans:bean id="budgetController" class="com.indieus.ius.controller.BudgetController"/>
 	<beans:bean id="financeController" class="com.indieus.ius.controller.FinanceController" />
 	<beans:bean id="staffController" class="com.indieus.ius.controller.StaffController" />
+	<beans:bean id="authorityController" class="com.indieus.ius.controller.AuthorityController" />
 	
 	<!-- DAO -->
 	<beans:bean id="budgetDAO" class="com.indieus.ius.db.BudgetDAO" />
 	<beans:bean id="financeDAO" class="com.indieus.ius.db.FinanceDAO" />
 	<beans:bean id="staffDAO" class="com.indieus.ius.db.StaffDAO" />
+	<beans:bean id="authorityDAO" class="com.indieus.ius.db.AuthorityDAO" />
+	<beans:bean id="staffIdDAO" class="com.indieus.ius.db.StaffIdDAO" />
 	
 	<!-- Service -->
 	<beans:bean id="financeService" class="com.indieus.ius.service.FinanceServiceImpl" />
 	<beans:bean id="staffService" class="com.indieus.ius.service.StaffServiceImpl" />
 	<beans:bean id="budgetServiceImpl" class="com.indieus.ius.service.BudgetServiceImpl" />
+	<beans:bean id="authorityServiceImpl" class="com.indieus.ius.service.AuthorityServiceImpl" />
+	<beans:bean id="staffIdServiceImpl" class="com.indieus.ius.service.StaffIdServiceImpl" />
+
 
 </beans:beans>

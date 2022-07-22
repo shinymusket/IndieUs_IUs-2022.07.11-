@@ -132,7 +132,7 @@
 	<input type="button" value="검색" id="yearSearch">
 
 	<br>
-	<input type="button" value="홈으로" onclick="location.href='../index'">
+	<input type="button" value="홈으로" onclick="location.href='../main/'">
 	<input type="button" value="재정" onclick="location.href='../finance/finance_list'">
 	<input type="button" value="항목 추가" onclick="location.href='../budget/budget_register_form'">
 	

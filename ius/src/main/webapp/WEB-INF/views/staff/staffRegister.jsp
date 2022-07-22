@@ -136,7 +136,6 @@
 </head>
 <body>
 	<h1>교직원 등록</h1>
-	<input type="button" value="홈으로" onclick="location.href='../index'">
 	<input type="button" value="목록으로" onclick="location.href='./staff_list'">
 	<form action="./staff_register" method="POST" name="frm">
 		<table border="1">
@@ -204,6 +203,7 @@
 				<td>
 					<select name="staff_workYn" id="staff_workYn">
 						<option value="Y">재직</option>
+						<option value="P">휴직</option>
 						<option value="N">퇴사</option>
 					</select>
 				</td>

@@ -138,7 +138,7 @@ $(function(){
 	<input type="button" value="검색" id="yearSearch">
 	<br>
 		
-	<input type="button" value="홈으로" onclick="location.href='../index'">
+	<input type="button" value="홈으로" onclick="location.href=''../main/''">
 	<input type="button" value="예산 항목" onclick="location.href='../budget/budget_list'">
 	<input type="button" value="수입 등록" onclick="location.href='../finance/finance_register_form?iE=In'">
 	<input type="button" value="지출 등록" onclick="location.href='../finance/finance_register_form?iE=Ex'">

@@ -10,8 +10,9 @@
 </head>
 <body>
 	<h1>교직원 관리</h1>
-	<input type="button" value="홈으로" onclick="location.href='../index'">
+	<input type="button" value="홈으로" onclick="location.href='../main/'">
 	<input type="button" value="교직원 등록" onclick="location.href='../staff/staff_register'">
+	<input type="button" value="권한 부여" onclick="location.href='../authority/authority_edit'">
 	<c:if test="${staffList != null}">
 		<table border="1">
 				<tr>
