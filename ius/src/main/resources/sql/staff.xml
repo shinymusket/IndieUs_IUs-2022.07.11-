@@ -50,9 +50,9 @@
 		SELECT COUNT(*) FROM staffId WHERE staff_id = #{staff_id}
 	</select>
 	
-	<!-- 교직원 계정과 임시 비밀번호 등록 -->
+	<!-- 교직원 계정과 임시 비밀번호 등록, 권한, 가입날짜 등록 -->
 	<insert id="insert_staffId" parameterType="staffIdVO">
-		INSERT INTO staffId VALUES (#{staff_id}, #{staff_pwd})
+		INSERT INTO staffId(staff_id, staff_pwd, auth_code, reg_date) VALUES (#{staff_id}, #{staff_pwd}, #{auth_code}, sysdate)
 	</insert>
 	
 	<!-- 교직원 계정 삭제 -->

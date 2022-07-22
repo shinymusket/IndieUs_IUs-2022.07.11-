@@ -258,6 +258,18 @@ public class StaffServiceImpl implements StaffService {
 		sIvo.setStaff_id(sVo.getStaff_id());
 		sIvo.setStaff_pwd(pw);
 		
+		// 기본 권한 설정
+		String staff_cls = sVo.getStaff_cls();
+		if (staff_cls.equals("1")) { // 원장
+			sIvo.setAuth_code("M");
+		} else if (staff_cls.equals("2")) { // 교사
+			sIvo.setAuth_code("T");
+		} else if (staff_cls.equals("3")) { // 버스기사
+			sIvo.setAuth_code("C");
+		} else if (staff_cls.equals("4")) { // 영양사
+			sIvo.setAuth_code("D");
+		}
+		
 		return sIvo;
 	}
 	

@@ -148,9 +148,6 @@
 				<td>
 					<input type="hidden" name="staff_cls" id="staff_cls">
 					<input type="text" name="job_Kname" id="job_Kname" readonly="readonly">
-						<%-- <c:forEach items="${jobList}" var="job">
-							<option value="${job.staff_cls}">${job.job_Kname}</option>
-						</c:forEach> --%>
 					<input type="button" id="staff_cls_edit" value="선택">
 				</td>
 			</tr>
