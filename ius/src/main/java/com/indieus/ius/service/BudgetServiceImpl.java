@@ -40,9 +40,17 @@ public class BudgetServiceImpl implements BudgetService {
 	@Override
 	public Object getBudgetListByYear(Map<String, Object> map) throws Exception {
 		String seachYear = (String) map.get("seachYear");
-		List<BudgetVO> budgetList = manager.selectBudgetByYear(seachYear);
+		String budgetType = (String) map.get("budgetType");
+		
+		List<BudgetVO> budgetList = manager.selectBudgetByYear(seachYear, budgetType);
+		int totalIncome  = manager.selectTotalIncome(seachYear);
+		int totalExpense = manager.selectTotalExpense(seachYear);
+		
+		
 		Map<String, Object> retVal = new HashMap();
 		retVal.put("budgetList", budgetList);
+		retVal.put("totalIncome", totalIncome);
+		retVal.put("totalExpense", totalExpense);
 		return retVal;
 	}
 	

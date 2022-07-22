@@ -1,5 +1,6 @@
 package com.indieus.ius.db;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -20,6 +21,34 @@ public class BudgetDAO {
 		return sqlsession.selectList("budget.select_all_budget");
 	}
 	
+	// 년도별 예산 조회
+	public List<BudgetVO> selectBudgetByYear(String seachYear, String budgetType) throws Exception {
+		HashMap<String, String> selectInfo = new HashMap<>();
+		selectInfo.put("seachYear", seachYear);
+		selectInfo.put("budgetType", budgetType);
+		
+		return sqlsession.selectList("budget.select_budget_by_year", selectInfo);
+	}
+	
+	
+	// 년도별 총 수입 예산 조회
+	public int selectTotalIncome(String budget_year) throws Exception {
+		int result = 0;
+		if (sqlsession.selectOne("budget.select_total_Income", budget_year) !=  null) {
+			result = sqlsession.selectOne("budget.select_total_Income", budget_year);
+		}
+		return result;
+	}
+	
+	// 년도별 총 지출 예산 조회
+	public int selectTotalExpense(String budget_year) throws Exception {
+		int result = 0;
+		if (sqlsession.selectOne("budget.select_total_Expense", budget_year) != null) {
+			result = sqlsession.selectOne("budget.select_total_Expense", budget_year);
+		}
+		return result;
+	}
+	
 	// 수입 지출별 예산 항목 조회
 	public List<BudgetVO> selectBudgetByBudgetIe(String budget_iE) throws Exception {
 		return sqlsession.selectList("budget.select_all_budget_by_iE", budget_iE);
@@ -29,12 +58,7 @@ public class BudgetDAO {
 	public List<String> selectAllBudgetYear() throws Exception {
 		return sqlsession.selectList("budget.select_all_budget_year");
 	}
-	
-	// 년도별 예산 조회
-	public List<BudgetVO> selectBudgetByYear(String seachYear) throws Exception {
-		return sqlsession.selectList("budget.select_budget_by_year", seachYear);
-	}
-	
+
 	
 	// 예산 항목 추가
 	@Transactional

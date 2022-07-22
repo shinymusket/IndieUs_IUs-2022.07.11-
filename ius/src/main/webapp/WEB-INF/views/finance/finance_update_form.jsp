@@ -47,6 +47,12 @@ $(function(){
     };
     
     $("#update").click(function(){
+    	if($("#finance_eYear").val() == "") {
+			alert("회계 년도를 입력해주세요.");
+			$("#finance_eYear").val().focus();
+			return;
+		};
+    	
 		if($("#budget_num").val() == "") {
 			alert("예산 항목을 선택해주세요.");
 			$("#budget_num").val().focus();
@@ -89,9 +95,15 @@ $(function(){
 	<form action="./finance_update" method="POST">
 		<table border="1">
 		<tr>
-			<th>재정 코드</th>
-			<td>
+			<th colspan="2">재정 코드</th>
+			<td colspan="1">
 				<input type="text" name="finance_num" id="finance_num" value="${finance.finance_num}" readonly="readonly">
+			</td>
+		</tr>
+		<tr>
+			<th>회계 년도</th>
+			<td>
+				<input type="number" name="finance_eYear" id="finance_eYear" value="${finance.finance_eYear}">
 			</td>
 			<th>예산 항목</th>
 			<td>

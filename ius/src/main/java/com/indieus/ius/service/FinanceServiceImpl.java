@@ -1,11 +1,10 @@
 package com.indieus.ius.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.stereotype.Service;
 
 import com.indieus.ius.db.FinanceDAO;
 import com.indieus.ius.vo.FinanceVO;
@@ -17,11 +16,40 @@ public class FinanceServiceImpl implements FinanceService {
 	private FinanceDAO manager;
 	
 	
-	// 재정 목록 가져오기
+	// 재정 목록 가져오기 Ajax
 	@Override
-	public List<FinanceVO> selectFinanceList() throws Exception {
-		List<FinanceVO> list = manager.selectFinanceList();
-		return list;
+	public Object selectFinanceList() throws Exception {
+		List<FinanceVO> financeList = manager.selectFinanceList();
+		Map<String, Object> retVal = new HashMap();
+		retVal.put("financeList", financeList);
+		return retVal;
+	}
+	
+	// 년도별 재정 리스트 가져오기 Ajax 
+	@Override
+	public Object getFinanceListByYear(Map<String, Object> map) throws Exception {
+		Map<String, Object> retVal = new HashMap();
+		
+		String seachYear = (String) map.get("seachYear");
+		String financeType =(String) map.get("finance_type");
+		
+		List<FinanceVO> financeList = manager.selectFinanceByEyear(seachYear, financeType);
+		retVal.put("financeList", financeList);
+		
+		int totalIncome = manager.selectTotalIncomeByEyear(seachYear);
+		retVal.put("totalIncome", totalIncome);
+		int totalExpense = manager.selectTotalExpenseByEyear(seachYear);
+		retVal.put("totalExpense", totalExpense);
+		
+		return retVal;
+	}
+	
+	
+	
+	// 전체 재정 회계 년도 조회
+	@Override
+	public List<String> selectAllFinanceEyear() throws Exception {
+		return manager.selectAllFinanceEyear();
 	}
 
 	// 재정등록을 위한 다음 시퀀스 값 확인하기 

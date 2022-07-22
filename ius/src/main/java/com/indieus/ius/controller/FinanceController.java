@@ -1,6 +1,7 @@
 package com.indieus.ius.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.indieus.ius.service.BudgetServiceImpl;
@@ -33,10 +35,25 @@ public class FinanceController {
 	// 재정관리 처음 화면 - 리스트 불러오기
 	@RequestMapping(value = "/finance_list", method = RequestMethod.GET)
 	public String list(Model model) throws Exception {
-		List<FinanceVO> list = service.selectFinanceList();
-		model.addAttribute("financeList", list);
+		List<String> yearList = service.selectAllFinanceEyear();
+		model.addAttribute("financeYearList", yearList);
 		return "/finance/financeList";
 	}
+	
+	// 재정 리스트 가져오기 Ajax
+	@RequestMapping(value = "/get_finance_list", method = RequestMethod.POST)
+	@ResponseBody
+	public Object getFinanceList() throws Exception {
+		return service.selectFinanceList();
+	}
+	
+	// 년도별 재정 리스트 가져오기 Ajax
+	@RequestMapping(value = "/get_finance_list_by_year", method = RequestMethod.POST)
+	@ResponseBody
+	public Object getFinanceListByYear(@RequestParam Map<String, Object> map) throws Exception {
+		return service.getFinanceListByYear(map);
+	}
+	
 	
 	// 재정등록 폼
 	@RequestMapping(value = "/finance_register_form", method = RequestMethod.GET)

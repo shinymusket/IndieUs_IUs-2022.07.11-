@@ -1,13 +1,17 @@
 package com.indieus.ius.service;
 
 import java.util.List;
+import java.util.Map;
 
-import javax.servlet.http.HttpServletResponse;
 
 import com.indieus.ius.vo.FinanceVO;
 
 public interface FinanceService {
-	public List<FinanceVO> selectFinanceList() throws Exception;
+	public Object selectFinanceList() throws Exception;
+	
+	public List<String> selectAllFinanceEyear() throws Exception;
+	
+	public Object getFinanceListByYear(Map<String, Object> map) throws Exception;
 	
 	public int selectFinanceSeq() throws Exception;
 	

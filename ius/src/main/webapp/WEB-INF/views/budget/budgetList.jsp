@@ -23,7 +23,7 @@
 					
 				},
 				success: function(data) {
-					$("#list").text("");
+					$("#list").text("");			
 					values = data.budgetList;
 					output = "<tr><th>예산 번호</th><th>년도</th><th>구분</th><th>항목</th><th>총액</th></tr>";				
 					$.each(values, function(index, value) {
@@ -58,10 +58,11 @@
 				return;
 			};
 			
-			
+			budgetYear = $("#budget_year").val();
 			
 			var objParams = {
-					seachYear : $("#budget_year").val()
+					seachYear : $("#budget_year").val(),
+					budgetType : $("#budget_type").val()
 			}
 			
 			var values = [];
@@ -71,7 +72,16 @@
 				objParams,
 				function(retVal) {
 					$("#list").text("");
+					$("#budgetYear").text("");
+					$("#totalIncome").text("");
+					$("#totalExpense").text("");
+					$("#balance").text("");
+					
 					values = retVal.budgetList;
+					totalIncome = retVal.totalIncome;
+					totalExpense = retVal.totalExpense;
+					balance = (totalIncome-totalExpense);
+		
 					output = "<tr><th>예산 번호</th><th>년도</th><th>구분</th><th>항목</th><th>총액</th></tr>";				
 					$.each(values, function(index, value) {
 						if (value.budget_iE == 'In') {
@@ -90,6 +100,10 @@
 						output += "</tr>";
 					});
 					
+					$("#budgetYear").html(budgetYear);
+					$("#totalIncome").html(addComma(totalIncome));
+					$("#totalExpense").html(addComma(totalExpense));
+					$("#balance").html(addComma(balance));
 					$("#list").html(output);
 				}
 			)
@@ -104,16 +118,40 @@
 		<option value="">--년도--</option>
 		<c:if test="${budgetYearList != null}">
 			<c:forEach items="${budgetYearList}" var="budgetYear">
-				<option value="${budgetYear}">${budgetYear}</option>
+				<option value="${budgetYear}">${budgetYear}년도</option>
 			</c:forEach>	
 		</c:if>
 	</select>
+	
+	<select name="budget_type" id="budget_type">
+		<option value="total" selected="selected">전체</option>
+		<option value="In">수입</option>
+		<option value="Ex">지출</option>
+	</select>
+	
 	<input type="button" value="검색" id="yearSearch">
 
 	<br>
 	<input type="button" value="홈으로" onclick="location.href='../index'">
 	<input type="button" value="재정" onclick="location.href='../finance/finance_list'">
 	<input type="button" value="항목 추가" onclick="location.href='../budget/budget_register_form'">
+	
+	<table border="1" id="finalAccount">
+		<tr>
+			<th>년도</th>
+			<th>총 수입</th>
+			<th>총 지출</th>
+			<th>잔액</th>
+		</tr>
+		<tr>
+			<td id="budgetYear"></td>
+			<td id="totalIncome"></td>
+			<td id="totalExpense"></td>
+			<td id="balance"></td>
+		<tr>	
+	</table>
+	
+	
 	<table border="1" id="list">
 		
 	</table>
