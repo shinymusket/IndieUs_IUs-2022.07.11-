@@ -8,37 +8,102 @@
 <title>권한 부여</title>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
-	$(function(){
-		function getInfo(num) {
-			var objParams = {
-					staff_num = num;
-			}
-			
-			var values = [];
-			
-			$.post(
+ function getInfo(num) {
+	 var objParams = {
+				staff_num : num
+		}
+	 
+	 $.post(
 				"/ius/authority/get_authority_info",
 				objParams,
 				function(retVal) {
 					$("#authorityInfo").text("");
 					
-					values = retVal.authorityInfo;
+					value = retVal.authorityInfo;		
 					
-					output = "<tr><th>권한</th><th>여부</th></tr>"
-					$.each(values, function(index, value) {
-						output += "<tr><td>관리자</td>"
-						output += "<td>+ +</td></tr>"
-						
-					});
+					var master = "";
+					var teacher = "";
+					var dietitian = "";
+					var facilities = "";
+					var bus = "";
+					var info = "";
+					var event = "";
+					var gallery = "";
 					
+
+					if (value.m == "Y") {
+						master = "checked";
+					};
+					if (value.t == "Y") {
+						teacher = "checked";
+					};
+					if (value.d == "Y") {
+						dietitian = "checked";
+					};
+					if (value.f == "Y") {
+						facilities = "checked";
+					};
+					if (value.s == "Y") {
+						bus = "checked";
+					};
+					if (value.i == "Y") {
+						info = "checked";
+					};
+					if (value.e == "Y") {
+						event = "checked";
+					};
+					if (value.g == "Y") {
+						gallery = "checked";
+					};
+					
+					output = "<tr><th>권한</th><th>여부</th></tr>";
+					output += "<tr><td>관리자</td>";
+					output += "<td><input type='checkbox' id='master' "+ master + "></tr>";
+					output += "<tr><td>교사</td>";
+					output += "<td><input type='checkbox' id='teacher' "+ teacher + "></tr>";
+					output += "<tr><td>급식</td>";
+					output += "<td><input type='checkbox' id='dietitian' "+ dietitian +"></tr>";
+					output += "<tr><td>시설</td>";
+					output += "<td><input type='checkbox' id='facilities' "+ facilities +"></tr>";
+					output += "<tr><td>셔틀버스</td>";
+					output += "<td><input type='checkbox' id='bus' "+ bus +"></tr>";
+					output += "<tr><td>안내사항</td>";
+					output += "<td><input type='checkbox' id='info' "+ info +"></tr>";
+					output += "<tr><td>행사 및 일정</td>";
+					output += "<td><input type='checkbox' id='event' "+ event +"></tr>";
+					output += "<tr><td>갤러리</td>";
+					output += "<td><input type='checkbox' id='gallery' "+ gallery +"></tr>";
+					output += "<tr><td colspan='2'><input type='button' value='등록' id='register'></td></tr>";
+					
+					$("#authorityInfo").html(output);
 					
 				}
 					)
-		};
+ }
+
+
+
+$(function(){
+
+		$("#master").change(function() {
+		    if(this.checked) {
+		       $("#teacher").checked;
+		       $("#dietitian").checked;
+		       $("#facilities").checked;
+		       $("#bus").checked;
+		       $("#info").checked;
+		       $("#event").checked;
+		       $("#gallery").checked;   
+		    }
+		});
 		
-		
-		
-	})
+	
+}) 
+
+
+	
+
+
 
 </script>
 </head>
@@ -67,9 +132,6 @@
 			</c:forEach>
 		</c:if>	
 	</table>
-	
 	<table id="authorityInfo" border="1" style="float: left;"></table>
-	
-	
 </body>
 </html>
