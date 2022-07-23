@@ -40,4 +40,11 @@ public class AuthorityController {
 		return service.getAuthorityInfo(map);
 	}
 	
+	// 권한 정보 저장하기 Ajax
+	@RequestMapping(value = "/set_authority_info", method = RequestMethod.POST)
+	@ResponseBody
+	public void setAuthorityInfo(@RequestParam Map<String, Object> map) throws Exception {
+		service.setAuthorityInfo(map);
+	}
+	
 }
