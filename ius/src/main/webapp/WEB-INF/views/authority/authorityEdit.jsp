@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>권한 부여</title>
+<title>권한 관리</title>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
  function getInfo(num) {

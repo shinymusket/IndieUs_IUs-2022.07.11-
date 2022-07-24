@@ -3,14 +3,14 @@ package com.indieus.ius.vo;
 import java.sql.Date;
 
 public class StaffIdVO {
-	
+
 	private String staff_id;
 	private String staff_pwd;
 	private String auth_code;
 	private Date reg_date;
 	private Date log_date;
-	
-	
+
+
 	public String getAuth_code() {
 		return auth_code;
 	}
@@ -41,6 +41,6 @@ public class StaffIdVO {
 	public void setStaff_pwd(String staff_pwd) {
 		this.staff_pwd = staff_pwd;
 	}
-	
-	
+
+
 }

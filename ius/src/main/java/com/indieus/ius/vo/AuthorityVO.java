@@ -1,7 +1,7 @@
 package com.indieus.ius.vo;
 
 public class AuthorityVO {
-	
+
 	private String auth_code;
 	private String auth_name;
 	private String M;
@@ -72,6 +72,6 @@ public class AuthorityVO {
 	public void setG(String g) {
 		G = g;
 	}
-	
-	
+
+
 }

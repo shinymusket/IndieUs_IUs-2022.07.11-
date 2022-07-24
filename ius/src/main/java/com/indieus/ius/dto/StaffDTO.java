@@ -6,11 +6,11 @@ public class StaffDTO { // 뷰를 위한 DTO
 	 private String staff_id;
 	 private String staff_name;
 	 private String staff_rrn;
-	 
+
 	 private String staff_sex; // 주민등록번호 뒷자리 중 첫자리가 홀수이면 남성, 짝수이면 여성
 	 private String staff_birth; // 주민등록번호 앞자리의 데이터
 	 private String staff_age; // 주민등록번호 맨 앞자리의 데이터와 맨 뒷번호의 첫자리
-	 
+
 	 private String staff_addr;
 	 private String staff_zipcode;
 	 private String staff_tel;
@@ -19,7 +19,7 @@ public class StaffDTO { // 뷰를 위한 DTO
 	 private String staff_workYn;
 	 private int staff_salary;
 	 private String staff_email;
-	 
+
 	public String getStaff_num() {
 		return staff_num;
 	}
@@ -116,6 +116,6 @@ public class StaffDTO { // 뷰를 위한 DTO
 	public void setStaff_email(String staff_email) {
 		this.staff_email = staff_email;
 	}
-	 
-	  
+
+
 }

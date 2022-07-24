@@ -6,21 +6,21 @@ public class BudgetVO {
 	private String budget_iE;
 	private String budget_cls;
 	private int budget_total;
-	
+
 	public String getBudget_num() {
 		return budget_num;
 	}
 	public void setBudget_num(String budget_num) {
 		this.budget_num = budget_num;
 	}
-	
+
 	public String getBudget_year() {
 		return budget_year;
 	}
 	public void setBudget_year(String budget_year) {
 		this.budget_year = budget_year;
 	}
-	
+
 	public String getBudget_iE() {
 		return budget_iE;
 	}
@@ -39,6 +39,6 @@ public class BudgetVO {
 	public void setBudget_total(int budget_total) {
 		this.budget_total = budget_total;
 	}
-	
-	
+
+
 }

@@ -1,19 +1,19 @@
 package com.indieus.ius.vo;
 
 public class JobClassifiVO {
-	
+
 	private String staff_cls;
 	private int job_number;
 	private String job_Ename;
 	private String job_Kname;
-	
+
 	public String getStaff_cls() {
 		return staff_cls;
 	}
 	public void setStaff_cls(String staff_cls) {
 		this.staff_cls = staff_cls;
 	}
-	
+
 	public int getJob_number() {
 		return job_number;
 	}
@@ -32,6 +32,6 @@ public class JobClassifiVO {
 	public void setJob_Kname(String job_Kname) {
 		this.job_Kname = job_Kname;
 	}
-	
-	
+
+
 }

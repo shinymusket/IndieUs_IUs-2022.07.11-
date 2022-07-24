@@ -15,10 +15,10 @@ import com.indieus.ius.vo.StaffIdVO;
 @Controller
 @RequestMapping("/main")
 public class MainController {
-	
+
 	@Autowired
 	private StaffIdServiceImpl service;
-	
+
 	// 홈으로
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(HttpSession session) throws Exception {
@@ -27,7 +27,7 @@ public class MainController {
 		}
 		return "/main/home";
 	}
-	
+
 	// 로그인
 	@RequestMapping(value = "/loginCheck", method = RequestMethod.POST)
 	public String main(@ModelAttribute StaffIdVO staff, HttpSession session, HttpServletResponse response) throws Exception {
@@ -35,7 +35,7 @@ public class MainController {
 		session.setAttribute("staff", staff);
 		return "/main/home";
 	}
-	
+
 	// 로그아웃
 	@RequestMapping(value = "/logout")
 	public void logout(HttpSession session, HttpServletResponse response) throws Exception{
