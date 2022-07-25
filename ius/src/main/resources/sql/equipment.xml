@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="equipment">
+  	<!-- 전체 비품 리스트 가져오기 -->
+  	<select id="get_all_equipment_list" resultType="equipmentVO">
+  		SELECT e.equipment_num, s.staff_name, e.equip_cls_num, e.equipment_name, e.equipment_count, TO_CHAR(e.equipment_regdate, 'YYYY-MM-DD') AS equipment_regdate
+		FROM equipment e, staff s
+		WHERE e.staff_id = s.staff_id
+  	</select>
+  	
+  	<!-- 비품 등록을 위한 마지막 시퀀스 번호 가져오기 -->
+  	<select id="select_equipment_seq" resultType="int">
+  		SELECT LAST_NUMBER FROM USER_SEQUENCES WHERE SEQUENCE_NAME = 'EQUIPMENT_SEQ'
+  	</select>
+  	
+  	<!-- 교직원 아이디로 이름 가져오기 -->
+  	<select id="select_staff_name_by_id" parameterType="String" resultType="String">
+  		SELECT staff_name FROM staff WHERE staff_id = #{staff_id}
+  	</select>
+  	
+  	<!-- 시설(비품) 분류 항목 리스트 가져오기  -->
+  	<select id="select_equip_cls_list" resultType="equipClsVO">
+  		SELECT * FROM equipcls
+  	</select>
+  	
+  	<!-- 시설(비품) 분류 항목 - 코드로 항목 정보 가져오기 -->
+  	<select id="select_equip_cls_by_num" parameterType="String" resultType="equipClsVO">
+		SELECT * FROM equipcls WHERE equip_cls_num = #{equip_cls_num}	
+  	</select>
+  	
+  	<!-- 시설(비품) 분류 항목 - 항목 추가하기 -->
+  	<insert id="insert_equip_cls" parameterType="equipClsVO">
+  		INSERT INTO equipcls VALUES(equipcls_seq.nextval, #{equip_cls_name}, #{equip_num})
+  	</insert>
+  	
+  	<!-- 시설(비품) 분류 항목 전체 수 가져오기 -->
+  	<select id="select_equip_cls_cnt" resultType="int">
+  		SELECT COUNT(*) FROM equipcls
+  	</select>
+  	
+  	<!-- 시설(비품) 분류 항목 삭제하기 -->
+  	<delete id="delete_equip_cls" >
+  		DELETE FROM equipcls WHERE equip_cls_num = #{equip_cls_num}
+  	</delete>
+  	
+  	
+</mapper>

@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h1>교직원 정보</h1>
-	<input type="button" value="홈으로" onclick="location.href='../index'">
+	<input type="button" value="홈으로" onclick="location.href='../main/'">
 	<input type="button" value="목록으로" onclick="location.href='./staff_list'">
 	<input type="button" value="정보 수정" onclick="location.href='./staff_update_form?staff_num=${staff.staff_num}'">
 	<input type="button" value="삭제" onclick="location.href='./staff_delete?staff_num=${staff.staff_num}'">

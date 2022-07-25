@@ -9,6 +9,9 @@
 		<typeAlias alias="jobClassVO" type="com.indieus.ius.vo.JobClassifiVO"/>
 		<typeAlias alias="authorityVO" type="com.indieus.ius.vo.AuthorityVO"/>
 		<typeAlias alias="staffAttendanceVO" type="com.indieus.ius.vo.StaffAttendanceVO"/>
+		<typeAlias alias="equipmentVO" type="com.indieus.ius.vo.EquipmentVO"/>
+		<typeAlias alias="equipClsVO" type="com.indieus.ius.vo.EquipClsVO"/>
+		
 	</typeAliases>
 
 </configuration>

@@ -11,6 +11,6 @@
 	<p>${staff.staff_id}님 환영합니다.<br><a href="../main/logout">로그아웃</a></p>
 	<p><a href="../finance/finance_list">재정 관리</a></p>
 	<p><a href="../staff/staff_list">교직원 관리</a></p>
-	<p><a href=""></a></p>
+	<p><a href="../equipment/equipment_list">시설 관리</a></p>
 </body>
 </html>

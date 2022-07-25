@@ -18,13 +18,13 @@ import com.indieus.ius.vo.StaffVO;
 @Controller
 @RequestMapping("/staff_attendance")
 public class StaffAttendanceController {
-	
+
 	@Autowired
 	private StaffServiceImpl staffService;
-	
+
 	@Autowired
 	private StaffAttendanceServiceImpl service;
-	
+
 	// 초기화면으로 이동
 	@RequestMapping(value = "attendance_list", method = RequestMethod.GET)
 	public String list(Model model) throws Exception {
@@ -32,19 +32,19 @@ public class StaffAttendanceController {
 		model.addAttribute("staffList", staffList);
 		return "/staff_attendance/attendanceList";
 	}
-	
+
 	// 근태 정보 받아오기 Ajax
 	@RequestMapping(value = "/getInfo", method = RequestMethod.POST)
 	@ResponseBody
 	public Object getInfo(@RequestParam Map<String, Object> map) throws Exception {
 		return service.getInfo(map);
 	}
-	
+
 	// 날짜로 조회하여 근태 정보 받아오기 Ajax
 	@RequestMapping(value = "/getInfoByDate", method = RequestMethod.POST)
 	@ResponseBody
 	public Object getInfoByDate(@RequestParam Map<String, Object> map) throws Exception {
 		return service.getInfoByDate(map);
 	}
-	
+
 }
