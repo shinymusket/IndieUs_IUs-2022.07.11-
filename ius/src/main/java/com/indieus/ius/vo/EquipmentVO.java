@@ -9,7 +9,15 @@ public class EquipmentVO {
 	private String equipment_regdate;
 	
 	private String staff_name;
+	private String equip_cls_name;
 	
+	
+	public String getEquip_cls_name() {
+		return equip_cls_name;
+	}
+	public void setEquip_cls_name(String equip_cls_name) {
+		this.equip_cls_name = equip_cls_name;
+	}
 	public String getStaff_name() {
 		return staff_name;
 	}
