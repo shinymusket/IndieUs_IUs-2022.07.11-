@@ -8,11 +8,11 @@ public class PurchaseVO {
 	private String purchase_date;
 	private int purchase_price;
 	private int purchase_count;
-	
+
 	private String equip_cls_num;
 	private String equipment_name;
-	
-	
+
+
 	public String getEquipment_name() {
 		return equipment_name;
 	}
@@ -67,6 +67,6 @@ public class PurchaseVO {
 	public void setPurchase_count(int purchase_count) {
 		this.purchase_count = purchase_count;
 	}
-	
+
 
 }

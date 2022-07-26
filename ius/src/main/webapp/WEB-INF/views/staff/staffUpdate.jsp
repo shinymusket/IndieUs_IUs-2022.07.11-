@@ -163,11 +163,11 @@ $(function(){
 			<tr>
 				<th>입사일</th>
 				<td>
-					<input type="text" name="staff_hireD" id="staff_hireD" value="${staff.staff_hireD}">
+					<input type="date" name="staff_hireD" id="staff_hireD" value="${staff.staff_hireD}">
 				</td>
 				<th>퇴사일</th>
 				<td>
-					<input type="text" name="staff_retireD" id="staff_retireD" value="${staff.staff_retireD}">
+					<input type="date" name="staff_retireD" id="staff_retireD" value="${staff.staff_retireD}">
 				</td>
 			</tr>
 			<tr>

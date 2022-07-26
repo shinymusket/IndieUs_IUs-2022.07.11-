@@ -4,7 +4,7 @@ public class EquipClsVO {
 	private String equip_cls_num;
 	private int equip_num;
 	private String equip_cls_name;
-	
+
 	public String getEquip_cls_num() {
 		return equip_cls_num;
 	}
@@ -23,6 +23,6 @@ public class EquipClsVO {
 	public void setEquip_cls_name(String equip_cls_name) {
 		this.equip_cls_name = equip_cls_name;
 	}
-	
-	
+
+
 }
