@@ -51,6 +51,7 @@
 	<beans:bean id="authorityController" class="com.indieus.ius.controller.AuthorityController" />
 	<beans:bean id="staffAttendanceController" class="com.indieus.ius.controller.StaffAttendanceController" />
 	<beans:bean id="equipmentController" class="com.indieus.ius.controller.EquipmentController" />
+	<beans:bean id="kinderController" class="com.indieus.ius.controller.KinderController" />
 	
 	<!-- DAO -->
 	<beans:bean id="budgetDAO" class="com.indieus.ius.db.BudgetDAO" />
@@ -60,6 +61,7 @@
 	<beans:bean id="staffIdDAO" class="com.indieus.ius.db.StaffIdDAO" />
 	<beans:bean id="staffAttendanceDAO" class="com.indieus.ius.db.StaffAttendanceDAO" />
 	<beans:bean id="equipmentDAO" class="com.indieus.ius.db.EquipmentDAO" />
+	<beans:bean id="kinderDAO" class="com.indieus.ius.db.KinderDAO" />
 	
 	<!-- Service -->
 	<beans:bean id="financeService" class="com.indieus.ius.service.FinanceServiceImpl" />
@@ -69,6 +71,7 @@
 	<beans:bean id="staffIdServiceImpl" class="com.indieus.ius.service.StaffIdServiceImpl" />
 	<beans:bean id="staffAttendanceServiceImpl" class="com.indieus.ius.service.StaffAttendanceServiceImpl" />
 	<beans:bean id="EquipmentServiceImpl" class="com.indieus.ius.service.EquipmentServiceImpl" />
+	<beans:bean id="KinderServiceImpl" class="com.indieus.ius.service.KinderServiceImpl" />
 
 
 </beans:beans>

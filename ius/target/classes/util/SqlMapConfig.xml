@@ -12,8 +12,7 @@
 		<typeAlias alias="equipmentVO" type="com.indieus.ius.vo.EquipmentVO"/>
 		<typeAlias alias="equipClsVO" type="com.indieus.ius.vo.EquipClsVO"/>
 		<typeAlias alias="purchaseVO" type="com.indieus.ius.vo.PurchaseVO"/>
-		
-		
+		<typeAlias alias="kinderVO" type="com.indieus.ius.vo.KinderVO"/>
 	</typeAliases>
 
 </configuration>

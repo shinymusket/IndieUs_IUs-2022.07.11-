@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="kinder">
+	<!-- 전체 원생 리스트 가져오기 -->
+	<select id="select_kinder_list" resultType="kinderVO">
+		SELECT kinder_num, shuttle_carNum, staff_name, kinder_name, kinder_regYn, kinder_rrn1, kinder_rrn2, kinder_addr, kinder_zipcode, kinder_tel, kinder_regdate, kinder_retireDate
+		FROM kinder k, staff s
+		WHERE k.staff_num =  s.staff_num
+	</select>
+</mapper>
