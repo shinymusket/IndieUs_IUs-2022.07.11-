@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.indieus.ius.vo.FinanceVO;
+import com.indieus.ius.vo.PurchaseVO;
 
 @Repository
 public class FinanceDAO {
@@ -86,4 +87,15 @@ public class FinanceDAO {
 	public int updateFinance(FinanceVO fVo) throws Exception {
 		return sqlsession.update("finance.update_finance", fVo);
 	}
+	
+	// 재정 사용 구매 내역 가져오기
+	public List<PurchaseVO> selectPurchaseFromNum(String finance_num) throws Exception  {
+		return sqlsession.selectList("finance.select_purchase_from_finance_num", finance_num);
+	}
+	
+	// 재정 사용 구매 내역 총합 가져오기
+	public int selectPurchaseSumFromNum(String finance_num) throws Exception {
+		return sqlsession.selectOne("finance.select_purchase_sum_from_finance_num", finance_num);
+	}
+	
 }

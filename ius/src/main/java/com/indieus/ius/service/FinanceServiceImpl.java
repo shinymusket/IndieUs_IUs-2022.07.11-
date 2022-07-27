@@ -8,6 +8,7 @@ import javax.inject.Inject;
 
 import com.indieus.ius.db.FinanceDAO;
 import com.indieus.ius.vo.FinanceVO;
+import com.indieus.ius.vo.PurchaseVO;
 
 public class FinanceServiceImpl implements FinanceService {
 
@@ -80,6 +81,18 @@ public class FinanceServiceImpl implements FinanceService {
 	@Override
 	public int updateFinance(FinanceVO fVo) throws Exception {
 		return manager.updateFinance(fVo);
+	}
+	
+	// 재정으로 사용된 구매내역 가져오기
+	@Override
+	public List<PurchaseVO> selectPurchaseFromNum(String finance_num) throws Exception {
+		return manager.selectPurchaseFromNum(finance_num);
+	}
+	
+	// 재정으로 사용된 구매내역 총 합 가져오기
+	@Override
+	public int selectPurchaseSumFromNum(String finance_num) throws Exception {
+		return manager.selectPurchaseSumFromNum(finance_num);
 	}
 
 

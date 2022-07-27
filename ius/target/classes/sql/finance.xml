@@ -76,4 +76,21 @@
 		finance_eYear = #{finance_eYear} 
 		WHERE finance_num = #{finance_num}
 	</update>
+	
+	<!-- 재정 내역 상세보기 중 구매내역 가져오기-->
+	<select id="select_purchase_from_finance_num" parameterType="String" resultType="purchaseVO">
+		SELECT p.purchase_num, p.finance_num, f.finance_cls, s.staff_name, e.equipment_name, TO_CHAR(p.purchase_date, 'YYYY-MM-DD') AS "purchase_date", p.purchase_price, p.purchase_count
+		FROM purchase p , staff s, equipment e, finance f
+		WHERE p.staff_num = s.staff_num
+		AND p.equipment_num = e.equipment_num
+		AND p.finance_num = f.finance_num
+		AND f.finance_num = #{finance_num}
+	</select>
+	
+	<!-- 재정 내역 상세보기 중 구매내역의 총합 가져오기 -->
+	<select id="select_purchase_sum_from_finance_num" parameterType="String" resultType="int">
+		SELECT SUM(purchase_price) FROM purchase WHERE finance_num = #{finance_num}
+	</select>
+	
+	
 </mapper>

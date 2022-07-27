@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.indieus.ius.vo.FinanceVO;
+import com.indieus.ius.vo.PurchaseVO;
 
 public interface FinanceService {
 	public Object selectFinanceList() throws Exception;
@@ -21,4 +22,8 @@ public interface FinanceService {
 	public int deleteFinance(String finance_num) throws Exception;
 
 	public int updateFinance(FinanceVO fVo) throws Exception;
+	
+	public List<PurchaseVO> selectPurchaseFromNum(String finance_num) throws Exception;
+	
+	public int selectPurchaseSumFromNum(String finance_num) throws Exception;
 }

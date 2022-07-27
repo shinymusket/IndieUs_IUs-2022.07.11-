@@ -18,6 +18,7 @@ import com.indieus.ius.service.FinanceServiceImpl;
 import com.indieus.ius.service.StaffServiceImpl;
 import com.indieus.ius.vo.BudgetVO;
 import com.indieus.ius.vo.FinanceVO;
+import com.indieus.ius.vo.PurchaseVO;
 import com.indieus.ius.vo.StaffVO;
 
 @Controller
@@ -84,8 +85,13 @@ public class FinanceController {
 	@RequestMapping(value = "/finance_info", method = RequestMethod.GET)
 	public String info(Model model, @RequestParam String finance_num) throws Exception {
 		FinanceVO fVo = service.selectFinanceByNum(finance_num);
+		List<PurchaseVO> purchaseList = service.selectPurchaseFromNum(finance_num);
+		int purchaseSum = service.selectPurchaseSumFromNum(finance_num);
+		
 		model.addAttribute("finance", fVo);
-
+		model.addAttribute("purchaseList", purchaseList);
+		model.addAttribute("purchaseSum", purchaseSum);
+		
 		return "/finance/finance_info";
 	}
 
