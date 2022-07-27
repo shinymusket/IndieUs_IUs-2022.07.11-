@@ -108,7 +108,7 @@
 	<!-- 구매 등록  -->
 	<insert id="insert_purchase">
 		INSERT INTO purchase
-		VALUES(#{purchase_num}, #{finance_num}, #{staff_num}, #{equipment_num} ,#{purchase_date}, #{purchase_price}, #{purchase_count})
+		VALUES(purchase_seq.nextval, #{finance_num}, #{staff_num}, #{equipment_num} ,#{purchase_date}, #{purchase_price}, #{purchase_count})
 	</insert>
 	
 	<!-- 구매 리스트 가져오기 -->
