@@ -47,15 +47,18 @@
 	<beans:bean id="budgetController" class="com.indieus.ius.controller.BudgetController"/>
 	<beans:bean id="financeController" class="com.indieus.ius.controller.FinanceController" />
 	<beans:bean id="staffController" class="com.indieus.ius.controller.StaffController" />
+	<beans:bean id="mealMenuController" class="com.indieus.ius.controller.MealMenuController" />
 	
 	<!-- DAO -->
 	<beans:bean id="budgetDAO" class="com.indieus.ius.db.BudgetDAO" />
 	<beans:bean id="financeDAO" class="com.indieus.ius.db.FinanceDAO" />
 	<beans:bean id="staffDAO" class="com.indieus.ius.db.StaffDAO" />
+	<beans:bean id="mealMenuDAO" class="com.indieus.ius.db.MealMenuDAO" />
 	
 	<!-- Service -->
 	<beans:bean id="financeService" class="com.indieus.ius.service.FinanceServiceImpl" />
 	<beans:bean id="staffService" class="com.indieus.ius.service.StaffServiceImpl" />
 	<beans:bean id="budgetServiceImpl" class="com.indieus.ius.service.BudgetServiceImpl" />
+	<beans:bean id="mealMenuService" class="com.indieus.ius.service.MealMenuServiceImpl" />
 
 </beans:beans>
