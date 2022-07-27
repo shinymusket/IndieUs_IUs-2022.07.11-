@@ -178,11 +178,54 @@ public class EquipmentController {
 	}
 
 	// 구매품 등록하기
-	@RequestMapping(value = "/purchaseEquipRegister", method =RequestMethod.POST)
+	@RequestMapping(value = "/purchaseEquipRegister", method = RequestMethod.POST)
 	public String purchaseEquipRegister(@ModelAttribute PurchaseVO pVo, RedirectAttributes rttr, HttpSession session) throws Exception {
 		rttr.addFlashAttribute("result", service.purchaseEquipRegister(pVo, session));
 		return "redirect:./equipment_list";
 	}
-
+	
+	// 구매 리스트 이동
+	@RequestMapping(value = "/purchase_list", method = RequestMethod.GET)
+	public String purchaseList() throws Exception {
+		return "/equipment/purchaseList";
+	}
+	
+	// 구매 리스트 가져오기 Ajax
+	@ResponseBody
+	@RequestMapping(value = "/get_purchase_list", method = RequestMethod.POST)
+	public Object getPurchaseList() throws Exception {
+		return service.getPurchaseList();
+	}
+	
+	// 구매 정보 상세보기
+	@RequestMapping(value = "/purchase_info", method = RequestMethod.GET)
+	public String purchaseInfo(@RequestParam String purchase_num, Model model) throws Exception {
+		PurchaseVO pVo = service.getPurchaseInfo(purchase_num);
+		
+		model.addAttribute("purchase", pVo);
+		return "/equipment/purchaseInfo";
+	}
+	
+	// 구매 정보 삭제하기
+	@RequestMapping(value = "/purchase_delete", method = RequestMethod.GET)
+	public String deletePurchase(@RequestParam String purchase_num, RedirectAttributes rttr) throws Exception {
+		rttr.addFlashAttribute("result", service.deletePurchase(purchase_num));
+		return "redirect:./purchase_list";
+	}
+	
+	// 구매 정보 수정하기 폼 이동
+	@RequestMapping(value = "/purchase_update_form", method = RequestMethod.GET)
+	public String updatePurchase(@RequestParam String purchase_num, Model model) throws Exception {
+		PurchaseVO pVo = service.getPurchaseInfo(purchase_num);
+		model.addAttribute("purchase", pVo);
+		return "/equipment/purchaseUpdateForm";
+	}
+	
+	// 구매 정보 수정하기
+	@RequestMapping(value = "/purchase_update", method = RequestMethod.POST)
+	public String updatePurchase(@ModelAttribute PurchaseVO pVo, RedirectAttributes rttr) throws Exception {
+		rttr.addFlashAttribute("result", service.updatePurchase(pVo));
+		return "redirect:./purchase_list";
+	}
 
 }

@@ -11,8 +11,25 @@ public class PurchaseVO {
 
 	private String equip_cls_num;
 	private String equipment_name;
+	private String staff_name;
+	private String finance_cls;
+	
+	
+	
+	
 
-
+	public String getFinance_cls() {
+		return finance_cls;
+	}
+	public void setFinance_cls(String finance_cls) {
+		this.finance_cls = finance_cls;
+	}
+	public String getStaff_name() {
+		return staff_name;
+	}
+	public void setStaff_name(String staff_name) {
+		this.staff_name = staff_name;
+	}
 	public String getEquipment_name() {
 		return equipment_name;
 	}

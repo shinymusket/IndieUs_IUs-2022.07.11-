@@ -116,6 +116,7 @@ public class EquipmentServiceImpl implements EquipmentService {
 	// 시설(비품) 등록하기
 	@Override
 	public int insertEquipment(EquipmentVO eVo) throws Exception {
+		eVo.setEquipment_cate("시설(비품)");
 		return manager.insertEquipment(eVo);
 	}
 
@@ -176,7 +177,36 @@ public class EquipmentServiceImpl implements EquipmentService {
 		eVo.setEquipment_name(pVo.getEquipment_name());
 		eVo.setEquipment_count(pVo.getPurchase_count());
 		eVo.setEquipment_regdate(pVo.getPurchase_date());
+		eVo.setEquipment_cate("구매품");
+		
 		manager.insertEquipment(eVo);
 		return manager.insertPurchaseEquipment(pVo);
+	}
+	
+	// 구매 리스트 가져오기 Ajax
+	@Override
+	public Object getPurchaseList() throws Exception {
+		List<PurchaseVO> purchaseList = manager.selectPurchaseList();
+		Map<String, Object> data = new HashMap();
+		data.put("purchaseList", purchaseList);
+		return data;
+	}
+
+	// 구매 정보 상세보기
+	@Override
+	public PurchaseVO getPurchaseInfo(String purchase_num) throws Exception {
+		return manager.getPurchaseInfo(purchase_num);
+	}
+	
+	// 구매 정보 삭제하기
+	@Override
+	public int deletePurchase(String purchase_num) throws Exception {
+		return manager.deletePurchase(purchase_num);
+	}
+	
+	// 구매 정보 수정하기
+	@Override
+	public int updatePurchase(PurchaseVO pVo) throws Exception {
+		return manager.updatePurchase(pVo);
 	}
 }

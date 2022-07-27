@@ -120,4 +120,27 @@ public class EquipmentDAO {
 	public int insertPurchaseEquipment(PurchaseVO pVo) throws Exception {
 		return sqlsession.insert("equipment.insert_purchase", pVo);
 	}
+	
+	// 구매리스트 가져오기
+	public List<PurchaseVO> selectPurchaseList() throws Exception {
+		return sqlsession.selectList("equipment.select_purchase_list");
+	}
+	
+	// 구매 정보 가져오기
+	public PurchaseVO getPurchaseInfo(String purchase_num) {
+		return sqlsession.selectOne("equipment.select_purchase_info", purchase_num);
+	}
+	
+	// 구매 정보 삭제하기
+	@Transactional
+	public int deletePurchase(String purchase_num) {
+		return sqlsession.delete("equipment.delete_purchase" , purchase_num);
+	}
+	
+	// 구매 정보 수정하기
+	@Transactional
+	public int updatePurchase(PurchaseVO pVo) throws Exception {
+		return sqlsession.update("update_purchase", pVo);
+	}
+	
 }

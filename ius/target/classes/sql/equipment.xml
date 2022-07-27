@@ -3,7 +3,7 @@
 <mapper namespace="equipment">
   	<!-- 전체 비품 리스트 가져오기 -->
   	<select id="get_all_equipment_list" resultType="equipmentVO">
-  		SELECT e.equipment_num, s.staff_name, c.equip_cls_name, e.equipment_name, e.equipment_count, TO_CHAR(e.equipment_regdate, 'YYYY-MM-DD') AS equipment_regdate
+  		SELECT e.equipment_num, s.staff_name, c.equip_cls_name, e.equipment_name, e.equipment_count, TO_CHAR(e.equipment_regdate, 'YYYY-MM-DD') AS equipment_regdate, e.equipment_cate
 		FROM equipment e, staff s, equipcls c
 		WHERE e.staff_id = s.staff_id 
 		AND c.equip_cls_num = e.equip_cls_num
@@ -53,12 +53,12 @@
   	<insert id="insert_equipment" parameterType="equipmentVO">
   		INSERT INTO equipment 
   		VALUES(EQUIPMENT_SEQ.nextval, #{staff_id}, #{equipment_name}, #{equipment_count}, 
-  		TO_DATE(#{equipment_regdate}, 'YYYY-MM-DD'), #{equip_cls_num})
+  		TO_DATE(#{equipment_regdate}, 'YYYY-MM-DD'), #{equip_cls_num}, #{equipment_cate})
   	</insert>
   	
   	<!-- 시설(비품) 정보 가져오기 -->
  	<select id="select_equipment_by_num" parameterType="String" resultType="equipmentVO">
- 		SELECT e.equipment_num, s.staff_id, s.staff_name, c.equip_cls_num, c.equip_cls_name, e.equipment_name, e.equipment_count, TO_CHAR(e.equipment_regdate, 'YYYY-MM-DD') AS equipment_regdate
+ 		SELECT e.equipment_num, s.staff_id, s.staff_name, c.equip_cls_num, c.equip_cls_name, e.equipment_name, e.equipment_count, TO_CHAR(e.equipment_regdate, 'YYYY-MM-DD') AS equipment_regdate, e.equipment_cate
 		FROM equipment e, staff s, equipcls c
 		WHERE e.staff_id = s.staff_id AND c.equip_cls_num = e.equip_cls_num
 		AND equipment_num = #{equipment_num}
@@ -106,10 +106,44 @@
 	</select>
 	
 	<!-- 구매 등록  -->
-	<select id="insert_purchase">
+	<insert id="insert_purchase">
 		INSERT INTO purchase
 		VALUES(#{purchase_num}, #{finance_num}, #{staff_num}, #{equipment_num} ,#{purchase_date}, #{purchase_price}, #{purchase_count})
+	</insert>
+	
+	<!-- 구매 리스트 가져오기 -->
+	<select id="select_purchase_list" resultType="purchaseVO">
+		SELECT p.purchase_num, p.finance_num, s.staff_name, e.equipment_num, e.equipment_name, TO_CHAR(p.purchase_date, 'YYYY-MM-DD') AS "purchase_date", p.purchase_price, p.purchase_count
+		FROM purchase p , staff s, equipment e
+		WHERE p.staff_num = s.staff_num
+		AND p.equipment_num = e.equipment_num
 	</select>
+	
+	<!-- 구매 정보 가져오기  -->
+	<select id="select_purchase_info" parameterType="String" resultType="purchaseVO">
+		SELECT p.purchase_num, p.finance_num, f.finance_cls, s.staff_name, e.equipment_num, e.equipment_name, TO_CHAR(p.purchase_date, 'YYYY-MM-DD') AS "purchase_date", p.purchase_price, p.purchase_count
+		FROM purchase p , staff s, equipment e, finance f
+		WHERE p.staff_num = s.staff_num
+		AND p.equipment_num = e.equipment_num
+		AND p.finance_num = f.finance_num
+		AND purchase_num = #{purchase_num}
+	</select>
+	
+	<!-- 구매 정보 삭제하기 -->
+	<delete id="delete_purchase" parameterType="String">
+		DELETE FROM purchase WHERE purchase_num = #{purchase_num}
+	</delete>
+	
+	<!-- 구매 정보 수정하기 -->
+	<update id="update_purchase" parameterType="purchaseVO">
+		UPDATE purchase SET 
+		finance_num = #{finance_num},
+		equipment_num = #{equipment_num},
+		purchase_date = TO_DATE(#{purchase_date}, 'YYYY-MM-DD'),
+		purchase_price = #{purchase_price},
+		purchase_count = #{purchase_count}
+		WHERE purchase_num = #{purchase_num}
+	</update>
 	
  	
 </mapper>
