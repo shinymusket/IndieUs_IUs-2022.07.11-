@@ -83,8 +83,8 @@ public class StaffController {
 	// 교직원 직무 분류 편집 - 아이디로 정보 삭제
 	@ResponseBody
 	@RequestMapping(value = "/delete_job_list", method = RequestMethod.POST)
-	public void deleteJobList(@RequestParam("staff_cls") String staff_cls) throws Exception {
-		service.deleteJobByStaffCls(staff_cls);
+	public void deleteJobList(@RequestParam("staff_cls") String staff_cls, HttpServletResponse response) throws Exception {
+		service.deleteJobByStaffCls(staff_cls, response);
 	}
 
 	// 교직원 직무 분류 편집 - 수정

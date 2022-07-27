@@ -25,7 +25,7 @@ public interface StaffService {
 
 	public JobClassifiVO getJobByStaffCls(String staff_cls) throws Exception;
 
-	public void deleteJobByStaffCls(String staff_cls) throws Exception;
+	public void deleteJobByStaffCls(String staff_cls, HttpServletResponse response) throws Exception;
 
 	public void updateJobList(JobClassifiVO jVo) throws Exception;
 

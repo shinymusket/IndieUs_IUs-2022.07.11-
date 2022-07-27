@@ -91,7 +91,13 @@ public class EquipmentDAO {
 	public int updateEquipment(EquipmentVO eVo) throws Exception {
 		return sqlsession.update("equipment.update_equipment", eVo);
 	}
-
+	
+	// 시설(비품) 정보 삭제 전 해당 항목의 구매내역이 있는지 유무 확인
+	public int checkPurchaseCntFromEquipment(String equipment_num) throws Exception {
+		return sqlsession.selectOne("equipment.check_purchase_cnt_from_equipment", equipment_num);
+	}
+	
+	
 	// 시설(비품) 정보 삭제하기
 	@Transactional
 	public int deleteEquipment(String equipment_num) throws Exception {

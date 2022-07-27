@@ -33,7 +33,7 @@ public interface EquipmentService {
 
 	public int updateEquipment(EquipmentVO eVo) throws Exception;
 
-	public int deleteEquipment(String equipment_num) throws Exception;
+	public int deleteEquipment(String equipment_num, HttpServletResponse response) throws Exception;
 
 	public int selectPurchaseSeq() throws Exception;
 

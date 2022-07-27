@@ -138,9 +138,15 @@ public class EquipmentController {
 
 	// 시설(비품)정보 삭제
 	@RequestMapping(value = "/equipment_delete", method = RequestMethod.GET)
-	public String deleteEquipment(@RequestParam String equipment_num, RedirectAttributes rttr) throws Exception {
-		rttr.addFlashAttribute("result", service.deleteEquipment(equipment_num));
-		return "redirect:./equipment_list";
+	public String deleteEquipment(@RequestParam String equipment_num, RedirectAttributes rttr, HttpServletResponse response) throws Exception {
+		int result = service.deleteEquipment(equipment_num, response);
+		
+		if (result == 0) {
+			return null;
+		} else {
+			rttr.addFlashAttribute("result", result);
+			return "redirect:./equipment_list";
+		}
 	}
 
 	// 구매품 등록 폼으로 이동

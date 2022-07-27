@@ -134,8 +134,24 @@ public class EquipmentServiceImpl implements EquipmentService {
 
 	// 시설(비품) 정보 삭제하기
 	@Override
-	public int deleteEquipment(String equipment_num) throws Exception {
-		return manager.deleteEquipment(equipment_num);
+	public int deleteEquipment(String equipment_num, HttpServletResponse response) throws Exception {
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		
+		// 시설(비품) 정보 삭제 전 해당 항목의 구매내역이 있는지 확인
+		int result = manager.checkPurchaseCntFromEquipment(equipment_num);
+		
+		if (result > 0) {
+			out.println("<script>");
+			out.println("alert('해당 시설(비품)의 구매 내역이 있어 삭제할 수 없습니다.');");
+			out.println("history.go(-1)");
+			out.println("</script>");
+			out.close();
+			return 0;
+		} else {
+			return manager.deleteEquipment(equipment_num);
+		}
+			
 	}
 
 

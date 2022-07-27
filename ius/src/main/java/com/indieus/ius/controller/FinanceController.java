@@ -3,6 +3,8 @@ package com.indieus.ius.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -97,9 +99,16 @@ public class FinanceController {
 
 	// 재정 내역 삭제
 	@RequestMapping(value = "/finance_delete", method = RequestMethod.GET)
-	public String delete(@RequestParam String finance_num, RedirectAttributes rttr) throws Exception {
-		rttr.addFlashAttribute("result", service.deleteFinance(finance_num));
-		return "redirect:./finance_list";
+	public String delete(@RequestParam String finance_num, RedirectAttributes rttr, HttpServletResponse response) throws Exception {
+		int result =  service.deleteFinance(finance_num, response);
+		
+		if (result == 0) {
+			return null;
+		} else {
+			rttr.addFlashAttribute("result", result);
+			return "redirect:./finance_list";
+		}
+	
 	}
 
 	// 재정 수정 폼
@@ -120,7 +129,7 @@ public class FinanceController {
 	// 재정 수정
 	@RequestMapping(value = "/finance_update", method = RequestMethod.POST)
 	public String update(@ModelAttribute FinanceVO fVo, RedirectAttributes rttr) throws Exception {
-		rttr.addAttribute("result", service.updateFinance(fVo));
+		rttr.addFlashAttribute("result", service.updateFinance(fVo));
 		return "redirect:./finance_list";
 	}
 

@@ -1,10 +1,13 @@
 package com.indieus.ius.service;
 
+
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletResponse;
 
 import com.indieus.ius.db.FinanceDAO;
 import com.indieus.ius.vo.FinanceVO;
@@ -70,11 +73,26 @@ public class FinanceServiceImpl implements FinanceService {
 	public FinanceVO selectFinanceByNum(String finance_num) throws Exception {
 		return manager.selectFinanceByNum(finance_num);
 	}
-
+	
 	// 재정 삭제
 	@Override
-	public int deleteFinance(String finance_num) throws Exception {
-		return manager.deleteFinance(finance_num);
+	public int deleteFinance(String finance_num, HttpServletResponse response) throws Exception {
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		
+		int result = manager.selectPurchaseCntFromFinance(finance_num);
+		
+		if (result > 0) {
+			out.println("<script>");
+			out.println("alert('해당 항목의 구매 내역이 있어 삭제할 수 없습니다.');");
+			out.println("history.go(-1)");
+			out.println("</script>");
+			out.close();
+			return 0;
+		} else {
+			return manager.deleteFinance(finance_num);
+		}	
+		
 	}
 
 	// 재정 정보 수정

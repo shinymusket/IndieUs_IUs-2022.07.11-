@@ -75,7 +75,12 @@ public class FinanceDAO {
 	public FinanceVO selectFinanceByNum(String finance_num) throws Exception {
 		return sqlsession.selectOne("finance.select_finance_info", finance_num);
 	}
-
+	
+	// 재정 삭제전 해당 항목의 구매 내역 유무 확인
+	public int selectPurchaseCntFromFinance(String finance_num) throws Exception {
+		return sqlsession.selectOne("finance.select_purchase_cnt_from_finance", finance_num);
+	}
+		
 	// 재정 삭제
 	@Transactional
 	public int deleteFinance(String finance_num) throws Exception  {

@@ -49,7 +49,12 @@ public class StaffDAO {
 		return sqlsession.selectOne("staff.select_job_classifi_by_num", staff_cls);
 	}
 
-
+	
+	// 직무 코드로 직무 항목 삭제전 해당 데이터의 교직원 유무 확인
+	public int checkStaffFromStaffCls(String staff_cls) throws Exception {
+		return sqlsession.selectOne("staff.check_staff_from_staff_cls", staff_cls);
+	}
+	
 	// 직무 코드로 직무 항목 삭제
 	@Transactional
 	public void deleteJobByStaffCls(String staff_cls) {

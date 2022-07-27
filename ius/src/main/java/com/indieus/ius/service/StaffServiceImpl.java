@@ -169,8 +169,20 @@ public class StaffServiceImpl implements StaffService {
 
 	// 교직원 직무 분류 편집 - 아이디로 데이터 삭제
 	@Override
-	public void deleteJobByStaffCls(String staff_cls) {
-		manager.deleteJobByStaffCls(staff_cls);
+	public void deleteJobByStaffCls(String staff_cls, HttpServletResponse response) throws Exception {
+		// 해당 항목의 데이터가 있는지 유무 확인
+		
+		int result = 0;
+		
+		result = manager.checkStaffFromStaffCls(staff_cls);
+		PrintWriter out = response.getWriter();
+		
+		if (result == 0) {
+			manager.deleteJobByStaffCls(staff_cls);
+		}
+		
+		out.println(result);
+		out.close();
 	}
 
 	// 교직원 직무 분류 편집 - 수정
@@ -267,6 +279,8 @@ public class StaffServiceImpl implements StaffService {
 			sIvo.setAuth_code("C");
 		} else if (staff_cls.equals("4")) { // 영양사
 			sIvo.setAuth_code("D");
+		} else {
+			sIvo.setAuth_code("C");
 		}
 
 		return sIvo;

@@ -17,7 +17,7 @@
 	
 	<!-- 직무 분류 항목 가져오기 -->
 	<select id="select_job_classifi" resultType="jobClassVO">
-		SELECT * FROM jobclassifi ORDER BY staff_cls ASC
+		SELECT * FROM jobclassifi ORDER BY job_number ASC
 	</select>
 	
 	<!-- 직무 분류 항목 직무 코드 다음 번호 확인을 위한 전체 항목수 가져오기 -->
@@ -35,6 +35,11 @@
 		SELECT * FROM jobClassifi WHERE staff_cls = #{staff_cls}
 	</select>
 	
+	<!-- 직무 코드로 항목 삭제 하기전 해당 항목의 교직원이 있는 지 유무 확인 -->
+	<select id="check_staff_from_staff_cls" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM staff WHERE staff_cls = #{staff_cls}	
+	</select>
+
 	<!-- 직무 코드로 항목 삭제하기 -->
 	<delete id="delete_job_classifi_by_num">
 		DELETE FROM jobClassifi WHERE staff_cls = #{staff_cls}

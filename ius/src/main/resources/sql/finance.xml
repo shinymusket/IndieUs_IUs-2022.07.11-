@@ -58,6 +58,12 @@
 		AND finance_num = #{finance_num}
 	</select>
 	
+	<!-- 재정 내역 삭제 전 재정 내역의 구매 내역이 있는지 조회-->
+	<select id="select_purchase_cnt_from_finance" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM purchase
+		WHERE finance_num = #{finance_num}
+	</select>
+	
 	<!-- 재정 내역 삭제 -->
 	<delete id="delete_finance" parameterType="String">
 		DELETE FROM finance WHERE finance_num = #{finance_num}

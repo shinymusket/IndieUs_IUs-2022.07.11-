@@ -79,6 +79,12 @@
  		WHERE equipment_num = #{equipment_num}
  	</update>
  	
+ 	
+ 	<!-- 시설(비품) 정보 삭제 전 해당 항목의 구매내역이 있는지 확인 --> 	
+ 	<select id="check_purchase_cnt_from_equipment" parameterType="String" resultType="int">
+ 		SELECT COUNT(*) FROM purchase WHERE equipment_num = #{equipment_num}
+ 	</select>
+ 	
  	<!-- 시설(비품) 정보 삭제하기 -->
  	<delete id="delete_equipment" parameterType="String">
  		DELETE FROM equipment
