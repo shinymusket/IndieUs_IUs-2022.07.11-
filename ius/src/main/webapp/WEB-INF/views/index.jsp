@@ -10,7 +10,6 @@
 	<h1>index</h1>
 	<p><a href="./finance/finance_list">재정 관리</a></p>
 	<p><a href="./staff/staff_list">교직원 관리</a></p>
-	<p><a href="./meal/meal_list">식단</a></p>
 	<p><a href=""></a></p>
 </body>
 </html>
