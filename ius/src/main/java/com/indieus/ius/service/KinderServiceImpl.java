@@ -101,8 +101,12 @@ public class KinderServiceImpl implements KinderService {
 
 	// 원생 등록
 	@Override
-	public int insertKinder(KinderVO kVo, MultipartFile kinder_picFile) throws Exception {
-		String filePath = "C:\\Study\\Green220308\\springWorkSpaceSTS\\ius\\src\\main\\webapp\\resources\\upload\\profile\\";
+	public int insertKinder(KinderVO kVo, MultipartFile kinder_picFile, HttpServletRequest request) throws Exception {
+		String path =  request.getSession().getServletContext().getRealPath("/"); // ( root 경로)
+		path += "resources\\upload\\profile\\";
+		
+		
+	//	String filePath = "C:\\Study\\Green220308\\springWorkSpaceSTS\\ius\\src\\main\\webapp\\resources\\upload\\profile\\";
 		
 		
 		MultipartFile file = kinder_picFile;
@@ -117,12 +121,12 @@ public class KinderServiceImpl implements KinderService {
 		String storedFileName = "kinder" + Integer.toString(nextSeq) + origianlFileExtension;
 		
 		// 파일을 저장하기 위한 파일 객체 생성
-		File newFile = new File(filePath + storedFileName);	
+		File newFile = new File(path + storedFileName);	
 		file.transferTo(newFile);
 		
 		System.out.println("originalFile : " + originalFile);
 		System.out.println("storedFileName : " + storedFileName);
-		kVo.setKinder_picture(filePath + storedFileName);
+		kVo.setKinder_picture(path + storedFileName);
 		return manager.insertKinder(kVo);
 	}
 	

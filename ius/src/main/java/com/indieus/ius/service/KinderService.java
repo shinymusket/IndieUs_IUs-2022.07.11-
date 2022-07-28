@@ -3,6 +3,8 @@ package com.indieus.ius.service;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import com.indieus.ius.vo.KinderVO;
@@ -19,7 +21,7 @@ public interface KinderService {
 	
 	public List<StaffVO> selectHomeTeacherForKinder() throws Exception;
 	
-	public int insertKinder(KinderVO kVo, MultipartFile kinder_picFile) throws Exception;
+	public int insertKinder(KinderVO kVo, MultipartFile kinder_picFile, HttpServletRequest request) throws Exception;
 	
 	public Object searchKinderList(Map<String, Object> map) throws Exception;
 	

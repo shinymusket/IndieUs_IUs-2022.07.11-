@@ -3,6 +3,8 @@ package com.indieus.ius.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,8 +56,8 @@ public class KinderController {
 	
 	// 원생 등록
 	@RequestMapping(value = "/kinder_register", method = RequestMethod.POST)
-	public String kinderRegsiter(@ModelAttribute KinderVO kVo, @RequestParam MultipartFile kinder_picFile, RedirectAttributes rttr) throws Exception {
-		rttr.addFlashAttribute("result", service.insertKinder(kVo, kinder_picFile));
+	public String kinderRegsiter(@ModelAttribute KinderVO kVo, @RequestParam MultipartFile kinder_picFile, RedirectAttributes rttr, HttpServletRequest request) throws Exception {
+		rttr.addFlashAttribute("result", service.insertKinder(kVo, kinder_picFile, request));
 		return "redirect:./kinder_list";
 	}
 	

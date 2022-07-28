@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,31 +33,34 @@
 		</tr>
 		<tr>
 			<th>사진</th>
-			<td>${kinder.kinder_}</td>
+			<td>
+				<%-- <img src="${kinder.kinder_picture}" alt="프로필 사진"> --%>
+				<img src="<c:url value='/src/main/webapp/resources/upload/profile' />/kinder7.jpg" alt="프로필 사진">
+			</td>
 		</tr>
 		<tr>
 			<th>주민등록번호</th>
-			<td></td>
+			<td>${kinder.kinder_rrn1}-${kinder.kinder_rrn2}</td>
 		</tr>
 		<tr>
 			<th>주소</th>
-			<td></td>
+			<td>${kinder.kinder_addr}</td>
 		</tr>
 		<tr>
 			<th>우편번호</th>
-			<td></td>
+			<td>${kinder.kinder_zipcode}</td>
 		</tr>
 		<tr>
 			<th>전화번호</th>
-			<td></td>
+			<td>${kinder.kinder_tel}</td>
 		</tr>
 		<tr>
 			<th>입소일</th>
-			<td></td>
+			<td>${kinder.kinder_regdate}</td>
 		</tr>
 		<tr>
 			<th>퇴소일</th>
-			<td></td>
+			<td>${kinder.kinder_retireDate}</td>
 		</tr>
 		<tr>
 			<td colspan="2">
