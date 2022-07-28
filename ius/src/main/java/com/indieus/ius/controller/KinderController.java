@@ -1,12 +1,24 @@
 package com.indieus.ius.controller;
 
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.indieus.ius.service.KinderServiceImpl;
+import com.indieus.ius.vo.KinderVO;
+import com.indieus.ius.vo.ShuttleVO;
+import com.indieus.ius.vo.StaffVO;
 
 @Controller
 @RequestMapping("/kinder")
@@ -23,15 +35,36 @@ public class KinderController {
 	
 	// 원생 리스트 가져오기 Ajax
 	@ResponseBody
-	@RequestMapping(value = "get_kinder_list", method = RequestMethod.POST)
+	@RequestMapping(value = "/get_kinder_list", method = RequestMethod.POST)
 	public Object getKinderList() throws Exception {
 		return service.getKinderList();
 	}
 	
 	// 원생 등록 폼으로 이동
-	@RequestMapping(value = "kinder_register_form", method = RequestMethod.GET)
-	public String KinderRegisterForm() throws Exception {
+	@RequestMapping(value = "/kinder_register_form", method = RequestMethod.GET)
+	public String kinderRegisterForm(Model model) throws Exception {
+		int nextKinderSeq = service.selectNextKinderSeq();
+		List<ShuttleVO> shuttleList = service.selectAllShuttleList();
+		List<StaffVO> homeTeacherList = service.selectHomeTeacherForKinder();
+		
+		model.addAttribute("nextKinderSeq", nextKinderSeq);
+		model.addAttribute("shuttleList", shuttleList);
+		model.addAttribute("homeTeacherList", homeTeacherList);
 		return "kinder/kinderRegisterForm";
+	}
+	
+	// 원생 등록
+	@RequestMapping(value = "/kinder_register", method = RequestMethod.POST)
+	public String kinderRegsiter(@ModelAttribute KinderVO kVo, RedirectAttributes rttr) throws Exception {
+		rttr.addFlashAttribute("result", service.insertKinder(kVo));
+		return "redirect:./kinder_list";
+	}
+	
+	// 원생 검색 기능 Ajax
+	@ResponseBody
+	@RequestMapping(value = "/search_kinder_list_by_searchType", method = RequestMethod.POST)
+	public Object searchKinderList(@RequestParam Map<String, Object> map) throws Exception {
+		return service.searchKinderList(map);
 	}
 	
 }
