@@ -49,5 +49,9 @@ public class KinderDAO {
 		return sqlsession.selectList("kinder.search_kinder_list", map);
 	}
 	
+	// 원생 정보 조회
+	public KinderVO selectKinderInfo(String kinder_num) throws Exception {
+		return sqlsession.selectOne("kinder.select_kinder_info", kinder_num);
+	}
 	
 }

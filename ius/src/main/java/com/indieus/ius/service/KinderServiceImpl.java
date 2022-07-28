@@ -5,10 +5,13 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.indieus.ius.db.KinderDAO;
@@ -98,7 +101,28 @@ public class KinderServiceImpl implements KinderService {
 
 	// 원생 등록
 	@Override
-	public int insertKinder(KinderVO kVo) throws Exception {
+	public int insertKinder(KinderVO kVo, MultipartFile kinder_picFile) throws Exception {
+		String filePath = "C:\\Study\\Green220308\\springWorkSpaceSTS\\ius\\src\\main\\webapp\\resources\\upload\\profile\\";
+		
+		
+		MultipartFile file = kinder_picFile;
+		
+		// 파일명
+		String originalFile = file.getOriginalFilename();
+		// 파일명 중 확장자만 추출
+		String origianlFileExtension = originalFile.substring(originalFile.lastIndexOf("."));
+	 // String storedFileName = UUID.randomUUID().toString().replaceAll("-", "") + origianlFileExtension;
+		int nextSeq = manager.selectNextKinderSeq();
+
+		String storedFileName = "kinder" + Integer.toString(nextSeq) + origianlFileExtension;
+		
+		// 파일을 저장하기 위한 파일 객체 생성
+		File newFile = new File(filePath + storedFileName);	
+		file.transferTo(newFile);
+		
+		System.out.println("originalFile : " + originalFile);
+		System.out.println("storedFileName : " + storedFileName);
+		kVo.setKinder_picture(filePath + storedFileName);
 		return manager.insertKinder(kVo);
 	}
 	
@@ -157,6 +181,12 @@ public class KinderServiceImpl implements KinderService {
 		Map<String, Object> data = new HashMap();
 		data.put("kinderList", kinderList);	
 		return data;
+	}
+	
+	// 원생 정보 조회
+	@Override
+	public KinderVO selectKinderInfo(String kinder_num) throws Exception {
+		return manager.selectKinderInfo(kinder_num);
 	}
 	
 

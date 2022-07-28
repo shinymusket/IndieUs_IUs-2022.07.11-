@@ -25,7 +25,7 @@
 	
 	<!-- 원생 등록  -->
 	<insert id="insert_kinder" parameterType="kinderVO">
-		INSERT INTO kinder VALUES(kinder_seq.nextval, #{shuttle_num}, #{staff_num}, #{kinder_regYn}, #{kinder_name}, #{kinder_rrn1}, #{kinder_rrn2}, #{kinder_addr}, #{kinder_zipcode}, #{kinder_tel}, #{kinder_regdate}, #{kinder_retireDate})
+		INSERT INTO kinder VALUES(kinder_seq.nextval, #{shuttle_num}, #{staff_num}, #{kinder_regYn}, #{kinder_name}, #{kinder_rrn1}, #{kinder_rrn2}, #{kinder_addr}, #{kinder_zipcode}, #{kinder_tel}, #{kinder_regdate}, #{kinder_retireDate}, #{kinder_picture})
 	</insert>
 	
 	<!-- 원생 검색 -->
@@ -56,6 +56,12 @@
 		</if>
 	</select>
 	
-	
-	
+	<!-- 원생 정보 조회 -->
+	<select id="select_kinder_info" parameterType="String" resultType="kinderVO">
+		SELECT kinder_num, shuttle_num, staff_name, kinder_name, kinder_regYn, kinder_rrn1, kinder_rrn2, kinder_addr, kinder_zipcode, kinder_tel, TO_CHAR(kinder_regdate, 'YYYY-MM-DD') AS "kinder_regdate", kinder_retireDate, kinder_picture
+		FROM kinder k, staff s
+		WHERE k.staff_num = s.staff_num
+		AND kinder_num = #{kinder_num}
+	</select>
+
 </mapper>

@@ -3,8 +3,6 @@ package com.indieus.ius.controller;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.indieus.ius.service.KinderServiceImpl;
@@ -55,8 +54,8 @@ public class KinderController {
 	
 	// 원생 등록
 	@RequestMapping(value = "/kinder_register", method = RequestMethod.POST)
-	public String kinderRegsiter(@ModelAttribute KinderVO kVo, RedirectAttributes rttr) throws Exception {
-		rttr.addFlashAttribute("result", service.insertKinder(kVo));
+	public String kinderRegsiter(@ModelAttribute KinderVO kVo, @RequestParam MultipartFile kinder_picFile, RedirectAttributes rttr) throws Exception {
+		rttr.addFlashAttribute("result", service.insertKinder(kVo, kinder_picFile));
 		return "redirect:./kinder_list";
 	}
 	
@@ -67,4 +66,11 @@ public class KinderController {
 		return service.searchKinderList(map);
 	}
 	
+	// 원생 정보 조회
+	@RequestMapping(value = "/kinder_info", method = RequestMethod.GET)
+	public String kinderInfo(@RequestParam String kinder_num, Model model) throws Exception {
+		KinderVO kinder = service.selectKinderInfo(kinder_num);
+		model.addAttribute("kinder", kinder);
+		return "kinder/kinderInfo";
+	}
 }
