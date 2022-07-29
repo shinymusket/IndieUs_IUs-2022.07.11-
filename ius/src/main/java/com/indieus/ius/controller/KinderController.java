@@ -3,6 +3,7 @@ package com.indieus.ius.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class KinderController {
 	
 	@Autowired
 	private KinderServiceImpl service;
-	
+
 	// 원생 관리 리스트로 이동
 	@RequestMapping(value = "/kinder_list", method = RequestMethod.GET)
 	public String list() throws Exception {
@@ -75,4 +76,12 @@ public class KinderController {
 		model.addAttribute("kinder", kinder);
 		return "kinder/kinderInfo";
 	}
+	
+	// 원생 정보 삭제
+	@RequestMapping(value = "/delete_kinder", method = RequestMethod.GET)
+	public String deleteKinder(@RequestParam String kinder_num, RedirectAttributes rttr) throws Exception {
+		rttr.addFlashAttribute("result", service.deleteKinderInfo(kinder_num));
+		return "redirect:./kinder_list";
+	}
+	
 }

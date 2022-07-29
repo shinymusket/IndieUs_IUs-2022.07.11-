@@ -26,5 +26,7 @@ public interface KinderService {
 	public Object searchKinderList(Map<String, Object> map) throws Exception;
 	
 	public KinderVO selectKinderInfo(String kinder_num) throws Exception;
+	
+	public int deleteKinderInfo(String kinder_num) throws Exception;
 
 }

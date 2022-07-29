@@ -34,12 +34,26 @@
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
-
+	<!-- 일반 파일 업로드 경로 -->
+	<mvc:resources mapping="/imgUpload/**" location="C:\javastudy\apache-tomcat-8.5.81\wtpwebapps\ius\resources\imgUpload" />
+	<mvc:resources mapping="/img/**" location="C:\Users\GREEN\Documents\images"/>
+	
+	
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
  <!-- 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean> -->
+	
+	
+	<!-- 업로드 패스 설정 --> 
+	<beans:bean class="java.lang.String" id="uploadPath">
+	 	<beans:constructor-arg value="C:\javastudy\apache-tomcat-8.5.81\wtpwebapps\ius\resources" />
+	</beans:bean>
+	
+	<beans:bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
+	 	<beans:property name="maxUploadSize" value="10485760"/>
+	</beans:bean>
 	
 	<context:component-scan base-package="com.indieus.ius" />
 	

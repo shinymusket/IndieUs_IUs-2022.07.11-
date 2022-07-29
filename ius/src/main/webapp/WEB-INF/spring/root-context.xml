@@ -43,9 +43,6 @@
  	<!-- 트랜잭션을 처리할 객체를 설정 -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	
-	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<property name="maxUploadSize" value="10485760"/>
-		<property name="defaultEncoding" value="UTF-8"/>
-	</bean>
-		
+	<!-- 패키지 -->
+	<context:component-scan base-package="com.indieus.ius.utils"/>
 </beans>

@@ -15,6 +15,7 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.indieus.ius.db.KinderDAO;
+import com.indieus.ius.utils.UploadFileUtils;
 import com.indieus.ius.vo.KinderVO;
 import com.indieus.ius.vo.ShuttleVO;
 import com.indieus.ius.vo.StaffVO;
@@ -23,6 +24,9 @@ public class KinderServiceImpl implements KinderService {
 	
 	@Inject
 	private KinderDAO manager;
+	
+	@Resource(name="uploadPath")
+	private String uploadPath;
 	
 	// 원생 리스트 가져오기 Ajax
 	public Object getKinderList() throws Exception {
@@ -102,33 +106,27 @@ public class KinderServiceImpl implements KinderService {
 	// 원생 등록
 	@Override
 	public int insertKinder(KinderVO kVo, MultipartFile kinder_picFile, HttpServletRequest request) throws Exception {
-		String path =  request.getSession().getServletContext().getRealPath("/"); // ( root 경로)
-		path += "resources\\upload\\profile\\";
-		
-		
-	//	String filePath = "C:\\Study\\Green220308\\springWorkSpaceSTS\\ius\\src\\main\\webapp\\resources\\upload\\profile\\";
-		
-		
 		MultipartFile file = kinder_picFile;
 		
-		// 파일명
-		String originalFile = file.getOriginalFilename();
-		// 파일명 중 확장자만 추출
-		String origianlFileExtension = originalFile.substring(originalFile.lastIndexOf("."));
-	 // String storedFileName = UUID.randomUUID().toString().replaceAll("-", "") + origianlFileExtension;
-		int nextSeq = manager.selectNextKinderSeq();
+		String imgUploadPath = uploadPath + File.separator + "imgUpload";
+		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+		String fileName = null;
+		
+		if(file != null) {
+			fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
+		} else {
+			fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+		}
+		
+		System.out.println(imgUploadPath);
+		System.out.println(ymdPath);
+		
+		kVo.setKinder_picture(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
 
-		String storedFileName = "kinder" + Integer.toString(nextSeq) + origianlFileExtension;
-		
-		// 파일을 저장하기 위한 파일 객체 생성
-		File newFile = new File(path + storedFileName);	
-		file.transferTo(newFile);
-		
-		System.out.println("originalFile : " + originalFile);
-		System.out.println("storedFileName : " + storedFileName);
-		kVo.setKinder_picture(path + storedFileName);
 		return manager.insertKinder(kVo);
 	}
+	
+	
 	
 	// 원생 검색 Ajax
 	@Override
@@ -191,6 +189,12 @@ public class KinderServiceImpl implements KinderService {
 	@Override
 	public KinderVO selectKinderInfo(String kinder_num) throws Exception {
 		return manager.selectKinderInfo(kinder_num);
+	}
+	
+	// 원생 정보 삭제
+	@Override
+	public int deleteKinderInfo(String kinder_num) throws Exception {
+		return manager.deleteKinderInfo(kinder_num);
 	}
 	
 

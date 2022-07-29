@@ -8,6 +8,16 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 	$(function(){
+			$("#kinder_picFile").change(function(){
+				if(this.files && this.files[0]) {
+					var reader = new FileReader;
+					reader.onload = function(data) {
+						$(".select_img img").attr("src", data.target.result).width(500);
+					}
+					reader.readAsDataURL(this.files[0]);
+				}	
+			});
+		
 			var currentDate  = new Date().toISOString().substring(0, 10);
 			$("#kinder_regdate").val(currentDate);
 			
@@ -157,6 +167,10 @@
 				<th>프로필 사진</th>
 				<td>
 					<input type="file" name="kinder_picFile" id="kinder_picFile">
+					<div class="select_img">
+						<img src="">
+					</div>
+					<%=request.getRealPath("/")%>
 				</td>
 			</tr>
 			<tr>

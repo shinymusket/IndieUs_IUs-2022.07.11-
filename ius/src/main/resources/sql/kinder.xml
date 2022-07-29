@@ -63,5 +63,10 @@
 		WHERE k.staff_num = s.staff_num
 		AND kinder_num = #{kinder_num}
 	</select>
+	
+	<!-- 원생 정보 삭제 -->
+	<delete id="delete_kinder_info" parameterType="String">
+		DELETE FROM kinder WHERE kinder_num = #{kinder_num}
+	</delete>
 
 </mapper>

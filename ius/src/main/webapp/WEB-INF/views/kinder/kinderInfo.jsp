@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <%@taglib  prefix="spring" uri="http://www.springframework.org/tags" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,8 +35,8 @@
 		<tr>
 			<th>사진</th>
 			<td>
-				<%-- <img src="${kinder.kinder_picture}" alt="프로필 사진"> --%>
-				<img src="<c:url value='/src/main/webapp/resources/upload/profile' />/kinder7.jpg" alt="프로필 사진">
+				
+				<img src="<spring:url value="${kinder.kinder_picture}"/>" style='width:300px; height:auto;'>
 			</td>
 		</tr>
 		<tr>
@@ -65,7 +66,7 @@
 		<tr>
 			<td colspan="2">
 				<input type="button" value="수정">
-				<input type="button" value="삭제">
+				<input type="button" value="삭제" onclick="location.href='../kinder/delete_kinder?kinder_num=${kinder.kinder_num}'">
 			</td>
 		</tr>
 	</table>
