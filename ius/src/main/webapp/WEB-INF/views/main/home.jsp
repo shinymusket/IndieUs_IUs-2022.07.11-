@@ -12,6 +12,7 @@
 	<p><a href="../finance/finance_list">재정 관리</a></p>
 	<p><a href="../staff/staff_list">교직원 관리</a></p>
 	<p><a href="../equipment/equipment_list">시설 관리</a></p>
+	<p><a href="../meal/meal_list">식단 관리</a></p>
 	<p><a href="../board/board_list">전자결재</a></p>
 </body>
 </html>

@@ -7,9 +7,9 @@ public class EquipmentVO {
 	private String equipment_name;
 	private int equipment_count;
 	private String equipment_regdate;
-	
+
 	private String staff_name;
-	
+
 	public String getStaff_name() {
 		return staff_name;
 	}
@@ -46,7 +46,7 @@ public class EquipmentVO {
 	public void setEquipment_count(int equipment_count) {
 		this.equipment_count = equipment_count;
 	}
-	
+
 	public String getEquipment_regdate() {
 		return equipment_regdate;
 	}
@@ -54,7 +54,7 @@ public class EquipmentVO {
 		this.equipment_regdate = equipment_regdate;
 	}
 
-	
-	
-	
+
+
+
 }

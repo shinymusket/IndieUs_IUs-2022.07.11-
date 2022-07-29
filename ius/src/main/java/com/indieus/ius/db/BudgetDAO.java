@@ -12,10 +12,10 @@ import com.indieus.ius.vo.BudgetVO;
 
 @Repository
 public class BudgetDAO {
-	
+
 	@Autowired
 	SqlSession sqlsession = null;
-	
+
 	// 전체 예산 항목 조회
 	public List<BudgetVO> selectAllBudget() throws Exception {
 		return sqlsession.selectList("budget.select_all_budget");
@@ -57,12 +57,12 @@ public class BudgetDAO {
 	public List<String> selectAllBudgetYear() throws Exception {
 		return sqlsession.selectList("budget.select_all_budget_year");
 	}
-	
+
 	// 년도별 예산 조회
 	public List<BudgetVO> selectBudgetByYear(String seachYear) throws Exception {
 		return sqlsession.selectList("budget.select_budget_by_year", seachYear);
 	}
-	
+
 	// 예산 항목 추가
 	@Transactional
 	public int registerBudget(BudgetVO bVo) throws Exception {

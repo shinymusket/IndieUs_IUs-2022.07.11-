@@ -5,14 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
-=======
-import java.util.List;
-
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.stereotype.Service;
->>>>>>> 2c73c609bb93290dace97a9686ad5952a9e7e0b2
 
 import com.indieus.ius.db.FinanceDAO;
 import com.indieus.ius.vo.FinanceVO;
@@ -57,8 +49,8 @@ public class FinanceServiceImpl implements FinanceService {
 	public List<String> selectAllFinanceEyear() throws Exception {
 		return manager.selectAllFinanceEyear();
 	}
-	
-	// 재정등록을 위한 다음 시퀀스 값 확인하기 
+
+	// 재정등록을 위한 다음 시퀀스 값 확인하기
 	@Override
 	public int selectFinanceSeq() throws Exception {
 		return manager.selectFinanceSeq();
@@ -69,7 +61,7 @@ public class FinanceServiceImpl implements FinanceService {
 	public int insertFinance(FinanceVO fVo) throws Exception {
 		return manager.insertFinance(fVo);
 	}
-	
+
 	// 재정 상세보기
 	@Override
 	public FinanceVO selectFinanceByNum(String finance_num) throws Exception {

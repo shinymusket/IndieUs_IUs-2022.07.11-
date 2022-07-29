@@ -12,8 +12,8 @@ public class MealMenuVO {
 	private int menu_calorie;
 	private String allergy_num;
 	private Date menu_wdate;
-	
-	
+
+
 	public String getMenu_num() {
 		return menu_num;
 	}
@@ -62,6 +62,6 @@ public class MealMenuVO {
 	public void setMenu_wdate(Date menu_wdate) {
 		this.menu_wdate = menu_wdate;
 	}
-	
-	
+
+
 }

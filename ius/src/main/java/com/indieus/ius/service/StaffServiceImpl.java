@@ -13,10 +13,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.io.ClassPathResource;
-<<<<<<< HEAD
-=======
-import org.springframework.stereotype.Service;
->>>>>>> 2c73c609bb93290dace97a9686ad5952a9e7e0b2
 
 import com.indieus.ius.db.StaffDAO;
 import com.indieus.ius.vo.JobClassifiVO;
@@ -250,6 +246,7 @@ public class StaffServiceImpl implements StaffService {
 		} catch(Exception e) {
 			System.out.println("메일발송 실패 : " + e);
 		}
+	}
 
 	// 교직원 계정 등록
 	@Override

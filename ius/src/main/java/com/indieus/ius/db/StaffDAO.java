@@ -13,10 +13,10 @@ import com.indieus.ius.vo.StaffVO;
 
 @Repository
 public class StaffDAO {
-	
+
 	@Autowired
 	SqlSession sqlsession = null;
-	
+
 	// 교직원 리스트 가져오기
 	public List<StaffVO> selectStaffList() throws Exception {
 		return sqlsession.selectList("staff.select_staff_list");
@@ -58,7 +58,7 @@ public class StaffDAO {
 	@Transactional
 	public void updateJobList(JobClassifiVO jVo) {
 		sqlsession.update("staff.update_job", jVo);
-
+	}
 	// 교직원 아이디 중복 검사
 	public int idCheck(String staff_id) {
 		int result = sqlsession.selectOne("staff.id_check", staff_id);

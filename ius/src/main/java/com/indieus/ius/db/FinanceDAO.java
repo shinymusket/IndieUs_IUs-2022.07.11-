@@ -1,8 +1,6 @@
 package com.indieus.ius.db;
 
 import java.util.HashMap;
-=======
->>>>>>> 2c73c609bb93290dace97a9686ad5952a9e7e0b2
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;

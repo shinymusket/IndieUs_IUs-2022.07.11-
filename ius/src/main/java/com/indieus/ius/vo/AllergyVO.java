@@ -4,8 +4,8 @@ public class AllergyVO {
 
 	private int allergy_Num;
 	private String allergy_Name;
-	
-	
+
+
 	public int getAllergy_Num() {
 		return allergy_Num;
 	}
@@ -18,6 +18,6 @@ public class AllergyVO {
 	public void setAllergy_Name(String allergy_Name) {
 		this.allergy_Name = allergy_Name;
 	}
-	
-	
+
+
 }
