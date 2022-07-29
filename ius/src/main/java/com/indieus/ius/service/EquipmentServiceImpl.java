@@ -137,10 +137,10 @@ public class EquipmentServiceImpl implements EquipmentService {
 	public int deleteEquipment(String equipment_num, HttpServletResponse response) throws Exception {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
-		
+
 		// 시설(비품) 정보 삭제 전 해당 항목의 구매내역이 있는지 확인
 		int result = manager.checkPurchaseCntFromEquipment(equipment_num);
-		
+
 		if (result > 0) {
 			out.println("<script>");
 			out.println("alert('해당 시설(비품)의 구매 내역이 있어 삭제할 수 없습니다.');");
@@ -151,7 +151,7 @@ public class EquipmentServiceImpl implements EquipmentService {
 		} else {
 			return manager.deleteEquipment(equipment_num);
 		}
-			
+
 	}
 
 
@@ -194,11 +194,11 @@ public class EquipmentServiceImpl implements EquipmentService {
 		eVo.setEquipment_count(pVo.getPurchase_count());
 		eVo.setEquipment_regdate(pVo.getPurchase_date());
 		eVo.setEquipment_cate("구매품");
-		
+
 		manager.insertEquipment(eVo);
 		return manager.insertPurchaseEquipment(pVo);
 	}
-	
+
 	// 구매 리스트 가져오기 Ajax
 	@Override
 	public Object getPurchaseList() throws Exception {
@@ -213,13 +213,13 @@ public class EquipmentServiceImpl implements EquipmentService {
 	public PurchaseVO getPurchaseInfo(String purchase_num) throws Exception {
 		return manager.getPurchaseInfo(purchase_num);
 	}
-	
+
 	// 구매 정보 삭제하기
 	@Override
 	public int deletePurchase(String purchase_num) throws Exception {
 		return manager.deletePurchase(purchase_num);
 	}
-	
+
 	// 구매 정보 수정하기
 	@Override
 	public int updatePurchase(PurchaseVO pVo) throws Exception {

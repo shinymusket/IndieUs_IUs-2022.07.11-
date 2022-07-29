@@ -31,12 +31,12 @@
 		<beans:property name="defaultEncoding" value="UTF-8"/>	
 	</beans:bean>
 	
-
+	<!-- /resources/imgUpload -->
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	<!-- 일반 파일 업로드 경로 -->
-	<mvc:resources mapping="/imgUpload/**" location="C:\javastudy\apache-tomcat-8.5.81\wtpwebapps\ius\resources\imgUpload" />
-	<mvc:resources mapping="/img/**" location="C:\Users\GREEN\Documents\images"/>
+	<mvc:resources mapping="/imgUpload/**" location="C:\Study\Green220308\springWorkSpaceSTS\ius\src\main\webapp\resources" />
+	
 	
 	
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
@@ -45,10 +45,10 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean> -->
 	
-	
+	<!-- C:\javastudy\apache-tomcat-8.5.81\wtpwebapps\ius\resources -->
 	<!-- 업로드 패스 설정 --> 
 	<beans:bean class="java.lang.String" id="uploadPath">
-	 	<beans:constructor-arg value="C:\javastudy\apache-tomcat-8.5.81\wtpwebapps\ius\resources" />
+	 	<beans:constructor-arg value="C:\Study\Green220308\springWorkSpaceSTS\ius\src\main\webapp\resources" />
 	</beans:bean>
 	
 	<beans:bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">

@@ -13,10 +13,10 @@ public class PurchaseVO {
 	private String equipment_name;
 	private String staff_name;
 	private String finance_cls;
-	
-	
-	
-	
+
+
+
+
 
 	public String getFinance_cls() {
 		return finance_cls;

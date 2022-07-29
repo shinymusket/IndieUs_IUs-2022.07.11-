@@ -42,12 +42,12 @@ public interface EquipmentService {
 	public Object getFinanceList() throws Exception;
 
 	public int purchaseEquipRegister(PurchaseVO pVo, HttpSession session) throws Exception;
-	
+
 	public Object getPurchaseList() throws Exception;
-	
+
 	public PurchaseVO getPurchaseInfo(String purchase_num) throws Exception;
-	
+
 	public int deletePurchase(String purchase_num) throws Exception;
-	
+
 	public int updatePurchase(PurchaseVO pVo) throws Exception;
 }

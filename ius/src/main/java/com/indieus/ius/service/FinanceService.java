@@ -20,13 +20,13 @@ public interface FinanceService {
 	public int insertFinance(FinanceVO fVo) throws Exception;
 
 	public FinanceVO selectFinanceByNum(String finance_num) throws Exception;
-	
+
 	public int deleteFinance(String finance_num, HttpServletResponse response) throws Exception;
 
 	public int updateFinance(FinanceVO fVo) throws Exception;
-	
+
 	public List<PurchaseVO> selectPurchaseFromNum(String finance_num) throws Exception;
-	
+
 	public int selectPurchaseSumFromNum(String finance_num) throws Exception;
-	
+
 }

@@ -73,15 +73,15 @@ public class FinanceServiceImpl implements FinanceService {
 	public FinanceVO selectFinanceByNum(String finance_num) throws Exception {
 		return manager.selectFinanceByNum(finance_num);
 	}
-	
+
 	// 재정 삭제
 	@Override
 	public int deleteFinance(String finance_num, HttpServletResponse response) throws Exception {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
-		
+
 		int result = manager.selectPurchaseCntFromFinance(finance_num);
-		
+
 		if (result > 0) {
 			out.println("<script>");
 			out.println("alert('해당 항목의 구매 내역이 있어 삭제할 수 없습니다.');");
@@ -91,8 +91,8 @@ public class FinanceServiceImpl implements FinanceService {
 			return 0;
 		} else {
 			return manager.deleteFinance(finance_num);
-		}	
-		
+		}
+
 	}
 
 	// 재정 정보 수정
@@ -100,13 +100,13 @@ public class FinanceServiceImpl implements FinanceService {
 	public int updateFinance(FinanceVO fVo) throws Exception {
 		return manager.updateFinance(fVo);
 	}
-	
+
 	// 재정으로 사용된 구매내역 가져오기
 	@Override
 	public List<PurchaseVO> selectPurchaseFromNum(String finance_num) throws Exception {
 		return manager.selectPurchaseFromNum(finance_num);
 	}
-	
+
 	// 재정으로 사용된 구매내역 총 합 가져오기
 	@Override
 	public int selectPurchaseSumFromNum(String finance_num) throws Exception {

@@ -171,16 +171,16 @@ public class StaffServiceImpl implements StaffService {
 	@Override
 	public void deleteJobByStaffCls(String staff_cls, HttpServletResponse response) throws Exception {
 		// 해당 항목의 데이터가 있는지 유무 확인
-		
+
 		int result = 0;
-		
+
 		result = manager.checkStaffFromStaffCls(staff_cls);
 		PrintWriter out = response.getWriter();
-		
+
 		if (result == 0) {
 			manager.deleteJobByStaffCls(staff_cls);
 		}
-		
+
 		out.println(result);
 		out.close();
 	}

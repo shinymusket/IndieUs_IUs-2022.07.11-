@@ -1,7 +1,5 @@
 package com.indieus.ius.vo;
 
-import org.springframework.web.multipart.MultipartFile;
-
 public class KinderVO {
 	private String kinder_num;
 	private String shuttle_num;
@@ -17,7 +15,7 @@ public class KinderVO {
 	private String kinder_regdate;
 	private String kinder_retireDate;
 	private String kinder_picture;
-	
+
 	public String getKinder_picture() {
 		return kinder_picture;
 	}
@@ -39,10 +37,10 @@ public class KinderVO {
 	private String kinder_sex;
 	private String kinder_birth;
 	private String kinder_age;
-	
+
 	private String staff_name;
-	
-	
+
+
 	public String getShuttle_num() {
 		return shuttle_num;
 	}
@@ -98,7 +96,7 @@ public class KinderVO {
 	public void setKinder_name(String kinder_name) {
 		this.kinder_name = kinder_name;
 	}
-	
+
 	public String getKinder_rrn1() {
 		return kinder_rrn1;
 	}
@@ -129,6 +127,6 @@ public class KinderVO {
 	public void setKinder_tel(String kinder_tel) {
 		this.kinder_tel = kinder_tel;
 	}
-	
-	
+
+
 }

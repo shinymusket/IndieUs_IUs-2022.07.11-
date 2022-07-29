@@ -4,7 +4,7 @@ public class ShuttleVO {
 	private String shuttle_num;
 	private String staff_num;
 	private String shuttle_carNum;
-	
+
 	public String getShuttle_num() {
 		return shuttle_num;
 	}
@@ -23,7 +23,7 @@ public class ShuttleVO {
 	public void setShuttle_carNum(String shuttle_carNum) {
 		this.shuttle_carNum = shuttle_carNum;
 	}
-	
-	
-	
+
+
+
 }

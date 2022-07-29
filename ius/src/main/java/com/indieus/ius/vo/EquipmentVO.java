@@ -8,7 +8,7 @@ public class EquipmentVO {
 	private int equipment_count;
 	private String equipment_regdate;
 	private String equipment_cate;
-	
+
 
 	private String staff_name;
 	private String equip_cls_name;

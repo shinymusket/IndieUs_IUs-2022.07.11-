@@ -75,12 +75,12 @@ public class FinanceDAO {
 	public FinanceVO selectFinanceByNum(String finance_num) throws Exception {
 		return sqlsession.selectOne("finance.select_finance_info", finance_num);
 	}
-	
+
 	// 재정 삭제전 해당 항목의 구매 내역 유무 확인
 	public int selectPurchaseCntFromFinance(String finance_num) throws Exception {
 		return sqlsession.selectOne("finance.select_purchase_cnt_from_finance", finance_num);
 	}
-		
+
 	// 재정 삭제
 	@Transactional
 	public int deleteFinance(String finance_num) throws Exception  {
@@ -92,15 +92,15 @@ public class FinanceDAO {
 	public int updateFinance(FinanceVO fVo) throws Exception {
 		return sqlsession.update("finance.update_finance", fVo);
 	}
-	
+
 	// 재정 사용 구매 내역 가져오기
 	public List<PurchaseVO> selectPurchaseFromNum(String finance_num) throws Exception  {
 		return sqlsession.selectList("finance.select_purchase_from_finance_num", finance_num);
 	}
-	
+
 	// 재정 사용 구매 내역 총합 가져오기
 	public int selectPurchaseSumFromNum(String finance_num) throws Exception {
 		return sqlsession.selectOne("finance.select_purchase_sum_from_finance_num", finance_num);
 	}
-	
+
 }

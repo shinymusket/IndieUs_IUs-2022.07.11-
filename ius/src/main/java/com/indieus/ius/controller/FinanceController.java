@@ -89,11 +89,11 @@ public class FinanceController {
 		FinanceVO fVo = service.selectFinanceByNum(finance_num);
 		List<PurchaseVO> purchaseList = service.selectPurchaseFromNum(finance_num);
 		int purchaseSum = service.selectPurchaseSumFromNum(finance_num);
-		
+
 		model.addAttribute("finance", fVo);
 		model.addAttribute("purchaseList", purchaseList);
 		model.addAttribute("purchaseSum", purchaseSum);
-		
+
 		return "/finance/finance_info";
 	}
 
@@ -101,14 +101,14 @@ public class FinanceController {
 	@RequestMapping(value = "/finance_delete", method = RequestMethod.GET)
 	public String delete(@RequestParam String finance_num, RedirectAttributes rttr, HttpServletResponse response) throws Exception {
 		int result =  service.deleteFinance(finance_num, response);
-		
+
 		if (result == 0) {
 			return null;
 		} else {
 			rttr.addFlashAttribute("result", result);
 			return "redirect:./finance_list";
 		}
-	
+
 	}
 
 	// 재정 수정 폼
