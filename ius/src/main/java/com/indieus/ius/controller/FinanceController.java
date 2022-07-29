@@ -1,7 +1,10 @@
 package com.indieus.ius.controller;
 
 import java.util.List;
+<<<<<<< HEAD
 import java.util.Map;
+=======
+>>>>>>> 2c73c609bb93290dace97a9686ad5952a9e7e0b2
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,7 +13,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+<<<<<<< HEAD
 import org.springframework.web.bind.annotation.ResponseBody;
+=======
+>>>>>>> 2c73c609bb93290dace97a9686ad5952a9e7e0b2
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.indieus.ius.service.BudgetServiceImpl;
@@ -30,7 +36,6 @@ public class FinanceController {
 	private StaffServiceImpl staffService;
 	@Autowired
 	private BudgetServiceImpl budgetService;
-
 
 	// 재정관리 처음 화면 - 리스트 불러오기
 	@RequestMapping(value = "/finance_list", method = RequestMethod.GET)
@@ -54,12 +59,13 @@ public class FinanceController {
 		return service.getFinanceListByYear(map);
 	}
 
-
 	// 재정등록 폼
 	@RequestMapping(value = "/finance_register_form", method = RequestMethod.GET)
 	public String registerForm(Model model, @RequestParam String iE) throws Exception {
 		// 예산 코드 가져오기
+
 		int finance_num = service.selectFinanceSeq();
+
 		// 예산 항목 가져오기
 		List<BudgetVO> budgetList = budgetService.selectBudgetByBudgetIe(iE);
 		// 교직원 명단 가져오기
@@ -73,7 +79,7 @@ public class FinanceController {
 		return "/finance/financeRegisterForm";
 	}
 
-	// 재정 등록
+	// 재정등록
 	@RequestMapping(value = "/finance_register", method = RequestMethod.POST)
 	public String register(@ModelAttribute FinanceVO fVo, RedirectAttributes rttr) throws Exception {
 		rttr.addFlashAttribute("result", service.insertFinance(fVo));

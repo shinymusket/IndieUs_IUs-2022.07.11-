@@ -52,6 +52,8 @@
 	<beans:bean id="staffAttendanceController" class="com.indieus.ius.controller.StaffAttendanceController" />
 	<beans:bean id="equipmentController" class="com.indieus.ius.controller.EquipmentController" />
 	<beans:bean id="eworksBoardController" class="com.indieus.ius.controller.EworksBoardController" />
+	<beans:bean id="mealMenuController" class="com.indieus.ius.controller.MealMenuController" />
+
 	
 	<!-- DAO -->
 	<beans:bean id="budgetDAO" class="com.indieus.ius.db.BudgetDAO" />
@@ -62,6 +64,8 @@
 	<beans:bean id="staffAttendanceDAO" class="com.indieus.ius.db.StaffAttendanceDAO" />
 	<beans:bean id="equipmentDAO" class="com.indieus.ius.db.EquipmentDAO" />
 	<beans:bean id="eworksListDAO" class="com.indieus.ius.db.EworksListDAO" />
+	<beans:bean id="mealMenuDAO" class="com.indieus.ius.db.MealMenuDAO" />
+
 	
 	<!-- Service -->
 	<beans:bean id="financeService" class="com.indieus.ius.service.FinanceServiceImpl" />
@@ -72,6 +76,7 @@
 	<beans:bean id="staffAttendanceServiceImpl" class="com.indieus.ius.service.StaffAttendanceServiceImpl" />
 	<beans:bean id="EquipmentServiceImpl" class="com.indieus.ius.service.EquipmentServiceImpl" />
 	<beans:bean id="AdeptDocService" class="com.indieus.ius.service.AdeptDocServiceImpl" />
+	<beans:bean id="mealMenuService" class="com.indieus.ius.service.MealMenuServiceImpl" />
 
 
 </beans:beans>

@@ -13,10 +13,10 @@ import com.indieus.ius.vo.StaffVO;
 
 @Repository
 public class StaffDAO {
-
+	
 	@Autowired
 	SqlSession sqlsession = null;
-
+	
 	// 교직원 리스트 가져오기
 	public List<StaffVO> selectStaffList() throws Exception {
 		return sqlsession.selectList("staff.select_staff_list");
@@ -37,7 +37,6 @@ public class StaffDAO {
 		return sqlsession.selectOne("staff.select_job_number");
 	}
 
-
 	// 직무 분류 항목 추가하기
 	@Transactional
 	public void insertJob(JobClassifiVO jVo) {
@@ -49,7 +48,6 @@ public class StaffDAO {
 		return sqlsession.selectOne("staff.select_job_classifi_by_num", staff_cls);
 	}
 
-
 	// 직무 코드로 직무 항목 삭제
 	@Transactional
 	public void deleteJobByStaffCls(String staff_cls) {
@@ -60,8 +58,6 @@ public class StaffDAO {
 	@Transactional
 	public void updateJobList(JobClassifiVO jVo) {
 		sqlsession.update("staff.update_job", jVo);
-
-	}
 
 	// 교직원 아이디 중복 검사
 	public int idCheck(String staff_id) {
@@ -102,13 +98,5 @@ public class StaffDAO {
 	public int updateStaff(StaffVO sVo) throws Exception {
 		return sqlsession.update("staff.update_staff", sVo);
 	}
-
-
-
-
-
-
-
-
 
 }

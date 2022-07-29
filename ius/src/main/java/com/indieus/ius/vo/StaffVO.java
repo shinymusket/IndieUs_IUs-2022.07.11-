@@ -23,7 +23,6 @@ public class StaffVO {
 
 	 private String job_Kname;
 
-
 	public String getJob_Kname() {
 		return job_Kname;
 	}
@@ -41,8 +40,6 @@ public class StaffVO {
 		this.staff_sex = staff_sex;
 	}
 
-
-
 	public String getStaff_birth() {
 		return staff_birth;
 	}
@@ -55,9 +52,6 @@ public class StaffVO {
 	public void setStaff_age(String staff_age) {
 		this.staff_age = staff_age;
 	}
-
-
-
 
 	public String getStaff_num() {
 		return staff_num;
@@ -147,6 +141,5 @@ public class StaffVO {
 	public void setStaff_email(String staff_email) {
 		this.staff_email = staff_email;
 	}
-
 
 }

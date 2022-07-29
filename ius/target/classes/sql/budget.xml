@@ -5,7 +5,6 @@
   	<select id="select_all_budget" resultType="budgetVO">
   		SELECT * FROM budget
   	</select>
-  
   	<!-- 년도별 총수입 예산 조회 -->
  	<select id="select_total_Income" parameterType="String" resultType="int">
  		SELECT sum(budget_total) FROM budget WHERE budget_iE = 'In' AND budget_year = #{budget_year} 

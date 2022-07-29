@@ -2,6 +2,9 @@ package com.indieus.ius.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,6 +51,17 @@ public class StaffController {
 		return "/staff/jobClassEdit";
 	}
 	
+	// 교직원 직무 분류 편집 - 리스트 가져오기
+	@RequestMapping(value = "/get_job_list", method = RequestMethod.POST)
+	public void getJobList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		service.getJobList(request, response);
+	}
+	
+	// 교직원 직무 분류 편집 - 추가하기
+	@RequestMapping(value = "/insert_job_list", method = RequestMethod.POST)
+	public void insertJobList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		service.insertJobList(request, response);
+	}
 	
 	// 교직원 등록
 	@RequestMapping(value = "/staff_register", method = RequestMethod.POST)

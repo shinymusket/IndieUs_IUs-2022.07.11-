@@ -29,6 +29,7 @@ public class StaffIdVO {
 	public void setLog_date(Date log_date) {
 		this.log_date = log_date;
 	}
+
 	public String getStaff_id() {
 		return staff_id;
 	}
@@ -41,6 +42,5 @@ public class StaffIdVO {
 	public void setStaff_pwd(String staff_pwd) {
 		this.staff_pwd = staff_pwd;
 	}
-
 
 }

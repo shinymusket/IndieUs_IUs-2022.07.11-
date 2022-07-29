@@ -19,6 +19,7 @@ import com.indieus.ius.vo.BudgetVO;
 @Controller
 @RequestMapping("/budget")
 public class BudgetController {
+<<<<<<< HEAD
 
 	@Autowired
 	private BudgetServiceImpl service;

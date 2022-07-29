@@ -13,6 +13,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.io.ClassPathResource;
+<<<<<<< HEAD
+=======
+import org.springframework.stereotype.Service;
+>>>>>>> 2c73c609bb93290dace97a9686ad5952a9e7e0b2
 
 import com.indieus.ius.db.StaffDAO;
 import com.indieus.ius.vo.JobClassifiVO;
@@ -68,6 +72,7 @@ public class StaffServiceImpl implements StaffService {
 				birth += rrn1;
 				element.setStaff_birth(birth);
 
+
 				// 가져온 주민등록번호로 만 나이 계산
 				int birthYear = Integer.parseInt(birth.substring(0, 4));
 				int birthMonth = Integer.parseInt(birth.substring(4, 6));
@@ -91,6 +96,7 @@ public class StaffServiceImpl implements StaffService {
 
 		return VoList;
 	}
+
 
 	// 교직원 등록을 위한 현재 시퀀스값 가져오기
 	@Override
@@ -120,6 +126,7 @@ public class StaffServiceImpl implements StaffService {
 
 		List<JobClassifiVO> list = manager.selectJobClassifi();
 
+
 		String json = "{\"jobList\":[";
 		for (int i = 0; i < list.size(); i ++) {
 			String staff_cls = list.get(i).getStaff_cls();
@@ -144,12 +151,14 @@ public class StaffServiceImpl implements StaffService {
 	}
 
 
+
 	// 직무 목록 추가하기
 	@Override
 	public void insertJobList(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("UTF-8");
 
 		JobClassifiVO jVo = new JobClassifiVO();
+
 
 		int number = manager.selectJobNumber() + 1;
 		jVo.setJob_number(number);
@@ -179,7 +188,6 @@ public class StaffServiceImpl implements StaffService {
 		manager.updateJobList(jVo);
 	}
 
-
 	// 교직원 아이디 중복 검사
 	@Override
 	public int idCheck(String staff_id) throws Exception  {
@@ -198,6 +206,7 @@ public class StaffServiceImpl implements StaffService {
 		return result;
 	}
 
+
 	// 교직원 계정 발급시 이메일 발송
 	@Override
 	public void sendMail(StaffVO sVo, StaffIdVO sIvo) throws Exception {
@@ -213,6 +222,7 @@ public class StaffServiceImpl implements StaffService {
 
 		subject = "귀하의 IUS Homepage 계정이 등록되었습니다.";
 
+
 		msg += "<div align='center' style='border:1px solid black; font-family:verdana'>";
 		msg += "<h3 style='color: blue;'>";
 		msg += sVo.getStaff_name() + "님 계정이 등록되었습니다.";
@@ -220,7 +230,6 @@ public class StaffServiceImpl implements StaffService {
 		msg += "<p>임시 비밀번호 : ";
 		msg += sIvo.getStaff_pwd() + "</p>";
 		msg += "<a href='http://localhost:8085/ius/'>홈페이지로 이동</a></div>";
-
 
 		String mail = sVo.getStaff_email();
 		try {
@@ -241,8 +250,6 @@ public class StaffServiceImpl implements StaffService {
 		} catch(Exception e) {
 			System.out.println("메일발송 실패 : " + e);
 		}
-
-	}
 
 	// 교직원 계정 등록
 	@Override
@@ -274,6 +281,7 @@ public class StaffServiceImpl implements StaffService {
 
 
 
+
 	// 교직원 정보 상세조회
 	@Override
 	public StaffVO selectStaffInfo(String staff_num) throws Exception {
@@ -296,21 +304,5 @@ public class StaffServiceImpl implements StaffService {
 		int result = manager.updateStaff(sVo);
 		return result;
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

@@ -31,6 +31,13 @@ public class StaffDAO {
 		return sqlsession.selectList("staff.select_job_classifi");
 	}
 	
+	
+	// 직무 분류 항목 추가하기
+	@Transactional
+	public void insertJob(JobClassifiVO jVo) {
+		sqlsession.insert("staff.insert_job", jVo);
+	}
+	
 	// 직무 코드로 직무명 가져오기
 	public JobClassifiVO selectJobClassifiByNum(String staff_cls) throws Exception {
 		return sqlsession.selectOne("staff.select_job_classifi_by_num", staff_cls);
@@ -59,5 +66,7 @@ public class StaffDAO {
 	public int updateStaff(StaffVO sVo) throws Exception {
 		return sqlsession.update("staff.update_staff", sVo);
 	}
+
+
 	
 }

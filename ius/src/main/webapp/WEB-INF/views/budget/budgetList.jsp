@@ -24,6 +24,7 @@
 				},
 				success: function(data) {
 					$("#list").text("");			
+
 					values = data.budgetList;
 					output = "<tr><th>예산 번호</th><th>년도</th><th>구분</th><th>항목</th><th>총액</th></tr>";				
 					$.each(values, function(index, value) {
@@ -63,6 +64,7 @@
 			var objParams = {
 					seachYear : $("#budget_year").val(),
 					budgetType : $("#budget_type").val()
+
 			}
 			
 			var values = [];
@@ -82,6 +84,7 @@
 					totalExpense = retVal.totalExpense;
 					balance = (totalIncome-totalExpense);
 		
+
 					output = "<tr><th>예산 번호</th><th>년도</th><th>구분</th><th>항목</th><th>총액</th></tr>";				
 					$.each(values, function(index, value) {
 						if (value.budget_iE == 'In') {
@@ -104,6 +107,7 @@
 					$("#totalIncome").html(addComma(totalIncome));
 					$("#totalExpense").html(addComma(totalExpense));
 					$("#balance").html(addComma(balance));
+
 					$("#list").html(output);
 				}
 			)
@@ -150,10 +154,7 @@
 			<td id="balance"></td>
 		<tr>	
 	</table>
-	
-	
 	<table border="1" id="list">
-		
 	</table>
 </body>
 </html>

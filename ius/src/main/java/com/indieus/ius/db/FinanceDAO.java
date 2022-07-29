@@ -1,6 +1,8 @@
 package com.indieus.ius.db;
 
 import java.util.HashMap;
+=======
+>>>>>>> 2c73c609bb93290dace97a9686ad5952a9e7e0b2
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -63,7 +65,6 @@ public class FinanceDAO {
 		return sqlsession.selectOne("finance.select_finance_seq");
 	}
 
-
 	// 재정등록
 	@Transactional
 	public int insertFinance(FinanceVO fVo) throws Exception {
@@ -86,4 +87,5 @@ public class FinanceDAO {
 	public int updateFinance(FinanceVO fVo) throws Exception {
 		return sqlsession.update("finance.update_finance", fVo);
 	}
+
 }

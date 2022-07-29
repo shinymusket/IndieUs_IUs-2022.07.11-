@@ -105,6 +105,7 @@ $(function(){
 </head>
 <body>
 	<h1>교직원 정보 수정</h1>
+	<input type="button" value="홈으로" onclick="location.href='../index'">
 	<input type="button" value="목록으로" onclick="location.href='./staff_list'">
 	<form action="./staff_update" method="POST">
 		<table border="1">
@@ -180,7 +181,6 @@ $(function(){
 							<option value="N">퇴사</option>
 						</select>
 					</c:if>
-					
 					<c:if test="${staff.staff_workYn == 'P'}">
 						<select name="staff_workYn" id="staff_workYn">
 							<option value="Y">재직</option>
@@ -196,7 +196,6 @@ $(function(){
 							<option value="N" selected="selected">퇴사</option>
 						</select>
 					</c:if>
-	
 				</td>
 				<th>월급</th>
 				<td>

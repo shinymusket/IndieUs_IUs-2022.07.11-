@@ -12,6 +12,8 @@
 		<typeAlias alias="equipmentVO" type="com.indieus.ius.vo.EquipmentVO"/>
 		<typeAlias alias="equipClsVO" type="com.indieus.ius.vo.EquipClsVO"/>
 		<typeAlias alias="eworksBoardVO" type="com.indieus.ius.vo.EworksBoardVO"/>
+		<typeAlias alias="mealMenuVO" type="com.indieus.ius.vo.MealMenuVO"/>
+		<typeAlias alias="allergyVO" type="com.indieus.ius.vo.AllergyVO"/>
 	</typeAliases>
 
 </configuration>
