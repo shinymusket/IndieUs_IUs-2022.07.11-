@@ -1,6 +1,8 @@
 package com.indieus.ius.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.indieus.ius.service.MealMenuServiceImpl;
 import com.indieus.ius.vo.AllergyVO;
@@ -42,12 +45,38 @@ public class MealMenuController {
 	}
 	
 	@RequestMapping(value = "/addMenu", method = RequestMethod.POST)
-	public String inputMenu(@RequestParam(value="meal_code[]") String[] meal_code, @RequestParam(value="menu[]") String[] menu, @RequestParam(value="kcal[]") int[] kcal, @RequestParam(value="allergy[]") String[] allergy) throws Exception {
+	public String inputMenu(String menu_edate, @RequestParam(value="meal_code[]") String[] meal_code, @RequestParam(value="menu[]") String[] menu, @RequestParam(value="kcal[]") int[] kcal, @RequestParam(value="allergy[]") String[] allergy) throws Exception {
 		
 	//System.out.println(list);
-		service.inputMenu(meal_code, menu, kcal, allergy);
+		service.inputMenu(menu_edate, meal_code, menu, kcal, allergy);
 		
 		return "redirect:./meal_list";
 	}
+	
+	// 식단 수정 폼 이동
+	@RequestMapping(value ="/menuSelectByMenuNum", method = RequestMethod.GET)
+	public String menuSelectByMenuNum(String menu_edate, Model model) throws Exception {
+		List<MealMenuVO> list = service.menuSelectByMenuNum(menu_edate);
+		model.addAttribute("list", list);
+		model.addAttribute("menu_edate", menu_edate);
+		System.out.println(menu_edate);
+		System.out.println(list);
+		return "/meal/modifyMealMenu";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value ="/meal_delete", method = RequestMethod.POST)
+	public void mealDelete(@RequestParam Map<String, Object> map) throws Exception {
+		service.mealDelete(map);
+	}
+	
+	@RequestMapping(value = "/modifyMealMenu", method = RequestMethod.POST)
+	public String modifyUpdateMenu(String menu_edate, @RequestParam(value="menu_num[]") String[] menu_num, @RequestParam(value="meal_code[]") String[] meal_code, @RequestParam(value="menu[]") String[] menu, @RequestParam(value="kcal[]") int[] kcal,
+			@RequestParam(value="allergy[]") String[] allergy) throws Exception {
+		
+		service.modifyUpdateMenu(menu_edate, menu_num, meal_code, menu, kcal, allergy);
+		return "redirect:./meal_list";
+	}
+	
 	
 }

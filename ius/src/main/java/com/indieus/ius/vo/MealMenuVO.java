@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class MealMenuVO {
 
-	private int menu_num;
+	private String menu_num;
 	private int staff_num;
 	private String meal_code;
 	private String meal_menu;
@@ -14,10 +14,10 @@ public class MealMenuVO {
 	private Date menu_wdate;
 	
 	
-	public int getMenu_num() {
+	public String getMenu_num() {
 		return menu_num;
 	}
-	public void setMenu_num(int menu_num) {
+	public void setMenu_num(String menu_num) {
 		this.menu_num = menu_num;
 	}
 	public int getStaff_num() {

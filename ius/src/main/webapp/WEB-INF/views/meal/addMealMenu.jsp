@@ -14,7 +14,7 @@
 <script>
 
 function openlAllergy(name){
-	window.open("./allergyInfo", name, "width=300, height=400");
+	window.open("./allergyInfo", name, "width=300, height=500");
 }
 
 // 엔터 누를 시 이벤트 발생 안되게 

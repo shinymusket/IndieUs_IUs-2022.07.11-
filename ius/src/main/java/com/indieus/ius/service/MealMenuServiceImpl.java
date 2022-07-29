@@ -18,6 +18,7 @@ public class MealMenuServiceImpl implements MealMenuService {
 	@Inject
 	private MealMenuDAO manager;
 
+	// 식단표 보여주기 //
 	@Override
 	public List<MealMenuVO> allMealMenuView() throws Exception {
 		
@@ -32,7 +33,7 @@ public class MealMenuServiceImpl implements MealMenuService {
 		return list;
 	}
 	
-	
+	// 알러지 정보 불러오기 //
 	@Override
 	public List<AllergyVO> allergyInfo() throws Exception {
 		List<AllergyVO> list = null;
@@ -42,13 +43,15 @@ public class MealMenuServiceImpl implements MealMenuService {
 		return list;
 	}
 	
+	// 식단 메뉴 추가 //
 	@Override
 	public int inputMenu
-	(@RequestParam(value="meal_code[]") String[] meal_code, @RequestParam(value="menu[]") String[] menu, @RequestParam(value="kcal[]") int[] kcal, @RequestParam(value="allergy[]") String[] allergy) throws Exception {
+	(String menu_edate, @RequestParam(value="meal_code[]") String[] meal_code, @RequestParam(value="menu[]") String[] menu, @RequestParam(value="kcal[]") int[] kcal, @RequestParam(value="allergy[]") String[] allergy) throws Exception {
 		List<MealMenuVO> list = new ArrayList<MealMenuVO>();
 		for(int i=0; i < menu.length; i++) {
 			MealMenuVO mmVo = new MealMenuVO();
 			
+			mmVo.setMenu_edate(menu_edate);
 			mmVo.setMeal_code(meal_code[i]);
 			mmVo.setMeal_menu(menu[i]);
 			mmVo.setMenu_calorie(kcal[i]);
@@ -61,6 +64,53 @@ public class MealMenuServiceImpl implements MealMenuService {
 		
 		return manager.inputMenu(map);
 	}
-	
+
+	// 날짜 식단 정보 불러오기 //
+	@Override
+	public List<MealMenuVO> menuSelectByMenuNum(String menu_edate) throws Exception {
+		List<MealMenuVO> list = manager.menuSelectByMenuNum(menu_edate);
+		return list;
+	}
+
+	// 식단 정보에서 삭제 //
+	@Override
+	public void mealDelete(@RequestParam Map<String, Object> map) throws Exception {
+		manager.mealDelete(map);
+	}
+
+	@Override
+	public int modifyUpdateMenu(String menu_edate, @RequestParam(value="menu_num[]") String[] menu_num, 
+			@RequestParam(value="meal_code[]") String[] meal_code, 
+			@RequestParam(value="menu[]") String[] menu, 
+			@RequestParam(value="kcal[]") int[] kcal,
+			@RequestParam(value="allergy[]") String[] allergy) throws Exception {
+		
+		System.out.println(menu_num);
+		System.out.println(menu);
+		System.out.println(kcal);
+		
+		List<MealMenuVO> list = new ArrayList<MealMenuVO>();
+		
+		for(int i=0; i < menu.length; i++) {
+			
+			
+			
+			MealMenuVO mmVo = new MealMenuVO();
+			
+			mmVo.setMenu_num(menu_num[i]);
+			mmVo.setMeal_code(meal_code[i]);
+			mmVo.setMenu_edate(menu_edate);
+			mmVo.setMeal_menu(menu[i]);
+			mmVo.setMenu_calorie(kcal[i]);
+			mmVo.setAllergy_num("13");
+		
+			System.out.println(menu_num[i]+ ", " + meal_code[i]+ ", " +menu_edate+ ", " + menu[i]+ ", " + kcal[i]+ ", " +allergy[i]);
+			list.add(mmVo);
+		}
+
+		
+		return manager.modifyUpdateMenu(list);
+		
+	}
 	
 }

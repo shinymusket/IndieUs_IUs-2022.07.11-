@@ -4,6 +4,7 @@
 <%@page import="java.util.Calendar"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <%
 	Calendar cal = Calendar.getInstance();
@@ -40,27 +41,34 @@
 <HEAD>
 <TITLE>캘린더</TITLE>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="stylesheet" href="${path}/resources/css/article.css">
+<link rel="stylesheet" href="${path}/resources/css/meal.css">
 <script type="text/javaScript" language="javascript"></script>
-<style TYPE="text/css">
-		body {
-		margin-left:"0px"; margin-right:"0px"; margin-top:"0px"; margin-bottom:"0px";
-		}
-
-		td {color:#595959;}
-		th {color:#000000;}
-
-
-A:link { font-size:9pt; font-family:"돋움";color:#000000; text-decoration:none; }
-A:visited { font-size:9pt; font-family:"돋움";color:#000000; text-decoration:none; }
-A:active { font-size:9pt; font-family:"돋움";color:red; text-decoration:none; }
-A:hover { font-size:9pt; font-family:"돋움";color:red;text-decoration:none;}
-
-</style>
 </HEAD>
 <BODY>
-<form name="calendarFrm" id="calendarFrm" action="" method="post">
+<%@include file="../css/header.jsp" %>
+<%@include file="../css/nav.jsp" %>
+<article>
+                <!-- 왼쪽 소제목 박스 -->
+                    <div id="title_bar">
+                        <p>경영 정보</p>
+                        <h3>식단 관리</h3>
+                    </div>
 
-<DIV id="content" style="width:900px">
+                    <!-- 오른쪽 기능 박스 (검색)-->
+                    <div id="title_top">
+                        <input type="text" name="">
+                        <input type="button" value="검색">
+                        <input type="button" value="등록">
+                        <input type="button" value="삭제">
+                    </div>
+
+                <!-- 내용 구간 -->
+                <!-- 내용 넣으면 길이 알아서 늘어나요(아마도) -->
+            <section>
+                <div id="content">
+
+<!-- <DIV id="content" style="width:900px"> -->
 <table width="100%" border="0" cellspacing="1" cellpadding="1">
 	<tr>
 		<td align ="right">
@@ -73,7 +81,7 @@ A:hover { font-size:9pt; font-family:"돋움";color:red;text-decoration:none;}
 
 <!--날짜 네비게이션  -->
 
-<table width="100%" border="0" cellspacing="1" cellpadding="1" bgcolor="#F3F9D7"  style="border:1px solid #CED99C">
+<table class="calendar_nav">
 	<tr>
 		<td align="center" >
 			<!-- 이전 년도 -->
@@ -115,29 +123,19 @@ A:hover { font-size:9pt; font-family:"돋움";color:red;text-decoration:none;}
 	
 <br>
 
-<table width="100%" border="1px" cellspacing="1" cellpadding="1" bgcolor="#FFFFFF">
+<table class="meal_calendar">
 	<THEAD>
-		<TR bgcolor="#CECECE">
+		<TR bgcolor="#eee">
 			<TD width='100px'>
-			<DIV align="center"><font color="red">일</font></DIV>
+			<font color="red">일</font>
 			</TD>
+			<TD width='100px'>월</TD>
+			<TD width='100px'>화</TD>
+			<TD width='100px'>수</TD>
+			<TD width='100px'>목</TD>
+			<TD width='100px'>금</TD>
 			<TD width='100px'>
-			<DIV align="center">월</DIV>
-			</TD>
-			<TD width='100px'>
-			<DIV align="center">화</DIV>
-			</TD>
-			<TD width='100px'>
-			<DIV align="center">수</DIV>
-			</TD>
-			<TD width='100px'>
-			<DIV align="center">목</DIV>
-			</TD>
-			<TD width='100px'>
-			<DIV align="center">금</DIV>
-			</TD>
-			<TD width='100px'>
-			<DIV align="center"><font color="#529dbc">토</font></DIV>
+			<font color="#529dbc">토</font>
 			</TD>
 		</TR>
 	</THEAD>
@@ -167,43 +165,49 @@ A:hover { font-size:9pt; font-family:"돋움";color:red;text-decoration:none;}
 			
 			request.setAttribute("thisDate", thisDate);
 			
-			String backColor = "#EFEFEF";
+			String search_date = Integer.toString(year);
+			search_date += Integer.toString(month+1).length() == 1 ? "-0" + Integer.toString(month+1) : "-" + Integer.toString(month+1);
+			search_date += Integer.toString(index).length() == 1 ? "-0" + Integer.toString(index) : "-" + Integer.toString(index);
+			request.setAttribute("search_date", search_date);
 		
-			out.println("<TD valign='top' align='left' height='92px' bgcolor='"+backColor+"' nowrap>");
+			out.println("<TD valign='top' nowrap>");
 			%>
 			
-			<font color="<%=color%>">
-				<%=index %>
-			</font>
-			
-			<c:forEach items="${menuList}" var="list">
+			<a style="color:<%=color%>" href="../meal/menuSelectByMenuNum?menu_edate=<%=search_date%>"><b><%=index %></b></a>
+
+			<div class="break_menu">
+				<span class="menu_title"><b>오전 간식</b></span><br>
+				<c:forEach items="${menuList}" var="list">
 				<c:if test="${list.menu_edate eq thisDate}">
 					<c:if test="${list.meal_code eq 'B'}">
-						<div>
-						오전 간식<br>
-						${list.meal_menu}
-						</div>
-						<br>
+						${list.meal_menu} ${list.allergy_num}<br>
 					</c:if>
+				</c:if>
+				</c:forEach>
+			</div>
+			<div class="lunch_menu">
+				<span class="menu_title"><b>점심</b></span><br>
+				<c:forEach items="${menuList}" var="list">
+				<c:if test="${list.menu_edate eq thisDate}">
 					<c:if test="${list.meal_code eq 'L'}">
-						<div>
-						점심<br>
-						${list.meal_menu}
-						</div>
-						<br>
+						${list.meal_menu}<br>
 					</c:if>
-					
+				</c:if>
+				</c:forEach>
+			</div>
+			<div class="snack_menu">
+				<span class="menu_title"><b>오후 간식</b></span><br>
+				<c:forEach items="${menuList}" var="list">
+				<c:if test="${list.menu_edate eq thisDate}">
 					<c:if test="${list.meal_code eq 'S'}">
-					오후 간식<br>
-						<div>
-						${list.meal_menu}
-						</div>
-						<br>
+						${list.meal_menu}<br>
 					</c:if>
-				</c:if>	
-			</c:forEach>
+				</c:if>
+				</c:forEach>
+			</div>
+				
 			
-			<%
+		<%
 			
 			out.println("</TD>");
 			newLine++;
@@ -229,10 +233,17 @@ A:hover { font-size:9pt; font-family:"돋움";color:red;text-decoration:none;}
 		}
 		%>
 		</TR>
-	
+		<tr>
+			<td colspan="7">
+				알러지 정보 : 
+			</td>
+		</tr>
 	</TBODY>
 </TABLE>
-</DIV>
-</form>
+<!-- </DIV> -->
+</div>
+</section>
+</article>
+<jsp:include page="../css/footer.jsp"/>
 </BODY>
 </HTML>
