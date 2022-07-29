@@ -7,11 +7,10 @@
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
-	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+		<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<mvc:annotation-driven/> <!-- handlerMapping, handlerAdapter -->
-	
 	<mvc:default-servlet-handler/>
 	
 	<mvc:view-resolvers>	 <!-- view-resolver -->
@@ -42,8 +41,37 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean> -->
 	
-	<context:component-scan base-package="com.green.ex00" />
+	<context:component-scan base-package="com.indieus.ius" />
 	
+	<!-- Controller -->
+	<beans:bean id="mainController" class="com.indieus.ius.controller.MainController"/>
+	<beans:bean id="budgetController" class="com.indieus.ius.controller.BudgetController"/>
+	<beans:bean id="financeController" class="com.indieus.ius.controller.FinanceController" />
+	<beans:bean id="staffController" class="com.indieus.ius.controller.StaffController" />
+	<beans:bean id="authorityController" class="com.indieus.ius.controller.AuthorityController" />
+	<beans:bean id="staffAttendanceController" class="com.indieus.ius.controller.StaffAttendanceController" />
+	<beans:bean id="equipmentController" class="com.indieus.ius.controller.EquipmentController" />
+	<beans:bean id="eworksBoardController" class="com.indieus.ius.controller.EworksBoardController" />
 	
+	<!-- DAO -->
+	<beans:bean id="budgetDAO" class="com.indieus.ius.db.BudgetDAO" />
+	<beans:bean id="financeDAO" class="com.indieus.ius.db.FinanceDAO" />
+	<beans:bean id="staffDAO" class="com.indieus.ius.db.StaffDAO" />
+	<beans:bean id="authorityDAO" class="com.indieus.ius.db.AuthorityDAO" />
+	<beans:bean id="staffIdDAO" class="com.indieus.ius.db.StaffIdDAO" />
+	<beans:bean id="staffAttendanceDAO" class="com.indieus.ius.db.StaffAttendanceDAO" />
+	<beans:bean id="equipmentDAO" class="com.indieus.ius.db.EquipmentDAO" />
+	<beans:bean id="eworksListDAO" class="com.indieus.ius.db.EworksListDAO" />
 	
+	<!-- Service -->
+	<beans:bean id="financeService" class="com.indieus.ius.service.FinanceServiceImpl" />
+	<beans:bean id="staffService" class="com.indieus.ius.service.StaffServiceImpl" />
+	<beans:bean id="budgetServiceImpl" class="com.indieus.ius.service.BudgetServiceImpl" />
+	<beans:bean id="authorityServiceImpl" class="com.indieus.ius.service.AuthorityServiceImpl" />
+	<beans:bean id="staffIdServiceImpl" class="com.indieus.ius.service.StaffIdServiceImpl" />
+	<beans:bean id="staffAttendanceServiceImpl" class="com.indieus.ius.service.StaffAttendanceServiceImpl" />
+	<beans:bean id="EquipmentServiceImpl" class="com.indieus.ius.service.EquipmentServiceImpl" />
+	<beans:bean id="AdeptDocService" class="com.indieus.ius.service.AdeptDocServiceImpl" />
+
+
 </beans:beans>
