@@ -8,6 +8,9 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 	$(function(){
+			var currentDate  = new Date().toISOString().substring(0, 10);
+			$("#staff_hireD").val(currentDate);
+			
 			//키를 누르거나 떼었을때 이벤트 발생
 		    $("#staff_salary").bind('keyup keydown',function(){
 		        inputNumberFormat(this);
@@ -51,6 +54,16 @@
 					$("#staff_id").val().focus();
 					return;
 				};
+				
+				var userIdCheck = RegExp(/^[A-Za-z0-9_\-]{5,20}$/); // 아이디 유효성 검사 정규식
+				
+				if(!userIdCheck.test($("#staff_id").val())) {
+					alert("아이디는 영문 대소문자, 숫자 5자리 이상 20자리 이하로 입력하여야 합니다.");
+					$("#staff_id").val().focus();
+					return;
+				};
+	
+				
 				
 				let url = "./staff_id_check?staff_id=" + $("#staff_id").val();
 				window.open(url, "_blank_1", "toolbar=no, menubar=no, scrollbar=yes, resizeable=no, width=450, height=200");
@@ -136,7 +149,6 @@
 </head>
 <body>
 	<h1>교직원 등록</h1>
-	<input type="button" value="홈으로" onclick="location.href='../index'">
 	<input type="button" value="목록으로" onclick="location.href='./staff_list'">
 	<form action="./staff_register" method="POST" name="frm">
 		<table border="1">
@@ -189,11 +201,11 @@
 			<tr>
 				<th>입사일</th>
 				<td>
-					<input type="text" name="staff_hireD" id="staff_hireD" placeholder="예)220716">
+					<input type="date" name="staff_hireD" id="staff_hireD">
 				</td>
 				<th>퇴사일</th>
 				<td>
-					<input type="text" name="staff_retireD" id="staff_retireD">
+					<input type="date" name="staff_retireD" id="staff_retireD">
 				</td>
 			</tr>
 			<tr>

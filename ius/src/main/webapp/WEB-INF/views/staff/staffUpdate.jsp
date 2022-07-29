@@ -105,7 +105,6 @@ $(function(){
 </head>
 <body>
 	<h1>교직원 정보 수정</h1>
-	<input type="button" value="홈으로" onclick="location.href='../index'">
 	<input type="button" value="목록으로" onclick="location.href='./staff_list'">
 	<form action="./staff_update" method="POST">
 		<table border="1">
@@ -164,11 +163,11 @@ $(function(){
 			<tr>
 				<th>입사일</th>
 				<td>
-					<input type="text" name="staff_hireD" id="staff_hireD" value="${staff.staff_hireD}">
+					<input type="date" name="staff_hireD" id="staff_hireD" value="${staff.staff_hireD}">
 				</td>
 				<th>퇴사일</th>
 				<td>
-					<input type="text" name="staff_retireD" id="staff_retireD" value="${staff.staff_retireD}">
+					<input type="date" name="staff_retireD" id="staff_retireD" value="${staff.staff_retireD}">
 				</td>
 			</tr>
 			<tr>
@@ -181,6 +180,14 @@ $(function(){
 							<option value="N">퇴사</option>
 						</select>
 					</c:if>
+					<c:if test="${staff.staff_workYn == 'P'}">
+						<select name="staff_workYn" id="staff_workYn">
+							<option value="Y">재직</option>
+							<option value="P" selected="selected">휴직</option>
+							<option value="N" >퇴사</option>
+						</select>
+					</c:if>		
+					
 					<c:if test="${staff.staff_workYn == 'P'}">
 						<select name="staff_workYn" id="staff_workYn">
 							<option value="Y">재직</option>

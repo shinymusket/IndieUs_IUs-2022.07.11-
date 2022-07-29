@@ -14,5 +14,6 @@
 	<p><a href="../equipment/equipment_list">시설 관리</a></p>
 	<p><a href="../meal/meal_list">식단 관리</a></p>
 	<p><a href="../board/board_list">전자결재</a></p>
+	<p><a href="../kinder/kinder_list">원생 관리</a></p>
 </body>
 </html>

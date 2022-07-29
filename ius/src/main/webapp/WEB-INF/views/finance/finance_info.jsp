@@ -45,7 +45,56 @@
 				<fmt:formatNumber value="${finance.finance_amount}" maxFractionDigits="3"/>원
 			</td>
 		</tr>
-	</table>
-	
+
+		
+		</table>
+		
+		<c:if test="${purchaseList != null}">
+			<h3>재정 사용 내역</h3>
+			<table border="1">
+			
+			<tr>
+				<th>구매 번호</th>
+				<th>구매자</th>
+				<th>구매 자산명</th>
+				<th>구매 일자</th>
+				<th>구매 가격</th>
+				<th>구매 수량</th>
+			</tr>
+			
+			<c:forEach items="${purchaseList}" var="purchase">
+				<tr>
+					<td>${purchase.purchase_num}</td>
+					<td>${purchase.staff_name}</td>
+					<td>${purchase.equipment_name}</td>
+					<td>${purchase.purchase_date}</td>
+					<td>
+						<fmt:formatNumber value="${purchase.purchase_price}" maxFractionDigits="3"/>원
+					</td>
+					<td>${purchase.purchase_count}</td>
+				</tr>
+			</c:forEach>
+			</table>
+			
+			<table border="1">
+				<tr>
+					<th>총액</th>
+					<th>지출액</th>
+					<th>잔액</th>		
+				</tr>
+				<tr>
+					<td>
+						<fmt:formatNumber value="${finance.finance_amount}" maxFractionDigits="3"/>원
+					</td>
+					<td>
+						<fmt:formatNumber value="${purchaseSum}" maxFractionDigits="3"/>원
+					</td>
+					<td>
+						<fmt:formatNumber value="${finance.finance_amount - purchaseSum}" maxFractionDigits="3"/>원
+					</td>
+				</tr>
+			</table>	
+		</c:if>
+
 </body>
 </html>

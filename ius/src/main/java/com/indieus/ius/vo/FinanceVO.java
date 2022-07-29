@@ -14,9 +14,6 @@ public class FinanceVO {
 	private String budget_cls;
 	private String staff_name;
 
-
-
-
 	public String getBudget_cls() {
 		return budget_cls;
 	}
@@ -29,6 +26,7 @@ public class FinanceVO {
 	public void setStaff_name(String staff_name) {
 		this.staff_name = staff_name;
 	}
+
 
 	public String getFinance_eYear() {
 		return finance_eYear;
@@ -79,5 +77,6 @@ public class FinanceVO {
 	public void setFinance_amount(int finance_amount) {
 		this.finance_amount = finance_amount;
 	}
+
 
 }

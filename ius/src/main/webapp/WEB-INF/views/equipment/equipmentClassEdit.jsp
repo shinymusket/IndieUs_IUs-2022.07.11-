@@ -76,6 +76,11 @@ function sel_btn(selNum) {
 			if($("#equip_cls_name").val().trim() === "") {
 				alert("분류 항목명을 입력하세요");
 				$("#equip_cls_name").val("").focus();
+
+			} else if($("#equip_cls_name").val().length > 10) {
+				alert("분류 항목명은 10자이하여야 합니다.");
+				$("#equip_cls_name").val().focus();
+
 			} else {
 				$.ajax({
 					url: "/ius/equipment/insert_equipment_cls_list",
@@ -100,16 +105,36 @@ function sel_btn(selNum) {
 				data: {
 					equip_cls_num : $("#equip_cls_num").val()
 				},
-				success: function() {
-					$("#equip_cls_name").val("");
-					$("#equip_cls_num").val("");
-					getList();
+
+				success: function(result) {
+					
+					if (result > 0) {
+						alert("해당 항목의 데이터가 있어 삭제할 수 없습니다.");
+					} else {
+						$("#equip_cls_name").val("");
+						$("#equip_cls_num").val("");
+						getList();
+					}	
 				}
 			})
 		});
 		
-		
-		
+
+		$("#update_btn").click(function(){
+			$.ajax({
+				url: "/ius/equipment/update_equipment_cls_list",
+				type: "POST",
+				data: {
+					equip_cls_num : $("#equip_cls_num").val(),
+					equip_cls_name : $("#equip_cls_name").val()			
+				},
+				success: function(){
+						$("#equip_cls_num").val("");
+						$("#equip_cls_name").val("");
+						getList();
+				}
+			})
+		});
 		
 	})
 	

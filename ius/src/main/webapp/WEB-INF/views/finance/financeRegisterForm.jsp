@@ -110,7 +110,6 @@ $(function(){
 			<th>회계 년도</th>
 			<td>
 				<input type="number" name="finance_eYear" id="finance_eYear" value="2022">
-
 			</td>
 			<th>예산 항목</th>
 			<td>

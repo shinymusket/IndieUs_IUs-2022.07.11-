@@ -68,7 +68,6 @@ public class StaffServiceImpl implements StaffService {
 				birth += rrn1;
 				element.setStaff_birth(birth);
 
-
 				// 가져온 주민등록번호로 만 나이 계산
 				int birthYear = Integer.parseInt(birth.substring(0, 4));
 				int birthMonth = Integer.parseInt(birth.substring(4, 6));
@@ -92,7 +91,6 @@ public class StaffServiceImpl implements StaffService {
 
 		return VoList;
 	}
-
 
 	// 교직원 등록을 위한 현재 시퀀스값 가져오기
 	@Override
@@ -122,7 +120,6 @@ public class StaffServiceImpl implements StaffService {
 
 		List<JobClassifiVO> list = manager.selectJobClassifi();
 
-
 		String json = "{\"jobList\":[";
 		for (int i = 0; i < list.size(); i ++) {
 			String staff_cls = list.get(i).getStaff_cls();
@@ -146,15 +143,12 @@ public class StaffServiceImpl implements StaffService {
 
 	}
 
-
-
 	// 직무 목록 추가하기
 	@Override
 	public void insertJobList(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("UTF-8");
 
 		JobClassifiVO jVo = new JobClassifiVO();
-
 
 		int number = manager.selectJobNumber() + 1;
 		jVo.setJob_number(number);
@@ -174,8 +168,20 @@ public class StaffServiceImpl implements StaffService {
 
 	// 교직원 직무 분류 편집 - 아이디로 데이터 삭제
 	@Override
-	public void deleteJobByStaffCls(String staff_cls) {
-		manager.deleteJobByStaffCls(staff_cls);
+	public void deleteJobByStaffCls(String staff_cls, HttpServletResponse response) throws Exception {
+		// 해당 항목의 데이터가 있는지 유무 확인
+
+		int result = 0;
+
+		result = manager.checkStaffFromStaffCls(staff_cls);
+		PrintWriter out = response.getWriter();
+
+		if (result == 0) {
+			manager.deleteJobByStaffCls(staff_cls);
+		}
+
+		out.println(result);
+		out.close();
 	}
 
 	// 교직원 직무 분류 편집 - 수정
@@ -202,7 +208,6 @@ public class StaffServiceImpl implements StaffService {
 		return result;
 	}
 
-
 	// 교직원 계정 발급시 이메일 발송
 	@Override
 	public void sendMail(StaffVO sVo, StaffIdVO sIvo) throws Exception {
@@ -217,7 +222,6 @@ public class StaffServiceImpl implements StaffService {
 		String msg = "";
 
 		subject = "귀하의 IUS Homepage 계정이 등록되었습니다.";
-
 
 		msg += "<div align='center' style='border:1px solid black; font-family:verdana'>";
 		msg += "<h3 style='color: blue;'>";
@@ -271,12 +275,12 @@ public class StaffServiceImpl implements StaffService {
 			sIvo.setAuth_code("C");
 		} else if (staff_cls.equals("4")) { // 영양사
 			sIvo.setAuth_code("D");
+		} else {
+			sIvo.setAuth_code("C");
 		}
 
 		return sIvo;
 	}
-
-
 
 
 	// 교직원 정보 상세조회

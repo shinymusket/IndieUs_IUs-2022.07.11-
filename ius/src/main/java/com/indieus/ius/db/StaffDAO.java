@@ -37,6 +37,7 @@ public class StaffDAO {
 		return sqlsession.selectOne("staff.select_job_number");
 	}
 
+
 	// 직무 분류 항목 추가하기
 	@Transactional
 	public void insertJob(JobClassifiVO jVo) {
@@ -46,6 +47,11 @@ public class StaffDAO {
 	// 직무 코드로 직무명 가져오기
 	public JobClassifiVO selectJobClassifiByNum(String staff_cls) throws Exception {
 		return sqlsession.selectOne("staff.select_job_classifi_by_num", staff_cls);
+	}
+
+	// 직무 코드로 직무 항목 삭제전 해당 데이터의 교직원 유무 확인
+	public int checkStaffFromStaffCls(String staff_cls) throws Exception {
+		return sqlsession.selectOne("staff.check_staff_from_staff_cls", staff_cls);
 	}
 
 	// 직무 코드로 직무 항목 삭제
@@ -58,7 +64,9 @@ public class StaffDAO {
 	@Transactional
 	public void updateJobList(JobClassifiVO jVo) {
 		sqlsession.update("staff.update_job", jVo);
+
 	}
+
 	// 교직원 아이디 중복 검사
 	public int idCheck(String staff_id) {
 		int result = sqlsession.selectOne("staff.id_check", staff_id);

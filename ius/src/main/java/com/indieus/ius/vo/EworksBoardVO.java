@@ -9,9 +9,9 @@ public class EworksBoardVO {
 		private int docNum;
 		private String staff_num;
 		private int doc_cat_num;
-
+		
 		private String staff_name;
-
+		
 
 		public String getStaff_name() {
 			return staff_name;
@@ -62,7 +62,7 @@ public class EworksBoardVO {
 			this.workDownDate = workDownDate;
 		}
 
-
+		
 	}
-
+	
 

@@ -43,4 +43,5 @@ public class StaffIdVO {
 		this.staff_pwd = staff_pwd;
 	}
 
+
 }

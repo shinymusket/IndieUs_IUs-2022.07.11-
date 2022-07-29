@@ -14,6 +14,9 @@
 		<typeAlias alias="eworksBoardVO" type="com.indieus.ius.vo.EworksBoardVO"/>
 		<typeAlias alias="mealMenuVO" type="com.indieus.ius.vo.MealMenuVO"/>
 		<typeAlias alias="allergyVO" type="com.indieus.ius.vo.AllergyVO"/>
+		<typeAlias alias="purchaseVO" type="com.indieus.ius.vo.PurchaseVO"/>
+		<typeAlias alias="kinderVO" type="com.indieus.ius.vo.KinderVO"/>
+		<typeAlias alias="shuttleVO" type="com.indieus.ius.vo.ShuttleVO"/>
 	</typeAliases>
 
 </configuration>

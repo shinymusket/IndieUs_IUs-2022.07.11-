@@ -154,6 +154,7 @@
 			<td id="balance"></td>
 		<tr>	
 	</table>
+
 	<table border="1" id="list">
 	</table>
 </body>

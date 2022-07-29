@@ -2,6 +2,11 @@ package com.indieus.ius.controller;
 
 import java.util.List;
 import java.util.Map;
+<<<<<<< HEAD
+=======
+
+import javax.servlet.http.HttpServletResponse;
+>>>>>>> branch1
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +23,7 @@ import com.indieus.ius.service.FinanceServiceImpl;
 import com.indieus.ius.service.StaffServiceImpl;
 import com.indieus.ius.vo.BudgetVO;
 import com.indieus.ius.vo.FinanceVO;
+import com.indieus.ius.vo.PurchaseVO;
 import com.indieus.ius.vo.StaffVO;
 
 @Controller
@@ -59,7 +65,6 @@ public class FinanceController {
 		// 예산 코드 가져오기
 
 		int finance_num = service.selectFinanceSeq();
-
 		// 예산 항목 가져오기
 		List<BudgetVO> budgetList = budgetService.selectBudgetByBudgetIe(iE);
 		// 교직원 명단 가져오기
@@ -73,7 +78,8 @@ public class FinanceController {
 		return "/finance/financeRegisterForm";
 	}
 
-	// 재정등록
+
+	// 재정 등록
 	@RequestMapping(value = "/finance_register", method = RequestMethod.POST)
 	public String register(@ModelAttribute FinanceVO fVo, RedirectAttributes rttr) throws Exception {
 		rttr.addFlashAttribute("result", service.insertFinance(fVo));
@@ -84,16 +90,28 @@ public class FinanceController {
 	@RequestMapping(value = "/finance_info", method = RequestMethod.GET)
 	public String info(Model model, @RequestParam String finance_num) throws Exception {
 		FinanceVO fVo = service.selectFinanceByNum(finance_num);
+
+		List<PurchaseVO> purchaseList = service.selectPurchaseFromNum(finance_num);
+		int purchaseSum = service.selectPurchaseSumFromNum(finance_num);
+
 		model.addAttribute("finance", fVo);
+		model.addAttribute("purchaseList", purchaseList);
+		model.addAttribute("purchaseSum", purchaseSum);
 
 		return "/finance/finance_info";
 	}
 
 	// 재정 내역 삭제
 	@RequestMapping(value = "/finance_delete", method = RequestMethod.GET)
-	public String delete(@RequestParam String finance_num, RedirectAttributes rttr) throws Exception {
-		rttr.addFlashAttribute("result", service.deleteFinance(finance_num));
-		return "redirect:./finance_list";
+	public String delete(@RequestParam String finance_num, RedirectAttributes rttr, HttpServletResponse response) throws Exception {
+		int result =  service.deleteFinance(finance_num, response);
+
+		if (result == 0) {
+			return null;
+		} else {
+			rttr.addFlashAttribute("result", result);
+			return "redirect:./finance_list";
+		}
 	}
 
 	// 재정 수정 폼
@@ -114,7 +132,7 @@ public class FinanceController {
 	// 재정 수정
 	@RequestMapping(value = "/finance_update", method = RequestMethod.POST)
 	public String update(@ModelAttribute FinanceVO fVo, RedirectAttributes rttr) throws Exception {
-		rttr.addAttribute("result", service.updateFinance(fVo));
+		rttr.addFlashAttribute("result", service.updateFinance(fVo));
 		return "redirect:./finance_list";
 	}
 

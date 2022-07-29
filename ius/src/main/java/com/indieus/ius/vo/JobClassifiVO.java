@@ -33,4 +33,5 @@ public class JobClassifiVO {
 		this.job_Kname = job_Kname;
 	}
 
+
 }

@@ -118,10 +118,14 @@ function sel_btn(selNum) {
 					data: {
 						staff_cls : $("#staff_cls").val()
 					},
-					success: function() {
-						$("#job_Kname").val("");
-						$("#job_Ename").val("");
-						getList();
+					success: function(result) {
+						if (result > 0) {
+							alert("해당 항목의 교직원 데이터가 있어 삭제할 수 없습니다.");
+						} else {
+							$("#job_Kname").val("");
+							$("#job_Ename").val("");
+							getList();
+						}
 					}
 				})
 			}	
