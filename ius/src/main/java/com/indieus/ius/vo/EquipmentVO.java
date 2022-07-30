@@ -27,7 +27,7 @@ public class EquipmentVO {
 	public void setEquip_cls_name(String equip_cls_name) {
 		this.equip_cls_name = equip_cls_name;
 	}
-	
+
 	public String getStaff_name() {
 		return staff_name;
 	}

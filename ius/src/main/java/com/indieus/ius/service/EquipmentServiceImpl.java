@@ -7,14 +7,12 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
-
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.indieus.ius.db.EquipmentDAO;
 import com.indieus.ius.vo.EquipClsVO;
 import com.indieus.ius.vo.EquipmentVO;
-
 import com.indieus.ius.vo.FinanceVO;
 import com.indieus.ius.vo.PurchaseVO;
 import com.indieus.ius.vo.StaffIdVO;
