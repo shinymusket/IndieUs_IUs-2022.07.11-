@@ -82,5 +82,25 @@ public class KinderController {
 		rttr.addFlashAttribute("result", service.deleteKinderInfo(kinder_num));
 		return "redirect:./kinder_list";
 	}
+	
+	// 원생 정보 수정 페이지로 이동
+	@RequestMapping(value = "/update_form_kinder", method = RequestMethod.GET)
+	public String updateFormKinder(@RequestParam String kinder_num, Model model) throws Exception {
+		KinderVO kinder = service.selectKinderInfo(kinder_num);
+		List<ShuttleVO> shuttleList = service.selectAllShuttleList();
+		List<StaffVO> homeTeacherList = service.selectHomeTeacherForKinder();
+
+		model.addAttribute("shuttleList", shuttleList);
+		model.addAttribute("homeTeacherList", homeTeacherList);
+		model.addAttribute("kinder", kinder);
+		return "kinder/kinderUpdateForm";
+	}
+	
+	// 원생 정보 수정
+	@RequestMapping(value = "/update_kinder", method = RequestMethod.POST)
+	public String updateKinder(@ModelAttribute KinderVO kVo, @RequestParam MultipartFile kinder_picFile, RedirectAttributes rttr) throws Exception {
+		rttr.addFlashAttribute("result", service.updateKinder(kVo, kinder_picFile));
+		return "redirect:./kinder_list";
+	}
 
 }

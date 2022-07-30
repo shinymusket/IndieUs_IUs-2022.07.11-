@@ -28,5 +28,7 @@ public interface KinderService {
 	public KinderVO selectKinderInfo(String kinder_num) throws Exception;
 
 	public int deleteKinderInfo(String kinder_num) throws Exception;
+	
+	public int updateKinder(KinderVO kVo, MultipartFile kinder_picFile) throws Exception;
 
 }

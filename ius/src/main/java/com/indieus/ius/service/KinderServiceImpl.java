@@ -195,6 +195,31 @@ public class KinderServiceImpl implements KinderService {
 	public int deleteKinderInfo(String kinder_num) throws Exception {
 		return manager.deleteKinderInfo(kinder_num);
 	}
+	
+	// 원생 정보 수정
+	public int updateKinder(KinderVO kVo, MultipartFile kinder_picFile) throws Exception {
+		
+		if(kinder_picFile.getSize() != 0) { // 수정 프로필 요청 사진이 있을 시
+			MultipartFile file = kinder_picFile;
+
+			String imgUploadPath = uploadPath + File.separator + "imgUpload";
+			String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+			String fileName = null;
+
+			if(file != null) {
+				fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
+			} else {
+				fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+			}
+
+			System.out.println(imgUploadPath);
+			System.out.println(ymdPath);
+
+			kVo.setKinder_picture(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+		}
+		
+		return manager.updateKinder(kVo);
+	}
 
 
 

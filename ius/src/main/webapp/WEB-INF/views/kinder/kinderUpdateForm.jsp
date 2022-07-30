@@ -17,11 +17,8 @@
 					reader.readAsDataURL(this.files[0]);
 				}	
 			});
-		
-			var currentDate  = new Date().toISOString().substring(0, 10);
-			$("#kinder_regdate").val(currentDate);
-			
-		    $("#register").click(function(){
+	
+		    $("#update").click(function(){
 		    	
 			if ($("#shuttle_num").val() == "") {
 				alert("셔틀버스를 선택해주세요.");
@@ -65,17 +62,17 @@
 	})
 	
 </script>
-<title>원생 등록</title>
+<title>원생 정보 수정</title>
 </head>
 <body>
-	<h1>원생 등록</h1>
+	<h1>원생 정보 수정</h1>
 	<input type="button" value="원생 목록" onclick="location.href='../kinder/kinder_list'">
-	<form action="./kinder_register" method="POST" name="frm" enctype="multipart/form-data">
+	<form action="./update_kinder" method="POST" name="frm" enctype="multipart/form-data">
 		<table border="1">
 			<tr>
 				<th>원생 번호</th>
 				<td>
-					${nextKinderSeq}
+					<input type="text" name="kinder_num" id="kinder_num" value="${kinder.kinder_num}" readonly="readonly">
 				</td>
 			</tr>
 			<tr>
@@ -85,7 +82,12 @@
 						<option value="">-선택-</option>
 						<c:if test="${shuttleList != null}">
 							<c:forEach items="${shuttleList}" var="shuttle">
-								<option value="${shuttle.shuttle_num}">${shuttle.shuttle_num}호차] ${shuttle.shuttle_carNum}</option>
+								<c:if test="${shuttle.shuttle_num == kinder.shuttle_num}">
+									<option value="${shuttle.shuttle_num}" selected="selected">${shuttle.shuttle_num}호차] ${shuttle.shuttle_carNum}</option>
+								</c:if>
+								<c:if test="${shuttle.shuttle_num != kinder.shuttle_num}}">
+									<option value="${shuttle.shuttle_num}">${shuttle.shuttle_num}호차] ${shuttle.shuttle_carNum}</option>
+								</c:if>
 							</c:forEach>
 						</c:if>
 					</select>
@@ -98,7 +100,12 @@
 						<option value="">-선택-</option>
 						<c:if test="${homeTeacherList != null}">
 							<c:forEach items="${homeTeacherList}" var="homeTeacher">
-								<option value="${homeTeacher.staff_num}">${homeTeacher.staff_name}</option>
+								<c:if test="${homeTeacher.staff_num == kinder.staff_num}">
+									<option value="${homeTeacher.staff_num}" selected="selected">${homeTeacher.staff_name}</option>
+								</c:if>
+								<c:if test="${homeTeacher.staff_num != kinder.staff_num}">
+									<option value="${homeTeacher.staff_num}">${homeTeacher.staff_name}</option>
+								</c:if>
 							</c:forEach>
 						</c:if>
 					</select>
@@ -107,60 +114,81 @@
 			<tr>
 				<th>원생 이름</th>
 				<td>
-					<input type="text" name="kinder_name" id="kinder_name">
+					<input type="text" name="kinder_name" id="kinder_name" value="${kinder.kinder_name}">
 				</td>
 				
 			</tr>
 			<tr>
 				<th>주민등록번호</th>
 				<td>
-					<input type="text" name="kinder_rrn1" id="kinder_rrn1">-<input type="text" name="kinder_rrn2" id="kinder_rrn2">
+					<input type="text" name="kinder_rrn1" id="kinder_rrn1" value="${kinder.kinder_rrn1}">-<input type="text" name="kinder_rrn2" id="kinder_rrn2" value="${kinder.kinder_rrn2}">
 				</td>
 			</tr>
 			<tr>
 				<th>주소</th>
 				<td>
-					<input type="text" name="kinder_addr" id="kinder_addr">
+					<input type="text" name="kinder_addr" id="kinder_addr" value="${kinder.kinder_addr}">
 				</td>
 			</tr>
 			<tr>
 				<th>우편번호</th>
 				<td>
-					<input type="text" name="kinder_zipcode" id="kinder_zipcode">
+					<input type="text" name="kinder_zipcode" id="kinder_zipcode" value="${kinder.kinder_zipcode}">
 				</td>
 			</tr>
 			<tr>
 				<th>전화번호</th>
 				<td>
-					<input type="tel" name="kinder_tel" id="kinder_tel">
+					<input type="tel" name="kinder_tel" id="kinder_tel" value="${kinder.kinder_tel}">
 				</td>
 			</tr>
 			<tr>
 				<th>등록 일</th>
 				<td>
-					<input type="date" name="kinder_regdate" id="kinder_regdate">
+					<input type="date" name="kinder_regdate" id="kinder_regdate" value="${kinder.kinder_regdate}">
 				</td>
 			</tr>
 			<tr>
 				<th>퇴원 일</th>
 				<td>
-					<input type="date" name="kinder_retireDate" id="kinder_retireDate">
+					<input type="date" name="kinder_retireDate" id="kinder_retireDate" value="${kinder.kinder_retireDate}">
 				</td>
 			</tr>
 			<tr>
 				<th>재원 상태</th>
 				<td>
 					<select name="kinder_regYn" id="kinder_regYn">
-						<option value="Y" selected="selected">재원</option>
-						<option value="P">휴원</option>
-						<option value="N">퇴원</option>
-						<option value="G">졸업</option>
+						<c:if test="${kinder.kinder_regYn == 'Y'}">
+							<option value="Y" selected="selected">재원</option>
+							<option value="P">휴원</option>
+							<option value="N">퇴원</option>
+							<option value="G">졸업</option>
+						</c:if>
+						<c:if test="${kinder.kinder_regYn == 'P'}">
+							<option value="Y">재원</option>
+							<option value="P" selected="selected">휴원</option>
+							<option value="N">퇴원</option>
+							<option value="G">졸업</option>
+						</c:if>
+						<c:if test="${kinder.kinder_regYn == 'N'}">
+							<option value="Y">재원</option>
+							<option value="P">휴원</option>
+							<option value="N" selected="selected">퇴원</option>
+							<option value="G">졸업</option>
+						</c:if>
+						<c:if test="${kinder.kinder_regYn == 'G'}">
+							<option value="Y">재원</option>
+							<option value="P">휴원</option>
+							<option value="N">퇴원</option>
+							<option value="G" selected="selected">졸업</option>
+						</c:if>
 					</select>
 				</td>
 			</tr>
 			<tr>
 				<th>프로필 사진</th>
 				<td>
+					새로 업로드하실 경우에는 기존 사진에서 새로운 사진으로 대체됩니다.
 					<input type="file" name="kinder_picFile" id="kinder_picFile">
 					<div class="select_img">
 						<img src="">
@@ -170,7 +198,7 @@
 			</tr>
 			<tr>
 				<td colspan="2">
-					<input type="button" value="등록" id="register"> 
+					<input type="button" value="수정" id="update"> 
 				</td>
 			</tr>
 		</table>

@@ -58,7 +58,7 @@
 	
 	<!-- 원생 정보 조회 -->
 	<select id="select_kinder_info" parameterType="String" resultType="kinderVO">
-		SELECT kinder_num, shuttle_num, staff_name, kinder_name, kinder_regYn, kinder_rrn1, kinder_rrn2, kinder_addr, kinder_zipcode, kinder_tel, TO_CHAR(kinder_regdate, 'YYYY-MM-DD') AS "kinder_regdate", kinder_retireDate, kinder_picture
+		SELECT kinder_num, shuttle_num, k.staff_num, staff_name, kinder_name, kinder_regYn, kinder_rrn1, kinder_rrn2, kinder_addr, kinder_zipcode, kinder_tel, TO_CHAR(kinder_regdate, 'YYYY-MM-DD') AS "kinder_regdate", TO_CHAR(kinder_retireDate, 'YYYY-MM-DD') AS "kinder_retireDate", kinder_picture
 		FROM kinder k, staff s
 		WHERE k.staff_num = s.staff_num
 		AND kinder_num = #{kinder_num}
@@ -68,5 +68,26 @@
 	<delete id="delete_kinder_info" parameterType="String">
 		DELETE FROM kinder WHERE kinder_num = #{kinder_num}
 	</delete>
+	
+	<!-- 원생 정보 수정 -->
+	<update id="update_kinder" parameterType="KinderVO">
+		UPDATE kinder SET
+		shuttle_num = #{shuttle_num}, 
+		staff_num = #{staff_num}, 
+		kinder_regYn = #{kinder_regYn}, 
+		kinder_name = #{kinder_name}, 
+		kinder_rrn1 = #{kinder_rrn1}, 
+		kinder_rrn2 = #{kinder_rrn2},
+		kinder_addr = #{kinder_addr}, 
+		kinder_zipcode = #{kinder_zipcode}, 
+		kinder_tel = #{kinder_tel}, 
+		kinder_regdate = TO_DATE(#{kinder_regdate}, 'YYYY-MM-DD'), 
+		kinder_retireDate = TO_DATE(#{kinder_retireDate}, 'YYYY-MM-DD')
+		<if test="kinder_picture != '' and kinder_picture != null">
+		, kinder_picture = #{kinder_picture}
+		</if>
+		WHERE kinder_num = #{kinder_num}
+	</update>
+	
 
 </mapper>

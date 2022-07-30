@@ -65,7 +65,7 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<input type="button" value="수정">
+				<input type="button" value="수정" onclick="location.href='../kinder/update_form_kinder?kinder_num=${kinder.kinder_num}'">
 				<input type="button" value="삭제" onclick="location.href='../kinder/delete_kinder?kinder_num=${kinder.kinder_num}'">
 			</td>
 		</tr>
