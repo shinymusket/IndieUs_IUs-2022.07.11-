@@ -165,7 +165,6 @@
 					<div class="select_img">
 						<img src="">
 					</div>
-					<%=request.getRealPath("/")%>
 				</td>
 			</tr>
 			<tr>

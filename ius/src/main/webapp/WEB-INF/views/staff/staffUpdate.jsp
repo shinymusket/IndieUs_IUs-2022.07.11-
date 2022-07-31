@@ -8,6 +8,16 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 $(function(){
+		$("#staff_picFile").change(function(){
+			if(this.files && this.files[0]) {
+				var reader = new FileReader;
+				reader.onload = function(data) {
+					$(".select_img img").attr("src", data.target.result).width(500);
+				}
+				reader.readAsDataURL(this.files[0]);
+			}	
+		});
+	
 		//키를 누르거나 떼었을때 이벤트 발생
 	    $("#staff_salary").bind('keyup keydown',function(){
 	        inputNumberFormat(this);
@@ -106,7 +116,7 @@ $(function(){
 <body>
 	<h1>교직원 정보 수정</h1>
 	<input type="button" value="목록으로" onclick="location.href='./staff_list'">
-	<form action="./staff_update" method="POST">
+	<form action="./staff_update" method="POST" enctype="multipart/form-data">
 		<table border="1">
 			<tr>
 				<th>교직원 코드</th>
@@ -213,6 +223,16 @@ $(function(){
 				<th colspan="2">이메일</th>
 				<td colspan="2">
 					<input type="email" name="staff_email" id="staff_email" value="${staff.staff_email}">
+				</td>
+			</tr>
+			<tr>
+				<th colspan="2">프로필 사진</th>
+				<td colspan="2">
+					새로 업로드하실 경우에는 기존 사진에서 새로운 사진으로 대체됩니다.
+					<input type="file" name="staff_picFile" id="staff_picFile">
+					<div class="select_img">
+						<img src="">
+					</div>
 				</td>
 			</tr>
 			<tr>

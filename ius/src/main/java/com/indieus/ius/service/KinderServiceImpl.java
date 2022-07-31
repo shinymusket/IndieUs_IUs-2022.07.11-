@@ -104,7 +104,7 @@ public class KinderServiceImpl implements KinderService {
 
 	// 원생 등록
 	@Override
-	public int insertKinder(KinderVO kVo, MultipartFile kinder_picFile, HttpServletRequest request) throws Exception {
+	public int insertKinder(KinderVO kVo, MultipartFile kinder_picFile) throws Exception {
 		MultipartFile file = kinder_picFile;
 
 		String imgUploadPath = uploadPath + File.separator + "imgUpload";
@@ -117,8 +117,8 @@ public class KinderServiceImpl implements KinderService {
 			fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
 		}
 
-		System.out.println(imgUploadPath);
-		System.out.println(ymdPath);
+//		System.out.println(imgUploadPath);
+//		System.out.println(ymdPath);
 
 		kVo.setKinder_picture(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
 

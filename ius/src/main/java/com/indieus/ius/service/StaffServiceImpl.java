@@ -1,11 +1,13 @@
 package com.indieus.ius.service;
 
+import java.io.File;
 import java.io.PrintWriter;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,8 +17,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.indieus.ius.db.StaffDAO;
+import com.indieus.ius.utils.UploadFileUtils;
 import com.indieus.ius.vo.JobClassifiVO;
 import com.indieus.ius.vo.StaffIdVO;
 import com.indieus.ius.vo.StaffVO;
@@ -38,6 +42,9 @@ public class StaffServiceImpl implements StaffService {
 
 	@Inject
 	private StaffDAO manager;
+	
+	@Resource(name="uploadPath")
+	private String uploadPath;
 	
 	// 직무 리스트 가져오기
 	@Override
@@ -158,7 +165,6 @@ public class StaffServiceImpl implements StaffService {
 	
 	// 교직원 검색 Ajax
 	public Object searchStaffList(Map<String, Object> map) throws Exception {
-
 		List<StaffVO> staffList = manager.searchStaffList(map);
 		if (staffList.size() != 0) {
 			for (StaffVO element : staffList) {
@@ -211,6 +217,19 @@ public class StaffServiceImpl implements StaffService {
 		data.put("staffList", staffList);
 		return data;
 	}
+	
+	
+	// 교직원 정보 조회 Ajax
+	@Override
+	public Object getStaffByStaffNum(Map<String, Object> map) throws Exception {
+		String staff_num = (String) map.get("staff_num");
+		StaffVO staff = manager.selectStaffInfo(staff_num);
+		Map<String, Object> data = new HashMap();
+		data.put("staff", staff);
+		return data;
+	}
+	
+	
 
 	// 교직원 등록을 위한 현재 시퀀스값 가져오기
 	@Override
@@ -318,7 +337,21 @@ public class StaffServiceImpl implements StaffService {
 
 	// 교직원 등록
 	@Override
-	public int insertStaff(StaffVO sVo) throws Exception {
+	public int insertStaff(StaffVO sVo, MultipartFile staff_picFile) throws Exception {
+		MultipartFile file = staff_picFile;
+		
+		String imgUploadPath = uploadPath + File.separator + "imgUpload";
+		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+		String fileName = null;
+		
+		if(file != null) {
+			fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
+		} else {
+			fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+		}
+		
+		sVo.setStaff_picture(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+		
 		String staff_id = sVo.getStaff_id();
 		StaffIdVO sIvo = createTempPwd(sVo);
 		manager.insertStaffId(sIvo);
@@ -421,10 +454,31 @@ public class StaffServiceImpl implements StaffService {
 
 	// 교직원 정보수정
 	@Override
-	public int updateStaff(StaffVO sVo) throws Exception {
-		int result = manager.updateStaff(sVo);
-		return result;
+	public int updateStaff(StaffVO sVo, MultipartFile staff_picFile) throws Exception {
+		
+		if(staff_picFile.getSize() != 0) { // 수정 프로필 요청 사진이 있을 시
+			MultipartFile file = staff_picFile;
+
+			String imgUploadPath = uploadPath + File.separator + "imgUpload";
+			String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+			String fileName = null;
+
+			if(file != null) {
+				fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
+			} else {
+				fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+			}
+
+			System.out.println(imgUploadPath);
+			System.out.println(ymdPath);
+
+			sVo.setStaff_picture(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+		}
+		
+		return manager.updateStaff(sVo);
 	}
+
+	
 
 	
 	

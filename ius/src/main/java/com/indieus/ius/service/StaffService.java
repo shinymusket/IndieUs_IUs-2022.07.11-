@@ -6,6 +6,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.indieus.ius.vo.JobClassifiVO;
 import com.indieus.ius.vo.StaffIdVO;
 import com.indieus.ius.vo.StaffVO;
@@ -19,6 +21,8 @@ public interface StaffService {
 	public Object getStaffList() throws Exception;
 	
 	public Object searchStaffList(Map<String, Object> map) throws Exception;
+	
+	public Object getStaffByStaffNum(Map<String, Object> map) throws Exception;
 
 	public int selectStaffSeq() throws Exception;
 
@@ -38,7 +42,7 @@ public interface StaffService {
 
 	public int idCheck(String staff_id) throws Exception;
 
-	public int insertStaff(StaffVO sVo) throws Exception;
+	public int insertStaff(StaffVO sVo, MultipartFile staff_picFile) throws Exception;
 
 	public void sendMail(StaffVO sVo, StaffIdVO sIvo) throws Exception;
 
@@ -48,6 +52,6 @@ public interface StaffService {
 
 	public int deleteStaff(String staff_num) throws Exception;
 
-	public int updateStaff(StaffVO sVo) throws Exception;
+	public int updateStaff(StaffVO sVo, MultipartFile staff_picFile) throws Exception;
 
 }

@@ -8,6 +8,16 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 	$(function(){
+			$("#staff_picFile").change(function(){
+				if(this.files && this.files[0]) {
+					var reader = new FileReader;
+					reader.onload = function(data) {
+						$(".select_img img").attr("src", data.target.result).width(500);
+					}
+					reader.readAsDataURL(this.files[0]);
+				}	
+			});
+	
 			var currentDate  = new Date().toISOString().substring(0, 10);
 			$("#staff_hireD").val(currentDate);
 			
@@ -150,7 +160,7 @@
 <body>
 	<h1>교직원 등록</h1>
 	<input type="button" value="목록으로" onclick="location.href='./staff_list'">
-	<form action="./staff_register" method="POST" name="frm">
+	<form action="./staff_register" method="POST" name="frm" enctype="multipart/form-data">
 		<table border="1">
 			<tr>
 				<th>교직원 코드</th>
@@ -174,6 +184,15 @@
 				<th>이름*</th>
 				<td>
 					<input type="text" name="staff_name" id="staff_name"> 
+				</td>
+			</tr>
+			<tr>
+				<th colspan="2">프로필 사진</th>
+				<td colspan="2">
+					<input type="file" name="staff_picFile" id="staff_picFile">
+					<div class="select_img">
+						<img src="">
+					</div>
 				</td>
 			</tr>
 			<tr>

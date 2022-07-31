@@ -7,7 +7,7 @@
 		staff_zipcode, staff_tel, TO_CHAR(staff_hireD, 'YYYY-MM-DD') AS "staff_hireD",  TO_CHAR(staff_retireD, 'YYYY-MM-DD') AS "staff_retireD", staff_workYn, staff_salary, staff_email
 		FROM staff s, jobClassifi j
 		WHERE s.staff_cls = j.staff_cls
-		ORDER BY staff_num DESC
+		ORDER BY staff_num ASC
 	</select>
 	
 	<!-- 교직원 검색 -->
@@ -25,8 +25,6 @@
 		</if>	
 		ORDER BY staff_num DESC
 	</select>
-	
-	
 	
 	
 	<!-- 교직원 등록을 위한 다음 생성 시퀀스값 확인하기 -->
@@ -87,15 +85,16 @@
 	<!-- 교직원 등록 -->
 	<insert id="insert_staff" parameterType="staffVO">
 		INSERT INTO staff VALUES (staff_seq.NEXTVAL, #{staff_cls}, #{staff_id}, #{staff_name}, #{staff_rrn1}, #{staff_rrn2}, #{staff_addr},
-    #{staff_zipcode}, #{staff_tel}, TO_DATE(#{staff_hireD},'YYYY-MM-DD'), TO_DATE(#{staff_retireD},'YYYY-MM-DD'), #{staff_workYn}, #{staff_salary}, #{staff_email}) 	
+    #{staff_zipcode}, #{staff_tel}, TO_DATE(#{staff_hireD},'YYYY-MM-DD'), TO_DATE(#{staff_retireD},'YYYY-MM-DD'), #{staff_workYn}, #{staff_salary}, #{staff_email}, #{staff_picture}) 	
 	</insert>
 	
 	<!-- 교직원 정보 상세보기 -->
 	<select id="select_staff_info" parameterType="String" resultType="staffVO">
-		SELECT staff_num, staff_cls, staff_id, staff_name, staff_rrn1, staff_rrn2, staff_addr,
-		staff_zipcode, staff_tel, TO_CHAR(staff_hireD, 'YYYY-MM-DD') AS "staff_hireD",  TO_CHAR(staff_retireD, 'YYYY-MM-DD') AS "staff_retireD", staff_workYn, staff_salary, staff_email
-		FROM staff 
-		WHERE staff_num = #{staff_num}	
+		SELECT staff_num, s.staff_cls, job_kname, staff_id, staff_name, staff_rrn1, staff_rrn2, staff_addr,
+		staff_zipcode, staff_tel, TO_CHAR(staff_hireD, 'YYYY-MM-DD') AS "staff_hireD",  TO_CHAR(staff_retireD, 'YYYY-MM-DD') AS "staff_retireD", staff_workYn, staff_salary, staff_email, staff_picture
+		FROM staff s, jobclassifi j 
+		WHERE s.staff_cls = j.staff_cls
+		AND staff_num = #{staff_num}
 	</select>
 	
 	<!-- 교직원 삭제 -->
@@ -117,7 +116,8 @@
 		staff_retireD = TO_DATE(#{staff_retireD},'YYYY-MM-DD'),
 		staff_workYn = #{staff_workYn},
 		staff_salary = #{staff_salary},
-		staff_email = #{staff_email}
+		staff_email = #{staff_email},
+		staff_picture = #{staff_picture}
 		WHERE staff_num = #{staff_num}
 	</update>
 </mapper>
