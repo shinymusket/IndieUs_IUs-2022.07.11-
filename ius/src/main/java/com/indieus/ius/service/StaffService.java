@@ -1,6 +1,7 @@
 package com.indieus.ius.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,8 +11,14 @@ import com.indieus.ius.vo.StaffIdVO;
 import com.indieus.ius.vo.StaffVO;
 
 public interface StaffService {
-
+	
+	public List<JobClassifiVO> selectJobList() throws Exception;
+	
 	public List<StaffVO> selectStaffList() throws Exception;
+	
+	public Object getStaffList() throws Exception;
+	
+	public Object searchStaffList(Map<String, Object> map) throws Exception;
 
 	public int selectStaffSeq() throws Exception;
 

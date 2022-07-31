@@ -1,6 +1,7 @@
 package com.indieus.ius.db;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,14 @@ public class StaffDAO {
 	public List<StaffVO> selectStaffList() throws Exception {
 		return sqlsession.selectList("staff.select_staff_list");
 	}
-
+	
+	// 교직원 검색하기
+	public List<StaffVO> searchStaffList(Map<String, Object> map) throws Exception {
+		return sqlsession.selectList("staff.search_staff_list", map);
+		
+	}
+	
+	
 	// 교직원 등록을 위한 다음 시퀀스 값 조회
 	public int selectStaffSeq() throws Exception {
 		return sqlsession.selectOne("staff.select_staff_seq");
@@ -106,5 +114,7 @@ public class StaffDAO {
 	public int updateStaff(StaffVO sVo) throws Exception {
 		return sqlsession.update("staff.update_staff", sVo);
 	}
+
+
 
 }

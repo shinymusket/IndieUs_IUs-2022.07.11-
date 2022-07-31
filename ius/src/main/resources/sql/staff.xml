@@ -10,6 +10,25 @@
 		ORDER BY staff_num DESC
 	</select>
 	
+	<!-- 교직원 검색 -->
+	<select id="search_staff_list" parameterType="hashmap" resultType="staffVO">
+		SELECT staff_num, job_Kname, staff_id, staff_name, staff_rrn1, staff_rrn2, staff_addr,
+		staff_zipcode, staff_tel, TO_CHAR(staff_hireD, 'YYYY-MM-DD') AS "staff_hireD",  TO_CHAR(staff_retireD, 'YYYY-MM-DD') AS "staff_retireD", staff_workYn, staff_salary, staff_email
+		FROM staff s, jobClassifi j
+		WHERE s.staff_cls = j.staff_cls
+		AND staff_workYn = #{staff_workYn}
+		<if test="staff_name != null and staff_name != ''">
+			AND staff_name = #{staff_name}
+		</if>
+		<if test="staff_cls != null and staff_cls != ''">
+			AND s.staff_cls = #{staff_cls}
+		</if>	
+		ORDER BY staff_num DESC
+	</select>
+	
+	
+	
+	
 	<!-- 교직원 등록을 위한 다음 생성 시퀀스값 확인하기 -->
 	<select id="select_staff_seq" resultType="int">
 		SELECT LAST_NUMBER FROM USER_SEQUENCES WHERE SEQUENCE_NAME = 'STAFF_SEQ'

@@ -2,7 +2,9 @@ package com.indieus.ius.service;
 
 import java.io.PrintWriter;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -36,14 +38,20 @@ public class StaffServiceImpl implements StaffService {
 
 	@Inject
 	private StaffDAO manager;
-
-	// 교직원 목록 가져오기
+	
+	// 직무 리스트 가져오기
+	@Override
+	public List<JobClassifiVO> selectJobList() throws Exception {
+		return manager.selectJobClassifi();
+	}
+	
+	// 교직원 명단 가져오기
 	@Override
 	public List<StaffVO> selectStaffList() throws Exception {
-		List<StaffVO> VoList = manager.selectStaffList();
-
-		if (VoList.size() != 0) {
-			for (StaffVO element : VoList) {
+		List<StaffVO> staffList = manager.selectStaffList();
+		
+		if (staffList.size() != 0) {
+			for (StaffVO element : staffList) {
 				String rrn1 = element.getStaff_rrn1();
 				String rrn2 = element.getStaff_rrn2();
 
@@ -88,8 +96,120 @@ public class StaffServiceImpl implements StaffService {
 
 			}
 		}
+		return staffList;
+	}
+	
+	// 교직원 목록 가져오기 Ajax
+	@Override
+	public Object getStaffList() throws Exception {
+		List<StaffVO> staffList = manager.selectStaffList();
+		
+		if (staffList.size() != 0) {
+			for (StaffVO element : staffList) {
+				String rrn1 = element.getStaff_rrn1();
+				String rrn2 = element.getStaff_rrn2();
 
-		return VoList;
+				int backNum = Integer.parseInt(rrn2.substring(0, 1));
+
+				// 가져온 주민등록번호로 성별값 입력
+				if ((backNum % 2) == 1) {
+					 element.setStaff_sex("M");
+				} else {
+					 element.setStaff_sex("F");
+				}
+
+				// 가져온 주민등록번호로 생년월일 값 입력
+				String birth = "";
+				if (backNum == 3 || backNum == 4) {
+					birth += "20";
+
+				} else if (backNum == 1 || backNum == 2) {
+					birth += "19";
+				}
+
+				birth += rrn1;
+				element.setStaff_birth(birth);
+
+				// 가져온 주민등록번호로 만 나이 계산
+				int birthYear = Integer.parseInt(birth.substring(0, 4));
+				int birthMonth = Integer.parseInt(birth.substring(4, 6));
+				int birthDay = Integer.parseInt(birth.substring(6, 8));
+
+				Calendar current = Calendar.getInstance();
+				int currentYear = current.get(Calendar.YEAR);
+				int currentMonth = current.get(Calendar.MONTH)+1;
+				int currentDay = current.get(Calendar.DAY_OF_MONTH);
+
+				int ageNum = currentYear-birthYear;
+				if (birthMonth * 100 + birthDay > currentMonth * 100 + currentDay) {
+					ageNum--;
+				}
+				String age = Integer.toString(ageNum);
+
+				element.setStaff_age(age);
+
+			}
+		}
+		Map<String, Object> data = new HashMap();
+		data.put("staffList", staffList);
+		return data;
+		
+	}
+	
+	// 교직원 검색 Ajax
+	public Object searchStaffList(Map<String, Object> map) throws Exception {
+
+		List<StaffVO> staffList = manager.searchStaffList(map);
+		if (staffList.size() != 0) {
+			for (StaffVO element : staffList) {
+				String rrn1 = element.getStaff_rrn1();
+				String rrn2 = element.getStaff_rrn2();
+
+				int backNum = Integer.parseInt(rrn2.substring(0, 1));
+
+				// 가져온 주민등록번호로 성별값 입력
+				if ((backNum % 2) == 1) {
+					 element.setStaff_sex("M");
+				} else {
+					 element.setStaff_sex("F");
+				}
+
+				// 가져온 주민등록번호로 생년월일 값 입력
+				String birth = "";
+				if (backNum == 3 || backNum == 4) {
+					birth += "20";
+
+				} else if (backNum == 1 || backNum == 2) {
+					birth += "19";
+				}
+
+				birth += rrn1;
+				element.setStaff_birth(birth);
+
+				// 가져온 주민등록번호로 만 나이 계산
+				int birthYear = Integer.parseInt(birth.substring(0, 4));
+				int birthMonth = Integer.parseInt(birth.substring(4, 6));
+				int birthDay = Integer.parseInt(birth.substring(6, 8));
+
+				Calendar current = Calendar.getInstance();
+				int currentYear = current.get(Calendar.YEAR);
+				int currentMonth = current.get(Calendar.MONTH)+1;
+				int currentDay = current.get(Calendar.DAY_OF_MONTH);
+
+				int ageNum = currentYear-birthYear;
+				if (birthMonth * 100 + birthDay > currentMonth * 100 + currentDay) {
+					ageNum--;
+				}
+				String age = Integer.toString(ageNum);
+
+				element.setStaff_age(age);
+
+			}
+		}
+		
+		Map<String, Object> data = new HashMap();
+		data.put("staffList", staffList);
+		return data;
 	}
 
 	// 교직원 등록을 위한 현재 시퀀스값 가져오기
@@ -305,5 +425,8 @@ public class StaffServiceImpl implements StaffService {
 		int result = manager.updateStaff(sVo);
 		return result;
 	}
+
+	
+	
 
 }
