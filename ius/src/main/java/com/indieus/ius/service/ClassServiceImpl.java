@@ -28,8 +28,8 @@ public class ClassServiceImpl implements ClassService {
 	// 학급 정보 가져오기 Ajax
 	@Override
 	public Object getClassByClassNum(Map<String, Object> map) throws Exception {
-		String class_num = (String) map.get("class_num");
-		ClassVO classInfo = manager.selectClassByClassNum(class_num);
+		String class_number = (String) map.get("class_number");
+		ClassVO classInfo = manager.selectClassByClassNum(class_number);
 		Map<String, Object> data = new HashMap();
 		data.put("classInfo", classInfo);
 		return data;

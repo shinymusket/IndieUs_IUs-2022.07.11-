@@ -6,12 +6,20 @@ public class ClassVO {
 	private String staff_num;
 	private String kinder_num;
 	private String class_name;
+	private String class_number;
 	
 	private String staff_name;
 	private String kinder_name;
 	private String staff_tel;
 	
 	
+	
+	public String getClass_number() {
+		return class_number;
+	}
+	public void setClass_number(String class_number) {
+		this.class_number = class_number;
+	}
 	public String getStaff_tel() {
 		return staff_tel;
 	}

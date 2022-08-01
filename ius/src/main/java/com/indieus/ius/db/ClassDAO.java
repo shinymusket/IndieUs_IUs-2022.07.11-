@@ -18,7 +18,7 @@ public class ClassDAO {
 	}
 	
 	// 학급 정보 가져오기
-	public ClassVO selectClassByClassNum(String class_num) throws Exception {
-		return sqlsession.selectOne("class.select_class_by_class_num", class_num);
+	public ClassVO selectClassByClassNum(String class_number) throws Exception {
+		return sqlsession.selectOne("class.select_class_by_class_num", class_number);
 	}
 }

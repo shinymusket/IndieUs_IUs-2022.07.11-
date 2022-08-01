@@ -8,17 +8,17 @@
 <meta charset="UTF-8">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
-	function view(class_num) {
-		var class_num = class_num;
+	function view(class_number) {
+		var class_number = class_number;
 			
 			$.ajax({
 				url : "/ius/class/get_class_by_class_num",
 				type : "POST",
 				data : {
-					class_num : class_num
+					class_number : class_number
 				},
 				success : function(data) {
-					$("#class_num").val(data.classInfo.class_num);
+					$("#class_number").val(data.classInfo.class_number);
 					$("#class_name").val(data.classInfo.class_name);
 					$("#staff_name").val(data.classInfo.staff_name);
 					$("#staff_tel").val(data.classInfo.staff_tel);
@@ -45,8 +45,8 @@
 				$.each(values, function(index, value) {
 					
 					output += "<tr>";
-					output += "<td>" + value.class_num + "</td>";
-					output += "<td><a href=\"javascript:view('" + value.class_num + "');\">" + value.class_name + "</a></td>";
+					output += "<td>" + value.class_number + "</td>";
+					output += "<td><a href=\"javascript:view('" + value.class_number + "');\">" + value.class_name + "</a></td>";
 					output += "<td>" + value.staff_name + "</td>";
 					output += "</tr>";
 				});
@@ -88,7 +88,7 @@
 							<tr>
 								<th colspan="1">학급 번호</th>
 								<td colspan="3">
-									<input type="text" id="class_num" name="class_num" readonly="readonly">
+									<input type="text" id="class_number" name="class_number" readonly="readonly">
 								</td>
 							</tr>
 							<tr>

@@ -98,17 +98,11 @@ public class StaffDAO {
 		return sqlsession.insert("staff.insert_staff", sVo);
 	}
 
-	// 교직원 상세정보(교사외)
+	// 교직원 상세정보
 	public StaffVO selectStaffInfo(String staff_num) throws Exception {
 		return sqlsession.selectOne("staff.select_staff_info", staff_num);
 	}
 
-	// 교직원 상세정보(교사)
-	public StaffVO selectTeacherInfo(String staff_num) throws Exception {
-		return sqlsession.selectOne("staff.select_teacher_info", staff_num);
-	}
-	
-	
 	// 교직원 삭제
 	@Transactional
 	public int deleteStaff(String staff_num) throws Exception {

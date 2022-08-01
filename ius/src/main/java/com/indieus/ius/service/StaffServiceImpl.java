@@ -227,16 +227,7 @@ public class StaffServiceImpl implements StaffService {
 		String staff_cls = manager.selectStaffClsByStaffNum(staff_num);
 		
 		StaffVO staff = new StaffVO();
-		
-		
-		
-		
-		
-		if (staff_cls.equals("2")) { // 교사일 때
-			staff = manager.selectTeacherInfo(staff_num);
-		} else {
-			staff = manager.selectStaffInfo(staff_num);
-		}
+		staff = manager.selectStaffInfo(staff_num);
 		Map<String, Object> data = new HashMap();
 		data.put("staff", staff);
 		return data;
