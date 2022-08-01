@@ -23,6 +23,17 @@
 					$("#staff_name").val(data.classInfo.staff_name);
 					$("#staff_tel").val(data.classInfo.staff_tel);
 					
+					values = data.classKinderList;
+					output = "<tr><th>원생 이름</th><th>원생 연락처</th></tr>";
+					$.each(values, function(index, value) {
+						output += "<tr>";
+						output += "<td>" + value.kinder_name + "</td>";
+						output += "<td>" + value.kinder_tel + "</td>";
+						output += "</tr>";
+					});
+					
+					$("#classKinder").html(output);
+					
 					$("#classInfo").show();
 				}
 			})
@@ -79,37 +90,42 @@
 			<section>
 				<div id="content">
 					<input type="button" value="교직원 관리" onclick="location.href='../staff/staff_list'">
+					<input type="button" value="학급 등록" onclick="location.href='../class/class_register_form'">
 					
 					<div id="searchBar">
 					</div>
 					
 						<table id="classList" border="1" style="float : left;"></table>
-						<table id="classInfo" border="1" style="float : left; display : none;">
-							<tr>
-								<th colspan="1">학급 번호</th>
-								<td colspan="3">
-									<input type="text" id="class_number" name="class_number" readonly="readonly">
-								</td>
-							</tr>
-							<tr>
-								<th colspan="1">학급 명</th>
-								<td colspan="3">
-									<input type="text" id="class_name" name="class_name" readonly="readonly">
-								</td>	 
-							</tr>
-							<tr>
-								<th>담당 교사</th>
-								<td>
-									<input type="text" id="staff_name" name="staff_name" readonly="readonly">
-								</td>
-								<th>연락처</th>
-								<td>
-									<input type="text" id="staff_tel" name="staff_tel" readonly="readonly">
-								</td>
-							</tr>
-							<tr id="classKinder">
-							</tr>
-						</table>		
+						
+						<div id="classInfo" style="float : left; display : none;">
+							<table border="1" >
+								<tr>
+									<th colspan="1">학급 번호</th>
+									<td colspan="3">
+										<input type="text" id="class_number" name="class_number" readonly="readonly">
+									</td>
+								</tr>
+								<tr>
+									<th colspan="1">학급 명</th>
+									<td colspan="3">
+										<input type="text" id="class_name" name="class_name" readonly="readonly">
+									</td>	 
+								</tr>
+								<tr>
+									<th>담당 교사</th>
+									<td>
+										<input type="text" id="staff_name" name="staff_name" readonly="readonly">
+									</td>
+									<th>연락처</th>
+									<td>
+										<input type="text" id="staff_tel" name="staff_tel" readonly="readonly">
+									</td>
+								</tr>
+							</table>
+							<table id="classKinder" border="1">
+							</table>
+						</div>
+								
 				</div>
 			</section>
 	</article> 

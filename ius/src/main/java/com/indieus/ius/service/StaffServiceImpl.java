@@ -225,9 +225,54 @@ public class StaffServiceImpl implements StaffService {
 	public Object getStaffByStaffNum(Map<String, Object> map) throws Exception {
 		String staff_num = (String) map.get("staff_num");
 		String staff_cls = manager.selectStaffClsByStaffNum(staff_num);
-		
+
 		StaffVO staff = new StaffVO();
 		staff = manager.selectStaffInfo(staff_num);
+		
+		
+		String rrn1 = staff.getStaff_rrn1();
+		String rrn2 = staff.getStaff_rrn2();
+
+		int backNum = Integer.parseInt(rrn2.substring(0, 1));
+
+		// 가져온 주민등록번호로 성별값 입력
+		if ((backNum % 2) == 1) {
+			staff.setStaff_sex("M");
+		} else {
+			staff.setStaff_sex("F");
+		}
+
+		// 가져온 주민등록번호로 생년월일 값 입력
+		String birth = "";
+		if (backNum == 3 || backNum == 4) {
+			birth += "20";
+
+		} else if (backNum == 1 || backNum == 2) {
+			birth += "19";
+		}
+
+		birth += rrn1;
+		staff.setStaff_birth(birth);
+
+		// 가져온 주민등록번호로 만 나이 계산
+		int birthYear = Integer.parseInt(birth.substring(0, 4));
+		int birthMonth = Integer.parseInt(birth.substring(4, 6));
+		int birthDay = Integer.parseInt(birth.substring(6, 8));
+
+		Calendar current = Calendar.getInstance();
+		int currentYear = current.get(Calendar.YEAR);
+		int currentMonth = current.get(Calendar.MONTH)+1;
+		int currentDay = current.get(Calendar.DAY_OF_MONTH);
+
+		int ageNum = currentYear-birthYear;
+		if (birthMonth * 100 + birthDay > currentMonth * 100 + currentDay) {
+			ageNum--;
+		}
+		String age = Integer.toString(ageNum);
+
+		staff.setStaff_age(age);
+		
+		
 		Map<String, Object> data = new HashMap();
 		data.put("staff", staff);
 		return data;
@@ -360,8 +405,12 @@ public class StaffServiceImpl implements StaffService {
 		StaffIdVO sIvo = createTempPwd(sVo);
 		manager.insertStaffId(sIvo);
 		sendMail(sVo, sIvo);
-
+		
+		String staff_num = sVo.getStaff_num();
 		int result = manager.insertStaff(sVo);
+		
+		// 담당 반 데이터 삽입.
+		manager.insertStaffClassInfo(staff_num);
 		return result;
 	}
 

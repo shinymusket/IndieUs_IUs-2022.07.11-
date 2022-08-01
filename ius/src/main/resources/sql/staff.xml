@@ -88,6 +88,11 @@
     #{staff_zipcode}, #{staff_tel}, TO_DATE(#{staff_hireD},'YYYY-MM-DD'), TO_DATE(#{staff_retireD},'YYYY-MM-DD'), #{staff_workYn}, #{staff_salary}, #{staff_email}, #{staff_picture}) 	
 	</insert>
 	
+	<!-- 교직원 담당 반 정보 등록 null -->
+	<insert id="insert_staff_class_info" parameterType="String">
+		INSERT INTO class VALUES (class_seq.nextval, #{staff_num}, NULL, NULL, NULL)
+	</insert>
+
 	<!-- 교직원 정보 상세보기 -->
 	<select id="select_staff_info" parameterType="String" resultType="staffVO">
 		SELECT DISTINCT s.staff_num AS "STAFF_NUM", s.staff_cls, job_kname, class_name, staff_id, staff_name, staff_rrn1, staff_rrn2, staff_addr,

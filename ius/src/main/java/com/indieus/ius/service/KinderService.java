@@ -12,7 +12,7 @@ import com.indieus.ius.vo.StaffVO;
 public interface KinderService {
 
 	public Object getKinderList() throws Exception;
-	
+
 	public Object getKinderByKinderNum(Map<String, Object> map) throws Exception;
 
 	public int selectNextKinderSeq() throws Exception;

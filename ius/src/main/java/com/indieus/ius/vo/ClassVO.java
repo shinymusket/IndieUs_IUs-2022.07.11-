@@ -1,19 +1,19 @@
 package com.indieus.ius.vo;
 
 public class ClassVO {
-	
+
 	private String class_num;
 	private String staff_num;
 	private String kinder_num;
 	private String class_name;
 	private String class_number;
-	
+
 	private String staff_name;
 	private String kinder_name;
 	private String staff_tel;
-	
-	
-	
+
+
+
 	public String getClass_number() {
 		return class_number;
 	}
@@ -62,6 +62,6 @@ public class ClassVO {
 	public void setKinder_name(String kinder_name) {
 		this.kinder_name = kinder_name;
 	}
-	
-	
+
+
 }

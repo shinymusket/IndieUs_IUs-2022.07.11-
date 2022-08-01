@@ -41,5 +41,5 @@ public class MainController {
 		session.invalidate();
 		service.logout(response);
 	}
-	
+
 }

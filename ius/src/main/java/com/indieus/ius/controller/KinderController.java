@@ -6,7 +6,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -39,14 +38,14 @@ public class KinderController {
 	public Object getKinderList() throws Exception {
 		return service.getKinderList();
 	}
-	
+
 	// 원생 정보 조회하기 Ajax
 	@ResponseBody
 	@RequestMapping(value = "/get_kinder_by_kinder_num", method = RequestMethod.POST)
 	public Object getKinderByKinderNum(@RequestParam Map<String, Object> map) throws Exception  {
 		return service.getKinderByKinderNum(map);
 	}
-	
+
 	// 원생 등록 폼으로 이동
 	@RequestMapping(value = "/kinder_register_form", method = RequestMethod.GET)
 	public String kinderRegisterForm(Model model) throws Exception {

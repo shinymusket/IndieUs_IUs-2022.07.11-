@@ -30,6 +30,16 @@ function view(staff_num) {
 				$("#job_Kname").val(data.staff.job_Kname);
 				$("#class_name").val(data.staff.class_name);
 				$("#staff_id").val(data.staff.staff_id);
+				$("#staff_age").val(data.staff.staff_age);
+				
+				var staff_sex = "";
+				if (data.staff.staff_sex == 'M') {
+					staff_sex = "남성";
+				} else if (data.staff.staff_sex == 'F') {
+					staff_sex = "여성";
+				}
+				$("#staff_sex").val(staff_sex);
+				$("#staff_birth").val(data.staff.staff_birth);
 				$("#staff_name").val(data.staff.staff_name);
 				
 				if ((data.staff.staff_picture == null)|| (data.staff.staff_picture == "")) {
@@ -227,6 +237,22 @@ getList();
 					<th>아이디</th>
 					<td colspan="2">
 						<input type="text" id="staff_id" readonly="readonly">
+					</td>
+				</tr>
+				<tr>
+					<th>나이</th>
+					<td>
+						<input type="text" id="staff_age" readonly="readonly">
+					</td>
+					<th>성별</th>
+					<td>
+						<input type="text" id="staff_sex" readonly="readonly">
+					</td>
+				</tr>
+				<tr>
+					<th colspan="2">생년월일</th>
+					<td colspan="2">
+						<input type="text" id="staff_birth" readonly="readonly">
 					</td>
 				</tr>
 				<tr>

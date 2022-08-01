@@ -82,7 +82,7 @@ public class KinderServiceImpl implements KinderService {
 		return data;
 
 	}
-	
+
 	// 원생 정보 조회하기 Ajax
 	@Override
 	public Object getKinderByKinderNum(Map<String, Object> map) throws Exception {
@@ -92,7 +92,7 @@ public class KinderServiceImpl implements KinderService {
 		data.put("kinder", kinder);
 		return data;
 	}
-	
+
 
 	// 원생 등록을 위한 다음 원생 시퀀스 번호 가져오기
 	@Override

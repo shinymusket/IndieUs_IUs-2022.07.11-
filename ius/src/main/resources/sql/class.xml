@@ -18,5 +18,33 @@
 		AND class_number  = #{class_number} 
   	</select>
   	
+  	<!-- 학급별 학생 리스트 가져오기 -->
+  	<select id="select_class_kinder_by_class_num" parameterType="String" resultType="kinderVO">
+  		SELECT k.kinder_num, kinder_name, kinder_tel
+		FROM class c, kinder k
+		WHERE c.kinder_num = k.kinder_num
+		AND kinder_regYn = 'Y'
+		AND class_number = #{class_number}
+  	</select>
+  	
+  	<!-- 학급 등록을 위한 마지막 학급 번호 값 가져오기 -->
+  	<select id="select_class_last_number" resultType="int">
+  		SELECT MAX(class_number) FROM class
+  	</select>
+  	
+  	<!-- 학급 등록을 위한 담당 교사 리스트 가져오기 (반을 맡고 있지 않은 교사) -->
+  	<select id="select_class_home_teacher" resultType="staffVO">
+  		SELECT s.staff_num, staff_name 
+		FROM staff s, class c
+		WHERE s.staff_num = c.staff_num 
+		AND staff_cls NOT IN (3, 4)
+		AND class_number IS NULL
+  	</select>
+  	
+  	<!-- 학급 등록 -->
+  	<update id="update_class" parameterType="ClassVO">
+  		UPDATE class SET class_number = #{class_number}, class_name = #{class_name}
+  		WHERE staff_num = #{staff_num}
+  	</update>
   	
 </mapper>

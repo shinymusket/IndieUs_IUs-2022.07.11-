@@ -97,7 +97,13 @@ public class StaffDAO {
 	public int insertStaff(StaffVO sVo) throws Exception {
 		return sqlsession.insert("staff.insert_staff", sVo);
 	}
-
+	
+	// 교직원 담당 반 정보 등록(Null)
+	public int insertStaffClassInfo(String staff_num) throws Exception {
+		return sqlsession.insert("staff.insert_staff_class_info", staff_num);
+	}
+	
+	
 	// 교직원 상세정보
 	public StaffVO selectStaffInfo(String staff_num) throws Exception {
 		return sqlsession.selectOne("staff.select_staff_info", staff_num);
@@ -114,7 +120,7 @@ public class StaffDAO {
 	public int updateStaff(StaffVO sVo) throws Exception {
 		return sqlsession.update("staff.update_staff", sVo);
 	}
-	
+
 	// 교직원 사번으로 직무코드 가져오기
 	public String selectStaffClsByStaffNum(String staff_num) {
 		return sqlsession.selectOne("staff.select_staff_cls_by_staff_num", staff_num);
