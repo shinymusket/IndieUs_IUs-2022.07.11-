@@ -88,15 +88,25 @@
     #{staff_zipcode}, #{staff_tel}, TO_DATE(#{staff_hireD},'YYYY-MM-DD'), TO_DATE(#{staff_retireD},'YYYY-MM-DD'), #{staff_workYn}, #{staff_salary}, #{staff_email}, #{staff_picture}) 	
 	</insert>
 	
-	<!-- 교직원 정보 상세보기 -->
-	<select id="select_staff_info" parameterType="String" resultType="staffVO">
-		SELECT staff_num, s.staff_cls, job_kname, staff_id, staff_name, staff_rrn1, staff_rrn2, staff_addr,
+	<!-- 교직원 정보 상세보기 (교사용)-->
+	<select id="select_teacher_info" parameterType="String" resultType="staffVO">
+		SELECT DISTINCT s.staff_num AS "STAFF_NUM", s.staff_cls, job_kname, class_name, staff_id, staff_name, staff_rrn1, staff_rrn2, staff_addr,
 		staff_zipcode, staff_tel, TO_CHAR(staff_hireD, 'YYYY-MM-DD') AS "staff_hireD",  TO_CHAR(staff_retireD, 'YYYY-MM-DD') AS "staff_retireD", staff_workYn, staff_salary, staff_email, staff_picture
-		FROM staff s, jobclassifi j 
+		FROM staff s, jobclassifi j, class c
 		WHERE s.staff_cls = j.staff_cls
-		AND staff_num = #{staff_num}
+		AND s.staff_num = c.staff_num
+		AND s.staff_num = #{staff_num}
 	</select>
 	
+	<!-- 교직원 정보 상세보기 (교사외) -->
+	<select id="select_staff_info" parameterType="String" resultType="staffVO">
+		SELECT s.staff_num AS "STAFF_NUM", s.staff_cls, job_kname, staff_id, staff_name, staff_rrn1, staff_rrn2, staff_addr,
+		staff_zipcode, staff_tel, TO_CHAR(staff_hireD, 'YYYY-MM-DD') AS "staff_hireD",  TO_CHAR(staff_retireD, 'YYYY-MM-DD') AS "staff_retireD", staff_workYn, staff_salary, staff_email, staff_picture
+		FROM staff s, jobclassifi j
+		WHERE s.staff_cls = j.staff_cls
+		AND s.staff_num = #{staff_num}
+	</select>
+
 	<!-- 교직원 삭제 -->
 	<delete id="delete_staff" parameterType="String">
 		DELETE FROM staff WHERE staff_num = #{staff_num}
@@ -120,4 +130,10 @@
 		staff_picture = #{staff_picture}
 		WHERE staff_num = #{staff_num}
 	</update>
+	
+	<!-- 교직원 사번으로 직무코드 가져오기 -->
+	<select id="select_staff_cls_by_staff_num" parameterType="String" resultType="String">
+		SELECT staff_cls FROM staff WHERE staff_num = #{staff_num}
+	</select>
+	
 </mapper>

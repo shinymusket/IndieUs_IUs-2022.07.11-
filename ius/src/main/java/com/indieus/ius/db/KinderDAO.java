@@ -59,8 +59,8 @@ public class KinderDAO {
 	public int deleteKinderInfo(String kinder_num) throws Exception {
 		return sqlsession.delete("kinder.delete_kinder_info", kinder_num);
 	}
-	
-	// 원생 정보 수정	
+
+	// 원생 정보 수정
 	public int updateKinder(KinderVO kVo) throws Exception {
 		return sqlsession.update("kinder.update_kinder", kVo);
 	}

@@ -3,9 +3,10 @@
 <mapper namespace="kinder">
 	<!-- 전체 원생 리스트 가져오기 -->
 	<select id="select_kinder_list" resultType="kinderVO">
-		SELECT kinder_num, shuttle_num, staff_name, kinder_name, kinder_regYn, kinder_rrn1, kinder_rrn2, kinder_addr, kinder_zipcode, kinder_tel, TO_CHAR(kinder_regdate, 'YYYY-MM-DD') AS "kinder_regdate", kinder_retireDate
-		FROM kinder k, staff s
+		SELECT k.kinder_num, shuttle_num, staff_name, kinder_name, class_name, kinder_regYn, kinder_rrn1, kinder_rrn2, kinder_addr, kinder_zipcode, kinder_tel, TO_CHAR(kinder_regdate, 'YYYY-MM-DD') AS "kinder_regdate", kinder_retireDate
+		FROM kinder k, staff s, class c
 		WHERE k.staff_num = s.staff_num
+		AND c.kinder_num = k.kinder_num
 	</select>
 	
 	<!-- 원생 등록을 위한 다음 시퀀스 번호 가져오기 -->
@@ -58,10 +59,12 @@
 	
 	<!-- 원생 정보 조회 -->
 	<select id="select_kinder_info" parameterType="String" resultType="kinderVO">
-		SELECT kinder_num, shuttle_num, k.staff_num, staff_name, kinder_name, kinder_regYn, kinder_rrn1, kinder_rrn2, kinder_addr, kinder_zipcode, kinder_tel, TO_CHAR(kinder_regdate, 'YYYY-MM-DD') AS "kinder_regdate", TO_CHAR(kinder_retireDate, 'YYYY-MM-DD') AS "kinder_retireDate", kinder_picture
-		FROM kinder k, staff s
+		SELECT k.kinder_num, kinder_picture, kinder_name, class_name, s.staff_num, staff_name, shuttle_num, kinder_rrn1, kinder_rrn2,
+		kinder_addr, kinder_zipcode, kinder_tel, kinder_regdate, kinder_retireDate, kinder_regYn
+		FROM kinder k, staff s, class c
 		WHERE k.staff_num = s.staff_num
-		AND kinder_num = #{kinder_num}
+		AND k.kinder_num = c.kinder_num
+		AND k.kinder_num = #{kinder_num}
 	</select>
 	
 	<!-- 원생 정보 삭제 -->

@@ -28,37 +28,37 @@ public class StaffController {
 
 	@Autowired
 	private StaffServiceImpl service;
-	
+
 	// 교직원 명단 이동
 	@RequestMapping(value = "/staff_list", method = RequestMethod.GET)
 	public String list(Model model) throws Exception {
 		List<JobClassifiVO> jobList = service.selectJobList();
 		model.addAttribute("jobList", jobList);
-		
+
 		return "/staff/staffList";
 	}
-	
+
 	// 교직원 명단 불러오기 Ajax
 	@ResponseBody
 	@RequestMapping(value = "/get_staff_list", method = RequestMethod.POST)
 	public Object getStaffList() throws Exception {
 		return service.getStaffList();
 	}
-	
+
 	// 교직원 명단 검색하기 Ajax
 	@ResponseBody
 	@RequestMapping(value = "/search_staff_list", method = RequestMethod.POST)
 	public Object searchStaffList(@RequestParam Map<String, Object> map) throws Exception {
 		return service.searchStaffList(map);
 	}
-	
+
 	// 교직원 정보 조회 Ajax
 	@ResponseBody
 	@RequestMapping(value = "/get_staff_by_staff_num", method = RequestMethod.POST)
 	public Object getStaffByStaffNum(@RequestParam Map<String, Object> map) throws Exception {
 		return service.getStaffByStaffNum(map);
 	}
-	
+
 	// 교직원 등록 폼 이동
 	@RequestMapping(value = "/staff_register", method = RequestMethod.GET)
 	public String registerForm(Model model) throws Exception {

@@ -15,7 +15,15 @@ public class KinderVO {
 	private String kinder_regdate;
 	private String kinder_retireDate;
 	private String kinder_picture;
-
+	
+	private String class_name;
+	
+	public String getClass_name() {
+		return class_name;
+	}
+	public void setClass_name(String class_name) {
+		this.class_name = class_name;
+	}
 	public String getKinder_picture() {
 		return kinder_picture;
 	}

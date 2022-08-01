@@ -1,19 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<c:set var="path" value="${pageContext.request.contextPath}"/>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>index</title>
+<link type="text/css" rel="stylesheet" href="${path}/resources/css/articleF.css">
 </head>
 <body>
-	<h1>index</h1>
-	<p>${staff.staff_id}님 환영합니다.<br><a href="../main/logout">로그아웃</a></p>
-	<p><a href="../finance/finance_list">재정 관리</a></p>
-	<p><a href="../staff/staff_list">교직원 관리</a></p>
-	<p><a href="../equipment/equipment_list">시설 관리</a></p>
-	<p><a href="../meal/meal_list">식단 관리</a></p>
-	<p><a href="../board/board_list">전자결재</a></p>
-	<p><a href="../kinder/kinder_list">원생 관리</a></p>
+<%@include file="../include/header.jsp" %>
+<%@include file="../include/nav.jsp" %>
+<!--
+	<article>
+			<div id="title_bar">
+				<p>경영 정보</p>
+				<h3>식단 관리</h3>
+			</div>
+	
+			
+			<div id="title_top">
+				<input type="text" name=""> <input type="button" value="검색">
+				<input type="button" value="등록"> <input type="button"
+					value="삭제">
+			</div>
+	
+			<section>
+				<div id="content">
+					
+				</div>
+			</section>
+	</article>	
+-->	 
+<%@include file="../include/footer.jsp" %>
 </body>
 </html>

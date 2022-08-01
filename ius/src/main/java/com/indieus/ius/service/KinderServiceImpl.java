@@ -8,7 +8,6 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -83,6 +82,17 @@ public class KinderServiceImpl implements KinderService {
 		return data;
 
 	}
+	
+	// 원생 정보 조회하기 Ajax
+	@Override
+	public Object getKinderByKinderNum(Map<String, Object> map) throws Exception {
+		String kinder_num = (String) map.get("kinder_num");
+		KinderVO kinder = manager.selectKinderInfo(kinder_num);
+		Map<String, Object> data = new HashMap();
+		data.put("kinder", kinder);
+		return data;
+	}
+	
 
 	// 원생 등록을 위한 다음 원생 시퀀스 번호 가져오기
 	@Override
@@ -195,10 +205,11 @@ public class KinderServiceImpl implements KinderService {
 	public int deleteKinderInfo(String kinder_num) throws Exception {
 		return manager.deleteKinderInfo(kinder_num);
 	}
-	
+
 	// 원생 정보 수정
+	@Override
 	public int updateKinder(KinderVO kVo, MultipartFile kinder_picFile) throws Exception {
-		
+
 		if(kinder_picFile.getSize() != 0) { // 수정 프로필 요청 사진이 있을 시
 			MultipartFile file = kinder_picFile;
 
@@ -217,9 +228,11 @@ public class KinderServiceImpl implements KinderService {
 
 			kVo.setKinder_picture(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
 		}
-		
+
 		return manager.updateKinder(kVo);
 	}
+
+
 
 
 

@@ -2,12 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
+<c:set var="path" value="${pageContext.request.contextPath}"/>  
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>재정 관리</title>
+<link type="text/css" rel="stylesheet" href="${path}/resources/css/articleF.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -120,44 +122,59 @@ $(function(){
 </script>
 </head>
 <body>
-	<h1>재정 관리</h1>
-	<select name="finance_year" id="finance_year">
-		<option value="">--년도--</option>
-		<c:if test="${financeYearList != null}">
-			<c:forEach items="${financeYearList}" var="financeYear">
-				<option value="${financeYear}">${financeYear}년도</option>
-			</c:forEach>	
-		</c:if>
-	</select>
+<%@include file="../include/header.jsp" %>
+<%@include file="../include/nav.jsp" %>
+	<article>
+			<div id="title_bar">
+				<p>경영 정보</p>
+				<h3>재정 관리</h3>
+			</div>
 	
-	<select name="finance_type" id="finance_type">
-		<option value="total">전체</option>
-		<option value="In">수입</option>
-		<option value="Ex">지출</option>
-	</select>
+			
+			<div id="title_top">
+			</div>
 	
-	<input type="button" value="검색" id="yearSearch">
-	<br>
-	<input type="button" value="홈으로" onclick="location.href='../main/'">
-	<input type="button" value="예산 항목" onclick="location.href='../budget/budget_list'">
-	<input type="button" value="수입 등록" onclick="location.href='../finance/finance_register_form?iE=In'">
-	<input type="button" value="지출 등록" onclick="location.href='../finance/finance_register_form?iE=Ex'">
-	
-	<table border="1" id="finalAccount">
-		<tr>
-			<th>회계 년도</th>
-			<th>총 수입</th>
-			<th>총 지출</th>
-			<th>잔액</th>
-		</tr>	
-		<tr>
-			<td id="financeYear"></td>
-			<td id="totalIncome"></td>
-			<td id="totalExpense"></td>
-			<td id="balance"></td>
-		</tr>
-	</table>
-	
-	<table border="1" id="list"></table>
+			<section>
+				<div id="content">
+					<select name="finance_year" id="finance_year">
+						<option value="">--년도--</option>
+						<c:if test="${financeYearList != null}">
+							<c:forEach items="${financeYearList}" var="financeYear">
+								<option value="${financeYear}">${financeYear}년도</option>
+							</c:forEach>	
+						</c:if>
+					</select>
+					
+					<select name="finance_type" id="finance_type">
+						<option value="total">전체</option>
+						<option value="In">수입</option>
+						<option value="Ex">지출</option>
+					</select>
+					
+					<input type="button" value="검색" id="yearSearch">
+					<br>
+					<input type="button" value="예산 항목" onclick="location.href='../budget/budget_list'">
+					<input type="button" value="수입 등록" onclick="location.href='../finance/finance_register_form?iE=In'">
+					<input type="button" value="지출 등록" onclick="location.href='../finance/finance_register_form?iE=Ex'">
+					
+					<table border="1" id="finalAccount">
+						<tr>
+							<th>회계 년도</th>
+							<th>총 수입</th>
+							<th>총 지출</th>
+							<th>잔액</th>
+						</tr>	
+						<tr>
+							<td id="financeYear"></td>
+							<td id="totalIncome"></td>
+							<td id="totalExpense"></td>
+							<td id="balance"></td>
+						</tr>
+					</table>
+					<table border="1" id="list"></table>
+				</div>
+			</section>
+	</article>	
+<%@include file="../include/footer.jsp" %>	
 </body>
 </html>

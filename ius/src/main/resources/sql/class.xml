@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="class">
+  	<!-- 전체 학급 리스트 가져오기 -->
+  	<select id="select_all_class_list" resultType="classVO">
+  		SELECT class_num, class_name, staff_name 
+		FROM class c, staff s
+		WHERE c.staff_num = s.staff_num
+  	</select>
+  	
+  	<!-- 학급 정보 가져오기 -->
+  	<select id="select_class_by_class_num" parameterType="String" resultType="classVO">
+  		SELECT class_num, class_name, staff_name, staff_tel 
+		FROM class c, staff s
+		WHERE c.staff_num = s.staff_num
+		AND class_num  = #{class_num}
+  	</select>
+  	
+  	
+</mapper>

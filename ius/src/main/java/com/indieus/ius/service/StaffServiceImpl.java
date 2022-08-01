@@ -42,21 +42,21 @@ public class StaffServiceImpl implements StaffService {
 
 	@Inject
 	private StaffDAO manager;
-	
+
 	@Resource(name="uploadPath")
 	private String uploadPath;
-	
+
 	// 직무 리스트 가져오기
 	@Override
 	public List<JobClassifiVO> selectJobList() throws Exception {
 		return manager.selectJobClassifi();
 	}
-	
+
 	// 교직원 명단 가져오기
 	@Override
 	public List<StaffVO> selectStaffList() throws Exception {
 		List<StaffVO> staffList = manager.selectStaffList();
-		
+
 		if (staffList.size() != 0) {
 			for (StaffVO element : staffList) {
 				String rrn1 = element.getStaff_rrn1();
@@ -105,12 +105,12 @@ public class StaffServiceImpl implements StaffService {
 		}
 		return staffList;
 	}
-	
+
 	// 교직원 목록 가져오기 Ajax
 	@Override
 	public Object getStaffList() throws Exception {
 		List<StaffVO> staffList = manager.selectStaffList();
-		
+
 		if (staffList.size() != 0) {
 			for (StaffVO element : staffList) {
 				String rrn1 = element.getStaff_rrn1();
@@ -160,10 +160,11 @@ public class StaffServiceImpl implements StaffService {
 		Map<String, Object> data = new HashMap();
 		data.put("staffList", staffList);
 		return data;
-		
+
 	}
-	
+
 	// 교직원 검색 Ajax
+	@Override
 	public Object searchStaffList(Map<String, Object> map) throws Exception {
 		List<StaffVO> staffList = manager.searchStaffList(map);
 		if (staffList.size() != 0) {
@@ -212,24 +213,36 @@ public class StaffServiceImpl implements StaffService {
 
 			}
 		}
-		
+
 		Map<String, Object> data = new HashMap();
 		data.put("staffList", staffList);
 		return data;
 	}
-	
-	
+
+
 	// 교직원 정보 조회 Ajax
 	@Override
 	public Object getStaffByStaffNum(Map<String, Object> map) throws Exception {
 		String staff_num = (String) map.get("staff_num");
-		StaffVO staff = manager.selectStaffInfo(staff_num);
+		String staff_cls = manager.selectStaffClsByStaffNum(staff_num);
+		
+		StaffVO staff = new StaffVO();
+		
+		
+		
+		
+		
+		if (staff_cls.equals("2")) { // 교사일 때
+			staff = manager.selectTeacherInfo(staff_num);
+		} else {
+			staff = manager.selectStaffInfo(staff_num);
+		}
 		Map<String, Object> data = new HashMap();
 		data.put("staff", staff);
 		return data;
 	}
-	
-	
+
+
 
 	// 교직원 등록을 위한 현재 시퀀스값 가져오기
 	@Override
@@ -339,19 +352,19 @@ public class StaffServiceImpl implements StaffService {
 	@Override
 	public int insertStaff(StaffVO sVo, MultipartFile staff_picFile) throws Exception {
 		MultipartFile file = staff_picFile;
-		
+
 		String imgUploadPath = uploadPath + File.separator + "imgUpload";
 		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
 		String fileName = null;
-		
+
 		if(file != null) {
 			fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
 		} else {
 			fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
 		}
-		
+
 		sVo.setStaff_picture(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
-		
+
 		String staff_id = sVo.getStaff_id();
 		StaffIdVO sIvo = createTempPwd(sVo);
 		manager.insertStaffId(sIvo);
@@ -455,7 +468,7 @@ public class StaffServiceImpl implements StaffService {
 	// 교직원 정보수정
 	@Override
 	public int updateStaff(StaffVO sVo, MultipartFile staff_picFile) throws Exception {
-		
+
 		if(staff_picFile.getSize() != 0) { // 수정 프로필 요청 사진이 있을 시
 			MultipartFile file = staff_picFile;
 
@@ -474,13 +487,13 @@ public class StaffServiceImpl implements StaffService {
 
 			sVo.setStaff_picture(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
 		}
-		
+
 		return manager.updateStaff(sVo);
 	}
 
-	
 
-	
-	
+
+
+
 
 }

@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<c:set var="path" value="${pageContext.request.contextPath}"/>        
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>시설(비품) 관리</title>
+<link type="text/css" rel="stylesheet" href="${path}/resources/css/articleF.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 	function getList() {
@@ -46,14 +49,30 @@
 </script>
 </head>
 <body>
-	<h1>시설(비품) 관리</h1>
-	<input type="button" value="홈으로" onclick="location.href='../main/'">
-	<input type="button" value="시설(비품) 등록" onclick="location.href='../equipment/equipment_register_form'">
-	<input type="button" value="구매품 등록" onclick="location.href='../equipment/purchaseEquip_form'">
-	<input type="button" value="구매기록 조회" onclick="location.href='../equipment/purchase_list'">
+<%@include file="../include/header.jsp" %>
+<%@include file="../include/nav.jsp" %>
 	
-	<table id="equipmentList" border="1">
-	</table>
+	<article>
+			<div id="title_bar">
+				<p>경영 정보</p>
+				<h3>시설(비품) 관리</h3>
+			</div>
 	
+			
+			<div id="title_top">
+			</div>
+	
+			<section>
+				<div id="content">
+					<input type="button" value="시설(비품) 등록" onclick="location.href='../equipment/equipment_register_form'">
+					<input type="button" value="구매품 등록" onclick="location.href='../equipment/purchaseEquip_form'">
+					<input type="button" value="구매기록 조회" onclick="location.href='../equipment/purchase_list'">
+					
+					<table id="equipmentList" border="1">
+					</table>
+				</div>
+			</section>
+	</article>	
+<%@include file="../include/footer.jsp" %>	
 </body>
 </html>

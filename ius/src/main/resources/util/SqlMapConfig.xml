@@ -17,6 +17,7 @@
 		<typeAlias alias="purchaseVO" type="com.indieus.ius.vo.PurchaseVO"/>
 		<typeAlias alias="kinderVO" type="com.indieus.ius.vo.KinderVO"/>
 		<typeAlias alias="shuttleVO" type="com.indieus.ius.vo.ShuttleVO"/>
+		<typeAlias alias="classVO" type="com.indieus.ius.vo.ClassVO"/>
 	</typeAliases>
 
 </configuration>

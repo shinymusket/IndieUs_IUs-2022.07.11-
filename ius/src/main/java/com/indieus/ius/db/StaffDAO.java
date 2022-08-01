@@ -22,14 +22,14 @@ public class StaffDAO {
 	public List<StaffVO> selectStaffList() throws Exception {
 		return sqlsession.selectList("staff.select_staff_list");
 	}
-	
+
 	// 교직원 검색하기
 	public List<StaffVO> searchStaffList(Map<String, Object> map) throws Exception {
 		return sqlsession.selectList("staff.search_staff_list", map);
-		
+
 	}
-	
-	
+
+
 	// 교직원 등록을 위한 다음 시퀀스 값 조회
 	public int selectStaffSeq() throws Exception {
 		return sqlsession.selectOne("staff.select_staff_seq");
@@ -98,11 +98,17 @@ public class StaffDAO {
 		return sqlsession.insert("staff.insert_staff", sVo);
 	}
 
-	// 교직원 상세정보
+	// 교직원 상세정보(교사외)
 	public StaffVO selectStaffInfo(String staff_num) throws Exception {
 		return sqlsession.selectOne("staff.select_staff_info", staff_num);
 	}
 
+	// 교직원 상세정보(교사)
+	public StaffVO selectTeacherInfo(String staff_num) throws Exception {
+		return sqlsession.selectOne("staff.select_teacher_info", staff_num);
+	}
+	
+	
 	// 교직원 삭제
 	@Transactional
 	public int deleteStaff(String staff_num) throws Exception {
@@ -113,6 +119,11 @@ public class StaffDAO {
 	@Transactional
 	public int updateStaff(StaffVO sVo) throws Exception {
 		return sqlsession.update("staff.update_staff", sVo);
+	}
+	
+	// 교직원 사번으로 직무코드 가져오기
+	public String selectStaffClsByStaffNum(String staff_num) {
+		return sqlsession.selectOne("staff.select_staff_cls_by_staff_num", staff_num);
 	}
 
 

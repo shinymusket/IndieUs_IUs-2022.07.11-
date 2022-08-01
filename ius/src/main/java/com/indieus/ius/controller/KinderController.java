@@ -3,11 +3,10 @@ package com.indieus.ius.controller;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -40,7 +39,14 @@ public class KinderController {
 	public Object getKinderList() throws Exception {
 		return service.getKinderList();
 	}
-
+	
+	// 원생 정보 조회하기 Ajax
+	@ResponseBody
+	@RequestMapping(value = "/get_kinder_by_kinder_num", method = RequestMethod.POST)
+	public Object getKinderByKinderNum(@RequestParam Map<String, Object> map) throws Exception  {
+		return service.getKinderByKinderNum(map);
+	}
+	
 	// 원생 등록 폼으로 이동
 	@RequestMapping(value = "/kinder_register_form", method = RequestMethod.GET)
 	public String kinderRegisterForm(Model model) throws Exception {
@@ -82,7 +88,7 @@ public class KinderController {
 		rttr.addFlashAttribute("result", service.deleteKinderInfo(kinder_num));
 		return "redirect:./kinder_list";
 	}
-	
+
 	// 원생 정보 수정 페이지로 이동
 	@RequestMapping(value = "/update_form_kinder", method = RequestMethod.GET)
 	public String updateFormKinder(@RequestParam String kinder_num, Model model) throws Exception {
@@ -95,7 +101,7 @@ public class KinderController {
 		model.addAttribute("kinder", kinder);
 		return "kinder/kinderUpdateForm";
 	}
-	
+
 	// 원생 정보 수정
 	@RequestMapping(value = "/update_kinder", method = RequestMethod.POST)
 	public String updateKinder(@ModelAttribute KinderVO kVo, @RequestParam MultipartFile kinder_picFile, RedirectAttributes rttr) throws Exception {

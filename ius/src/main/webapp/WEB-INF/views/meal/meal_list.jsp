@@ -46,8 +46,8 @@
 <script type="text/javaScript" language="javascript"></script>
 </HEAD>
 <BODY>
-<%@include file="../css/header.jsp" %>
-<%@include file="../css/nav.jsp" %>
+<%@include file="../include/header.jsp" %>
+<%@include file="../include/nav.jsp" %>
 <article>
                 <!-- 왼쪽 소제목 박스 -->
                     <div id="title_bar">
@@ -244,6 +244,6 @@
 </div>
 </section>
 </article>
-<jsp:include page="../css/footer.jsp"/>
+<%@include file="../include/footer.jsp" %>
 </BODY>
 </HTML>
