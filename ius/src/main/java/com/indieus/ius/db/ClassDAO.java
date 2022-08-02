@@ -46,30 +46,30 @@ public class ClassDAO {
 	public int updateClass(ClassVO cVo) throws Exception {
 		return sqlsession.update("class.update_class", cVo);
 	}
-	
+
 	// 학급 정보 수정
 	@Transactional
 	public void updateClassInfo(Map<String, Object> map) throws Exception {
-		sqlsession.update("class.update_class_info", map);	
+		sqlsession.update("class.update_class_info", map);
 	}
-	
+
 	// 학급 정보 수정 후 학급 기본데이터가 하나도 없는 지 유무 체크
 	public int selectClassCntByStaffNum(String staff_num) throws Exception {
 		return sqlsession.selectOne("class.select_class_cnt_by_staff_num", staff_num);
 	}
-	
+
 	// 담당 반이 없던 교사가 담당반을 맡았을 때 기존의 Null 데이터 삭제
 	@Transactional
 	public int deleteNullClassByStaffNum(String staff_Num) throws Exception {
 		return sqlsession.delete("class.delete_null_class_by_staff_num", staff_Num);
 	}
-	
+
 	// 원생의 학급 반 담당 선생님이 변경되었을 때, 원생 정보의 담당 교사도 변경
 	@Transactional
 	public int updateHomeTeacherForKinder(KinderVO kVo) throws Exception {
 		return sqlsession.update("class.update_home_teacher_for_kinder", kVo);
 	}
-	
+
 	// 학급 정보 삭제 Ajax (삭제시 학급 번호(시퀀스X)와 학급 이름만 삭제)
 	@Transactional
 	public void deleteClassInfo(Map<String, Object> map) throws Exception {

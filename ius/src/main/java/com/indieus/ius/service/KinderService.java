@@ -14,7 +14,7 @@ public interface KinderService {
 	public Object getKinderList() throws Exception;
 
 	public Object getKinderByKinderNum(Map<String, Object> map) throws Exception;
-	
+
 	public Object getParentByKinderNum(Map<String, Object> map) throws Exception;
 
 	public int selectNextKinderSeq() throws Exception;

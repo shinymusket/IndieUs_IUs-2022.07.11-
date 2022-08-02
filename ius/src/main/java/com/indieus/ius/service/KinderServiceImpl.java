@@ -90,31 +90,31 @@ public class KinderServiceImpl implements KinderService {
 	public Object getKinderByKinderNum(Map<String, Object> map) throws Exception {
 		String kinder_num = (String) map.get("kinder_num");
 		KinderVO kinder = manager.selectKinderInfo(kinder_num);
-		
-		
+
+
 		// 부모님 정보 가져오기
 		Map<String, Object> info = new HashMap();
 		info.put("kinder_num", kinder_num);
 		info.put("relation", "부");
 		String fatherName = manager.selectParentNameByKinderNum(info);
-		
+
 		info.put("relation", "모");
 		String matherName = manager.selectParentNameByKinderNum(info);
-		
-		
+
+
 		Map<String, Object> data = new HashMap();
 		data.put("kinder", kinder);
 		data.put("fatherName", fatherName);
 		data.put("matherName", matherName);
 		return data;
 	}
-	
+
 	// 원생 학부모 정보 조회하기 Ajax
 	@Override
 	public Object getParentByKinderNum(Map<String, Object> map) throws Exception {
 		String relation = (String) map.get("relation");
 		String kinder_num  = (String) map.get("kinder_num");
-		
+
 		if (relation.equalsIgnoreCase("F")) {
 			relation = "부";
 		} else if (relation.equalsIgnoreCase("M")) {
@@ -124,9 +124,9 @@ public class KinderServiceImpl implements KinderService {
 		Map<String, Object> info = new HashMap();
 		info.put("relation", relation);
 		info.put("kinder_num", kinder_num);
-		
+
 		ParentVO parent = manager.selectParentInfoByKinderNum(info);
-		
+
 		Map<String, Object> data = new HashMap();
 		data.put("parent", parent);
 		return data;
@@ -169,17 +169,17 @@ public class KinderServiceImpl implements KinderService {
 		kVo.setKinder_picture(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
 
 		int result = manager.insertKinder(kVo);
-		
+
 		// 담임반 배정, 데이터 입력
 		String Staff_num = kVo.getStaff_num();
 		ClassVO cVo = manager.selectClassInfoByStaffNum(Staff_num);
-		
+
 		String kinder_num = kVo.getKinder_num();
-		
+
 		cVo.setKinder_num(kinder_num);
-		
+
 		manager.insertKinderHomeTeacherClass(cVo);
-		
+
 		return result;
 	}
 

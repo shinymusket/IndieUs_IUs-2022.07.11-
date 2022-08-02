@@ -8,11 +8,12 @@
 <meta charset="UTF-8">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
+
 	$(function(){
 		
-		$("#kinder_num").change(function(){
+		$("#relation").change(function(){
 			var kinder_num = $("#kinder_num").val();
-			var relation = $("relation").val();
+			var relation = $("#relation").val();
 			
 			$.ajax({
 				url : "/ius/parent/check_kinder_parent",
@@ -23,33 +24,34 @@
 				},
 				success: function(result) {
 					if (result.count > 0) {
-						$("#check").html('이미 해당 데이터가 존재합니다.');
+						$("#check").html('해당 데이터가 이미 존재합니다.');
 						$("#check").attr('color', 'red');
 					} else {
-						$("#check").html('입력 가능한 데이터 입니다.');
-						$("#check").attr('color', 'green');
+						$("#check").html('');
 					}
+					
 				}
 				
-			})
-			
-			
-			
+			})	
+		});
+		
+		$("#select").focus(function(){
+			$("#relation").val("").prop("selected", true);
+			$("#check").html('');
 		});
 		
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
+
 		$("#register").click(function(){
 			if ($("#kinder_num").val == "") {
 				alert("자녀 이름을 입력해주세요.");
+				return;
+			};
+			
+			if ($("#relation").val == "") {
+				alert("가족 관계를 선택해주세요.");
+				$("#relation").val.focus();
 				return;
 			};
 			
@@ -102,16 +104,17 @@
 									<input type="text" id="kinder_name" name="kinder_name" readonly="readonly">
 									<input type="hidden" id="kinder_num" name="kinder_num">
 									<input type="button" value="조회" id="select">
-									<font id="check" size="2"></font>
 								<td>
 							</tr>
 							<tr>
 								<th>가족 관계</th>
 								<td>
-									<select id="relation">
-										<option value="부" selected="selected">부</option>
+									<select id="relation" name="relation">
+										<option value="" selected="selected">-선택-</option>
+										<option value="부">부</option>
 										<option value="모">모</option>
 									</select>
+									<font id="check" size="2"></font>
 								</td>
 							</tr>
 							<tr>
@@ -135,7 +138,7 @@
 							<tr>
 								<th>성별</th>
 								<td>
-									<select id="parent_sex">
+									<select id="parent_sex" name="parent_sex">
 										<option value="M">남성</option>
 										<option value="F">여성</option>
 									</select>

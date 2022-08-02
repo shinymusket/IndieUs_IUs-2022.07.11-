@@ -9,7 +9,7 @@ public class ParentVO {
 	private String parent_sex;
 	private String parent_birth;
 	private String parent_name;
-	
+
 	public String getParent_num() {
 		return parent_num;
 	}
@@ -58,7 +58,7 @@ public class ParentVO {
 	public void setParent_name(String parent_name) {
 		this.parent_name = parent_name;
 	}
-	
-	
+
+
 
 }

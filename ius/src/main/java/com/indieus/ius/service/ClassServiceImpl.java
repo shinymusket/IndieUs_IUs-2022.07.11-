@@ -16,7 +16,7 @@ public class ClassServiceImpl implements ClassService {
 
 	@Inject
 	private ClassDAO manager;
-	
+
 	@Inject
 	private StaffDAO staffManager;
 
@@ -65,27 +65,27 @@ public class ClassServiceImpl implements ClassService {
 	@Override
 	public Object getHomeTeacherList() throws Exception {
 		List<StaffVO> homeTeacherList = selectClassHomeTeacher();
-		Map<String, Object> data = new HashMap();	
+		Map<String, Object> data = new HashMap();
 		data.put("homeTeacherList", homeTeacherList);
 		return data;
 	}
-	
+
 	// 학급 정보 수정 Ajax
 	@Override
 	public void updateClassInfo(Map<String, Object> map) throws Exception {
 		String old_staff_num = (String) map.get("old_staff_num");
 		String new_staff_num = (String) map.get("new_staff_num");
 		String class_number = (String) map.get("class_number");
-		
+
 		manager.updateClassInfo(map);
 		manager.deleteNullClassByStaffNum(new_staff_num);
-		
+
 		int check = manager.selectClassCntByStaffNum(old_staff_num);
-		
+
 		if (check == 0) { // 기본 데이터가 하나도 없다면 형식상 데이터 추가
 			staffManager.insertStaffClassInfo(old_staff_num);
 		}
-		
+
 		// 학생 담당교사 데이터 수정
 		// 학생 명단
 		List<KinderVO> classKinder = manager.selectClassKinderByClassNum(class_number);
@@ -95,16 +95,16 @@ public class ClassServiceImpl implements ClassService {
 				manager.updateHomeTeacherForKinder(element);
 			}
 		}
-		
-	
-		
+
+
+
 	}
-	
+
 	// 학급 정보 삭제 Ajax (삭제시 학급 번호(시퀀스X)와 학급 이름만 삭제)
 	@Override
 	public void deleteClassInfo(Map<String, Object> map) throws Exception {
 		manager.deleteClassInfo(map);
-		
+
 	}
 
 }

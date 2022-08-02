@@ -19,14 +19,14 @@ public class KinderVO {
 	private String class_name;
 	private String father_name;
 	private String mather_name;
-	
+
 	private String kinder_sex;
 	private String kinder_birth;
 	private String kinder_age;
 
 	private String staff_name;
 
-	
+
 	public String getFather_name() {
 		return father_name;
 	}
@@ -63,7 +63,7 @@ public class KinderVO {
 	public void setKinder_retireDate(String kinder_retireDate) {
 		this.kinder_retireDate = kinder_retireDate;
 	}
-	
+
 
 	public String getShuttle_num() {
 		return shuttle_num;

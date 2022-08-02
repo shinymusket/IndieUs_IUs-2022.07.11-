@@ -14,6 +14,7 @@ function view(kinder_num) {
 	opener.frm.kinder_name.value = kinder_name;
 	self.close();
 	
+	check();
 };
 
 

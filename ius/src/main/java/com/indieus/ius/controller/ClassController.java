@@ -63,21 +63,21 @@ public class ClassController {
 		rttr.addFlashAttribute("result", service.updateClass(cVo));
 		return "redirect:./class_list";
 	}
-	
+
 	// 학급 정보 수정을 위한 담임교사 명단 가져오기 Ajax
 	@ResponseBody
 	@RequestMapping(value = "/get_home_teacher_list", method = RequestMethod.POST)
 	public Object getHomeTeacherList() throws Exception {
 		return service.getHomeTeacherList();
 	}
-	
+
 	// 학급 정보 수정 Ajax
 	@ResponseBody
 	@RequestMapping(value = "/update_class_info", method = RequestMethod.POST)
 	public void updateClassInfo(@RequestParam Map<String, Object> map) throws Exception {
 		service.updateClassInfo(map);
 	}
-	
+
 	// 학급 정보 삭제 Ajax (삭제시 학급 번호(시퀀스X)와 학급 이름만 삭제)
 	@ResponseBody
 	@RequestMapping(value = "/delete_class_info", method = RequestMethod.POST)
