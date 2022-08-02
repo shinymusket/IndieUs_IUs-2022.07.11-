@@ -228,8 +228,8 @@ public class StaffServiceImpl implements StaffService {
 
 		StaffVO staff = new StaffVO();
 		staff = manager.selectStaffInfo(staff_num);
-		
-		
+
+
 		String rrn1 = staff.getStaff_rrn1();
 		String rrn2 = staff.getStaff_rrn2();
 
@@ -271,8 +271,8 @@ public class StaffServiceImpl implements StaffService {
 		String age = Integer.toString(ageNum);
 
 		staff.setStaff_age(age);
-		
-		
+
+
 		Map<String, Object> data = new HashMap();
 		data.put("staff", staff);
 		return data;
@@ -405,10 +405,10 @@ public class StaffServiceImpl implements StaffService {
 		StaffIdVO sIvo = createTempPwd(sVo);
 		manager.insertStaffId(sIvo);
 		sendMail(sVo, sIvo);
-		
+
 		String staff_num = sVo.getStaff_num();
 		int result = manager.insertStaff(sVo);
-		
+
 		// 담당 반 데이터 삽입.
 		manager.insertStaffClassInfo(staff_num);
 		return result;

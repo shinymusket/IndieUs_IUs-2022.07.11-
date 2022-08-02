@@ -13,7 +13,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.indieus.ius.db.KinderDAO;
 import com.indieus.ius.utils.UploadFileUtils;
+import com.indieus.ius.vo.ClassVO;
 import com.indieus.ius.vo.KinderVO;
+import com.indieus.ius.vo.ParentVO;
 import com.indieus.ius.vo.ShuttleVO;
 import com.indieus.ius.vo.StaffVO;
 
@@ -88,8 +90,45 @@ public class KinderServiceImpl implements KinderService {
 	public Object getKinderByKinderNum(Map<String, Object> map) throws Exception {
 		String kinder_num = (String) map.get("kinder_num");
 		KinderVO kinder = manager.selectKinderInfo(kinder_num);
+		
+		
+		// 부모님 정보 가져오기
+		Map<String, Object> info = new HashMap();
+		info.put("kinder_num", kinder_num);
+		info.put("relation", "부");
+		String fatherName = manager.selectParentNameByKinderNum(info);
+		
+		info.put("relation", "모");
+		String matherName = manager.selectParentNameByKinderNum(info);
+		
+		
 		Map<String, Object> data = new HashMap();
 		data.put("kinder", kinder);
+		data.put("fatherName", fatherName);
+		data.put("matherName", matherName);
+		return data;
+	}
+	
+	// 원생 학부모 정보 조회하기 Ajax
+	@Override
+	public Object getParentByKinderNum(Map<String, Object> map) throws Exception {
+		String relation = (String) map.get("relation");
+		String kinder_num  = (String) map.get("kinder_num");
+		
+		if (relation.equalsIgnoreCase("F")) {
+			relation = "부";
+		} else if (relation.equalsIgnoreCase("M")) {
+			relation = "모";
+		}
+
+		Map<String, Object> info = new HashMap();
+		info.put("relation", relation);
+		info.put("kinder_num", kinder_num);
+		
+		ParentVO parent = manager.selectParentInfoByKinderNum(info);
+		
+		Map<String, Object> data = new HashMap();
+		data.put("parent", parent);
 		return data;
 	}
 
@@ -127,12 +166,21 @@ public class KinderServiceImpl implements KinderService {
 			fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
 		}
 
-//		System.out.println(imgUploadPath);
-//		System.out.println(ymdPath);
-
 		kVo.setKinder_picture(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
 
-		return manager.insertKinder(kVo);
+		int result = manager.insertKinder(kVo);
+		
+		// 담임반 배정, 데이터 입력
+		String Staff_num = kVo.getStaff_num();
+		ClassVO cVo = manager.selectClassInfoByStaffNum(Staff_num);
+		
+		String kinder_num = kVo.getKinder_num();
+		
+		cVo.setKinder_num(kinder_num);
+		
+		manager.insertKinderHomeTeacherClass(cVo);
+		
+		return result;
 	}
 
 
@@ -231,6 +279,8 @@ public class KinderServiceImpl implements KinderService {
 
 		return manager.updateKinder(kVo);
 	}
+
+
 
 
 

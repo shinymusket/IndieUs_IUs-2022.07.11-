@@ -19,9 +19,13 @@
 		SELECT * FROM shuttle
 	</select>
 	
-	<!-- 원생 등록을 위한 담임 선생님 리스트 가져오기(버스기사, 영양사 교직원 제외)  -->
+	<!-- 원생 등록을 위한 담임 선생님 리스트 가져오기(담당 학급이 없는 선생님, 버스기사, 영양사 교직원 제외)  -->
 	<select id="select_home_teacher_for_kinder" resultType="staffVO">
-		SELECT * FROM Staff WHERE staff_cls NOT IN (3,4)
+		SELECT DISTINCT s.staff_num, staff_cls, staff_name
+		FROM Staff s, Class c 
+		WHERE s.staff_num = c.staff_num
+		AND class_number IS NOT NULL
+		AND staff_cls NOT IN (3,4)
 	</select>
 	
 	<!-- 원생 등록  -->
@@ -29,13 +33,26 @@
 		INSERT INTO kinder VALUES(kinder_seq.nextval, #{shuttle_num}, #{staff_num}, #{kinder_regYn}, #{kinder_name}, #{kinder_rrn1}, #{kinder_rrn2}, #{kinder_addr}, #{kinder_zipcode}, #{kinder_tel}, #{kinder_regdate}, #{kinder_retireDate}, #{kinder_picture})
 	</insert>
 	
+	<!-- 담임교사 반 배정을 위한 담임교사 반 정보 가져오기 -->
+	<select id="select_class_info_by_staff_num" parameterType="String" resultType="classVO">
+		SELECT DISTINCT staff_num, class_name, class_number FROM class WHERE staff_num = #{staff_num}
+	</select>
+	
+	
+	<!-- 원생 등록시 담임교사 반 배정 -->
+	<insert id="insert_kinder_home_teacher_class" parameterType="classVO">
+		INSERT INTO class VALUES(class_seq.nextval, #{staff_num}, #{kinder_num}, #{class_name}, #{class_number})
+	</insert>
+	
+	
 	<!-- 원생 검색 -->
 	<select id="search_kinder_list" parameterType="hashmap" resultType="kinderVO">
-		SELECT kinder_num, shuttle_num, staff_name, kinder_name, kinder_regYn, kinder_rrn1, kinder_rrn2, kinder_addr, kinder_zipcode, kinder_tel, TO_CHAR(kinder_regdate, 'YYYY-MM-DD') AS "kinder_regdate", kinder_retireDate
-		FROM kinder k, staff s
+		SELECT k.kinder_num, shuttle_num, staff_name, kinder_name, class_name, kinder_regYn, kinder_rrn1, kinder_rrn2, kinder_addr, kinder_zipcode, kinder_tel, TO_CHAR(kinder_regdate, 'YYYY-MM-DD') AS "kinder_regdate", kinder_retireDate
+		FROM kinder k, staff s, class c
 		WHERE k.staff_num = s.staff_num
+		AND c.kinder_num = k.kinder_num
 		<if test='searchType == "kinder_num"'>
-		AND kinder_num = #{searchContent}
+		AND k.kinder_num = #{searchContent}
 		</if>
 		<if test='searchType == "staff_name"'>
 		AND staff_name = #{searchContent}
@@ -60,11 +77,24 @@
 	<!-- 원생 정보 조회 -->
 	<select id="select_kinder_info" parameterType="String" resultType="kinderVO">
 		SELECT k.kinder_num, kinder_picture, kinder_name, class_name, s.staff_num, staff_name, shuttle_num, kinder_rrn1, kinder_rrn2,
-		kinder_addr, kinder_zipcode, kinder_tel, kinder_regdate, kinder_retireDate, kinder_regYn
+		kinder_addr, kinder_zipcode, kinder_tel, TO_CHAR(kinder_regdate, 'YYYY-MM-DD') AS "kinder_regdate", 
+		TO_CHAR(kinder_retireDate, 'YYYY-MM-DD') AS "kinder_retireDate" , kinder_regYn
 		FROM kinder k, staff s, class c
 		WHERE k.staff_num = s.staff_num
 		AND k.kinder_num = c.kinder_num
 		AND k.kinder_num = #{kinder_num}
+	</select>
+	
+	<!-- 원생 정보 조회시 부모님 이름 가져오기  -->
+	<select id="select_parent_name_by_kinder_num" parameterType="hashmap" resultType="String">
+		SELECT parent_name FROM parent WHERE kinder_num = #{kinder_num} AND relation = #{relation}
+	</select>
+	
+	<!-- 부모님 정보 가져오기 -->
+	<select id="select_parent_info_by_kinder_num" parameterType="hashmap" resultType="parentVO">
+		SELECT parent_num, kinder_num, relation, parent_tel, parent_email, parent_sex, TO_CHAR(parent_birth, 'YYYY-MM-DD') AS "parent_birth", parent_name
+		FROM parent
+		WHERE kinder_num = #{kinder_num} AND relation = #{relation}
 	</select>
 	
 	<!-- 원생 정보 삭제 -->

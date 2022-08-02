@@ -17,7 +17,28 @@ public class KinderVO {
 	private String kinder_picture;
 
 	private String class_name;
+	private String father_name;
+	private String mather_name;
+	
+	private String kinder_sex;
+	private String kinder_birth;
+	private String kinder_age;
 
+	private String staff_name;
+
+	
+	public String getFather_name() {
+		return father_name;
+	}
+	public void setFather_name(String father_name) {
+		this.father_name = father_name;
+	}
+	public String getMather_name() {
+		return mather_name;
+	}
+	public void setMather_name(String mather_name) {
+		this.mather_name = mather_name;
+	}
 	public String getClass_name() {
 		return class_name;
 	}
@@ -42,12 +63,7 @@ public class KinderVO {
 	public void setKinder_retireDate(String kinder_retireDate) {
 		this.kinder_retireDate = kinder_retireDate;
 	}
-	private String kinder_sex;
-	private String kinder_birth;
-	private String kinder_age;
-
-	private String staff_name;
-
+	
 
 	public String getShuttle_num() {
 		return shuttle_num;

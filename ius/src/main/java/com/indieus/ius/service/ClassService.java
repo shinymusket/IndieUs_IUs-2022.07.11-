@@ -11,10 +11,17 @@ public interface ClassService {
 	public Object getClassList() throws Exception;
 
 	public Object getClassByClassNum(Map<String, Object> map) throws Exception;
-	
+
 	public int selectClassLastNumber() throws Exception;
-	
+
 	public List<StaffVO> selectClassHomeTeacher() throws Exception;
-	
+
 	public int updateClass(ClassVO cVo) throws Exception;
+	
+	public Object getHomeTeacherList() throws Exception;
+	
+	public void updateClassInfo(Map<String, Object> map) throws Exception;
+	
+	public void deleteClassInfo(Map<String, Object> map) throws Exception;
 }
+

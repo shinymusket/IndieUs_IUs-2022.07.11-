@@ -265,7 +265,7 @@
 						</tr>
 						<tr>
 							<td colspan="4">
-								<input type="button" id="register" value="등록"> <!-- 추후 유효성 검사 구현 / 그런데 유효성 검사가 꼭 필요할지? 주민등록번호 입력값 유효성 검사가 꼭 필요해보인다.-->
+								<input type="button" id="register" value="등록"> 
 								<input type="reset" value="취소">
 							</td>
 						</tr>

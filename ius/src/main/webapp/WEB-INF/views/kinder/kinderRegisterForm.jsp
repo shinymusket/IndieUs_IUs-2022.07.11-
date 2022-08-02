@@ -92,7 +92,7 @@
 							<tr>
 								<th>원생 번호</th>
 								<td>
-									${nextKinderSeq}
+									<input type="text" id="kinder_num" name="kinder_num" value="${nextKinderSeq}" readonly="readonly">
 								</td>
 							</tr>
 							<tr>

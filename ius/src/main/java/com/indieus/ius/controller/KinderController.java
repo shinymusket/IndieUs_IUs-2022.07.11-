@@ -45,7 +45,15 @@ public class KinderController {
 	public Object getKinderByKinderNum(@RequestParam Map<String, Object> map) throws Exception  {
 		return service.getKinderByKinderNum(map);
 	}
-
+	
+	// 원생 학부모 정보 조회하기 Ajax
+	@ResponseBody
+	@RequestMapping(value = "get_parent_by_kinder_num", method = RequestMethod.POST)
+	public Object getParentByKinderNum(@RequestParam Map<String, Object> map) throws Exception {
+		return service.getParentByKinderNum(map);
+	}
+	
+	
 	// 원생 등록 폼으로 이동
 	@RequestMapping(value = "/kinder_register_form", method = RequestMethod.GET)
 	public String kinderRegisterForm(Model model) throws Exception {

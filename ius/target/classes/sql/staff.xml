@@ -23,7 +23,7 @@
 		<if test="staff_cls != null and staff_cls != ''">
 			AND s.staff_cls = #{staff_cls}
 		</if>	
-		ORDER BY staff_num DESC
+		ORDER BY staff_num ASC
 	</select>
 	
 	

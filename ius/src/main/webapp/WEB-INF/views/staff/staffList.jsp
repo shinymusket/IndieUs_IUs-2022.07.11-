@@ -123,6 +123,7 @@ getList();
 						output += "</tr>";
 					});
 					
+					$("#staffInfo").hide();
 					$("#staffList").html(output);
 				}
 				
