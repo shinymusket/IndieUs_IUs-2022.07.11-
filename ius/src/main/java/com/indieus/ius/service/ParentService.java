@@ -13,10 +13,10 @@ public interface ParentService {
 	public Object checkKinderParent(Map<String, Object> map) throws Exception;
 
 	public int insertParent(ParentVO pVo) throws Exception;
-	
+
 	public Object getKinderParentInfo(Map<String, Object> map) throws Exception;
-	
+
 	public void deleteParentInfo(Map<String, Object> map) throws Exception;
-	
+
 	public void updateParentInfo(Map<String, Object> map) throws Exception;
 }

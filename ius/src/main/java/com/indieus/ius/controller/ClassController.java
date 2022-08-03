@@ -54,8 +54,8 @@ public class ClassController {
 		} catch(NullPointerException e) {
 			classNumber = 1;
 		}
-		
-		
+
+
 		List<StaffVO> homeTeacherList = service.selectClassHomeTeacher();
 
 		model.addAttribute("classNumber", classNumber);

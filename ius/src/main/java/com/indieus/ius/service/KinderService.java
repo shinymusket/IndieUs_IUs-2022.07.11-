@@ -22,7 +22,9 @@ public interface KinderService {
 	public List<ShuttleVO> selectAllShuttleList() throws Exception;
 
 	public List<StaffVO> selectHomeTeacherForKinder() throws Exception;
-
+	
+	public Object setAllergyInfo(Map<String, Object> map) throws Exception;
+	
 	public int insertKinder(KinderVO kVo, MultipartFile kinder_picFile) throws Exception;
 
 	public Object searchKinderList(Map<String, Object> map) throws Exception;
@@ -33,4 +35,5 @@ public interface KinderService {
 
 	public int updateKinder(KinderVO kVo, MultipartFile kinder_picFile) throws Exception;
 
+	
 }

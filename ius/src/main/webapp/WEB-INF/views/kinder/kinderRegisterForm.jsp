@@ -65,6 +65,11 @@
 				return;
 			};
 			
+			if ($("#allergy_code").val() == "") {
+				alert("알러지 정보를 입력해주세요.");
+				$("#allergy_code").val().focus();
+				return;
+			}
 			
 			$("form").submit();
 			
@@ -191,9 +196,9 @@
 								</td>
 							</tr>
 							<tr>
-								<th>보유 알러지 정보</th>
+								<th>보유 알러지 코드</th>
 								<td>
-									<input type="text" name="allergy_info" readonly="readonly">
+									<input type="text" id="allergy_code" name="allergy_code" readonly="readonly">
 									<input type="button" value="입력" id="allergySel">
 								</td>
 							</tr>

@@ -20,7 +20,7 @@ public class AllergyInfoVO {
 	 private String a16;
 	 private String a17;
 	 private String a18;
-	 
+
 	public int getAllergy_code() {
 		return allergy_code;
 	}
@@ -135,6 +135,6 @@ public class AllergyInfoVO {
 	public void setA18(String a18) {
 		this.a18 = a18;
 	}
-	 
-	 
+
+
 }

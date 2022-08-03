@@ -15,10 +15,10 @@ public class ParentServiceImpl implements ParentService {
 
 	@Inject
 	private ParentDAO manager;
-	
+
 	@Inject
 	private KinderDAO kinderManager;
-	
+
 
 	// 원생 명단(학부모 성명 포함된) 리스트 가져오기 Ajax
 	@Override
@@ -32,23 +32,23 @@ public class ParentServiceImpl implements ParentService {
 				KinderVO kVo = new KinderVO();
 				String father_name;
 				String mather_name;
-				
+
 				Map<String, Object> info = new HashMap();
 				info.put("kinder_num", kinder_num);
-				info.put("relation", "부");		
+				info.put("relation", "부");
 				father_name = kinderManager.selectParentNameByKinderNum(info);
 				info.put("relation", "모");
 				mather_name = kinderManager.selectParentNameByKinderNum(info);
-			
+
 				if (father_name == null) {
 					father_name = "";
 				}
-				
+
 				if (mather_name == null) {
 					mather_name = "";
 				}
-				
-				
+
+
 				element.setFather_name(father_name);
 				element.setMather_name(mather_name);
 
@@ -95,31 +95,31 @@ public class ParentServiceImpl implements ParentService {
 	public Object getKinderParentInfo(Map<String, Object> map) throws Exception {
 		String kinder_num = (String) map.get("kinder_num");
 		KinderVO kinderInfo = manager.selectKinderInfoByKinderNum(kinder_num);
-		
+
 		Map<String, Object> info = new HashMap();
 		info.put("kinder_num", kinder_num);
 		info.put("relation", "부");
-		
+
 		ParentVO fatherInfo = kinderManager.selectParentInfoByKinderNum(info);
-		
+
 		info.put("relation", "모");
 		ParentVO matherInfo = kinderManager.selectParentInfoByKinderNum(info);
-		
-		
+
+
 		Map<String, Object> data = new HashMap();
 		data.put("kinderInfo", kinderInfo);
 		data.put("fatherInfo", fatherInfo);
 		data.put("matherInfo", matherInfo);
-		
+
 		return data;
 	}
-	
+
 	// 학부모 정보 삭제 Ajax
 	@Override
 	public void deleteParentInfo(Map<String, Object> map) throws Exception {
 		manager.deleteParentInfo(map);
 	}
-	
+
 	// 학부모 정보 수정 Ajax
 	@Override
 	public void updateParentInfo(Map<String, Object> map) throws Exception {

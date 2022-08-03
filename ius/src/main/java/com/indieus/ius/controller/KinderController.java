@@ -27,10 +27,10 @@ public class KinderController {
 
 	@Autowired
 	private KinderServiceImpl service;
-	
+
 	@Autowired
 	private MealMenuServiceImpl mealService;
-	
+
 	// 원생 관리 리스트로 이동
 	@RequestMapping(value = "/kinder_list", method = RequestMethod.GET)
 	public String list() throws Exception {
@@ -71,17 +71,20 @@ public class KinderController {
 		model.addAttribute("homeTeacherList", homeTeacherList);
 		return "kinder/kinderRegisterForm";
 	}
-	
+
 	// 원생 등록 - 알러지 정보 입력 페이지 이동
 	@RequestMapping(value = "/select_allergy", method = RequestMethod.GET)
-	public String selectAllergy(Model model) throws Exception {
-		List<AllergyVO> list = mealService.allergyInfo();
-		model.addAttribute("allergyList", list);
+	public String selectAllergy() throws Exception {
 		return "kinder/selectAllergy";
 	}
 	
-	
-	
+	// 원생 등록 - 알러지 코드 생성 Ajax
+	@ResponseBody
+	@RequestMapping(value = "/set_allergy_info", method = RequestMethod.POST)
+	public Object setAllergyInfo(@RequestParam Map<String, Object> map) throws Exception {
+		return service.setAllergyInfo(map);
+	}
+
 	// 원생 등록
 	@RequestMapping(value = "/kinder_register", method = RequestMethod.POST)
 	public String kinderRegsiter(@ModelAttribute KinderVO kVo, @RequestParam MultipartFile kinder_picFile, RedirectAttributes rttr) throws Exception {
