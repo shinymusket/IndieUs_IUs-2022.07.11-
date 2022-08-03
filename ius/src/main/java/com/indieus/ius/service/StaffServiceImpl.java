@@ -393,14 +393,11 @@ public class StaffServiceImpl implements StaffService {
 		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
 		String fileName = null;
 
-		if(file != null) {
+		if(file.getSize() > 0 ) {
 			fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
-		} else {
-			fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
-		}
-
-		sVo.setStaff_picture(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
-
+			sVo.setStaff_picture(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+		} 
+	
 		String staff_id = sVo.getStaff_id();
 		StaffIdVO sIvo = createTempPwd(sVo);
 		manager.insertStaffId(sIvo);

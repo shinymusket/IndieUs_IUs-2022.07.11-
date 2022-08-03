@@ -19,6 +19,7 @@
 		<typeAlias alias="shuttleVO" type="com.indieus.ius.vo.ShuttleVO"/>
 		<typeAlias alias="classVO" type="com.indieus.ius.vo.ClassVO"/>
 		<typeAlias alias="parentVO" type="com.indieus.ius.vo.ParentVO"/>
+		<typeAlias alias="allergyInfoVO" type="com.indieus.ius.vo.AllergyInfoVO"/>
 	</typeAliases>
 
 </configuration>

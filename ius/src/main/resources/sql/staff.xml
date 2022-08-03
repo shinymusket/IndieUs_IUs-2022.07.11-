@@ -85,7 +85,14 @@
 	<!-- 교직원 등록 -->
 	<insert id="insert_staff" parameterType="staffVO">
 		INSERT INTO staff VALUES (staff_seq.NEXTVAL, #{staff_cls}, #{staff_id}, #{staff_name}, #{staff_rrn1}, #{staff_rrn2}, #{staff_addr},
-    #{staff_zipcode}, #{staff_tel}, TO_DATE(#{staff_hireD},'YYYY-MM-DD'), TO_DATE(#{staff_retireD},'YYYY-MM-DD'), #{staff_workYn}, #{staff_salary}, #{staff_email}, #{staff_picture}) 	
+    #{staff_zipcode}, #{staff_tel}, TO_DATE(#{staff_hireD},'YYYY-MM-DD'), TO_DATE(#{staff_retireD},'YYYY-MM-DD'), #{staff_workYn}, #{staff_salary}, #{staff_email}
+    	<if test="staff_picture != null and staff_picture != ''">
+   		, #{staff_picture})
+    	</if>
+    	<if test="staff_picture == null or staff_picture == ''">
+   		, NULL)
+    	</if>
+	
 	</insert>
 	
 	<!-- 교직원 담당 반 정보 등록 null -->

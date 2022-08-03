@@ -14,7 +14,7 @@
 				if(this.files && this.files[0]) {
 					var reader = new FileReader;
 					reader.onload = function(data) {
-						$(".select_img img").attr("src", data.target.result).width(500);
+						$(".select_img img").attr("src", data.target.result).width(94.4);
 					}
 					reader.readAsDataURL(this.files[0]);
 				}	
@@ -22,6 +22,12 @@
 		
 			var currentDate  = new Date().toISOString().substring(0, 10);
 			$("#kinder_regdate").val(currentDate);
+			
+			$("#allergySel").click(function(){
+				url = "./select_allergy";
+				window.open(url, "_blank_1", "toolbar=no, menubar=no, scrollbar=yes, resizeable=no, width=300, height=500");
+			});
+
 			
 		    $("#register").click(function(){
 		    	
@@ -182,6 +188,13 @@
 									<div class="select_img">
 										<img src="">
 									</div>
+								</td>
+							</tr>
+							<tr>
+								<th>보유 알러지 정보</th>
+								<td>
+									<input type="text" name="allergy_info" readonly="readonly">
+									<input type="button" value="입력" id="allergySel">
 								</td>
 							</tr>
 							<tr>

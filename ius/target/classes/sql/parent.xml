@@ -37,4 +37,25 @@
 		INSERT INTO parent VALUES(parent_seq.nextval, #{kinder_num}, #{relation}, #{parent_tel}, #{parent_email}, #{parent_sex}, TO_DATE(#{parent_birth}, 'YYYY-MM-DD'), #{parent_name})
 	</insert>
 	
+	<!-- 원생 번호로 간략한 원생 정보 가져오기 -->
+	<select id="select_kinder_info_by_kinder_num" parameterType="String" resultType="kinderVO">
+		SELECT k.kinder_name, class_name, staff_name
+		FROM kinder k, class c, staff s
+		WHERE k.kinder_num = c.kinder_num
+		AND k.staff_num = s.staff_num
+		AND k.kinder_num = #{kinder_num}
+	</select>
+	
+	<!-- 학부모 정보 삭제 -->
+	<delete id="delete_parent_info" parameterType="hashmap">
+		DELETE FROM parent WHERE kinder_num = #{kinder_num} AND relation = #{relation}
+	</delete>
+	
+	<!-- 학부모 정보 수정 -->
+	<update id="update_parent_info" parameterType="hashmap">
+		UPDATE parent SET parent_name = #{parent_name}, parent_tel = #{parent_tel}, parent_email = #{parent_email}, parent_sex = #{parent_sex}, parent_birth = #{parent_birth} WHERE kinder_num = #{kinder_num} AND relation = #{relation}
+	</update>
+	
+	
+	
 </mapper>

@@ -25,8 +25,16 @@ public class KinderVO {
 	private String kinder_age;
 
 	private String staff_name;
+	private String allergy_info;
+	
 
-
+	public String getAllergy_info() {
+		return allergy_info;
+	}
+	public void setAllergy_info(String allergy_info) {
+		this.allergy_info = allergy_info;
+	}
+	
 	public String getFather_name() {
 		return father_name;
 	}

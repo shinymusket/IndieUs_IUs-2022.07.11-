@@ -13,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.indieus.ius.db.KinderDAO;
 import com.indieus.ius.utils.UploadFileUtils;
-import com.indieus.ius.vo.ClassVO;
+import com.indieus.ius.vo.AllergyInfoVO;
 import com.indieus.ius.vo.KinderVO;
 import com.indieus.ius.vo.ParentVO;
 import com.indieus.ius.vo.ShuttleVO;
@@ -101,7 +101,6 @@ public class KinderServiceImpl implements KinderService {
 		info.put("relation", "모");
 		String matherName = manager.selectParentNameByKinderNum(info);
 
-
 		Map<String, Object> data = new HashMap();
 		data.put("kinder", kinder);
 		data.put("fatherName", fatherName);
@@ -160,27 +159,98 @@ public class KinderServiceImpl implements KinderService {
 		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
 		String fileName = null;
 
-		if(file != null) {
+		if(file.getSize() > 0 ) {
 			fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
-		} else {
-			fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+			kVo.setKinder_picture(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+		} 
+
+		// 알러지 정보 null인 경우 체크해야함
+		String allergyInfo = kVo.getAllergy_info();
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		System.out.println(allergyInfo);
+		
+		String[] allergyArray = allergyInfo.split(",");
+		
+		AllergyInfoVO aIvO = new AllergyInfoVO();
+		
+		for (int i = 0; i < allergyArray.length; i++) {
+			
+			if (allergyArray[i].equals("1")) {
+				aIvO.setA1("Y");
+			} else if (allergyArray[i].equals("2")) {
+				aIvO.setA2("Y");
+			} else if (allergyArray[i].equals("3")) {
+				aIvO.setA3("Y");
+			} else if (allergyArray[i].equals("4")) {
+				aIvO.setA4("Y");
+			} else if (allergyArray[i].equals("5")) {
+				aIvO.setA5("Y");
+			} else if (allergyArray[i].equals("6")) {
+				aIvO.setA6("Y");
+			} else if (allergyArray[i].equals("7")) {
+				aIvO.setA7("Y");
+			} else if (allergyArray[i].equals("8")) {
+				aIvO.setA8("Y");
+			} else if (allergyArray[i].equals("9")) {
+				aIvO.setA9("Y");
+			} else if (allergyArray[i].equals("10")) {
+				aIvO.setA10("Y");
+			} else if (allergyArray[i].equals("11")) {
+				aIvO.setA11("Y");
+			} else if (allergyArray[i].equals("12")) {
+				aIvO.setA12("Y");
+			} else if (allergyArray[i].equals("13")) {
+				aIvO.setA13("Y");
+			} else if (allergyArray[i].equals("14")) {
+				aIvO.setA14("Y");
+			} else if (allergyArray[i].equals("15")) {
+				aIvO.setA15("Y");
+			} else if (allergyArray[i].equals("16")) {
+				aIvO.setA16("Y");
+			} else if (allergyArray[i].equals("17")) {
+				aIvO.setA17("Y");
+			} else if (allergyArray[i].equals("18")) {
+				aIvO.setA18("Y");
+			} 
+
 		}
+		
+		
+		
+		
+		
+		
 
-		kVo.setKinder_picture(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+//		int result = manager.insertKinder(kVo);
+//
+//		// 담임반 배정, 데이터 입력
+//		String Staff_num = kVo.getStaff_num();
+//		
+//		// 담임반 정보 가져오기 staff_num, class_num, class_name
+//		ClassVO cVo = manager.selectClassInfoByStaffNum(Staff_num);
+//		
+//		int check = manager.selectCntClassNumberByStaffNum(Staff_num);
+//			String kinder_num = kVo.getKinder_num();
+//			cVo.setKinder_num(kinder_num);
+//			
+//		if (check == 0) { // 반의 최초 학생일 경우
+//			manager.updateClassKinderNum(cVo);
+//		} else {
+//			manager.insertKinderHomeTeacherClass(cVo);
+//		}
 
-		int result = manager.insertKinder(kVo);
-
-		// 담임반 배정, 데이터 입력
-		String Staff_num = kVo.getStaff_num();
-		ClassVO cVo = manager.selectClassInfoByStaffNum(Staff_num);
-
-		String kinder_num = kVo.getKinder_num();
-
-		cVo.setKinder_num(kinder_num);
-
-		manager.insertKinderHomeTeacherClass(cVo);
-
-		return result;
+		
+		return 0;
 	}
 
 
@@ -251,6 +321,7 @@ public class KinderServiceImpl implements KinderService {
 	// 원생 정보 삭제
 	@Override
 	public int deleteKinderInfo(String kinder_num) throws Exception {
+		manager.deleteKinderNumFromClass(kinder_num);
 		return manager.deleteKinderInfo(kinder_num);
 	}
 

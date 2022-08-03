@@ -46,11 +46,23 @@ public class KinderDAO {
 		return sqlsession.insert("kinder.insert_kinder", kVo);
 	}
 
+	// 담임교사반 최초 배정 학생인지 확인
+	public int selectCntClassNumberByStaffNum(String staff_num) throws Exception {
+		return sqlsession.selectOne("kinder.select_cnt_class_number_by_staff_num", staff_num);
+	}
+	
 	// 담임교사 반 배정을 위한 담임 교사 반 정보 가져오기
 	public ClassVO selectClassInfoByStaffNum(String staff_num) throws Exception {
 		return sqlsession.selectOne("kinder.select_class_info_by_staff_num", staff_num);
 	}
-
+	
+	// 담임교사반 최초 배정 학생인 경우 기존의 Null 데이터를 활용
+	@Transactional
+	public void updateClassKinderNum(ClassVO cVo) throws Exception {
+		sqlsession.update("kinder.update_class_kinder_num", cVo);
+	}
+	
+	
 	// 담임교사 반 배정
 	@Transactional
 	public int insertKinderHomeTeacherClass(ClassVO cVo) throws Exception {
@@ -77,7 +89,13 @@ public class KinderDAO {
 		return sqlsession.selectOne("kinder.select_parent_info_by_kinder_num", info);
 	}
 
-
+	
+	// 원생 정보 삭제전 원생의 학급 데이터 삭제
+	@Transactional
+	public void deleteKinderNumFromClass(String kinder_num) throws Exception {
+		sqlsession.delete("kinder.delete_kinder_num_from_class", kinder_num);
+	}
+	
 	// 원생 정보 삭제
 	@Transactional
 	public int deleteKinderInfo(String kinder_num) throws Exception {

@@ -59,12 +59,34 @@ public class ParentController {
 	public Object checkKinderParent(@RequestParam Map<String, Object> map) throws Exception {
 		return service.checkKinderParent(map);
 	}
-	
+
 	// 학부모 정보 등록
 	@RequestMapping(value = "/parent_register", method = RequestMethod.POST)
 	public String parentRegister(@ModelAttribute ParentVO pVo, RedirectAttributes rttr) throws Exception {
 		rttr.addFlashAttribute("result", service.insertParent(pVo));
 		return "redirect:./parent_list";
 	}
+	
+	// 원생 별 학부모 정보 조회 Ajax
+	@ResponseBody
+	@RequestMapping(value = "/get_kinder_parent_info", method = RequestMethod.POST)
+	public Object getKinderParentInfo(@RequestParam Map<String, Object> map) throws Exception {
+		return service.getKinderParentInfo(map);
+	}
+	
+	// 학부모 정보 삭제 Ajax
+	@ResponseBody
+	@RequestMapping(value = "/delete_parent_info", method = RequestMethod.POST)
+	public void deleteParentInfo(@RequestParam Map<String, Object> map) throws Exception {
+		service.deleteParentInfo(map);
+	}
+	
+	// 학부모 정보 수정 Ajax
+	@ResponseBody
+	@RequestMapping(value = "/update_parent_info", method = RequestMethod.POST)
+	public void UpdateParentInfo(@RequestParam Map<String, Object> map) throws Exception {
+		service.updateParentInfo(map);
+	}
+	
 	
 }

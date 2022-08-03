@@ -48,7 +48,14 @@ public class ClassController {
 	// 학급 등록 폼으로 이동
 	@RequestMapping(value = "/class_register_form", method = RequestMethod.GET)
 	public String classRegisterForm(Model model) throws Exception {
-		int classNumber = service.selectClassLastNumber() + 1;
+		int classNumber;
+		try {
+			classNumber = service.selectClassLastNumber() + 1;
+		} catch(NullPointerException e) {
+			classNumber = 1;
+		}
+		
+		
 		List<StaffVO> homeTeacherList = service.selectClassHomeTeacher();
 
 		model.addAttribute("classNumber", classNumber);

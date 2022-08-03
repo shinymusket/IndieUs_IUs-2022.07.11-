@@ -328,7 +328,7 @@ $(function(){
 							<th>학부모</th>
 							<td colspan="2">
 								부<input type="text" id="kinder_father" readonly="readonly" style='text-align:center' size="8">
-								모<input type="text" id="kinder_mother" readonly="readonly" style='text-align:center' size="8">
+								모<input type="text" id="kinder_mather" readonly="readonly" style='text-align:center' size="8">
 								<input type="button" value="학부모 정보" id="getParentInfo">
 							</td>
 						</tr>

@@ -21,7 +21,7 @@ public class ParentDAO {
 	public List<KinderVO> selectKinderListIncludeParentName() throws Exception {
 		return sqlsession.selectList("parent.select_kinder_list_include_parent_name");
 	}
-	
+
 	// 원생별 부모 정보 받아오기
 	public KinderVO selectKinderParents(String kinder_num) throws Exception {
 		return sqlsession.selectOne("parent.select_kinder_parents", kinder_num);
@@ -36,11 +36,28 @@ public class ParentDAO {
 	public int selectKinderGetParent(Map<String, Object> map) throws Exception {
 		return sqlsession.selectOne("parent.select_kinder_get_parent", map);
 	}
-	
+
 	// 학부모 정보 등록
 	@Transactional
 	public int insertParent(ParentVO pVo) throws Exception {
 		return sqlsession.insert("parent.insert_parent", pVo);
 	}
-
+	
+	// 원생 번호로 간략한 원생 정보 가져오기
+	public KinderVO selectKinderInfoByKinderNum(String kinder_num) throws Exception {
+		return sqlsession.selectOne("parent.select_kinder_info_by_kinder_num", kinder_num);
+	}
+	
+	// 학부모 정보 삭제
+	@Transactional
+	public void deleteParentInfo(Map<String, Object> map) throws Exception {
+		sqlsession.delete("parent.delete_parent_info", map);
+	}
+	
+	// 학부모 정보 수정
+	@Transactional
+	public void updateParentInfo(Map<String, Object> map) throws Exception {
+		sqlsession.update("parent.update_parent_info", map);
+		
+	}
 }

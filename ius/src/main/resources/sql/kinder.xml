@@ -28,20 +28,48 @@
 		AND staff_cls NOT IN (3,4)
 	</select>
 	
+	<!-- 원생 등록을 위한 원생 알러지 코드 생성 -->
+<!-- 	<insert id="insert_allery_code" parameterType="allergyInfoVO">
+		INSERT INTO allergyInfo VALUES(allergyInfo_seq.nextval, 
+		<if test="a1 != null and a1 != ''">
+			
+		</if>
+	</insert> -->
+	
+	
+	
 	<!-- 원생 등록  -->
 	<insert id="insert_kinder" parameterType="kinderVO">
-		INSERT INTO kinder VALUES(kinder_seq.nextval, #{shuttle_num}, #{staff_num}, #{kinder_regYn}, #{kinder_name}, #{kinder_rrn1}, #{kinder_rrn2}, #{kinder_addr}, #{kinder_zipcode}, #{kinder_tel}, #{kinder_regdate}, #{kinder_retireDate}, #{kinder_picture})
+		INSERT INTO kinder VALUES(kinder_seq.nextval, #{shuttle_num}, #{staff_num}, #{kinder_regYn}, #{kinder_name}, #{kinder_rrn1}, #{kinder_rrn2}, #{kinder_addr}, #{kinder_zipcode}, #{kinder_tel}, #{kinder_regdate}, #{kinder_retireDate}
+		<if test="kinder_picture != null and kinder_picture != ''">
+   		, #{kinder_picture})
+    	</if>
+    	<if test="kinder_picture == null or kinder_picture == ''">
+   		, NULL)
+    	</if>
 	</insert>
+	
+	
+	<!-- 담임교사반 최초 배정 학생인지 확인 -->
+	<select id="select_cnt_class_number_by_staff_num" parameterType="String" resultType="int">
+		SELECT COUNT(kinder_num) FROM class WHERE staff_num = #{staff_num}
+	</select>
 	
 	<!-- 담임교사 반 배정을 위한 담임교사 반 정보 가져오기 -->
 	<select id="select_class_info_by_staff_num" parameterType="String" resultType="classVO">
 		SELECT DISTINCT staff_num, class_name, class_number FROM class WHERE staff_num = #{staff_num}
 	</select>
 	
+	<!-- 담임교사반 최초 배정 학생인 경우 기존의 Null 데이터를 활용  -->
+	<update id="update_class_kinder_num" parameterType="classVO">
+		UPDATE class SET kinder_num = #{kinder_num} WHERE class_number = #{class_number} AND staff_num = #{staff_num}
+	</update>
+	
+	
 	
 	<!-- 원생 등록시 담임교사 반 배정 -->
 	<insert id="insert_kinder_home_teacher_class" parameterType="classVO">
-		INSERT INTO class VALUES(class_seq.nextval, #{staff_num}, #{kinder_num}, #{class_name}, #{class_number})
+		INSERT INTO class(class_num, staff_num, kinder_num, class_name, class_number) VALUES(class_seq.nextval, #{staff_num}, #{kinder_num}, #{class_name}, #{class_number})
 	</insert>
 	
 	
@@ -96,6 +124,11 @@
 		FROM parent
 		WHERE kinder_num = #{kinder_num} AND relation = #{relation}
 	</select>
+	
+	<!-- 원생 정보 삭제전 원생의 학급 데이터 삭제 -->
+	<delete id="delete_kinder_num_from_class" parameterType="String">
+		DELETE FROM class WHERE kinder_num = #{kinder_num}
+	</delete>
 	
 	<!-- 원생 정보 삭제 -->
 	<delete id="delete_kinder_info" parameterType="String">
