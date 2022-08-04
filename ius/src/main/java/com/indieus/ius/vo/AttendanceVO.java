@@ -7,7 +7,7 @@ public class AttendanceVO {
 	private String attend_info;
 	private String in_time;
 	private String out_time;
-	
+
 	public String getAttend_code() {
 		return attend_code;
 	}
@@ -44,6 +44,6 @@ public class AttendanceVO {
 	public void setOut_time(String out_time) {
 		this.out_time = out_time;
 	}
-	
-	
+
+
 }

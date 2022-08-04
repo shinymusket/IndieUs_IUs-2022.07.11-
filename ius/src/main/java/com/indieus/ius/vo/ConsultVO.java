@@ -1,13 +1,37 @@
 package com.indieus.ius.vo;
 
+
 public class ConsultVO {
 	private int consult_code;
 	private String kinder_num;
 	private String parent_num;
 	private String staff_num;
 	private String consult_date;
-	private Long consult_content;
+	private String consult_content;
 	
+	private String staff_name;
+	private String relation;
+	private String parent_name;
+	
+	
+	public String getStaff_name() {
+		return staff_name;
+	}
+	public void setStaff_name(String staff_name) {
+		this.staff_name = staff_name;
+	}
+	public String getRelation() {
+		return relation;
+	}
+	public void setRelation(String relation) {
+		this.relation = relation;
+	}
+	public String getParent_name() {
+		return parent_name;
+	}
+	public void setParent_name(String parent_name) {
+		this.parent_name = parent_name;
+	}
 	public int getConsult_code() {
 		return consult_code;
 	}
@@ -38,12 +62,12 @@ public class ConsultVO {
 	public void setConsult_date(String consult_date) {
 		this.consult_date = consult_date;
 	}
-	public Long getConsult_content() {
+	public String getConsult_content() {
 		return consult_content;
 	}
-	public void setConsult_content(Long consult_content) {
+	public void setConsult_content(String consult_content) {
 		this.consult_content = consult_content;
 	}
-	
-	
+
+
 }

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="consult">
+	<resultMap type="consultVO" id="MyBean">
+		<result property="contents" column="contents" jdbcType="LONGVARCHAR"
+		javaType="java.lang.String"
+		typeHandler="com.indieus.ius.typehandler.MyLongTypeHandler"/>
+	</resultMap>
+
+
+	
+	<!-- 원생별 상담 일지 정보 가져오기 -->
+	<select id="select_consult_by_kinder_num" parameterType="hashmap" resultType="consultVO">
+		SELECT consult_date, staff_name, relation, parent_name, consult_content
+		FROM consult c, staff s, class c2, parent p, kinder k
+		WHERE c.kinder_num = k.kinder_num 
+		AND c.parent_num = p.parent_num
+		AND c.staff_num = s.staff_num
+		AND c.kinder_num = c2.kinder_num
+		AND c.kinder_num = #{kinder_num}
+	</select>
+	
+	<!-- 원생별 상담 일지 날짜로 조회하기 -->
+	<select id="select_consult_by_date" parameterType="hashmap" resultType="consultVO">
+		SELECT consult_date, staff_name, relation, parent_name, consult_content
+		FROM consult c, staff s, class c2, parent p, kinder k
+		WHERE c.kinder_num = k.kinder_num 
+		AND c.parent_num = p.parent_num
+		AND c.staff_num = s.staff_num
+		AND c.kinder_num = c2.kinder_num
+		AND c.kinder_num = #{kinder_num}
+		AND consult_date BETWEEN #{date_from} AND #{date_to}
+	</select>
+</mapper>

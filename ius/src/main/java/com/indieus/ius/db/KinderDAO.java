@@ -62,7 +62,7 @@ public class KinderDAO {
 	public int checkAllergy() throws Exception {
 		return sqlsession.selectOne("kinder.check_allergy");
 	}
-	
+
 
 	// 원생 등록
 	@Transactional

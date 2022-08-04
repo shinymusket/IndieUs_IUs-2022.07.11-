@@ -56,7 +56,7 @@ public class KinderController {
 	public Object getAllergyInfo(@RequestParam Map<String, Object> map) throws Exception {
 		return service.getAllergyInfo(map);
 	}
-	
+
 	// 원생 학부모 정보 조회하기 Ajax
 	@ResponseBody
 	@RequestMapping(value = "get_parent_by_kinder_num", method = RequestMethod.POST)
@@ -104,7 +104,7 @@ public class KinderController {
 	public Object searchKinderList(@RequestParam Map<String, Object> map) throws Exception {
 		return service.searchKinderList(map);
 	}
-	
+
 
 	// 원생 정보 삭제
 	@RequestMapping(value = "/delete_kinder", method = RequestMethod.GET)
@@ -125,16 +125,16 @@ public class KinderController {
 		model.addAttribute("kinder", kinder);
 		return "kinder/kinderUpdateForm";
 	}
-	
+
 	// 원생 정보 수정 - 알러지 보유자 유무 확인 Ajax
 	@ResponseBody
 	@RequestMapping(value = "/get_allergy_check", method = RequestMethod.POST)
 	public Object getAllergyCheck(@RequestParam Map<String, Object> map) throws Exception {
 		return service.getAllergyCheck(map);
 	}
-	
-	
-	
+
+
+
 	// 원생 정보 수정
 	@RequestMapping(value = "/update_kinder", method = RequestMethod.POST)
 	public String updateKinder(@ModelAttribute KinderVO kVo, @RequestParam MultipartFile kinder_picFile, RedirectAttributes rttr) throws Exception {

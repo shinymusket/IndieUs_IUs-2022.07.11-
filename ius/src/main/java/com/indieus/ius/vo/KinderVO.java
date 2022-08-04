@@ -26,7 +26,7 @@ public class KinderVO {
 
 	private String staff_name;
 	private int allergy_code;
-	
+
 	private int allergy_check;
 
 	public int getAllergy_check() {

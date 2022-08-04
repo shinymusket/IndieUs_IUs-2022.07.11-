@@ -22,6 +22,12 @@
 		<typeAlias alias="allergyInfoVO" type="com.indieus.ius.vo.AllergyInfoVO"/>
 		<typeAlias alias="attendanceVO" type="com.indieus.ius.vo.AttendanceVO"/>
 		<typeAlias alias="consultVO" type="com.indieus.ius.vo.ConsultVO"/>
+		
 	</typeAliases>
+	
+<typeHandlers>
+	<typeHandler handler="com.indieus.ius.typehandler.MyLongTypeHandler" jdbcType="LONGVARCHAR" javaType="java.lang.String"/>
+</typeHandlers>
+
 
 </configuration>
