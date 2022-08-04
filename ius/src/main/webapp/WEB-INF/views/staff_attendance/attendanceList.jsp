@@ -51,7 +51,8 @@
 					output += "<td>"+ value.attend_date +"</td>";
 					output += "<td>"+ attend_info +"</td>";
 					output += "<td>"+ value.in_time +"</td>";
-					output += "<td>"+ value.out_time +"</td>";	
+					output += "<td>"+ value.out_time +"</td>";
+					output += "</tr>";
 				});
 				
 				$("#attendanceInfo").show();

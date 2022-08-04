@@ -16,7 +16,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.indieus.ius.service.KinderServiceImpl;
 import com.indieus.ius.service.MealMenuServiceImpl;
-import com.indieus.ius.vo.AllergyVO;
 import com.indieus.ius.vo.KinderVO;
 import com.indieus.ius.vo.ShuttleVO;
 import com.indieus.ius.vo.StaffVO;
@@ -51,6 +50,13 @@ public class KinderController {
 		return service.getKinderByKinderNum(map);
 	}
 
+	// 원생 정보 조회 - 알러지 정보 조회 Ajax
+	@ResponseBody
+	@RequestMapping(value = "/get_allergy_info", method = RequestMethod.POST)
+	public Object getAllergyInfo(@RequestParam Map<String, Object> map) throws Exception {
+		return service.getAllergyInfo(map);
+	}
+	
 	// 원생 학부모 정보 조회하기 Ajax
 	@ResponseBody
 	@RequestMapping(value = "get_parent_by_kinder_num", method = RequestMethod.POST)
@@ -77,7 +83,7 @@ public class KinderController {
 	public String selectAllergy() throws Exception {
 		return "kinder/selectAllergy";
 	}
-	
+
 	// 원생 등록 - 알러지 코드 생성 Ajax
 	@ResponseBody
 	@RequestMapping(value = "/set_allergy_info", method = RequestMethod.POST)
@@ -98,14 +104,7 @@ public class KinderController {
 	public Object searchKinderList(@RequestParam Map<String, Object> map) throws Exception {
 		return service.searchKinderList(map);
 	}
-
-	// 원생 정보 조회
-	@RequestMapping(value = "/kinder_info", method = RequestMethod.GET)
-	public String kinderInfo(@RequestParam String kinder_num, Model model) throws Exception {
-		KinderVO kinder = service.selectKinderInfo(kinder_num);
-		model.addAttribute("kinder", kinder);
-		return "kinder/kinderInfo";
-	}
+	
 
 	// 원생 정보 삭제
 	@RequestMapping(value = "/delete_kinder", method = RequestMethod.GET)
@@ -126,7 +125,16 @@ public class KinderController {
 		model.addAttribute("kinder", kinder);
 		return "kinder/kinderUpdateForm";
 	}
-
+	
+	// 원생 정보 수정 - 알러지 보유자 유무 확인 Ajax
+	@ResponseBody
+	@RequestMapping(value = "/get_allergy_check", method = RequestMethod.POST)
+	public Object getAllergyCheck(@RequestParam Map<String, Object> map) throws Exception {
+		return service.getAllergyCheck(map);
+	}
+	
+	
+	
 	// 원생 정보 수정
 	@RequestMapping(value = "/update_kinder", method = RequestMethod.POST)
 	public String updateKinder(@ModelAttribute KinderVO kVo, @RequestParam MultipartFile kinder_picFile, RedirectAttributes rttr) throws Exception {

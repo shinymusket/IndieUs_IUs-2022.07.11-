@@ -7,62 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript">
-	$(function(){
-			$("#kinder_picFile").change(function(){
-				if(this.files && this.files[0]) {
-					var reader = new FileReader;
-					reader.onload = function(data) {
-						$(".select_img img").attr("src", data.target.result).width(500);
-					}
-					reader.readAsDataURL(this.files[0]);
-				}	
-			});
-	
-		    $("#update").click(function(){
-		    	
-			if ($("#shuttle_num").val() == "") {
-				alert("셔틀버스를 선택해주세요.");
-				return;
-			};
-			
-			if ($("#staff_num").val() == "") {
-				alert("담임교사를 선택해주세요.");
-				return;
-			};
-			
-			if ($("#kinder_name").val() == "") {
-				alert("원생 이름을 입력해주세요.");
-				$("#kinder_name").val().focus();
-				return;
-			};
-			
-			if ($("#kinder_rrn1").val() == "" || $("#kinder_rrn2").val() == "") {
-				alert("주민등록번호를 입력해주세요.");
-				$("#kinder_rrn1").val().focus();
-				return;
-			};
-			
-			if ($("#kinder_rrn1").val().length != 6) {
-				alert("주민등록번호 앞자리 입력이 잘못되었습니다.");
-				$("#kinder_rrn1").val().focus();
-				return;
-			};
-			
-			if ($("#kinder_rrn2").val().length != 7) {
-				alert("주민등록번호 뒷자리 입력이 잘못되었습니다.");
-				$("#kinder_rrn2").val().focus();
-				return;
-			};
-			
-			
-			$("form").submit();
-			
-		});
-		
-	})
-	
-</script>
 <title>원생 정보 수정</title>
 <link type="text/css" rel="stylesheet" href="${path}/resources/css/articleF.css">
 </head>
@@ -208,9 +152,16 @@
 									<div class="select_img">
 										<img src="">
 									</div>
-									<%=request.getRealPath("/")%>
 								</td>
 							</tr>
+							<tr>
+								<th>보유 알러지 정보</th>
+								<td>
+									<input type="text" id="allergy_info" readonly="readonly" style='text-align:center'>					
+									<input type="hidden" id="allergy_code" name="allergy_code" value="${kinder.allergy_code}">
+									<input type="button" value="입력" id="allergySel">
+								</td>
+							</tr>	
 							<tr>
 								<td colspan="2">
 									<input type="button" value="수정" id="update"> 
@@ -221,7 +172,90 @@
 				</div>
 			</section>
 	</article>
+<%@include file="../include/footer.jsp" %>
+<script type="text/javascript">
+
+function getAllergyCheck() {
+	var allergy_code = document.getElementById('allergy_code').value;
+	console.log(allergy_code);
 	
-<%@include file="../include/footer.jsp" %>	
+	$.ajax({
+		url : "/ius/kinder/get_allergy_check",
+		type : "POST",
+		data : {
+			allergy_code : allergy_code
+		},
+		success: function(data) {
+			$("#allergy_info").val(data.allergy_info);
+			
+		}
+		
+	})
+};
+
+getAllergyCheck();
+
+$(function(){
+	
+		$("#kinder_picFile").change(function(){
+			if(this.files && this.files[0]) {
+				var reader = new FileReader;
+				reader.onload = function(data) {
+					$(".select_img img").attr("src", data.target.result).width(500);
+				}
+				reader.readAsDataURL(this.files[0]);
+			}	
+		});
+
+		$("#allergySel").click(function(){
+			url = "./select_allergy";
+			window.open(url, "_blank_1", "toolbar=no, menubar=no, scrollbar=yes, resizeable=no, width=300, height=500");
+		});	
+		
+	    $("#update").click(function(){
+	    	
+		if ($("#shuttle_num").val() == "") {
+			alert("셔틀버스를 선택해주세요.");
+			return;
+		};
+		
+		if ($("#staff_num").val() == "") {
+			alert("담임교사를 선택해주세요.");
+			return;
+		};
+		
+		if ($("#kinder_name").val() == "") {
+			alert("원생 이름을 입력해주세요.");
+			$("#kinder_name").val().focus();
+			return;
+		};
+		
+		if ($("#kinder_rrn1").val() == "" || $("#kinder_rrn2").val() == "") {
+			alert("주민등록번호를 입력해주세요.");
+			$("#kinder_rrn1").val().focus();
+			return;
+		};
+		
+		if ($("#kinder_rrn1").val().length != 6) {
+			alert("주민등록번호 앞자리 입력이 잘못되었습니다.");
+			$("#kinder_rrn1").val().focus();
+			return;
+		};
+		
+		if ($("#kinder_rrn2").val().length != 7) {
+			alert("주민등록번호 뒷자리 입력이 잘못되었습니다.");
+			$("#kinder_rrn2").val().focus();
+			return;
+		};
+		
+		
+		$("form").submit();
+		
+	});
+	
+})
+
+
+</script>	
 </body>
 </html>

@@ -212,6 +212,7 @@ $(function(){
 			objParams,
 			function(data) {
 				opener.frm.allergy_code.value = data.allergy_code;
+				$(opener.location).attr("href", "javascript:getAllergyCheck();");
 				self.close();
 			}
 		

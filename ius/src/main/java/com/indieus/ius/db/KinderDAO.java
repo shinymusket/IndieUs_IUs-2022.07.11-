@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.indieus.ius.vo.AllergyInfoVO;
 import com.indieus.ius.vo.ClassVO;
 import com.indieus.ius.vo.KinderVO;
 import com.indieus.ius.vo.ParentVO;
@@ -44,20 +45,25 @@ public class KinderDAO {
 	public int checkAllergyInfo(Map<String, Object> map) throws Exception {
 		return sqlsession.selectOne("kinder.check_allergy_info", map);
 	}
-	
-	
+
+
 	// 원생 등록을 위한 알러지 코드 생성
 	@Transactional
 	public void setAllergyInfo(Map<String, Object> map) throws Exception {
 		sqlsession.insert("kinder.set_allergy_info", map);
 	}
-	
+
 	// 알러지 코드명 가져오기
 	public int selectAllergyInfo(Map<String, Object> map) throws Exception {
 		return sqlsession.selectOne("kinder.select_allergy_info", map);
 	}
+
+	// 알러지 보유 유무 체크
+	public int checkAllergy() throws Exception {
+		return sqlsession.selectOne("kinder.check_allergy");
+	}
 	
-	
+
 	// 원생 등록
 	@Transactional
 	public int insertKinder(KinderVO kVo) throws Exception {
@@ -114,6 +120,11 @@ public class KinderDAO {
 		sqlsession.delete("kinder.delete_kinder_num_from_class", kinder_num);
 	}
 
+	// 원생 정보 조회 - 알러지 정보 조회 Ajax
+	public AllergyInfoVO getAllergyInfo(int allergy_code) throws Exception {
+		return sqlsession.selectOne("kinder.get_allergy_info", allergy_code);
+	}
+
 	// 원생 정보 삭제
 	@Transactional
 	public int deleteKinderInfo(String kinder_num) throws Exception {
@@ -124,6 +135,8 @@ public class KinderDAO {
 	public int updateKinder(KinderVO kVo) throws Exception {
 		return sqlsession.update("kinder.update_kinder", kVo);
 	}
+
+
 
 
 

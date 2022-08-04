@@ -11,8 +11,11 @@ import javax.inject.Inject;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.indieus.ius.db.AttendanceDAO;
 import com.indieus.ius.db.KinderDAO;
 import com.indieus.ius.utils.UploadFileUtils;
+import com.indieus.ius.vo.AllergyInfoVO;
+import com.indieus.ius.vo.AttendanceVO;
 import com.indieus.ius.vo.ClassVO;
 import com.indieus.ius.vo.KinderVO;
 import com.indieus.ius.vo.ParentVO;
@@ -23,6 +26,8 @@ public class KinderServiceImpl implements KinderService {
 
 	@Inject
 	private KinderDAO manager;
+	@Inject
+	private AttendanceDAO attendanceMananger;
 
 	@Resource(name="uploadPath")
 	private String uploadPath;
@@ -105,8 +110,27 @@ public class KinderServiceImpl implements KinderService {
 		data.put("kinder", kinder);
 		data.put("fatherName", fatherName);
 		data.put("matherName", matherName);
+		
+		// 출결 정보 가져오기
+		List<AttendanceVO> attendanceInfo = attendanceMananger.selectLatestAttendance(kinder_num);
+		data.put("attendanceInfo", attendanceInfo);
+	
 		return data;
 	}
+	
+	// 원생 정보 조회 - 알러지 정보 조회 Ajax
+	@Override
+	public Object getAllergyInfo(Map<String, Object> map) throws Exception {
+		int allergy_code = Integer.parseInt ((String) map.get("allergy_code"));
+		
+		AllergyInfoVO aIVO = manager.getAllergyInfo(allergy_code);
+		
+		Map<String, Object> data = new HashMap();
+		data.put("allergyDetailInfo", aIVO);
+		
+		return data;
+	}
+	
 
 	// 원생 학부모 정보 조회하기 Ajax
 	@Override
@@ -149,11 +173,11 @@ public class KinderServiceImpl implements KinderService {
 	public List<StaffVO> selectHomeTeacherForKinder() throws Exception {
 		return manager.selectHomeTeacherForKinder();
 	}
-	
+
 	// 원생 등록 - 알러지 코드 생성 Ajax
 	@Override
 	public Object setAllergyInfo(Map<String, Object> map) throws Exception {
-		
+
 		// 기존에 있는 알러지 코드가 있는지 유무 확인
 		int check = manager.checkAllergyInfo(map);
 		int allergy_code = 0;
@@ -161,20 +185,22 @@ public class KinderServiceImpl implements KinderService {
 		if (check == 0) { // 없으면 새로 생성
 			manager.setAllergyInfo(map);
 			allergy_code = manager.selectAllergyInfo(map);
-			
+
 		} else if (check > 0 ){ // 있으면 기존의 것 사용
 			allergy_code = manager.selectAllergyInfo(map);
 		}
 		
+		
+
 		Map<String, Object> data = new HashMap();
 		data.put("allergy_code", allergy_code);
-		
+
 		return data;
 	}
-	
-	
-	
-	
+
+
+
+
 	// 원생 등록
 	@Override
 	public int insertKinder(KinderVO kVo, MultipartFile kinder_picFile) throws Exception {
@@ -189,7 +215,14 @@ public class KinderServiceImpl implements KinderService {
 			kVo.setKinder_picture(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
 		}
 
-
+		// 알러지 보유자가 아닌지 체크
+		int noAllergycode = manager.checkAllergy();
+		
+		if (noAllergycode == kVo.getAllergy_code()) { // 알러지 보유자가 아니라면
+			kVo.setAllergy_check(0);
+		} else {
+			kVo.setAllergy_check(1);
+		}
 
 		int result = manager.insertKinder(kVo);
 
@@ -276,12 +309,35 @@ public class KinderServiceImpl implements KinderService {
 	public KinderVO selectKinderInfo(String kinder_num) throws Exception {
 		return manager.selectKinderInfo(kinder_num);
 	}
+	
+
 
 	// 원생 정보 삭제
 	@Override
 	public int deleteKinderInfo(String kinder_num) throws Exception {
 		manager.deleteKinderNumFromClass(kinder_num);
 		return manager.deleteKinderInfo(kinder_num);
+	}
+
+	// 원생 정보 수정 - 알러지 보유자 유무 확인 Ajax
+	@Override
+	public Object getAllergyCheck(Map<String, Object> map) throws Exception {
+		int allergy_code = Integer.parseInt((String) map.get("allergy_code"));
+		int noAllergyCode = manager.checkAllergy();
+		
+		String allergy_info = "";
+		if (allergy_code == noAllergyCode) {
+			allergy_info = "보유 알러지 없음";
+		} else {
+			allergy_info = "보유 알러지 있음";
+		}
+		
+		Map<String, Object> data = new HashMap();
+		data.put("allergy_info", allergy_info);
+		
+		return data;
+		
+		
 	}
 
 	// 원생 정보 수정
@@ -306,9 +362,23 @@ public class KinderServiceImpl implements KinderService {
 
 			kVo.setKinder_picture(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
 		}
+		
+		// 알러지 보유자가 아닌지 체크
+		int noAllergycode = manager.checkAllergy();
+		
+		if (noAllergycode == kVo.getAllergy_code()) { // 알러지 보유자가 아니라면
+			kVo.setAllergy_check(0);
+		} else {
+			kVo.setAllergy_check(1);
+		}
+		
 
 		return manager.updateKinder(kVo);
 	}
+
+
+
+
 
 
 

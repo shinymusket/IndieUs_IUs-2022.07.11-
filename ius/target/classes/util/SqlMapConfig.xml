@@ -20,6 +20,8 @@
 		<typeAlias alias="classVO" type="com.indieus.ius.vo.ClassVO"/>
 		<typeAlias alias="parentVO" type="com.indieus.ius.vo.ParentVO"/>
 		<typeAlias alias="allergyInfoVO" type="com.indieus.ius.vo.AllergyInfoVO"/>
+		<typeAlias alias="attendanceVO" type="com.indieus.ius.vo.AttendanceVO"/>
+		<typeAlias alias="consultVO" type="com.indieus.ius.vo.ConsultVO"/>
 	</typeAliases>
 
 </configuration>
