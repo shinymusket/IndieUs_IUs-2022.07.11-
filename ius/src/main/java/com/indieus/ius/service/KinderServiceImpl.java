@@ -12,11 +12,13 @@ import javax.inject.Inject;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.indieus.ius.db.AttendanceDAO;
+import com.indieus.ius.db.ConsultDAO;
 import com.indieus.ius.db.KinderDAO;
 import com.indieus.ius.utils.UploadFileUtils;
 import com.indieus.ius.vo.AllergyInfoVO;
 import com.indieus.ius.vo.AttendanceVO;
 import com.indieus.ius.vo.ClassVO;
+import com.indieus.ius.vo.ConsultVO;
 import com.indieus.ius.vo.KinderVO;
 import com.indieus.ius.vo.ParentVO;
 import com.indieus.ius.vo.ShuttleVO;
@@ -27,7 +29,9 @@ public class KinderServiceImpl implements KinderService {
 	@Inject
 	private KinderDAO manager;
 	@Inject
-	private AttendanceDAO attendanceMananger;
+	private AttendanceDAO attendanceManager;
+	@Inject
+	private ConsultDAO consultManager;
 
 	@Resource(name="uploadPath")
 	private String uploadPath;
@@ -112,9 +116,13 @@ public class KinderServiceImpl implements KinderService {
 		data.put("matherName", matherName);
 
 		// 출결 정보 가져오기
-		List<AttendanceVO> attendanceInfo = attendanceMananger.selectLatestAttendance(kinder_num);
+		List<AttendanceVO> attendanceInfo = attendanceManager.selectLatestAttendance(kinder_num);
 		data.put("attendanceInfo", attendanceInfo);
-
+		
+		// 최근 상담 기록 가져오기
+		ConsultVO consultInfo = consultManager.selectLatestConsult(kinder_num);
+		data.put("consultInfo", consultInfo);
+		
 		return data;
 	}
 
@@ -304,14 +312,13 @@ public class KinderServiceImpl implements KinderService {
 		return data;
 	}
 
-	// 원생 정보 조회
+	// 원생 정보 가져오기
 	@Override
 	public KinderVO selectKinderInfo(String kinder_num) throws Exception {
 		return manager.selectKinderInfo(kinder_num);
 	}
-
-
-
+	
+	
 	// 원생 정보 삭제
 	@Override
 	public int deleteKinderInfo(String kinder_num) throws Exception {
@@ -375,6 +382,8 @@ public class KinderServiceImpl implements KinderService {
 
 		return manager.updateKinder(kVo);
 	}
+
+
 
 
 

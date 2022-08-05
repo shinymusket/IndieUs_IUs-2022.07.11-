@@ -21,6 +21,7 @@ function view(kinder_num) {
 				$("#allergy").hide();
 				$("#get_allergy_info").hide();
 				$(".attendanceTr").remove();
+				$(".consultTr").remove();
 				
 				$("#kinder_num").val(data.kinder.kinder_num);
 				
@@ -57,9 +58,9 @@ function view(kinder_num) {
 				}	
 				
 				
-				values = data.attendanceInfo;
-				if(values != null) {
-					$("#kinderInfo>tbody").append("<tr class='attendanceTr'><th colspan='4'>출결 내역</th></tr>");
+				values = data.attendanceInfo; // 출결 정보
+				$("#kinderInfo>tbody").append("<tr class='attendanceTr'><th colspan='4'>출결 내역</th></tr>");
+				if(values.length != 0) {
 					$("#kinderInfo>tbody").append("<tr class='attendanceTr'><th>일시</th><th>출결 정보</th><th>등원시간</th><th>하원시간</th></tr>");
 					$.each(values, function(index, value) {
 						
@@ -83,8 +84,16 @@ function view(kinder_num) {
 						};
 						$("#kinderInfo>tbody").append("<tr class='attendanceTr'><td>" + value.attend_date + "</td><td>" + attend_info + "</td><td>" + value.in_time + "</td><td>" +  value.out_time + "</td></tr>");
 					});
-					
 				}
+				
+				consultInfo = data.consultInfo;
+				$("#kinderInfo>tbody").append("<tr class='consultTr'><th colspan='4'>최근 상담 기록</th></tr>");
+				if(consultInfo != null) {
+					$("#kinderInfo>tbody").append("<tr class='consultTr'><td colspan='4'>"+ consultInfo.consult_content + "</td></tr>");
+				}
+				
+				
+				
 				
 				$("#kinderInfo").hide();
 				$("#parent").hide();
@@ -405,6 +414,7 @@ $(function(){
 						<input type="button" value="학부모 관리" onclick="location.href='../parent/parent_list'">
 						<input type="button" value="출결 관리" onclick="location.href='../attendance/attendance_list'">
 						<input type="button" value="상담 일지" onclick="location.href='../consult/consult_list'">
+						<input type="button" value="수납 관리" onclick="location.href='../receipt/receipt_list'">
 					</div>
 					
 					<div class="searhBar">

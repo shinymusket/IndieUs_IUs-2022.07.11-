@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="main">
+	
+	<!-- 이메일이 있는 지 유무 확인 -->
+	<select id="select_email_cnt" parameterType="hashmap" resultType="int">
+		SELECT COUNT(*) FROM staff WHERE staff_email = #{staff_email}
+	</select>
+
+	<!-- 이메일로 해당 계정의 아이디, 비밀번호, 이름 가져오기 -->
+	<select id="select_staff_info_by_email" parameterType="String" resultType="staffIdVO">
+		SELECT i.staff_id, staff_name, staff_pwd
+		FROM staffId i, staff s
+		WHERE i.staff_id = s.staff_id
+		AND staff_email = #{staff_email}
+	</select>
+	
+	<!-- 계정 비밀번호 변경 -->
+	<update id="update_staff_pwd" parameterType="staffIdVO">
+		update staffId SET staff_pwd = #{staff_pwd} WHERE staff_id = #{staff_id}
+	</update>
+</mapper>

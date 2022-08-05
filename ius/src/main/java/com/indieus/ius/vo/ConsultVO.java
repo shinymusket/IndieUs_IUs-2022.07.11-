@@ -8,12 +8,18 @@ public class ConsultVO {
 	private String staff_num;
 	private String consult_date;
 	private String consult_content;
-	
+
 	private String staff_name;
 	private String relation;
 	private String parent_name;
+	private String kinder_name;
 	
-	
+	public String getKinder_name() {
+		return kinder_name;
+	}
+	public void setKinder_name(String kinder_name) {
+		this.kinder_name = kinder_name;
+	}
 	public String getStaff_name() {
 		return staff_name;
 	}

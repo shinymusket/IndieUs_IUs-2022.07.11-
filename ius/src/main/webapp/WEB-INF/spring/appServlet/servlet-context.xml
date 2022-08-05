@@ -49,7 +49,7 @@
 	<!-- C:\javastudy\apache-tomcat-8.5.81\wtpwebapps\ius\resources -->
 	<!-- 업로드 패스 설정 --> 
 	<beans:bean class="java.lang.String" id="uploadPath">
-	 	<beans:constructor-arg value="C:\Coding\workSpaces\springWorkSpace\ius\src\main\webapp\resources" />
+	 	<beans:constructor-arg value="C:\Users\GREEN\Documents\study\ius\src\main\webapp\resources" />
 	</beans:bean>
 	
 	<!-- C:\Users\GREEN\Documents\study\ius\src\main\webapp\resources -->
@@ -77,8 +77,10 @@
 	<beans:bean id="parentController" class="com.indieus.ius.controller.ParentController" />
 	<beans:bean id="attendanceController" class="com.indieus.ius.controller.AttendanceController" />
 	<beans:bean id="consultController" class="com.indieus.ius.controller.ConsultController" />
+	<beans:bean id="receiptController" class="com.indieus.ius.controller.ReceiptController" />
 	
 	<!-- DAO -->
+	<beans:bean id="mainDAO" class="com.indieus.ius.db.MainDAO" />
 	<beans:bean id="budgetDAO" class="com.indieus.ius.db.BudgetDAO" />
 	<beans:bean id="financeDAO" class="com.indieus.ius.db.FinanceDAO" />
 	<beans:bean id="staffDAO" class="com.indieus.ius.db.StaffDAO" />
@@ -93,8 +95,10 @@
 	<beans:bean id="parentDAO" class="com.indieus.ius.db.ParentDAO" />
 	<beans:bean id="attendanceDAO" class="com.indieus.ius.db.AttendanceDAO" />
 	<beans:bean id="consultDAO" class="com.indieus.ius.db.ConsultDAO" />
+	<beans:bean id="receiptDAO" class="com.indieus.ius.db.ReceiptDAO" />
 
 	<!-- Service -->
+	<beans:bean id="mainServiceImpl" class="com.indieus.ius.service.MainServiceImpl" />
 	<beans:bean id="financeService" class="com.indieus.ius.service.FinanceServiceImpl" />
 	<beans:bean id="staffService" class="com.indieus.ius.service.StaffServiceImpl" />
 	<beans:bean id="budgetServiceImpl" class="com.indieus.ius.service.BudgetServiceImpl" />
@@ -109,5 +113,7 @@
 	<beans:bean id="parentServiceImpl" class="com.indieus.ius.service.ParentServiceImpl" />
 	<beans:bean id="attendanceServiceImpl" class="com.indieus.ius.service.AttendanceServiceImpl" />
 	<beans:bean id="consultServiceImpl" class="com.indieus.ius.service.ConsultServiceImpl" />
+	<beans:bean id="receiptServiceImpl" class="com.indieus.ius.service.ReceiptServiceImpl" />
+	
 
 </beans:beans>

@@ -527,9 +527,12 @@ public class StaffServiceImpl implements StaffService {
 
 		return manager.updateStaff(sVo);
 	}
-
-
-
+	
+	//  로그인 되어 있는 세션 정보(아이디)로 교직원 정보 가져오기
+	@Override
+	public StaffVO selectStaffInfoStaffId(String staff_id) throws Exception {
+		return manager.selectStaffInfoStaffId(staff_id);
+	}
 
 
 

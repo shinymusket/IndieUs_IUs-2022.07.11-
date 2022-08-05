@@ -16,7 +16,7 @@ public class MyLongTypeHandler implements TypeHandler {
 		String s = (String) parameter;
 		StringReader reader = new StringReader(s);
 		ps.setCharacterStream(i, reader, s.length());
-		
+
 	}
 
 	@Override
@@ -34,9 +34,9 @@ public class MyLongTypeHandler implements TypeHandler {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 }

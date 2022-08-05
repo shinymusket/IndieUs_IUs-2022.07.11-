@@ -123,8 +123,13 @@ public class StaffDAO {
 	}
 
 	// 교직원 사번으로 직무코드 가져오기
-	public String selectStaffClsByStaffNum(String staff_num) {
+	public String selectStaffClsByStaffNum(String staff_num) throws Exception {
 		return sqlsession.selectOne("staff.select_staff_cls_by_staff_num", staff_num);
+	}
+	
+	//  로그인 되어 있는 세션 정보(아이디)로 교직원 정보 가져오기
+	public StaffVO selectStaffInfoStaffId(String staff_id) throws Exception {
+		return sqlsession.selectOne("staff.select_staff_info_by_staff_id", staff_id);
 	}
 
 
