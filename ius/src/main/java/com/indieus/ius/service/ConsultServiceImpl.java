@@ -20,14 +20,14 @@ public class ConsultServiceImpl implements ConsultService {
 	public Object getConsultByKinderNum(Map<String, Object> map) throws Exception {
 		List<ConsultVO> consultInfo = manager.getConsultByKinderNum(map);
 		String kinder_name = manager.getKinderNameByNum(map);
-	
-		
+
+
 		Map<String, Object> data = new HashMap();
 		data.put("consultInfo", consultInfo);
 		data.put("kinder_name", kinder_name);
 		return data;
 	}
-	
+
 	// 원생별 상담 일지 날짜로 조회하기 Ajax
 	@Override
 	public Object selectConsultByDate(Map<String, Object> map) throws Exception {
@@ -36,7 +36,7 @@ public class ConsultServiceImpl implements ConsultService {
 		data.put("consultInfo", consultInfo);
 		return data;
 	}
-	
+
 	// 상담 일지 작성 - 원생 번호와 가족 관계로 부모님 성함 가져오기 Ajax
 	@Override
 	public Object selectParentNumName(Map<String, Object> map) throws Exception {
@@ -54,25 +54,25 @@ public class ConsultServiceImpl implements ConsultService {
 		data.put("consultInfo", consultInfo);
 		return data;
 	}
-	
+
 	// 상담 일지 등록 Ajax
 	@Override
 	public void registerConsult(Map<String, Object> map) throws Exception {
-		manager.registerConsult(map);	
+		manager.registerConsult(map);
 	}
 
 	// 상담 일지 수정 Ajax
 	@Override
 	public void updateConsult(Map<String, Object> map) throws Exception {
 		manager.updateConsult(map);
-		
+
 	}
-	
+
 	// 상담 일지 삭제 Ajax
 	@Override
 	public void deleteConsult(Map<String, Object> map) throws Exception {
 		manager.deleteConsult(map);
-		
+
 	}
 
 

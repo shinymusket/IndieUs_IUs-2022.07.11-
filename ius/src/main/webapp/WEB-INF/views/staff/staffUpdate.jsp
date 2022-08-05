@@ -236,7 +236,7 @@ $(function(){
 						<tr>
 							<th colspan="2">이메일</th>
 							<td colspan="2">
-								<input type="email" name="staff_email" id="staff_email" value="${staff.staff_email}">
+								<input type="email" name="staff_email" id="staff_email" value="${staff.staff_email}" readonly="readonly">
 							</td>
 						</tr>
 						<tr>

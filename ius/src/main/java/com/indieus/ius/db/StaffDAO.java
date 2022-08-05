@@ -126,10 +126,17 @@ public class StaffDAO {
 	public String selectStaffClsByStaffNum(String staff_num) throws Exception {
 		return sqlsession.selectOne("staff.select_staff_cls_by_staff_num", staff_num);
 	}
-	
+
 	//  로그인 되어 있는 세션 정보(아이디)로 교직원 정보 가져오기
 	public StaffVO selectStaffInfoStaffId(String staff_id) throws Exception {
 		return sqlsession.selectOne("staff.select_staff_info_by_staff_id", staff_id);
+	}
+	
+	// 교직원의 학급 데이터 삭제
+	@Transactional
+	public void deleteClassInfo(String staff_num) throws Exception{
+		sqlsession.delete("staff.delete_class_info_by_staff_num", staff_num);
+		
 	}
 
 

@@ -80,6 +80,35 @@
 				window.open(url, "_blank_1", "toolbar=no, menubar=no, scrollbar=yes, resizeable=no, width=450, height=200");
 					
 			});
+			
+			$("#staff_email").change(function(){
+				var staff_email = $("#staff_email").val();
+				
+				$.ajax({
+					url : "/ius/main/get_email_exist_check",
+					type : "POST",
+					data : {
+						staff_email : staff_email
+					},
+					success: function(data) {
+						$("#check_email").val("");
+						$("#check").html("");
+						
+						if(data.result == 0 && staff_email != "") {
+							$("#check").html("사용 가능한 이메일 입니다.");
+							$("#check").attr("color", "green");
+							$("#check_email").val(staff_email);
+							
+						} else if (data.result > 0){
+							$("#check").html("이미 사용중인 이메일 입니다.");
+							$("#check").attr("color", "red");
+						}
+						
+					}
+					
+				})
+					
+			});
 		
 		
 		    $("#register").click(function(){
@@ -131,7 +160,12 @@
 				alert("이메일 형식이 올바르지 않습니다.");
 				$("#staff_email").val().focus();
 				return;
+			} else if ($("#staff_email").val() != $("#check_email").val()) {
+				alert("이미 사용중인 이메일 입니다.");
+				$("#staff_email").val().focus();
+				return;
 			};
+			
 			
 			if ($("#staff_reid").val().length == 0 || $("#staff_reid").val() != $("#staff_id").val()) {
 				alert("아이디 중복 검사를 하지 않았습니다.");
@@ -261,6 +295,8 @@
 							<th colspan="2">이메일*</th>
 							<td colspan="2">
 								<input type="email" name="staff_email" id="staff_email">
+								<input type="text" id="check_email">
+								<font id="check" size="2"></font>
 							</td>
 						</tr>
 						<tr>

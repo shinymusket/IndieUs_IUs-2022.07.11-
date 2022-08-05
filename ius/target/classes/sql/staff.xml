@@ -129,8 +129,10 @@
 		staff_retireD = TO_DATE(#{staff_retireD},'YYYY-MM-DD'),
 		staff_workYn = #{staff_workYn},
 		staff_salary = #{staff_salary},
-		staff_email = #{staff_email},
-		staff_picture = #{staff_picture}
+		staff_email = #{staff_email}
+		<if test="staff_picture != null and staff_picture != ''">
+   		, staff_picture = #{staff_picture})
+    	</if>
 		WHERE staff_num = #{staff_num}
 	</update>
 	
@@ -146,5 +148,9 @@
 		WHERE i.staff_id = s.staff_id
 		AND i.staff_id = #{staff_id}
 	</select>
+	
+	<delete id="delete_class_info_by_staff_num" parameterType="String">
+		DELETE class WHERE staff_num = #{staff_num}
+	</delete>
 	
 </mapper>

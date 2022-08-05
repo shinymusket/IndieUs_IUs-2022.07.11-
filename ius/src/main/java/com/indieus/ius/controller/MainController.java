@@ -19,13 +19,13 @@ import com.indieus.ius.vo.StaffIdVO;
 
 @Controller
 public class MainController {
-	
+
 	@Autowired
 	private MainServiceImpl service;
 
 	@Autowired
 	private StaffIdServiceImpl staffService;
-	
+
 	// 홈으로
 	@RequestMapping(value = "/main/", method = RequestMethod.GET)
 	public String home(HttpSession session) throws Exception {
@@ -49,20 +49,20 @@ public class MainController {
 		session.invalidate();
 		staffService.logout(response);
 	}
-	
+
 	// 비밀번호 찾기
 	@RequestMapping(value = "/main/search_password")
 	public String searchPassword() throws Exception {
 		return "/main/searchPwd";
 	}
-	
+
 	// 이메일이 있는지 유무 체크 Ajax
 	@ResponseBody
 	@RequestMapping(value = "/main/get_email_exist_check", method = RequestMethod.POST)
 	public Object getEmailExistCheck(@RequestParam Map<String, Object> map) throws Exception {
 		return service.getEmailExistCheck(map);
 	}
-	
+
 	// 이메일로 임시비밀번호 발송하기 Ajax
 	@ResponseBody
 	@RequestMapping(value = "/main/search_password_by_email", method = RequestMethod.POST)

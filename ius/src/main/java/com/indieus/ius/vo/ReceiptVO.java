@@ -1,26 +1,26 @@
 package com.indieus.ius.vo;
 
 public class ReceiptVO {
-	
+
 	private int receipt_code;
 	private String kinder_num;
 	private String parent_num;
 	private String receipt_date;
 	private String receipt_content;
 	private int receipt_price;
-	
+
 	private String kinder_name;
 	private String relation;
 	private String parent_name;
-	
+
 	public int getReceipt_price() {
 		return receipt_price;
 	}
 	public void setReceipt_price(int receipt_price) {
 		this.receipt_price = receipt_price;
 	}
-	
-	
+
+
 	public int getReceipt_code() {
 		return receipt_code;
 	}
@@ -69,6 +69,6 @@ public class ReceiptVO {
 	public void setParent_name(String parent_name) {
 		this.parent_name = parent_name;
 	}
-	
-	
+
+
 }

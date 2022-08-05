@@ -13,7 +13,7 @@ public class ConsultVO {
 	private String relation;
 	private String parent_name;
 	private String kinder_name;
-	
+
 	public String getKinder_name() {
 		return kinder_name;
 	}

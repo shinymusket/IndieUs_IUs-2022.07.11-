@@ -496,9 +496,16 @@ public class StaffServiceImpl implements StaffService {
 	// 교직원 삭제
 	@Override
 	public int deleteStaff(String staff_num) throws Exception {
+		// 계정 불러오기
 		StaffVO sVo = manager.selectStaffInfo(staff_num);
+		String staff_id = sVo.getStaff_id();
+		
+		// 학급 정보 삭제
+		manager.deleteClassInfo(staff_num);
+		// 교직원 정보 삭제
 		int result = manager.deleteStaff(staff_num);
-		manager.deleteStaffid(sVo.getStaff_id());
+		
+		manager.deleteStaffid(staff_id);
 		return result;
 	}
 
@@ -527,7 +534,7 @@ public class StaffServiceImpl implements StaffService {
 
 		return manager.updateStaff(sVo);
 	}
-	
+
 	//  로그인 되어 있는 세션 정보(아이디)로 교직원 정보 가져오기
 	@Override
 	public StaffVO selectStaffInfoStaffId(String staff_id) throws Exception {

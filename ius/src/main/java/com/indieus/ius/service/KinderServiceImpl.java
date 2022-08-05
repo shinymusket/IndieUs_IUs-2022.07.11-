@@ -118,11 +118,11 @@ public class KinderServiceImpl implements KinderService {
 		// 출결 정보 가져오기
 		List<AttendanceVO> attendanceInfo = attendanceManager.selectLatestAttendance(kinder_num);
 		data.put("attendanceInfo", attendanceInfo);
-		
+
 		// 최근 상담 기록 가져오기
 		ConsultVO consultInfo = consultManager.selectLatestConsult(kinder_num);
 		data.put("consultInfo", consultInfo);
-		
+
 		return data;
 	}
 
@@ -317,8 +317,8 @@ public class KinderServiceImpl implements KinderService {
 	public KinderVO selectKinderInfo(String kinder_num) throws Exception {
 		return manager.selectKinderInfo(kinder_num);
 	}
-	
-	
+
+
 	// 원생 정보 삭제
 	@Override
 	public int deleteKinderInfo(String kinder_num) throws Exception {

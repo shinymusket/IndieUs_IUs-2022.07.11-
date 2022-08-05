@@ -12,16 +12,16 @@ import com.indieus.ius.db.MainDAO;
 import com.indieus.ius.vo.StaffIdVO;
 
 public class MainServiceImpl implements MainService {
-	
+
 	@Inject
-	private MainDAO manager; 
-	
-	
+	private MainDAO manager;
+
+
 	@Value("${host.smtp.id}")
 	private String hostSMTPid;
 	@Value("${host.smtp.pwd}")
 	private String hostSMTPpwd;
-	
+
 	// 이메일이 있는지 유무 체크 Ajax
 	@Override
 	public Object getEmailExistCheck(Map<String, Object> map) throws Exception {
@@ -35,26 +35,26 @@ public class MainServiceImpl implements MainService {
 	@Override
 	public Object searchPasswordByEmail(Map<String, Object> map) throws Exception {
 		int result = 0;
-		
+
 		int check = manager.getEmailExistCheck(map);
 		String staff_email = (String) map.get("staff_email");
 		if (check != 0) { // 이메일이 있을 때만 실행
-			
+
 			// 이메일로 해당 계정의 아이디, 비밀번호, 이름 가져오기.
 			StaffIdVO sIvo = manager.getStaffInfoByEmail(staff_email);
-			
+
 			// 임시 비밀번호 생성
 			String pw = "";
 			for (int i = 0; i < 12; i++) {
 				pw += (char) ((Math.random() * 26) + 97);
 			}
-			
+
 			// 해당 계정의 비밀번호를 임시비밀번호로 재설정 후 변경 데이터 입력
 			sIvo.setStaff_pwd(pw);
 			manager.updateStaffPwd(sIvo);
-			
+
 			// 해당 임시비밀번호 발급 내용을 메일로 발송
-			
+
 			// Mail Server 설정
 			String charSet = "utf-8";
 			String hostSMTP = "smtp.naver.com";
@@ -94,18 +94,18 @@ public class MainServiceImpl implements MainService {
 			} catch(Exception e) {
 				System.out.println("메일발송 실패 : " + e);
 			}
-			
-			
-			
+
+
+
 			result = 1;
 		}
-		
+
 		Map<String, Object> data = new HashMap();
 		data.put("result", result);
-		
+
 		return data;
-		
-		
+
+
 	}
-	
+
 }

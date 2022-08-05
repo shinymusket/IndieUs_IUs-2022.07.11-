@@ -53,6 +53,6 @@ public interface StaffService {
 	public int deleteStaff(String staff_num) throws Exception;
 
 	public int updateStaff(StaffVO sVo, MultipartFile staff_picFile) throws Exception;
-	
+
 	public StaffVO selectStaffInfoStaffId(String staff_id) throws Exception;
 }
