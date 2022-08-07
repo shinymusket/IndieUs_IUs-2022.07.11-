@@ -146,16 +146,7 @@ $(function(){
 </script>
 <nav>
 	<!-- 로그인 아이디의 권한 정보 -->
-	<input type="text" id="authCode" value="${auth_info.auth_code}">
-	<input type="text" id="authMaster" value="hello">
-	<input type="text" id="authTeacher">
-	<input type="text" id="authDietitian">
-	<input type="text" id="authFacility">
-	<input type="text" id="authShuttle">
-	<input type="text" id="authInfomation">
-	<input type="text" id="authEvent">
-	<input type="text" id="authGallery">
-	
+	<input type="hidden" id="authCode" value="${auth_info.auth_code}">
 	
             <div id="logo">
                 <a href="../main/"><img src="<spring:url value='/resources/logoImg/ius_logo1.png' />" width="200px"></a>

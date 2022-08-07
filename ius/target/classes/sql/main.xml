@@ -19,4 +19,26 @@
 	<update id="update_staff_pwd" parameterType="staffIdVO">
 		update staffId SET staff_pwd = #{staff_pwd} WHERE staff_id = #{staff_id}
 	</update>
+	
+	<!-- 내 정보 수정 -->
+	<update id="update_my_staff_info" parameterType="staffVO">
+		UPDATE staff SET 
+		staff_addr = #{staff_addr},
+		staff_zipcode = #{staff_zipcode},
+		staff_tel = #{staff_tel}
+		<if test="staff_picture != null and staff_picture != ''">
+   		, staff_picture = #{staff_picture}
+    	</if>
+		WHERE staff_num = #{staff_num}
+	</update>
+	
+	<!-- 기존 비밀번호 일치 유무 체크  -->
+	<select id="check_origin_password" parameterType="hashmap" resultType="int">
+		SELECT COUNT(*) FROM staffId WHERE staff_id = #{staff_id} AND staff_pwd = #{originPassword}
+	</select>
+	
+	<!-- 비밀번호 변경 -->
+	<update id="update_password" parameterType="hashmap">
+		UPDATE staffId SET staff_pwd = #{newPassword} WHERE staff_id = #{staff_id}
+	</update>
 </mapper>

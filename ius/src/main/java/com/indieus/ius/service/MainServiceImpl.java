@@ -1,17 +1,24 @@
 package com.indieus.ius.service;
 
+import java.io.File;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.mail.HtmlEmail;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.indieus.ius.db.AuthorityDAO;
 import com.indieus.ius.db.MainDAO;
+import com.indieus.ius.utils.UploadFileUtils;
 import com.indieus.ius.vo.AuthorityVO;
 import com.indieus.ius.vo.StaffIdVO;
+import com.indieus.ius.vo.StaffVO;
 
 public class MainServiceImpl implements MainService {
 
@@ -20,12 +27,14 @@ public class MainServiceImpl implements MainService {
 	@Inject
 	private AuthorityDAO authManager;
 
-
 	@Value("${host.smtp.id}")
 	private String hostSMTPid;
 	@Value("${host.smtp.pwd}")
 	private String hostSMTPpwd;
 
+	@Resource(name="uploadPath")
+	private String uploadPath;
+	
 	// 이메일이 있는지 유무 체크 Ajax
 	@Override
 	public Object getEmailExistCheck(Map<String, Object> map) throws Exception {
@@ -113,11 +122,13 @@ public class MainServiceImpl implements MainService {
 	}
 	
 	// 권한 코드로 권한 정보 가져오기
+	@Override
 	public AuthorityVO selectAuthByCode(String auth_code) throws Exception {
 		return authManager.selectAuthByCode(auth_code);
 	}
 	
 	// 로그인 후 권한 코드로 권한 정보 가져오기 Ajax
+	@Override
 	public Object getAuthInfoByCode(Map<String, Object> map) throws Exception {
 		String auth_code = (String) map.get("auth_code");
 		AuthorityVO authInfo = authManager.selectAuthByCode(auth_code);
@@ -128,4 +139,47 @@ public class MainServiceImpl implements MainService {
 		return data;
 	}
 
+	// 내 회원 정보 수정
+	@Override
+	public int myStaffInfoUpdate(StaffVO sVo, MultipartFile staff_picFile) throws Exception {
+		if(staff_picFile.getSize() != 0) { // 수정 프로필 요청 사진이 있을 시
+			MultipartFile file = staff_picFile;
+
+			String imgUploadPath = uploadPath + File.separator + "imgUpload";
+			String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+			String fileName = null;
+
+			if(file != null) {
+				fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
+			} else {
+				fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+			}
+
+			System.out.println(imgUploadPath);
+			System.out.println(ymdPath);
+
+			sVo.setStaff_picture(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+		}
+
+		return manager.myStaffInfoUpdate(sVo);
+	}
+	
+	// 기존 비밀번호 일치 유무 체크 Ajax
+	public Object checkOriginPassword(Map<String, Object> map) throws Exception {
+		int result = manager.checkOriginPassword(map);
+		
+		Map<String, Object> data = new HashMap();
+		data.put("result", result);
+		
+		return data;
+	}
+	
+	// 비밀번호 변경
+	public int updatePassword(Map<String, Object> map) throws Exception {
+		int result = manager.updatePassword(map);
+		return result;
+	}
+		
 }
+
+

@@ -212,14 +212,6 @@ $(function(){
 									</select>
 								</c:if>		
 								
-								<c:if test="${staff.staff_workYn == 'P'}">
-									<select name="staff_workYn" id="staff_workYn">
-										<option value="Y">재직</option>
-										<option value="P" selected="selected">휴직</option>
-										<option value="N" >퇴사</option>
-									</select>
-								</c:if>		
-								
 								<c:if test="${staff.staff_workYn == 'N'}">
 									<select name="staff_workYn" id="staff_workYn">
 										<option value="Y">재직</option>

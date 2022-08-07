@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>index</title>
-<link type="text/css" rel="stylesheet" href="${path}/resources/css/articleF.css">
+<link type="text/css" rel="stylesheet" href="${path}/resources/css/articleF.css?">
 </head>
 <body>
 <%@include file="../include/header.jsp" %>

@@ -149,8 +149,11 @@
 		AND i.staff_id = #{staff_id}
 	</select>
 	
+	<!-- 담당 반 내역 지우기  -->
 	<delete id="delete_class_info_by_staff_num" parameterType="String">
 		DELETE class WHERE staff_num = #{staff_num}
 	</delete>
+	
+	
 	
 </mapper>
