@@ -151,6 +151,7 @@ getList();
 		});
 
 })
+
 </script>
 
 <title>교직원 관리</title>

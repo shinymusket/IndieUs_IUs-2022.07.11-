@@ -8,13 +8,17 @@ import javax.inject.Inject;
 import org.apache.commons.mail.HtmlEmail;
 import org.springframework.beans.factory.annotation.Value;
 
+import com.indieus.ius.db.AuthorityDAO;
 import com.indieus.ius.db.MainDAO;
+import com.indieus.ius.vo.AuthorityVO;
 import com.indieus.ius.vo.StaffIdVO;
 
 public class MainServiceImpl implements MainService {
 
 	@Inject
 	private MainDAO manager;
+	@Inject
+	private AuthorityDAO authManager;
 
 
 	@Value("${host.smtp.id}")
@@ -106,6 +110,22 @@ public class MainServiceImpl implements MainService {
 		return data;
 
 
+	}
+	
+	// 권한 코드로 권한 정보 가져오기
+	public AuthorityVO selectAuthByCode(String auth_code) throws Exception {
+		return authManager.selectAuthByCode(auth_code);
+	}
+	
+	// 로그인 후 권한 코드로 권한 정보 가져오기 Ajax
+	public Object getAuthInfoByCode(Map<String, Object> map) throws Exception {
+		String auth_code = (String) map.get("auth_code");
+		AuthorityVO authInfo = authManager.selectAuthByCode(auth_code);
+		
+		Map<String, Object> data = new HashMap();
+		data.put("authInfo", authInfo);
+
+		return data;
 	}
 
 }

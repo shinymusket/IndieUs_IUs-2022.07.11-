@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.indieus.ius.service.MainServiceImpl;
 import com.indieus.ius.service.StaffIdServiceImpl;
+import com.indieus.ius.vo.AuthorityVO;
 import com.indieus.ius.vo.StaffIdVO;
 
 @Controller
@@ -37,11 +39,26 @@ public class MainController {
 
 	// 로그인
 	@RequestMapping(value = "/main/loginCheck", method = RequestMethod.POST)
-	public String main(@ModelAttribute StaffIdVO staff, HttpSession session, HttpServletResponse response) throws Exception {
+	public String main(Model model, @ModelAttribute StaffIdVO staff, HttpSession session, HttpServletResponse response) throws Exception {
 		staff = staffService.login(staff, response);
 		session.setAttribute("staff", staff);
+		
+		// 권한 정보 가져오기
+		String auth_code = staff.getAuth_code();
+		AuthorityVO auth_info = service.selectAuthByCode(auth_code);
+		model.addAttribute("auth_info" , auth_info);
+		
 		return "/main/home";
 	}
+	
+	// 로그인 후 권한 코드로 권한 정보 가져오기 Ajax
+	@ResponseBody
+	@RequestMapping(value = "/main/get_auth_info_by_code", method = RequestMethod.POST)
+	public Object getAuthInfoByCode(@RequestParam Map<String, Object> map) throws Exception {
+		return service.getAuthInfoByCode(map);
+	}
+	
+	
 
 	// 로그아웃
 	@RequestMapping(value = "/main/logout")
@@ -69,5 +86,5 @@ public class MainController {
 	public Object searchPasswordByEmail(@RequestParam Map<String, Object> map) throws Exception {
 		return service.searchPasswordByEmail(map);
 	}
-
+	
 }
