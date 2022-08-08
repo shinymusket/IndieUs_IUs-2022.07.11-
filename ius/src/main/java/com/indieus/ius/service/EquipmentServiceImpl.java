@@ -24,33 +24,33 @@ public class EquipmentServiceImpl implements EquipmentService {
 
 	@Inject
 	private EquipmentDAO manager;
-	
+
 	// 리스트 총 갯수
 	@Override
 	public int countEquipment() throws Exception {
 		return manager.countEquipment();
 	}
-	
+
 	// 페이징 처리 게시글 조회
 	@Override
 	public List<EquipmentVO> selectEquipment(PagingVO vo) throws Exception {
 		return manager.selectEquipment(vo);
 	}
-	
+
 	// 검색된 리스트 총 갯수
 	@Override
 	public int countSearchEquipment(EquipmentSearchVO searchInfo) throws Exception {
 		return manager.countSearchEquipment(searchInfo);
 	}
-	
+
 	// 검색된 리스트 페이징 처리 조회
 	@Override
 	public List<EquipmentVO> searchEquipment(EquipmentSearchVO searchInfo) throws Exception {
 		return manager.searchEquipment(searchInfo);
 	}
 
-	
-	
+
+
 	// 시설(비품) 리스트 가져오기 Ajax
 	@Override
 	public Object getEquipmentList() throws Exception {
@@ -182,14 +182,14 @@ public class EquipmentServiceImpl implements EquipmentService {
 		}
 
 	}
-	
+
 	// 검색 기능을 위한 분류 항목 리스트 가져오기
 	@Override
 	public List<EquipClsVO> selEquipmentClsList() throws Exception {
 		return manager.selectEquipClsList();
 	}
-	
-	
+
+
 
 	// 구매품 -------------------------
 
@@ -241,7 +241,7 @@ public class EquipmentServiceImpl implements EquipmentService {
 		data.put("purchaseList", purchaseList);
 		return data;
 	}
-	
+
 	// 구매 리스트 검색하기 Ajax
 	@Override
 	public Object searchPurchaseList(Map<String, Object> map) throws Exception {
@@ -250,8 +250,8 @@ public class EquipmentServiceImpl implements EquipmentService {
 		data.put("purchaseList", purchaseList);
 		return data;
 	}
-	
-	
+
+
 	// 구매 정보 상세보기
 	@Override
 	public PurchaseVO getPurchaseInfo(String purchase_num) throws Exception {

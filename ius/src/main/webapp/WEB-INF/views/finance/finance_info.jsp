@@ -14,23 +14,45 @@
  $(function(){
 	 $("#update").click(function(){ // 수정 요청시
 		var log_staff_num = $("#log_staff_num").val();
-	 	
-		 
+	 	var staff_num = $("#staff_num").val();
 		 
 		var finance_num = $("#finance_num").val();
 			 
 	 	// 본인이 작성한 데이터인지 확인
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
+	 	if (log_staff_num != staff_num) {
+	 		alert("재정내역 수정은 작성자만 할 수 있습니다.");
+	 		return;
+	 	}
 	 
 		 location.href="../finance/finance_update_form?finance_num=" + finance_num;
 	 });
+	 
+	 $("#delete").click(function(){ // 삭제 요청시
+			var log_staff_num = $("#log_staff_num").val();
+		 	var staff_num = $("#staff_num").val();
+			 
+			var finance_num = $("#finance_num").val();
+				 
+		 	// 본인이 작성한 데이터인지 확인
+		 	if (log_staff_num != staff_num) {
+		 		alert("재정내역 삭제는 작성자만 할 수 있습니다.");
+		 		return;
+		 	};
+		 	
+		 	var input = confirm("정말 삭제하시겠습니까?")
+		 	
+		 	if (input === true) {
+		 		alert("삭제되었습니다.");
+		 		location.href="../finance/finance_delete?finance_num=" + finance_num;
+		 	} else {
+		 		alert("취소되었습니다.");
+		 	};
+		 
+			 
+		 });
+	 
+	 
+	 
  })
 </script>
 </head>
@@ -51,14 +73,15 @@
 			<section>
 				<div id="content">
 						<input type="button" value="목록" onclick="location.href='../finance/finance_list'">
-						<input type="button" value="수정" id="update" onclick="location.href=''">
-						<input type="button" value="삭제" id="delete" onclick="location.href='../finance/finance_delete?finance_num=${finance.finance_num}'">
+						<input type="button" value="수정" id="update">
+						<input type="button" value="삭제" id="delete">
 						
 						<table border="1">
 							<tr>
 								<th>재정 코드</th>
 								<td>
 									<input type="hidden" id="log_staff_num" value="${log_staff_num}">
+									<input type="hidden" id="staff_num" value="${finance.staff_num}">
 									<input type="text" readonly="readonly" id="finance_num" value="${finance.finance_num}">
 								</td>
 								<th>예산 항목</th>

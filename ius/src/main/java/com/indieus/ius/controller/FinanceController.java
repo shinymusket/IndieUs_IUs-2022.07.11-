@@ -66,13 +66,13 @@ public class FinanceController {
 		int finance_num = service.selectFinanceSeq();
 		// 예산 항목 가져오기
 		List<BudgetVO> budgetList = budgetService.selectBudgetByBudgetIe(iE);
-		
+
 		// 로그인되어 있는 정보로 입력하기
 		StaffIdVO staff = (StaffIdVO)session.getAttribute("staff");
 		// 사번과 이름값 가져오기
 		String staff_id = staff.getStaff_id();
 		StaffVO staffInfo = staffService.selectStaffInfoStaffId(staff_id);
-		
+
 		model.addAttribute("iE", iE);
 		model.addAttribute("finance_num", finance_num);
 		model.addAttribute("budgetList", budgetList);
@@ -92,14 +92,14 @@ public class FinanceController {
 	// 재정 정보 상세보기
 	@RequestMapping(value = "/finance_info", method = RequestMethod.GET)
 	public String info(Model model, @RequestParam String finance_num, HttpSession session) throws Exception {
-		
+
 		// 로그인되어 있는 정보로 입력하기
 		StaffIdVO staff = (StaffIdVO)session.getAttribute("staff");
 		// 사번과 이름값 가져오기
 		String staff_id = staff.getStaff_id();
 		StaffVO staffInfo = staffService.selectStaffInfoStaffId(staff_id);
 		String log_staff_num = staffInfo.getStaff_num();
-		
+
 		FinanceVO fVo = service.selectFinanceByNum(finance_num);
 		List<PurchaseVO> purchaseList = service.selectPurchaseFromNum(finance_num);
 		int purchaseSum = 0;
@@ -108,7 +108,7 @@ public class FinanceController {
 		} catch(NullPointerException e) {
 			purchaseSum = 0;
 		}
-		
+
 		model.addAttribute("finance", fVo);
 		model.addAttribute("purchaseList", purchaseList);
 		model.addAttribute("purchaseSum", purchaseSum);
@@ -132,16 +132,21 @@ public class FinanceController {
 
 	// 재정 수정 폼
 	@RequestMapping(value = "/finance_update_form", method = RequestMethod.GET)
-	public String updateForm(Model model, @RequestParam String finance_num) throws Exception {
+	public String updateForm(Model model, @RequestParam String finance_num, HttpSession session) throws Exception {
+		// 로그인되어 있는 정보로 입력하기
+		StaffIdVO staff = (StaffIdVO) session.getAttribute("staff");
+		// 사번과 이름값 가져오기
+		String staff_id = staff.getStaff_id();
+		StaffVO staffInfo = staffService.selectStaffInfoStaffId(staff_id);
+		
 		FinanceVO fVo = service.selectFinanceByNum(finance_num);
 		String iE = fVo.getFinance_iE();
 
 		List<BudgetVO> budgetList = budgetService.selectBudgetByBudgetIe(iE);
-		List<StaffVO> staffList = staffService.selectStaffList();
 
 		model.addAttribute("budgetList", budgetList);
-		model.addAttribute("staffList", staffList);
 		model.addAttribute("finance", fVo);
+		model.addAttribute("staffInfo", staffInfo);
 		return "/finance/finance_update_form";
 	}
 

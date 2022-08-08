@@ -1,7 +1,7 @@
 package com.indieus.ius.vo;
 
 public class EquipmentVO {
-	
+
 	private String equipment_num;
 	private String staff_id;
 	private String equip_cls_num;
@@ -14,7 +14,7 @@ public class EquipmentVO {
 
 	private String staff_name;
 	private String equip_cls_name;
-	
+
 
 
 	public String getEquipment_cate() {

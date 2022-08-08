@@ -138,21 +138,10 @@ $(function(){
 								</td>
 							</tr>
 							<tr>
-								<th>[직원 코드]교직원명</th>
+								<th>교직원명</th>
 								<td>
-									<select name="staff_num" id="staff_num">
-										<option value="">-선택-</option>
-										<c:if test="${staffList != null}">
-											<c:forEach items="${staffList}" var="staff">
-												<c:if test="${staff.staff_num == finance.staff_num}">
-													<option value="${staff.staff_num}" selected="selected">[${staff.staff_num}]${staff.staff_name}</option> 
-												</c:if>
-												<c:if test="${staff.staff_num != finance.staff_num}">
-													<option value="${staff.staff_num}">[${staff.staff_num}]${staff.staff_name}</option> 
-												</c:if>	
-											</c:forEach>
-										</c:if>
-									</select>
+									<input type="text" id="staff_num" name="staff_num" readonly="readonly" value="${staffInfo.staff_num}">
+									<input type="text" id="staff_name" name="staff_name" readonly="readonly" value="${staffInfo.staff_name}">
 								</td>
 								<th>집행 날짜</th>
 								<td>

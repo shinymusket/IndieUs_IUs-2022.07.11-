@@ -1,13 +1,13 @@
 package com.indieus.ius.utils;
 
 public class PagingVO {
-	
+
 	// 현재 페이지, 시작 페이지, 끝페이지, 게시글 총 갯수, 페이당 글 갯수, 마지막 페이지, SQL 쿼리에 쓸 start, end
 	private int nowPage, startPage, endPage, total, cntPerPage, lastPage, start, end;
 	private int cntPage = 20;
-	
+
 	public PagingVO() {
-		
+
 	}
 	public PagingVO(int total, int nowPage, int cntPerPage) {
 		setNowPage(nowPage);
@@ -32,7 +32,7 @@ public class PagingVO {
 			setStartPage(1);
 		}
 	}
-	
+
 	// DB 쿼리에서 사용할 start, end 값 계산
 	public void calcStartEnd(int nowPage, int cntPerPage) {
 		setEnd(nowPage * cntPerPage);
@@ -92,14 +92,14 @@ public class PagingVO {
 	public void setCntPage(int cntPage) {
 		this.cntPage = cntPage;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "PagingVO [nowPage=" + nowPage + ", startPage=" + startPage + ", endPage=" + endPage + ", total=" + total
 				+ ", cntPerPage=" + cntPerPage + ", lastPage=" + lastPage + ", start=" + start + ", end=" + end
 				+ ", cntPage=" + cntPage + "]";
 	}
-	
-	
-	
+
+
+
 }

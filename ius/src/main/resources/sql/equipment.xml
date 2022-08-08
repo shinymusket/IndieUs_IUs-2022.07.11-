@@ -274,7 +274,7 @@
 	</delete>
 	
 	<!-- 구매 정보 수정하기 -->
-	<update id="update_purchase" parameterType="purchaseVO">
+ 	<update id="update_purchase" parameterType="purchaseVO">
 		UPDATE purchase SET 
 		finance_num = #{finance_num},
 		equipment_num = #{equipment_num},

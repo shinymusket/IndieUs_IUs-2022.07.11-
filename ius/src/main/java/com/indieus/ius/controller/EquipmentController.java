@@ -32,7 +32,7 @@ public class EquipmentController {
 
 	@Autowired
 	private EquipmentServiceImpl service;
-	
+
 	// 페이징 처리된 리스트 받아오기
 	@GetMapping("/equipment_list")
 	public String equipmentList(PagingVO vo, Model model
@@ -48,25 +48,25 @@ public class EquipmentController {
 				cntPerPage = "20";
 		}
 		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
-	
+
 		model.addAttribute("paging", vo);
 		model.addAttribute("viewAll", service.selectEquipment(vo));
-		
+
 		List<EquipClsVO> equipClsList = service.selEquipmentClsList();
 		model.addAttribute("equipClsList", equipClsList);
-		
-		
+
+
 		return "/equipment/equipmentList";
-		
+
 	}
-	
+
 	// 시설 비품 검색 기능
 	@RequestMapping(value = "/equipment_search", method = RequestMethod.POST)
 	public String equipmentSearch(PagingVO vo, Model model
 			, @RequestParam(value = "nowPage", required=false)String nowPage
 			, @RequestParam(value = "cntPerPage", required=false)String cntPerPage
 			, @ModelAttribute EquipmentSearchVO searchInfo) throws Exception {
-		
+
 		int total = service.countSearchEquipment(searchInfo); // 검색된 리스트 총 갯수
 		if (nowPage == null && cntPerPage == null) {
 			nowPage = "1";
@@ -76,32 +76,32 @@ public class EquipmentController {
 		} else if (cntPerPage == null) {
 				cntPerPage = "20";
 		}
-		
+
 		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
-		
+
 		searchInfo.setStart(vo.getStart());
 		searchInfo.setEnd(vo.getEnd());
-	
+
 		model.addAttribute("paging", vo);
-		
-	
+
+
 		model.addAttribute("viewAll", service.searchEquipment(searchInfo));
-		
+
 		List<EquipClsVO> equipClsList = service.selEquipmentClsList();
 		model.addAttribute("equipClsList", equipClsList);
-		
+
 		return "/equipment/equipmentList";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
 
 //	// 시설(비품) 리스트 페이지로 이동
 //	@RequestMapping(value = "/equipment_list", method = RequestMethod.GET)
@@ -275,7 +275,7 @@ public class EquipmentController {
 	public Object getPurchaseList() throws Exception {
 		return service.getPurchaseList();
 	}
-	
+
 	// 구매 리스트 검색하기 Ajax
 	@ResponseBody
 	@RequestMapping(value = "/search_purchase_list", method = RequestMethod.POST)

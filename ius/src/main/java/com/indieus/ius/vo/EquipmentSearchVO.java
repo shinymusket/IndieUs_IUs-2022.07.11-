@@ -1,12 +1,12 @@
 package com.indieus.ius.vo;
 
 public class EquipmentSearchVO {
-	
+
 	private int nowPage, startPage, endPage, total, cntPerPage, lastPage, start, end;
 	private int cntPage = 5;
-	
+
 	public EquipmentSearchVO() {
-		
+
 	}
 	public EquipmentSearchVO(int total, int nowPage, int cntPerPage) {
 		setNowPage(nowPage);
@@ -37,7 +37,7 @@ public class EquipmentSearchVO {
 		setEnd(nowPage * cntPerPage);
 		setStart(getEnd() - cntPerPage + 1);
 	}
-	
+
 	public int getNowPage() {
 		return nowPage;
 	}
@@ -101,7 +101,7 @@ public class EquipmentSearchVO {
 	private String searchDate;
 	private String equip_cls_num;
 	private String equipment_cate;
-	
+
 	public String getSearchType() {
 		return searchType;
 	}
@@ -139,5 +139,5 @@ public class EquipmentSearchVO {
 				+ ", cntPerPage=" + cntPerPage + ", lastPage=" + lastPage + ", start=" + start + ", end=" + end
 				+ ", cntPage=" + cntPage + "]";
 	}
-	
+
 }

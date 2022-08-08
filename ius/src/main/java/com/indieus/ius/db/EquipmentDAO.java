@@ -27,24 +27,24 @@ public class EquipmentDAO {
 	public int countEquipment() throws Exception {
 		return sqlsession.selectOne("equipment.countEquipment");
 	}
-	
+
 	// 페이징 처리 게시글 조회
 	public List<EquipmentVO> selectEquipment(PagingVO vo) throws Exception {
 		return sqlsession.selectList("equipment.selectEquipment", vo);
 	}
-	
+
 	// 검색된 총 리스트 갯수
 	public int countSearchEquipment(EquipmentSearchVO searchInfo) throws Exception {
 		return sqlsession.selectOne("equipment.countSearchEquipment", searchInfo);
 	}
-	
-	// 검색된 리스트 페이징 처리 조회 
+
+	// 검색된 리스트 페이징 처리 조회
 	public List<EquipmentVO> searchEquipment(EquipmentSearchVO searchInfo) {
 		return sqlsession.selectList("equipment.search_equipment", searchInfo);
 	}
 
-	
-	
+
+
 	// 전체 비품 리스트 가져오기
 	public List<EquipmentVO> getAllEquipList() throws Exception {
 		return sqlsession.selectList("equipment.get_all_equipment_list");
@@ -155,7 +155,7 @@ public class EquipmentDAO {
 	public List<PurchaseVO> selectPurchaseList() throws Exception {
 		return sqlsession.selectList("equipment.select_purchase_list");
 	}
-	
+
 	// 구매리스트 검색하기
 	public List<PurchaseVO> searchPurchaseList(Map<String, Object> map) throws Exception  {
 		return sqlsession.selectList("equipment.search_purchase_list", map);
