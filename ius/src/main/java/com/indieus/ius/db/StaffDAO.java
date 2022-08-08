@@ -131,12 +131,12 @@ public class StaffDAO {
 	public StaffVO selectStaffInfoStaffId(String staff_id) throws Exception {
 		return sqlsession.selectOne("staff.select_staff_info_by_staff_id", staff_id);
 	}
-	
+
 	// 교직원의 학급 데이터 삭제
 	@Transactional
 	public void deleteClassInfo(String staff_num) throws Exception{
 		sqlsession.delete("staff.delete_class_info_by_staff_num", staff_num);
-		
+
 	}
 
 

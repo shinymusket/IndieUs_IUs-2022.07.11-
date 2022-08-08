@@ -1,13 +1,11 @@
 package com.indieus.ius.service;
 
 import java.io.File;
-import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.mail.HtmlEmail;
 import org.springframework.beans.factory.annotation.Value;
@@ -34,7 +32,7 @@ public class MainServiceImpl implements MainService {
 
 	@Resource(name="uploadPath")
 	private String uploadPath;
-	
+
 	// 이메일이 있는지 유무 체크 Ajax
 	@Override
 	public Object getEmailExistCheck(Map<String, Object> map) throws Exception {
@@ -120,19 +118,19 @@ public class MainServiceImpl implements MainService {
 
 
 	}
-	
+
 	// 권한 코드로 권한 정보 가져오기
 	@Override
 	public AuthorityVO selectAuthByCode(String auth_code) throws Exception {
 		return authManager.selectAuthByCode(auth_code);
 	}
-	
+
 	// 로그인 후 권한 코드로 권한 정보 가져오기 Ajax
 	@Override
 	public Object getAuthInfoByCode(Map<String, Object> map) throws Exception {
 		String auth_code = (String) map.get("auth_code");
 		AuthorityVO authInfo = authManager.selectAuthByCode(auth_code);
-		
+
 		Map<String, Object> data = new HashMap();
 		data.put("authInfo", authInfo);
 
@@ -163,23 +161,25 @@ public class MainServiceImpl implements MainService {
 
 		return manager.myStaffInfoUpdate(sVo);
 	}
-	
+
 	// 기존 비밀번호 일치 유무 체크 Ajax
+	@Override
 	public Object checkOriginPassword(Map<String, Object> map) throws Exception {
 		int result = manager.checkOriginPassword(map);
-		
+
 		Map<String, Object> data = new HashMap();
 		data.put("result", result);
-		
+
 		return data;
 	}
-	
+
 	// 비밀번호 변경
+	@Override
 	public int updatePassword(Map<String, Object> map) throws Exception {
 		int result = manager.updatePassword(map);
 		return result;
 	}
-		
+
 }
 
 

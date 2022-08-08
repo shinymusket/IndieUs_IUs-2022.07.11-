@@ -23,6 +23,8 @@
 		<typeAlias alias="attendanceVO" type="com.indieus.ius.vo.AttendanceVO"/>
 		<typeAlias alias="consultVO" type="com.indieus.ius.vo.ConsultVO"/>
 		<typeAlias alias="receiptVO" type="com.indieus.ius.vo.ReceiptVO"/>
+		<typeAlias alias="pagingVO" type="com.indieus.ius.utils.PagingVO"/>
+		<typeAlias alias="equipmentSearchVO" type="com.indieus.ius.vo.EquipmentSearchVO"/>
 	</typeAliases>
 	
 <typeHandlers>

@@ -13,8 +13,6 @@ function addComma(value){
     return result;
 };
 
-
-
 function getList() { // 원생 리스트 가져오기
 	$.ajax({
 		url : "/ius/kinder/get_kinder_list",
@@ -45,6 +43,10 @@ function getList() { // 원생 리스트 가져오기
 getList();
 
 function view(kinder_num) { // 원생별 수납내역 조회
+	
+	var authCode = getCookie("auth_cookie");
+	$("#auth_info").val(authCode);
+	
 	var kinder_num = kinder_num;
 	
 	$.ajax({
@@ -478,7 +480,7 @@ $(function(){
 							<tr>
 								<th>원생명</th>
 								<td>
-									<input type="hidden" id="auth_info" name="auth_info" value="${auth_info}">
+									<input type="hidden" id="auth_info" name="auth_info">
 									<input type="hidden" id="receipt_code" name="receipt_code">
 									<input type="text" id="kinder_name" name="kinder_name" readonly="readonly" style='text-align : center;'>
 									<input type="text" id="kinder_num" name="kinder_num">

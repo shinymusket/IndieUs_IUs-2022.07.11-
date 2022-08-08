@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" 
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib  prefix="spring" uri="http://www.springframework.org/tags" %>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
@@ -146,8 +147,7 @@ $(function(){
 </script>
 <nav>
 	<!-- 로그인 아이디의 권한 정보 -->
-	<input type="hidden" id="authCode" value="${auth_info.auth_code}">
-	
+	<input type="hidden" id="authCode" value="<c:if test="${auth_info.auth_code != null}">${auth_info.auth_code}</c:if>">
             <div id="logo">
                 <a href="../main/"><img src="<spring:url value='/resources/logoImg/ius_logo1.png' />" width="200px"></a>
             </div>

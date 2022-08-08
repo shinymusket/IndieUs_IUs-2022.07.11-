@@ -499,12 +499,12 @@ public class StaffServiceImpl implements StaffService {
 		// 계정 불러오기
 		StaffVO sVo = manager.selectStaffInfo(staff_num);
 		String staff_id = sVo.getStaff_id();
-		
+
 		// 학급 정보 삭제
 		manager.deleteClassInfo(staff_num);
 		// 교직원 정보 삭제
 		int result = manager.deleteStaff(staff_num);
-		
+
 		manager.deleteStaffid(staff_id);
 		return result;
 	}

@@ -1,16 +1,26 @@
 package com.indieus.ius.service;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.indieus.ius.utils.PagingVO;
+import com.indieus.ius.vo.EquipClsVO;
+import com.indieus.ius.vo.EquipmentSearchVO;
 import com.indieus.ius.vo.EquipmentVO;
 import com.indieus.ius.vo.PurchaseVO;
 import com.indieus.ius.vo.StaffVO;
 
 public interface EquipmentService {
-
+	
+	// 리스트 총 갯수
+	public int countEquipment() throws Exception;
+	
+	// 페이징 처리 게시글 조회
+	public List<EquipmentVO> selectEquipment(PagingVO vo) throws Exception;
+	
 	public Object getEquipmentList() throws Exception;
 
 	public int selectEquipmentSeq() throws Exception;
@@ -50,4 +60,10 @@ public interface EquipmentService {
 	public int deletePurchase(String purchase_num) throws Exception;
 
 	public int updatePurchase(PurchaseVO pVo) throws Exception;
+	
+	public List<EquipClsVO> selEquipmentClsList() throws Exception;
+	
+	public int countSearchEquipment(EquipmentSearchVO searchInfo) throws Exception;
+	
+	public Object searchEquipment(EquipmentSearchVO searchInfo) throws Exception;
 }

@@ -11,24 +11,22 @@
 <link type="text/css" rel="stylesheet" href="${path}/resources/css/articleF.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
+	// 교직원별 근태 기록 가져오기
 	function getInfo(id, name) {
 		var staff_id = id;
 		var staff_name = name;
-		
-		var objParams = {
+			
+		$.ajax({
+			url : "/ius/staff_attendance/getInfo",
+			type : "POST",
+			data : {
 				id : staff_id
-		}
-		
-		var values = [];
-		
-		$.post(
-			"/ius/staff_attendance/getInfo",
-			objParams,
-			function(retVal) {
+			},
+			success : function(data) {
 				$("#attendanceInfo").text("");
 				$("#staff_name").text("");
 				
-				values = retVal.attendInfo;
+				values = data.attendInfo;
 				
 				output = "<tr><th>일시</th><th>출결 정보</th><th>출근시간</th><th>퇴근시간</th></tr>";
 				$.each(values, function(index, value) {
@@ -59,13 +57,13 @@
 				$("#attendanceInfo").html(output);
 				$("#staff_name").val(staff_name);
 				$("#staff_id").val(staff_id);
-				
-				
 			}
-		)
+		})
+		
 	};
 	
-	$(function() {
+	$(function() {	
+		
 		$("#search").click(function(){
 			if ($("#date_from").val() == "") {
 				alert("시작 일자를 설정해주세요.");
@@ -182,8 +180,12 @@
 							</c:forEach>
 						</table>
 					</c:if>
-		
-					<table id="attendanceInfo" style="float: left; display: none;" border="1"></table>	
+					
+					<table id="attendanceInfo" style="float: left; display: none;" border="1"></table>
+					
+					<!-- 페이징 표시할 부분 HTML  -->
+					<ul id="pagingul">
+					</ul>	
 				</div>
 			</section>
 	</article> 

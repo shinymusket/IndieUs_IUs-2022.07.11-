@@ -31,7 +31,7 @@ public class MainDAO {
 	public void updateStaffPwd(StaffIdVO sIvo) throws Exception {
 		sqlsession.update("main.update_staff_pwd", sIvo);
 	}
-		
+
 	// 내 회원 정보 수정
 	@Transactional
 	public int myStaffInfoUpdate(StaffVO sVo) throws Exception {
@@ -42,7 +42,7 @@ public class MainDAO {
 	public int checkOriginPassword(Map<String, Object> map) throws Exception {
 		return sqlsession.selectOne("main.check_origin_password", map);
 	}
-	
+
 	// 비밀번호 변경
 	@Transactional
 	public int updatePassword(Map<String, Object> map) {

@@ -25,10 +25,7 @@ public class ReceiptController {
 
 	// 수납 관리 리스트로 이동
 	@RequestMapping(value = "/receipt_list", method = RequestMethod.GET)
-	public String list(Model model, HttpSession session) throws Exception {
-		StaffIdVO staff = (StaffIdVO) session.getAttribute("staff");
-		String auth_info = staff.getAuth_code();
-		model.addAttribute("auth_info", auth_info);
+	public String list() throws Exception {
 		return "receipt/receiptList";
 	}
 
