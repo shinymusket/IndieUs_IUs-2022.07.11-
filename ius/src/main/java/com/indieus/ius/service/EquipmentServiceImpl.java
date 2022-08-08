@@ -241,7 +241,17 @@ public class EquipmentServiceImpl implements EquipmentService {
 		data.put("purchaseList", purchaseList);
 		return data;
 	}
-
+	
+	// 구매 리스트 검색하기 Ajax
+	@Override
+	public Object searchPurchaseList(Map<String, Object> map) throws Exception {
+		List<PurchaseVO> purchaseList = manager.searchPurchaseList(map);
+		Map<String, Object> data = new HashMap();
+		data.put("purchaseList", purchaseList);
+		return data;
+	}
+	
+	
 	// 구매 정보 상세보기
 	@Override
 	public PurchaseVO getPurchaseInfo(String purchase_num) throws Exception {
@@ -259,6 +269,8 @@ public class EquipmentServiceImpl implements EquipmentService {
 	public int updatePurchase(PurchaseVO pVo) throws Exception {
 		return manager.updatePurchase(pVo);
 	}
+
+
 
 
 

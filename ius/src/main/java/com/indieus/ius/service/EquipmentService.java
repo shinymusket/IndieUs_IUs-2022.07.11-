@@ -54,6 +54,8 @@ public interface EquipmentService {
 	public int purchaseEquipRegister(PurchaseVO pVo, HttpSession session) throws Exception;
 
 	public Object getPurchaseList() throws Exception;
+	
+	public Object searchPurchaseList(Map<String, Object> map) throws Exception;
 
 	public PurchaseVO getPurchaseInfo(String purchase_num) throws Exception;
 

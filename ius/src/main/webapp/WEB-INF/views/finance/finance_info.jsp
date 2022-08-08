@@ -9,6 +9,30 @@
 <meta charset="UTF-8">
 <title>재정 상세 보기</title>
 <link type="text/css" rel="stylesheet" href="${path}/resources/css/articleF.css">
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+ $(function(){
+	 $("#update").click(function(){ // 수정 요청시
+		var log_staff_num = $("#log_staff_num").val();
+	 	
+		 
+		 
+		var finance_num = $("#finance_num").val();
+			 
+	 	// 본인이 작성한 데이터인지 확인
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+		 location.href="../finance/finance_update_form?finance_num=" + finance_num;
+	 });
+ })
+</script>
 </head>
 <body>
 <%@include file="../include/header.jsp" %>
@@ -27,13 +51,16 @@
 			<section>
 				<div id="content">
 						<input type="button" value="목록" onclick="location.href='../finance/finance_list'">
-						<input type="button" value="수정" onclick="location.href='../finance/finance_update_form?finance_num=${finance.finance_num}'">
-						<input type="button" value="삭제" onclick="location.href='../finance/finance_delete?finance_num=${finance.finance_num}'">
+						<input type="button" value="수정" id="update" onclick="location.href=''">
+						<input type="button" value="삭제" id="delete" onclick="location.href='../finance/finance_delete?finance_num=${finance.finance_num}'">
 						
 						<table border="1">
 							<tr>
 								<th>재정 코드</th>
-								<td>${finance.finance_num}</td>
+								<td>
+									<input type="hidden" id="log_staff_num" value="${log_staff_num}">
+									<input type="text" readonly="readonly" id="finance_num" value="${finance.finance_num}">
+								</td>
 								<th>예산 항목</th>
 								<td>${finance.budget_cls}</td>
 							</tr>

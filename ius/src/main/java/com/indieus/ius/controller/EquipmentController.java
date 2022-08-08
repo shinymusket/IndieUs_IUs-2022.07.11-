@@ -275,6 +275,13 @@ public class EquipmentController {
 	public Object getPurchaseList() throws Exception {
 		return service.getPurchaseList();
 	}
+	
+	// 구매 리스트 검색하기 Ajax
+	@ResponseBody
+	@RequestMapping(value = "/search_purchase_list", method = RequestMethod.POST)
+	public Object searchPurchaseList(@RequestParam Map<String, Object> map) throws Exception {
+		return service.searchPurchaseList(map);
+	}
 
 	// 구매 정보 상세보기
 	@RequestMapping(value = "/purchase_info", method = RequestMethod.GET)

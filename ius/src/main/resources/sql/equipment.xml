@@ -228,6 +228,34 @@
 		FROM purchase p , staff s, equipment e
 		WHERE p.staff_num = s.staff_num
 		AND p.equipment_num = e.equipment_num
+		ORDER BY p.purchase_num DESC
+	</select>
+	
+	<!-- 구매 리스트 검색하기 -->
+	<select id="search_purchase_list" parameterType="hashmap" resultType="purchaseVO">
+		SELECT p.purchase_num, p.finance_num, s.staff_name, e.equipment_num, e.equipment_name, TO_CHAR(p.purchase_date, 'YYYY-MM-DD') AS "purchase_date", p.purchase_price, p.purchase_count
+		FROM purchase p , staff s, equipment e
+		WHERE p.staff_num = s.staff_num
+		AND p.equipment_num = e.equipment_num
+		<if test='searchType == "purchase_num"'>
+		AND purchase_num = #{searchContent}
+		</if>
+		<if test='searchType == "finance_num"'>
+		AND finance_num = #{searchContent}
+		</if>
+		<if test='searchType == "staff_name"'>
+		AND s.staff_name = #{searchContent}
+		</if>
+		<if test='searchType == "equipment_num"'>
+		AND p.equipment_num = #{searchContent}
+		</if>
+		<if test='searchType == "equipment_name"'>
+		AND e.equipment_name = #{searchContent}
+		</if>
+		<if test='searchType == "purchase_date"'>
+		AND purchase_date IN TO_DATE(#{searchDate}, 'YYYY-MM-DD')
+		</if>
+		ORDER BY p.purchase_num DESC
 	</select>
 	
 	<!-- 구매 정보 가져오기  -->

@@ -74,13 +74,7 @@
 	};
 	
 	
-	
-	
-	
-$(function(){
-	$("#search").click(function(){
-	});
-})	
+
 
 </script>
 </head>

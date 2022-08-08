@@ -351,4 +351,9 @@ article {
         text-align: center;
         font-size: 14px;
     }
-}
+
+/* Ajax ∆‰¿Ã¬° */
+.clickable {cursor: pointer;}
+.hover {text-decoration: underline;}
+.active{ width:10px; height:10px; background:#f60; color:white;}
+    

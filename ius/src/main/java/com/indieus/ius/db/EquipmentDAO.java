@@ -1,6 +1,7 @@
 package com.indieus.ius.db;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -154,6 +155,11 @@ public class EquipmentDAO {
 	public List<PurchaseVO> selectPurchaseList() throws Exception {
 		return sqlsession.selectList("equipment.select_purchase_list");
 	}
+	
+	// 구매리스트 검색하기
+	public List<PurchaseVO> searchPurchaseList(Map<String, Object> map) throws Exception  {
+		return sqlsession.selectList("equipment.search_purchase_list", map);
+	}
 
 	// 구매 정보 가져오기
 	public PurchaseVO getPurchaseInfo(String purchase_num) {
@@ -171,6 +177,8 @@ public class EquipmentDAO {
 	public int updatePurchase(PurchaseVO pVo) throws Exception {
 		return sqlsession.update("update_purchase", pVo);
 	}
+
+
 
 
 

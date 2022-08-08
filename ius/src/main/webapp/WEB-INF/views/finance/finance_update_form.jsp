@@ -156,7 +156,7 @@ $(function(){
 								</td>
 								<th>집행 날짜</th>
 								<td>
-									<input type="text" placeholder="ex)20220721" name="finance_eDate" id="finance_eDate" value="${finance.finance_eDate}">
+									<input type="date" name="finance_eDate" id="finance_eDate" value="${finance.finance_eDate}">
 								</td>
 							</tr>
 							<tr>
