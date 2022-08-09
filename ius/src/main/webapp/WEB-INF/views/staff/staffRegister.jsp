@@ -60,9 +60,10 @@
 		
 		
 			$("#staff_idChk").click(function(){
-				if ($("#staff_id").val() == "") {
+				var staff_id = $("#staff_id").val();
+				
+				if (staff_id == "") {
 					alert("아이디를 입력해주세요.");
-					$("#staff_id").val().focus();
 					return;
 				};
 				
@@ -295,7 +296,7 @@
 							<th colspan="2">이메일*</th>
 							<td colspan="2">
 								<input type="email" name="staff_email" id="staff_email">
-								<input type="text" id="check_email">
+								<input type="hidden" id="check_email">
 								<font id="check" size="2"></font>
 							</td>
 						</tr>

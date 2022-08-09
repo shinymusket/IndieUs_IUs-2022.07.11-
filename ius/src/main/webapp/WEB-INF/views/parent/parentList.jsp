@@ -8,6 +8,89 @@
 <meta charset="UTF-8">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
+function getCookie(name) {	// 저장된 쿠키 가져오기
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
+
+function getList() {
+	$.ajax({
+		url : "/ius/parent/get_kinder_list",
+		type : "POST",
+		data : {
+			
+		},
+		success: function(data) {
+			$("#kinderList").text("");
+			values = data.kinderList;
+			output = "<tr><th>원생 이름</th><th>부 성명</th><th>모 성명</th></tr>";				
+			$.each(values, function(index, value) {
+	
+				output += "<tr>";
+				output += "<td><a href=\"javascript:view(" + value.kinder_num + ");\">" + value.kinder_name + "</a></td>";
+				output += "<td>" + value.father_name + "</td>";
+				output += "<td>" + value.mather_name + "</td>";
+				output += "</tr>";
+			});
+			
+			$("#kinderList").html(output);
+		}
+		
+	})
+	
+}
+getList();
+
+
+
+function select_by_class() { // 반 별로 조회하기
+	
+	$("#kinderInfo").hide();
+	
+	$("#father").hide();
+	$("#mather").hide();
+	
+	
+	var class_number = $("#classNumber").val();
+	
+	if (class_number == "") { // 전체 조회.
+		getList();
+	
+	} else {
+		$.ajax({
+			url : "/ius/parent/search_kinder_list_by_class",
+			type : "POST",
+			data : { 
+				class_number : class_number
+			},
+			success: function(data) {
+				$("#kinderList").text("");
+				values = data.kinderList;
+				output = "<tr><th>원생 이름</th><th>부 성명</th><th>모 성명</th></tr>";				
+				$.each(values, function(index, value) {
+		
+					output += "<tr>";
+					output += "<td><a href=\"javascript:view(" + value.kinder_num + ");\">" + value.kinder_name + "</a></td>";
+					output += "<td>" + value.father_name + "</td>";
+					output += "<td>" + value.mather_name + "</td>";
+					output += "</tr>";
+				});
+				
+				$("#kinderList").html(output);
+			}
+			
+		})
+	}
+	
+};
+
+
 function view(kinder_num) {
 		var kinder_num =  kinder_num;
 		
@@ -54,96 +137,82 @@ function view(kinder_num) {
 };
 
 
-	function getList() {
-		$.ajax({
-			url : "/ius/parent/get_kinder_list",
-			type : "POST",
-			data : {
-				
-			},
-			success: function(data) {
-				$("#kinderList").text("");
-				values = data.kinderList;
-				output = "<tr><th>원생 이름</th><th>부 성명</th><th>모 성명</th></tr>";				
-				$.each(values, function(index, value) {
-		
-					output += "<tr>";
-					output += "<td><a href=\"javascript:view(" + value.kinder_num + ");\">" + value.kinder_name + "</a></td>";
-					output += "<td>" + value.father_name + "</td>";
-					output += "<td>" + value.mather_name + "</td>";
-					output += "</tr>";
-				});
-				
-				$("#kinderList").html(output);
-			}
-			
-		})
-		
-	}
-	getList();
-
 $(function(){
 	
 	$("#father .delete").click(function(){
 		var kinder_num = $("#kinder_num").val();
 		var relation = "부";
+		var master = getCookie("master");
 		
-		var input = confirm('정말 삭제하시겠습니까?');
-		if (input === true) {
-			$("#father").hide();
-			
-			$.ajax({
-				url : "/ius/parent/delete_parent_info",
-				type : "POST",
-				data : { 
-					kinder_num : kinder_num,
-					relation : relation
-				},
-				success: function(data) {
-					alert('삭제가 완료되었습니다.');
-					
-					$("#kinderList").hide();
-					getList();
-					$("#kinderList").show();
-				}
+		if (master == "N") { // 관리자 권한이 없는 경우
+			alert("권한이 없습니다.");
+			return;
+		} else if (master == "Y") {
+			var input = confirm('정말 삭제하시겠습니까?');
+			if (input === true) {
+				$("#father").hide();
 				
-			})
-			
-			
-		} else {
-			alert("취소 되었습니다.");
-		}
+				$.ajax({
+					url : "/ius/parent/delete_parent_info",
+					type : "POST",
+					data : { 
+						kinder_num : kinder_num,
+						relation : relation
+					},
+					success: function(data) {
+						alert('삭제가 완료되었습니다.');
+						
+						$("#kinderList").hide();
+						getList();
+						$("#kinderList").show();
+					}
+					
+				})
+				
+				
+			} else {
+				alert("취소 되었습니다.");
+			}
+		}	
+		
 	});
 	
 	$("#mather .delete").click(function(){
 		var kinder_num = $("#kinder_num").val();
 		var relation = "모";
+		var master = getCookie("master");
 		
-		var input = confirm('정말 삭제하시겠습니까?');
-		if (input === true) {
-			$("#mather").hide();
-			
-			$.ajax({
-				url : "/ius/parent/delete_parent_info",
-				type : "POST",
-				data : { 
-					kinder_num : kinder_num,
-					relation : relation
-				},
-				success: function(data) {
-					alert('삭제가 완료되었습니다.');
-					
-					$("#kinderList").hide();
-					getList();
-					$("#kinderList").show();
-				}
+		if (master == "N") {
+			alert("권한이 없습니다.");
+			return;
+		} else if (master == "Y") {
+			var input = confirm('정말 삭제하시겠습니까?');
+			if (input === true) {
+				$("#mather").hide();
 				
-			})
-			
-			
-		} else {
-			alert("취소 되었습니다.");
+				$.ajax({
+					url : "/ius/parent/delete_parent_info",
+					type : "POST",
+					data : { 
+						kinder_num : kinder_num,
+						relation : relation
+					},
+					success: function(data) {
+						alert('삭제가 완료되었습니다.');
+						
+						$("#kinderList").hide();
+						getList();
+						$("#kinderList").show();
+					}
+					
+				})
+				
+				
+			} else {
+				alert("취소 되었습니다.");
+			}
 		}
+
 	});
 	
 	
@@ -312,10 +381,8 @@ $(function(){
 				$("#kinderList").show();
 			}
 			
-		})
-		
+		})	
 	});
-	
 	
 	
 })
@@ -351,6 +418,14 @@ $(function(){
 					<div id="bts">
 						<input type="button" value="원생 관리" onclick="location.href='../kinder/kinder_list'">
 						<input type="button" value="학부모 정보 입력" onclick="location.href='../parent/parent_register_form'">
+						<select id="classNumber" onchange="select_by_class()">
+							<c:if test="${classList != null}">
+								<option value="">전체</option>
+								<c:forEach items="${classList}"  var="classInfo">
+									<option value="${classInfo.class_number}">${classInfo.class_name}</option>
+								</c:forEach>
+							</c:if>
+						</select>
 					</div>
 					
 					<table id="kinderList" border="1" style="float : left;"></table>

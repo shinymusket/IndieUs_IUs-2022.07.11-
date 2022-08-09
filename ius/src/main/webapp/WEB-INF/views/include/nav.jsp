@@ -175,7 +175,7 @@ $(function(){
                     <a href="#">그룹웨어</a>
                     <ul>
                         <li><a href="#"><span>공지사항</span></a></li>
-                        <li><a href="#"><span>행사 및 일정</span></a></li>
+                        <li><a href="../event/event_list"><span>행사 및 일정</span></a></li>
                     </ul>
                 </li>
                 <li>

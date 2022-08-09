@@ -441,7 +441,7 @@ $(function(){
 	<article>
 			<div id="title_bar">
 				<p>원생 관라</p>
-				<h3>수납관리 관리</h3>
+				<h3>수납 관리</h3>
 			</div>
 	
 			

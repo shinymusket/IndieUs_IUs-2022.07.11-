@@ -39,10 +39,10 @@
 %>
 <html lang="ko">
 <HEAD>
-<TITLE>캘린더</TITLE>
+<TITLE>행사 및 일정</TITLE>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <link rel="stylesheet" href="${path}/resources/css/article.css">
-<link rel="stylesheet" href="${path}/resources/css/meal.css">
+<link rel="stylesheet" href="${path}/resources/css/event.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javaScript">
 function getCookie(name) {	// 저장된 쿠키 가져오기
@@ -57,19 +57,19 @@ function getCookie(name) {	// 저장된 쿠키 가져오기
 };
 
 $(function(){
-	var dietitian = getCookie("dietitian");
-	if (dietitian == "N") {
+	var master = getCookie("master");
+	if (master == "N") {
 		$(".menu_info").removeAttr("href");
 	}
 	
-	$("#mealRegister").click(function(){ // 식단 등록은 관리자나 영양사만 가능
+	$("#eventRegister").click(function(){ // 행사 및 일정 등록은 관리자만 가능
 		
-		var dietitian = getCookie("dietitian");
-		if (dietitian == "N") { // 마스터 권한의 경우 등록시 모든 권한이 함께 등록되므로 영양사 권한만 체크하면 됨.
+		var master = getCookie("master");
+		if (master == "N") {  
 			alert("권한이 없습니다.");
 			return;
-		} else if (dietitian == "Y") {
-			location.href='../meal/addMealMenu';
+		} else if (master == "Y") {
+			location.href='../event/addEvent';
 		}	
 	});
 	
@@ -85,8 +85,8 @@ $(function(){
 <article>
                 <!-- 왼쪽 소제목 박스 -->
                     <div id="title_bar">
-                        <p>경영 정보</p>
-                        <h3>식단 관리</h3>
+                        <p>그룹 웨어</p>
+                        <h3>행사 및 일정</h3>
                     </div>
 
                     <!-- 오른쪽 기능 박스 (검색)-->
@@ -106,8 +106,8 @@ $(function(){
 <table width="100%" border="0" cellspacing="1" cellpadding="1">
 	<tr>
 		<td align ="right">
-			<input type="button" onclick="location.href='./meal_list'" value="오늘"/>
-			<input type="button" id="mealRegister" value="식단 등록"/>
+			<input type="button" onclick="location.href='./event_list'" value="오늘"/>
+			<input type="button" id="eventRegister" value="일정 등록"/>
 		</td>
 	
 	</tr>
@@ -157,7 +157,7 @@ $(function(){
 	
 <br>
 
-<table class="meal_calendar">
+<table class="event_calendar">
 	<THEAD>
 		<TR bgcolor="#eee">
 			<TD width='100px'>
@@ -207,40 +207,16 @@ $(function(){
 			out.println("<TD valign='top' nowrap>");
 			%>
 			
-			<a class="menu_info" style="color:<%=color%>" href="../meal/menuSelectByMenuNum?menu_edate=<%=search_date%>"><b><%=index %></b></a>
+			<a class="event_info" style="color:<%=color%>" href="../meal/menuSelectByMenuNum?menu_edate=<%=search_date%>"><b><%=index %></b></a>
 
-			<div class="break_menu">
-				<span class="menu_title"><b>오전 간식</b></span><br>
-				<c:forEach items="${menuList}" var="list">
-				<c:if test="${list.menu_edate eq thisDate}">
-					<c:if test="${list.meal_code eq 'B'}">
-						${list.meal_menu} ${list.allergy_num}<br>
-					</c:if>
+			<div class="event_content">
+				<span class="event_title"><b>주요 일정</b></span><br>
+				<c:forEach items="${eventList}" var="event">
+				<c:if test="${event.event_date eq thisDate}">
+					${event.event_name}
 				</c:if>
 				</c:forEach>
 			</div>
-			<div class="lunch_menu">
-				<span class="menu_title"><b>점심</b></span><br>
-				<c:forEach items="${menuList}" var="list">
-				<c:if test="${list.menu_edate eq thisDate}">
-					<c:if test="${list.meal_code eq 'L'}">
-						${list.meal_menu}<br>
-					</c:if>
-				</c:if>
-				</c:forEach>
-			</div>
-			<div class="snack_menu">
-				<span class="menu_title"><b>오후 간식</b></span><br>
-				<c:forEach items="${menuList}" var="list">
-				<c:if test="${list.menu_edate eq thisDate}">
-					<c:if test="${list.meal_code eq 'S'}">
-						${list.meal_menu}<br>
-					</c:if>
-				</c:if>
-				</c:forEach>
-			</div>
-				
-			
 		<%
 			
 			out.println("</TD>");
@@ -267,11 +243,6 @@ $(function(){
 		}
 		%>
 		</TR>
-		<tr>
-			<td colspan="7">
-				알러지 정보 : 
-			</td>
-		</tr>
 	</TBODY>
 </TABLE>
 <!-- </DIV> -->

@@ -25,6 +25,7 @@
 		<typeAlias alias="receiptVO" type="com.indieus.ius.vo.ReceiptVO"/>
 		<typeAlias alias="pagingVO" type="com.indieus.ius.utils.PagingVO"/>
 		<typeAlias alias="equipmentSearchVO" type="com.indieus.ius.vo.EquipmentSearchVO"/>
+		<typeAlias alias="eventVO" type="com.indieus.ius.vo.EventVO"/>
 	</typeAliases>
 	
 <typeHandlers>

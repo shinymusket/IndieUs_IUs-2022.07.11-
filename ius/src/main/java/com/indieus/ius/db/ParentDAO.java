@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.indieus.ius.vo.ClassVO;
 import com.indieus.ius.vo.KinderVO;
 import com.indieus.ius.vo.ParentVO;
 
@@ -21,7 +22,12 @@ public class ParentDAO {
 	public List<KinderVO> selectKinderListIncludeParentName() throws Exception {
 		return sqlsession.selectList("parent.select_kinder_list_include_parent_name");
 	}
-
+	
+	// 전체 학급 리스트 가져오기
+	public List<ClassVO> selectAllClassNumName() throws Exception {
+		return sqlsession.selectList("parent.select_all_class_num_name");
+	}
+	
 	// 원생별 부모 정보 받아오기
 	public KinderVO selectKinderParents(String kinder_num) throws Exception {
 		return sqlsession.selectOne("parent.select_kinder_parents", kinder_num);
@@ -60,4 +66,6 @@ public class ParentDAO {
 		sqlsession.update("parent.update_parent_info", map);
 
 	}
+
+
 }

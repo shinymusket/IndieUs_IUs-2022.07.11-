@@ -16,6 +16,16 @@
 </style>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
+function getCookie(name) {	// 저장된 쿠키 가져오기
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
 
 //만들어진 테이블에 페이지 처리
 function page(){ 
@@ -157,7 +167,7 @@ function page(){
 		}
 		getList();
 		
-		$("#yearSearch").click(function(){
+		$("#yearSearch").click(function(){ // 년도별 조회
 			if ($("#budget_year").val() == "") {
 				alert("년도를 선택하세요.");
 				$("#budget_year").val().focus();
@@ -219,6 +229,19 @@ function page(){
 			)
 		});
 		
+		$("#register").click(function(){ // 예산 등록시 관리자 권한 확인.
+			var master = getCookie("master");
+			
+			if (master == "N") { // 마스터 권한이 없는 경우
+				alert("권한이 없습니다.");
+				return;
+			} else if (master == "Y") { // 마스터 권한이 있는 경우
+				location.href="../budget/budget_register_form";
+			}
+		
+		})
+		
+		
 	})
 </script>
 </head>
@@ -256,7 +279,7 @@ function page(){
 				
 					<br>
 					<input type="button" value="재정" onclick="location.href='../finance/finance_list'">
-					<input type="button" value="항목 추가" onclick="location.href='../budget/budget_register_form'">
+					<input type="button" value="항목 추가" id="register">
 					<table border="1" id="finalAccount">
 						<tr>
 							<th>년도</th>

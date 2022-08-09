@@ -24,7 +24,7 @@ function getCookie(name) {	// 저장된 쿠키 가져오기
 }
 
 $(function(){
-	if ($("#staff_name").val() == "") { // 로그인후 최초로 온게 아닐 때
+	if ($("#login_staff_name").val() == "") { // 로그인후 최초로 온게 아닐 때
 		var staff_name = getCookie('staff_name');
 		var staff_id = getCookie('staff_id');
 		
@@ -33,8 +33,8 @@ $(function(){
 		
 		
 	} else { // 최초로 왔을 때
-		var staff_name = $("#staff_name").val();
-		var staff_id = $("#staff_id").val();
+		var staff_name = $("#login_staff_name").val();
+		var staff_id = $("#login_staff_id").val();
 		// 받아온 값을 쿠키에 저장
 		setCookie('staff_name', staff_name);
 		setCookie('staff_id', staff_id);
@@ -51,8 +51,8 @@ $(function(){
 <div id="container">
         <!-- 헤더 구간 -->
         <header>
-        	<input type="hidden" id="staff_name" value="${staff_name}">
-        	<input type="hidden" id="staff_id" value="${staff_id}">
+        	<input type="hidden" id="login_staff_name" value="${staff_name}">
+        	<input type="hidden" id="login_staff_id" value="${staff_id}">
             <div id="logInfo">
             	<p><font id="myNameId" size="2.5"></font>님 환영합니다.<p>
                 <a href="../main/logout">로그아웃</a>

@@ -7,6 +7,7 @@
 		FROM kinder k, staff s, class c
 		WHERE k.staff_num = s.staff_num
 		AND c.kinder_num = k.kinder_num
+		AND k.delete_column = 'N'
 		ORDER BY kinder_num ASC
 	</select>
 	
@@ -63,7 +64,7 @@
     	<if test="kinder_picture == null or kinder_picture == ''">
    		, NULL
     	</if>
-    	, #{allergy_code}, #{allergy_check})
+    	, #{allergy_code}, #{allergy_check}, 'N')
 	</insert>
 	
 	
@@ -155,7 +156,7 @@
 	
 	<!-- 원생 정보 삭제 -->
 	<delete id="delete_kinder_info" parameterType="String">
-		DELETE FROM kinder WHERE kinder_num = #{kinder_num}
+		UPDATE kinder SET delete_column = 'Y' WHERE kinder_num = #{kinder_num}
 	</delete>
 	
 	<!-- 원생 정보 수정 -->

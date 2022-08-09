@@ -44,7 +44,17 @@
 	};
 
 	getList(); */
-
+	
+	function getCookie(name) {	// 저장된 쿠키 가져오기
+	    var nameEQ = name + "=";
+	    var ca = document.cookie.split(';');
+	    for(var i=0;i < ca.length;i++) {
+	        var c = ca[i];
+	        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+	        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+	    }
+	    return null;
+	}
 	
 	function changeSearchType() { // 검색타입 변환시
 		
@@ -74,7 +84,33 @@
 	};
 	
 	
-
+$(function(){
+	$("#equipRegister").click(function(){ // 시설(비품) 등록시 시설 권한이 있는지 유무 체크확인.
+		var facility = getCookie("facility");
+	
+		console.log(facility);
+		
+		if (facility == "N") { // 시설 권한이 없으면 등록 불가.
+			alert("권한이 없습니다.");
+		} else if (facility == "Y") { 
+			location.href='../equipment/equipment_register_form';
+		}
+	});
+	
+	$("#purchaseRegister").click(function(){ // 구매품 등록시 시설 권한이 있는지 유무 체크확인.
+		var facility = getCookie("facility");
+	
+		console.log(facility);
+		
+		if (facility == "N") { // 시설 권한이 없으면 등록 불가.
+			alert("권한이 없습니다.");
+		} else if (facility == "Y") { 
+			location.href='../equipment/purchaseEquip_form'
+		}
+	});
+	
+	
+})
 
 </script>
 </head>
@@ -95,8 +131,8 @@
 			<section>
 				<div id="content">
 					<div id="controllBtns">
-						<input type="button" value="시설(비품) 등록" onclick="location.href='../equipment/equipment_register_form'">
-						<input type="button" value="구매품 등록" onclick="location.href='../equipment/purchaseEquip_form'">
+						<input type="button" value="시설(비품) 등록" id="equipRegister">
+						<input type="button" value="구매품 등록" id="purchaseRegister">
 						<input type="button" value="구매기록 조회" onclick="location.href='../equipment/purchase_list'">
 						
 						<div id="searchArea">

@@ -153,7 +153,7 @@ $(function(){
 								<tr>
 									<td rowspan="5" id="staff_picture" width='94.4px' height='113.3px'>
 										<div class="select_img">
-											<img src="${staff.staff_picture}">
+											<img src="${staff.staff_picture}" width='94.4px' height='113.3px'>
 										</div>
 										<input type="file" id="staff_picFile" name="staff_picFile" style="display : none;">
 									</td>

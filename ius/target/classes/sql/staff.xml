@@ -7,6 +7,7 @@
 		staff_zipcode, staff_tel, TO_CHAR(staff_hireD, 'YYYY-MM-DD') AS "staff_hireD",  TO_CHAR(staff_retireD, 'YYYY-MM-DD') AS "staff_retireD", staff_workYn, staff_salary, staff_email
 		FROM staff s, jobClassifi j
 		WHERE s.staff_cls = j.staff_cls
+		AND delete_column = 'N'
 		ORDER BY staff_num ASC
 	</select>
 	
@@ -17,6 +18,7 @@
 		FROM staff s, jobClassifi j
 		WHERE s.staff_cls = j.staff_cls
 		AND staff_workYn = #{staff_workYn}
+		AND delete_column = 'N'
 		<if test="staff_name != null and staff_name != ''">
 			AND staff_name = #{staff_name}
 		</if>
@@ -74,12 +76,12 @@
 	
 	<!-- 교직원 계정과 임시 비밀번호 등록, 권한, 가입날짜 등록 -->
 	<insert id="insert_staffId" parameterType="staffIdVO">
-		INSERT INTO staffId(staff_id, staff_pwd, auth_code, reg_date) VALUES (#{staff_id}, #{staff_pwd}, #{auth_code}, sysdate)
+		INSERT INTO staffId(staff_id, staff_pwd, auth_code, reg_date, delete_column) VALUES (#{staff_id}, #{staff_pwd}, #{auth_code}, sysdate, 'N')
 	</insert>
 	
 	<!-- 교직원 계정 삭제 -->
 	<delete id="delete_staffId" parameterType="String">
-		DELETE FROM staffId WHERE staff_id = #{staff_id}
+		UPDATE staffId SET delete_column = 'Y' WHERE staff_id = #{staff_id}
 	</delete>
 	
 	<!-- 교직원 등록 -->
@@ -87,10 +89,10 @@
 		INSERT INTO staff VALUES (staff_seq.NEXTVAL, #{staff_cls}, #{staff_id}, #{staff_name}, #{staff_rrn1}, #{staff_rrn2}, #{staff_addr},
     #{staff_zipcode}, #{staff_tel}, TO_DATE(#{staff_hireD},'YYYY-MM-DD'), TO_DATE(#{staff_retireD},'YYYY-MM-DD'), #{staff_workYn}, #{staff_salary}, #{staff_email}
     	<if test="staff_picture != null and staff_picture != ''">
-   		, #{staff_picture})
+   		, #{staff_picture}, 'N')
     	</if>
     	<if test="staff_picture == null or staff_picture == ''">
-   		, NULL)
+   		, NULL, 'N')
     	</if>
 	
 	</insert>
@@ -112,7 +114,7 @@
 
 	<!-- 교직원 삭제 -->
 	<delete id="delete_staff" parameterType="String">
-		DELETE FROM staff WHERE staff_num = #{staff_num}
+		UPDATE staff SET delete_column = 'Y' WHERE staff_num = #{staff_num}
 	</delete>
 	
 	<!-- 교직원 정보 수정 -->
@@ -131,7 +133,7 @@
 		staff_salary = #{staff_salary},
 		staff_email = #{staff_email}
 		<if test="staff_picture != null and staff_picture != ''">
-   		, staff_picture = #{staff_picture})
+   		, staff_picture = #{staff_picture}
     	</if>
 		WHERE staff_num = #{staff_num}
 	</update>

@@ -57,7 +57,14 @@ public class FinanceController {
 	public Object getFinanceListByYear(@RequestParam Map<String, Object> map) throws Exception {
 		return service.getFinanceListByYear(map);
 	}
-
+	
+	// 예산 항목 리스트 가져오기 Ajax
+	@ResponseBody
+	@RequestMapping(value = "/get_budget_list", method = RequestMethod.POST)
+	public Object getBudgetList(@RequestParam Map<String, Object> map) throws Exception {
+		return service.getBudgetList(map);
+	}
+	
 	// 재정등록 폼
 	@RequestMapping(value = "/finance_register_form", method = RequestMethod.GET)
 	public String registerForm(Model model, @RequestParam String iE, HttpSession session) throws Exception {
@@ -138,7 +145,7 @@ public class FinanceController {
 		// 사번과 이름값 가져오기
 		String staff_id = staff.getStaff_id();
 		StaffVO staffInfo = staffService.selectStaffInfoStaffId(staff_id);
-		
+
 		FinanceVO fVo = service.selectFinanceByNum(finance_num);
 		String iE = fVo.getFinance_iE();
 
@@ -155,6 +162,13 @@ public class FinanceController {
 	public String update(@ModelAttribute FinanceVO fVo, RedirectAttributes rttr) throws Exception {
 		rttr.addFlashAttribute("result", service.updateFinance(fVo));
 		return "redirect:./finance_list";
+	}
+	
+	// 재정 검색 기능 Ajax
+	@ResponseBody
+	@RequestMapping(value = "/search_finance", method = RequestMethod.POST)
+	public Object searchFinance(@RequestParam Map<String, Object> map) throws Exception {
+		return service.searchFinance(map);
 	}
 
 }

@@ -11,16 +11,26 @@
 <link type="text/css" rel="stylesheet" href="${path}/resources/css/articleF.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
+function getCookie(name) {	// 저장된 쿠키 가져오기
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
+
  $(function(){
 	 $("#update").click(function(){ // 수정 요청시
-		var log_staff_num = $("#log_staff_num").val();
-	 	var staff_num = $("#staff_num").val();
+		var master = getCookie("master");
 		 
 		var finance_num = $("#finance_num").val();
 			 
-	 	// 본인이 작성한 데이터인지 확인
-	 	if (log_staff_num != staff_num) {
-	 		alert("재정내역 수정은 작성자만 할 수 있습니다.");
+	 	// 권한이 있는지 확인
+	 	if (master != "Y") {
+	 		alert("재정내역 수정 권한이 없습니다.");
 	 		return;
 	 	}
 	 
@@ -28,14 +38,13 @@
 	 });
 	 
 	 $("#delete").click(function(){ // 삭제 요청시
-			var log_staff_num = $("#log_staff_num").val();
-		 	var staff_num = $("#staff_num").val();
+		 	var master = getCookie("master");
 			 
 			var finance_num = $("#finance_num").val();
 				 
-		 	// 본인이 작성한 데이터인지 확인
-		 	if (log_staff_num != staff_num) {
-		 		alert("재정내역 삭제는 작성자만 할 수 있습니다.");
+			// 권한이 있는지 확인
+		 	if (master != "Y") {
+		 		alert("재정내역 삭제 권한이 없습니다.");
 		 		return;
 		 	};
 		 	
