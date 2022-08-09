@@ -28,7 +28,7 @@ public class ParentController {
 	@RequestMapping(value = "/parent_list", method = RequestMethod.GET)
 	public String list(Model model) throws Exception {
 		List<ClassVO> classList = service.selectAllClassNumName();
-		
+
 		model.addAttribute("classList", classList);
 		return "parent/parentList";
 	}
@@ -39,14 +39,14 @@ public class ParentController {
 	public Object getKinderList() throws Exception {
 		return service.getKinderList();
 	}
-	
+
 	// 학급 별 원생 명단 리스트 가져오기 Ajax
 	@ResponseBody
 	@RequestMapping(value = "/search_kinder_list_by_class", method = RequestMethod.POST)
 	public Object searchKinderListByClass(@RequestParam Map<String, Object> map) throws Exception {
 		return service.searchKinderListByClass(map);
 	}
-	
+
 	// 학부모 정보 입력 폼으로 이동
 	@RequestMapping(value = "/parent_register_form", method = RequestMethod.GET)
 	public String parentRegister() throws Exception {
@@ -100,7 +100,7 @@ public class ParentController {
 	public void UpdateParentInfo(@RequestParam Map<String, Object> map) throws Exception {
 		service.updateParentInfo(map);
 	}
-	
+
 
 
 }

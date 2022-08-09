@@ -20,7 +20,7 @@ public class ParentServiceImpl implements ParentService {
 
 	@Inject
 	private KinderDAO kinderManager;
-	
+
 	@Inject
 	private ClassDAO classManager;
 
@@ -66,14 +66,14 @@ public class ParentServiceImpl implements ParentService {
 		data.put("kinderList", kinderList);
 		return data;
 	}
-	
+
 	// 학급 별 원생 명단 리스트 가져오기 Ajax
 	@Override
 	public Object searchKinderListByClass(Map<String, Object> map) throws Exception {
 		String class_number = (String) map.get("class_number");
-		
+
 		List<KinderVO> kinderList = classManager.selectClassKinderByClassNum(class_number);
-		
+
 		if(kinderList.size() != 0) {
 			for (KinderVO element : kinderList) {
 				String kinder_num = element.getKinder_num();
@@ -107,17 +107,17 @@ public class ParentServiceImpl implements ParentService {
 		data.put("kinderList", kinderList);
 		return data;
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 	@Override
 	// 전체 학급 리스트 가져오기
 	public List<ClassVO> selectAllClassNumName() throws Exception {
 		return manager.selectAllClassNumName();
 	}
-	
+
 	// 원생 검색 Ajax
 	@Override
 	public Object searchKinder(Map<String, Object> map) throws Exception {

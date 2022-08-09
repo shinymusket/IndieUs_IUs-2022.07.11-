@@ -330,7 +330,7 @@ public class KinderServiceImpl implements KinderService {
 	@Override
 	public Object getAllergyCheck(Map<String, Object> map) throws Exception {
 		int allergy_code = Integer.parseInt((String) map.get("allergy_code"));
-		
+
 		int noAllergyCode = manager.checkAllergy();
 
 		String allergy_info = "";

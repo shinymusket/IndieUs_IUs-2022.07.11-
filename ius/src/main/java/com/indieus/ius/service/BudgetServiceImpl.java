@@ -70,12 +70,12 @@ public class BudgetServiceImpl implements BudgetService {
 	public BudgetVO selectBudgetNyNum(String budget_num) throws Exception {
 		return manager.selectBudgetByNum(budget_num);
 	}
-	
+
 	// 예산 항목 삭제시 예산 항목으로 생성된 재정 데이터가 있는지 확인
 	@Override
 	public Object countFinanceFromBudget(Map<String, Object> map) throws Exception {
 		int result = manager.countFinanceFromBudget(map);
-		
+
 		Map<String, Object> data = new HashMap();
 		data.put("result", result);
 		return data;

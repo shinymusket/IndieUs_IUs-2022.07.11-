@@ -57,14 +57,14 @@ public class FinanceController {
 	public Object getFinanceListByYear(@RequestParam Map<String, Object> map) throws Exception {
 		return service.getFinanceListByYear(map);
 	}
-	
+
 	// 예산 항목 리스트 가져오기 Ajax
 	@ResponseBody
 	@RequestMapping(value = "/get_budget_list", method = RequestMethod.POST)
 	public Object getBudgetList(@RequestParam Map<String, Object> map) throws Exception {
 		return service.getBudgetList(map);
 	}
-	
+
 	// 재정등록 폼
 	@RequestMapping(value = "/finance_register_form", method = RequestMethod.GET)
 	public String registerForm(Model model, @RequestParam String iE, HttpSession session) throws Exception {
@@ -163,7 +163,7 @@ public class FinanceController {
 		rttr.addFlashAttribute("result", service.updateFinance(fVo));
 		return "redirect:./finance_list";
 	}
-	
+
 	// 재정 검색 기능 Ajax
 	@ResponseBody
 	@RequestMapping(value = "/search_finance", method = RequestMethod.POST)

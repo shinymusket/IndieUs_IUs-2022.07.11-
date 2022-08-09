@@ -54,14 +54,14 @@ public class FinanceServiceImpl implements FinanceService {
 	@Override
 	public Object getBudgetList(Map<String, Object> map) throws Exception {
 		List<BudgetVO> budgetList = manager.getBudgetList(map);
-		
+
 		Map<String, Object> data = new HashMap();
 		data.put("budgetList", budgetList);
 		return data;
 	}
-	
-	
-	
+
+
+
 	// 전체 재정 회계 년도 조회
 	@Override
 	public List<String> selectAllFinanceEyear() throws Exception {
@@ -129,7 +129,7 @@ public class FinanceServiceImpl implements FinanceService {
 	@Override
 	public Object searchFinance(Map<String, Object> map) throws Exception {
 		List<FinanceVO> financeList = manager.searchFinance(map);
-		
+
 		Map<String, Object> data = new HashMap();
 		data.put("financeList", financeList);
 		return data;

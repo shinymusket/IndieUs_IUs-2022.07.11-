@@ -74,7 +74,7 @@ public class BudgetDAO {
 	public int countFinanceFromBudget(Map<String, Object> map) throws Exception {
 		return sqlsession.selectOne("budget.count_finance_from_budget", map);
 	}
-	
+
 	// 예산 항목 삭제
 	@Transactional
 	public int deleteBudget(String budget_num) throws Exception {
@@ -87,6 +87,6 @@ public class BudgetDAO {
 		return sqlsession.update("budget.update_budget", bVo);
 	}
 
-	
+
 
 }

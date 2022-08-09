@@ -5,7 +5,7 @@ public class EventVO {
 	private String staff_id;
 	private String event_name;
 	private String event_date;
-	
+
 	public int getEvent_num() {
 		return event_num;
 	}
@@ -30,6 +30,6 @@ public class EventVO {
 	public void setEvent_date(String event_date) {
 		this.event_date = event_date;
 	}
-	
-	
+
+
 }

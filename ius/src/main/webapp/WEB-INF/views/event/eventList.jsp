@@ -119,13 +119,13 @@ $(function(){
 	<tr>
 		<td align="center" >
 			<!-- 이전 년도 -->
-			<a href="<c:url value='./meal_list' />?year=<%=year-1%>&amp;month=<%=month%>" target="_self">
+			<a href="<c:url value='./event_list' />?year=<%=year-1%>&amp;month=<%=month%>" target="_self">
 				<b>&lt;&lt;</b>
 			</a>
 			
 			<!-- 이전 달 -->
 			<%if(month > 0 ){ %>
-			<a href="<c:url value='./meal_list' />?year=<%=year%>&amp;month=<%=month-1%>" target="_self">
+			<a href="<c:url value='./event_list' />?year=<%=year%>&amp;month=<%=month-1%>" target="_self">
 				<b>&lt;</b>
 			</a>
 			<%} else {%>
@@ -140,7 +140,7 @@ $(function(){
 			
 			<!-- 다음 달 -->
 			<%if(month < 11 ){ %>
-			<a href="<c:url value='./meal_list' />?year=<%=year%>&amp;month=<%=month+1%>" target="_self">
+			<a href="<c:url value='./event_list' />?year=<%=year%>&amp;month=<%=month+1%>" target="_self">
 				<b>&gt;</b>
 			</a>
 			<%}else{%>
@@ -148,7 +148,7 @@ $(function(){
 			<%} %>
 			
 			<!-- 다음 년도 -->
-			<a href="<c:url value='./meal_list' />?year=<%=year+1%>&amp;month=<%=month%>" target="_self">
+			<a href="<c:url value='./event_list' />?year=<%=year+1%>&amp;month=<%=month%>" target="_self">
 				<b>&gt;&gt;</b>
 			</a>
 		</td>
@@ -207,13 +207,12 @@ $(function(){
 			out.println("<TD valign='top' nowrap>");
 			%>
 			
-			<a class="event_info" style="color:<%=color%>" href="../meal/menuSelectByMenuNum?menu_edate=<%=search_date%>"><b><%=index %></b></a>
+			<a class="event_info" style="color:<%=color%>" href="../event/event_select_by_event_date?event_date=<%=search_date%>"><b><%=index %></b></a>
 
 			<div class="event_content">
-				<span class="event_title"><b>주요 일정</b></span><br>
 				<c:forEach items="${eventList}" var="event">
 				<c:if test="${event.event_date eq thisDate}">
-					${event.event_name}
+					<span class="event_title"><b>${event.event_name}</b></span><br>
 				</c:if>
 				</c:forEach>
 			</div>

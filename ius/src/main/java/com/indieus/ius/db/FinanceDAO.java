@@ -103,12 +103,12 @@ public class FinanceDAO {
 	public int selectPurchaseSumFromNum(String finance_num) throws Exception {
 		return sqlsession.selectOne("finance.select_purchase_sum_from_finance_num", finance_num);
 	}
-	
+
 	// 년도별 예산 항목 리스트 가져오기
 	public List<BudgetVO> getBudgetList(Map<String, Object> map) throws Exception {
 		return sqlsession.selectList("finance.select_all_budget_list", map);
 	}
-	
+
 	// 재정 검색 기능
 	public List<FinanceVO> searchFinance(Map<String, Object> map) throws Exception {
 		return sqlsession.selectList("finance.search_finance_list", map);

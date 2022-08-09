@@ -72,8 +72,8 @@ public class BudgetController {
 	public Object countFinanceFromBudget(@RequestParam Map<String, Object> map) throws Exception {
 		return service.countFinanceFromBudget(map);
 	}
-	
-	
+
+
 	// 예산 항목 삭제
 	@RequestMapping(value = "/budget_delete", method = RequestMethod.GET)
 	public String delete(@RequestParam String budget_num, RedirectAttributes rttr) throws Exception {

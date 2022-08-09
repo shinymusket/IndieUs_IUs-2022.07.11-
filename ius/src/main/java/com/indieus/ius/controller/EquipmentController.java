@@ -191,7 +191,7 @@ public class EquipmentController {
 	public String getEquipmentInfo(@RequestParam String equipment_num, Model model, HttpSession session) throws Exception {
 		StaffIdVO sIvo = (StaffIdVO) session.getAttribute("staff");
 		String staff_id = sIvo.getStaff_id();
-		
+
 		EquipmentVO eVo = service.selectEquipmentByNum(equipment_num);
 		model.addAttribute("equipment", eVo);
 		model.addAttribute("staff_id", staff_id);
@@ -217,10 +217,10 @@ public class EquipmentController {
 	@RequestMapping(value = "/equipment_delete", method = RequestMethod.GET)
 	public String deleteEquipment(@RequestParam String equipment_num, RedirectAttributes rttr, HttpServletResponse response) throws Exception {
 		int result = service.deleteEquipment(equipment_num, response);
-	
+
 		rttr.addFlashAttribute("result", result);
 		return "redirect:./equipment_list";
-	
+
 	}
 
 	// 구매품 등록 폼으로 이동
