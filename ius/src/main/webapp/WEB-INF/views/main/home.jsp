@@ -27,6 +27,10 @@
 		background-color : #486890;
 	}
 	
+	.mainDiv h1.title:hover {
+		color : blue;;
+	}
+	
 </style>
 <body>
 <%@include file="../include/header.jsp" %>
@@ -44,16 +48,19 @@
 			<section>
 				<div id="content">
 					<div class="mainDiv" id="notice">
-						<h1 class="title">공지사항</h1>
+						<a href="#"><h1 class="title">공지사항</h1></a>
+						<table id="titleTbl" border="1">
+						</table>
 					</div>
 					<div class="mainDiv" id="event">
-						<h1 class="title">오늘의 일정</h1>
+						<a href="#"><h1 class="title">오늘의 일정</h1></a>
 					</div>
 					<div class="mainDiv" id="eWorks">
-						<h1 class="title">전자결재</h1>
+						<a href="#"><h1 class="title">전자결재</h1></a>
+						<p>결재대기중인 문서 :</p>
 					</div>
 					<div class="mainDiv" id="meal">
-						<h1 class="title">오늘 식단</h1>	
+						<a href="#"><h1 class="title">오늘 식단</h1></a>
 					</div>	
 				</div>
 			</section>
