@@ -18,9 +18,9 @@
 		WHERE event_date = #{event_date}
 	</select>
 	
-	<!-- 행사 번호로 행사 명 가져오기 -->
-	<select id="select_by_event_num" parameterType="hashmap" resultType="String">
-		SELECT event_name FROM event WHERE event_num = #{event_num}
+	<!-- 행사 번호로 행사 명, 작성자 id 가져오기 -->
+	<select id="select_by_event_num" parameterType="hashmap" resultType="eventVO">
+		SELECT event_name, staff_id FROM event WHERE event_num = #{event_num}
 	</select>
 	
 	<!-- 행사 번호로 행사 삭제하기 -->

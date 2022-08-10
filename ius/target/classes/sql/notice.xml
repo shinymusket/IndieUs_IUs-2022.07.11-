@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="notice">
+	<!-- 전체 공지사항 게시물 조회 -->
+	<select id="select_all_notice_list" resultType="noticeVO">
+		SELECT notice_num, n.staff_id, s.staff_name, notice_title, notice_content, TO_CHAR(notice_writeDate, 'YYYY-MM-DD') AS "notice_writeDate", notice_readCount 
+		FROM notice n, staff s
+		WHERE n.staff_id = s.staff_id
+	</select>
+</mapper>

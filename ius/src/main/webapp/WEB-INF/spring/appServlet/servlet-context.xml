@@ -79,6 +79,7 @@
 	<beans:bean id="consultController" class="com.indieus.ius.controller.ConsultController" />
 	<beans:bean id="receiptController" class="com.indieus.ius.controller.ReceiptController" />
 	<beans:bean id="eventController" class="com.indieus.ius.controller.EventController" />
+	<beans:bean id="noticeController" class="com.indieus.ius.controller.NoticeController" />
 	
 	<!-- DAO -->
 	<beans:bean id="mainDAO" class="com.indieus.ius.db.MainDAO" />
@@ -98,6 +99,7 @@
 	<beans:bean id="consultDAO" class="com.indieus.ius.db.ConsultDAO" />
 	<beans:bean id="receiptDAO" class="com.indieus.ius.db.ReceiptDAO" />
 	<beans:bean id="eventDAO" class="com.indieus.ius.db.EventDAO" />
+	<beans:bean id="noticeDAO" class="com.indieus.ius.db.NoticeDAO" />
 	
 	<!-- Service -->
 	<beans:bean id="mainServiceImpl" class="com.indieus.ius.service.MainServiceImpl" />
@@ -117,5 +119,6 @@
 	<beans:bean id="consultServiceImpl" class="com.indieus.ius.service.ConsultServiceImpl" />
 	<beans:bean id="receiptServiceImpl" class="com.indieus.ius.service.ReceiptServiceImpl" />
 	<beans:bean id="eventServiceImpl" class="com.indieus.ius.service.EventServiceImpl" />
+	<beans:bean id="noticeServiceImpl" class="com.indieus.ius.service.NoticeServiceImpl" />
 	
 </beans:beans>

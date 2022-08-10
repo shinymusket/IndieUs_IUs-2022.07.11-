@@ -20,7 +20,7 @@ public class EventDAO {
 	public List<EventVO> getAllEventList() throws Exception {
 		return sqlsession.selectList("event.select_all_event_list");
 	}
-	
+
 	// 행사 및 일정 등록
 	@Transactional
 	public int eventRegister(EventVO eVo) throws Exception {
@@ -33,7 +33,7 @@ public class EventDAO {
 	}
 
 	// 행사 번호로 행사명 가져오기
-	public String getEventNameByNum(Map<String, Object> map) throws Exception {
+	public EventVO getEventNameByNum(Map<String, Object> map) throws Exception {
 		return sqlsession.selectOne("event.select_by_event_num", map);
 	}
 
@@ -41,14 +41,14 @@ public class EventDAO {
 	@Transactional
 	public void deleteEventByNum(Map<String, Object> map) throws Exception {
 		sqlsession.delete("event.delete_by_event_num", map);
-		
+
 	}
-	
+
 	// 행사명 수정하기
 	@Transactional
 	public void updateEventByNum(Map<String, Object> map) throws Exception {
 		sqlsession.update("event.update_event_name", map);
-		
+
 	}
 
 }

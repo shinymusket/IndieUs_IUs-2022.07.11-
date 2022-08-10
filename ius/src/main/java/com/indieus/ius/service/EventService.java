@@ -8,14 +8,16 @@ import com.indieus.ius.vo.EventVO;
 public interface EventService {
 
 	public List<EventVO> getAllEventList() throws Exception;
-	
+
 	public int eventRegister(EventVO eVo) throws Exception;
 	
-	public List<EventVO> eventSelectByEventDate(String event_date) throws Exception;
-	
+	public Object getEventInfo(Map<String, Object> map) throws Exception;
+
 	public Object getEventNameByNum(Map<String, Object> map) throws Exception;
-	
+
 	public void deleteEventByNum(Map<String, Object> map) throws Exception;
-	
+
 	public void updateEventByNum(Map<String, Object> map) throws Exception;
+	
+	public void registerEvent(Map<String, Object> map) throws Exception;
 }

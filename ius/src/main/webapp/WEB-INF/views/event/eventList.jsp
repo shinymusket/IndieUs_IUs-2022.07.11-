@@ -57,19 +57,19 @@ function getCookie(name) {	// 저장된 쿠키 가져오기
 };
 
 $(function(){
-	var master = getCookie("master");
-	if (master == "N") {
+	var teacher = getCookie("teacher");
+	if (teacher == "N") {
 		$(".menu_info").removeAttr("href");
 	}
 	
-	$("#eventRegister").click(function(){ // 행사 및 일정 등록은 관리자만 가능
+	$("#eventRegister").click(function(){ // 행사 및 일정 등록은 교사 권한이 있어야 가능.
 		
-		var master = getCookie("master");
-		if (master == "N") {  
+		var teacher = getCookie("teacher");
+		if (teacher == "N") {  
 			alert("권한이 없습니다.");
 			return;
-		} else if (master == "Y") {
-			location.href='../event/addEvent';
+		} else if (teacher == "Y") {
+			location.href='../event/event_select_by_event_date';
 		}	
 	});
 	
