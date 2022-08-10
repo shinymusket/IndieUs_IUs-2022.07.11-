@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지사항 등록</title>
+<title>공지사항 수정</title>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript" src="${path}/resources/js/summernote/summernote-lite.js"></script>
 <script type="text/javascript" src="${path}/resources/js/summernote/lang/summernote-ko-KR.js"></script>
@@ -38,30 +38,16 @@
 			maxHeight : null,
 			focus : true,
 			lang : "ko-KR",
-			placeholder : '내용을 입력하세요'
 		});
 		
-		$jQ("#register").click(function(){
-			var notice_title =  $jQ("#notice_title").val();
-			var notice_content = $jQ("#notice_content").val();
-			
-			if (notice_title == "") {
-				alert("제목을 입력해주세요.");
-				return;
-			};
-			
-			if (notice_content == "") {
-				alert("내용을 입력해주세요.");
-				return;
-			};
-			
-			alert("정상적으로 글이 등록 되었습니다.");
+		$jQ("#notice_content").summernote('enable');
+		
+		$jQ("#update").click(function(){
+			alert("수정이 완료되었습니다.");
 			$jQ("form").submit();
-			
 		});
-	
 		
-			
+		
 	});
 </script>
 <%@include file="../include/header.jsp" %>
@@ -69,7 +55,7 @@
 	<article>
 			<div id="title_bar">
 				<p>공지사항</p>
-				<h3>공지사항 등록</h3>
+				<h3>공지사항 수정</h3>
 			</div>
 	
 			<div id="title_top">
@@ -78,25 +64,38 @@
 			<section>
 				<div id="content">
 					<div id="notice">
-						<form action="./notice_register" method="POST">
+						<form action="./notice_update" method="POST">
 							<table border="1">
 								<tr>
-									<th>
-										<input type="hidden" id="staff_id" name="staff_id" value="${staff_id}">
-										<input type="text" id="notice_title" name="notice_title" placeholder="제목">
-									</th>
-								</tr>
-								<tr>
-									<td>
-										<textarea id="notice_content" name="notice_content"></textarea>
-									</td>
-								<tr>
-								<tr>
-									<td>
-										<input type="button" value="등록" id="register">
+									<td colspan="6">
+										<input type="text" id="notice_title" name="notice_title" value="${noticeInfo.notice_title}">
 									</td>
 								</tr>
+								<tr>
+									<th>글 번호</th>
+									<td>
+										<input type="text" id="notice_num" name="notice_num" readonly="readonly" value="${noticeInfo.notice_num}">
+									</td>
+									<th>작성자</th>
+									<td>
+										<input type="text" id="staff_name" readonly="readonly" value="${noticeInfo.staff_name}">
+									</td>
+									<th>작성일</th>
+									<td>${noticeInfo.notice_writeDate}</td>
+								</tr>	
+								<tr>
+									<td colspan="6">
+										<textarea id="notice_content" name="notice_content">${noticeInfo.notice_content}</textarea>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="6">
+										<input type="button" value="수정" id="update">
+										<input type="button" value="목록" onclick="location.href='../notice/notice_list'">
+									</td>
+								</tr>	
 							</table>
+							
 						</form>
 					</div>
 				</div>

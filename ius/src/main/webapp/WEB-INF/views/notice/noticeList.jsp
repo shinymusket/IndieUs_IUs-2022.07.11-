@@ -10,6 +10,17 @@
 <link type="text/css" rel="stylesheet" href="${path}/resources/css/articleF.css?">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
+function getCookie(name) {	// 저장된 쿠키 가져오기
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+};
+
 //만들어진 테이블에 페이지 처리
 function page(){ 
 	
@@ -105,8 +116,7 @@ function page(){
 	   $pager.appendTo($table);
 	   $table.trigger('repaginate');
 	 });
-}
-
+};
 
 $(function(){
 	function getList() { // 전체 공지사항 게시물 불러오기
@@ -119,7 +129,7 @@ $(function(){
 			success : function(data) {
 				$("#noticeTbl").text("");
 				values = data.noticeList;
-				output = "<tr><th>번호</th><th>등록자</th><th>제목</th><th>작성일</th><th>조회수</th></tr>";
+				output = "<tr><th>번호</th><th>작성자</th><th>제목</th><th>작성일</th><th>조회수</th></tr>";
 				$.each(values, function(index, value) {
 					
 					output += "<tr>";
@@ -137,6 +147,62 @@ $(function(){
 	};
 		
 	getList();
+	
+	
+	$("#register").click(function(){
+		var master = getCookie("master");
+		console.log(master);
+		
+		if (master == "N") {
+			alert("권한이 없습니다.")
+			return;
+		} else if (master == "Y") {
+			location.href='../notice/notice_register_form';
+		}
+	});
+
+	$("#searchBtn").click(function(){ // 검색 기능
+		var searchType = $("#searchType").val();
+		var searchContent = $("#searchContent").val();
+		
+		$.ajax({
+			url : "/ius/notice/search_notice_list",
+			type : "POST",
+			data : {
+				searchType : searchType,
+				searchContent : searchContent
+			},
+			success : function(data) {
+				$("#noticeTbl").text("");
+				values = data.noticeList;
+				
+				if (values.length == 0) {
+					alert("조회된 데이터가 없습니다.");
+					
+				} else {
+					alert("성공적으로 데이터를 조회했습니다.");
+					
+					output = "<tr><th>번호</th><th>작성자</th><th>제목</th><th>작성일</th><th>조회수</th></tr>";
+					$.each(values, function(index, value) {
+						output += "<tr>";
+						output += "<td>" + value.notice_num + "</td>";
+						output += "<td>" + value.staff_name + "</td>";
+						output += "<td><a href='../notice/notice_info?notice_num=" + value.notice_num + "'>" + value.notice_title + "</a></td>";
+						output += "<td>" + value.notice_writeDate + "</td>";
+						output += "<td>" + value.notice_readCount + "</a></td>";
+						output += "</tr>";
+					});
+					$("#noticeTbl").html(output);
+					page();
+	
+				}
+	
+			}
+		});
+		
+	});
+	
+	
 })
 </script>
 </head>
@@ -156,10 +222,17 @@ $(function(){
 			<section>
 				<div id="content">
 					<div id="controllBtns">
-						<input type="button" value="공지사항 등록" onclick="location.href='../notice/notice_register_form'">
+						<input type="button" value="공지사항 등록" id="register">
 					</div>
 					
 					<div id="search">
+						<select id="searchType">
+							<option value="notice_num">글 번호</option>
+							<option value="notice_title">글 제목</option>
+							<option value="staff_name">작성자</option>
+						</select>
+						<input type="text" id="searchContent">
+						<input type="button" id="searchBtn" value="검색">
 					</div>
 					
 					<div id="notice">

@@ -27,6 +27,7 @@
 		<typeAlias alias="equipmentSearchVO" type="com.indieus.ius.vo.EquipmentSearchVO"/>
 		<typeAlias alias="eventVO" type="com.indieus.ius.vo.EventVO"/>
 		<typeAlias alias="noticeVO" type="com.indieus.ius.vo.NoticeVO"/>
+		<typeAlias alias="noticeReplyVO" type="com.indieus.ius.vo.NoticeReplyVO"/>
 	</typeAliases>
 	
 <typeHandlers>
