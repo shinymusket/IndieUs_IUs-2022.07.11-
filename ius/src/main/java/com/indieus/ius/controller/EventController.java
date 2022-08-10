@@ -70,7 +70,7 @@ public class EventController {
 	public Object getEventInfo(@RequestParam Map<String, Object> map) throws Exception {
 		return service.getEventInfo(map);
 	}
-	
+
 
 	// 행사 번호로 행사명 가져오기 Ajax
 	@ResponseBody
@@ -92,7 +92,7 @@ public class EventController {
 	public void updateEventByNum(@RequestParam Map<String, Object> map) throws Exception {
 		service.updateEventByNum(map);
 	}
-	
+
 	// 행사명 추가하기 Ajax
 	@ResponseBody
 	@RequestMapping(value = "/register_event", method = RequestMethod.POST)

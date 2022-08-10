@@ -1,5 +1,6 @@
 package com.indieus.ius.controller;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.indieus.ius.service.MainServiceImpl;
+import com.indieus.ius.service.NoticeServiceImpl;
 import com.indieus.ius.service.StaffIdServiceImpl;
 import com.indieus.ius.service.StaffServiceImpl;
 import com.indieus.ius.vo.AuthorityVO;
@@ -35,13 +37,17 @@ public class MainController {
 
 	@Autowired
 	private StaffServiceImpl staffService;
+	
+	@Autowired
+	private NoticeServiceImpl noticeService;
 
 	// 홈으로
 	@RequestMapping(value = "/main/", method = RequestMethod.GET)
-	public String home(HttpSession session) throws Exception {
+	public String home(HttpSession session, Model model) throws Exception {
 		if (session.getAttribute("staff") == null) {
 			return "/index";
 		}
+		
 		return "/main/home";
 	}
 
@@ -67,8 +73,7 @@ public class MainController {
 		} catch(NullPointerException e) {
 
 		}
-
-
+		
 		return "/main/home";
 	}
 
@@ -159,5 +164,13 @@ public class MainController {
 
 		return "redirect:./logout";
 	}
+	
+	// 초기 메인 화면에 띄울 정보 가져오기 Ajax
+	@ResponseBody
+	@RequestMapping(value = "/main/get_Info", method = RequestMethod.POST)
+	public Object getInfo(@RequestParam Map<String, Object> map) throws Exception {
+		return service.getInfo(map);
+	}
+	
 
 }

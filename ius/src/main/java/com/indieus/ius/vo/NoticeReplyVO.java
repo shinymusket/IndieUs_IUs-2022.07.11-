@@ -6,7 +6,7 @@ public class NoticeReplyVO {
 	private String staff_id;
 	private String reply_content;
 	private String reply_date;
-	
+
 	private String staff_name;
 
 	public int getReply_num() {
@@ -56,6 +56,6 @@ public class NoticeReplyVO {
 	public void setStaff_name(String staff_name) {
 		this.staff_name = staff_name;
 	}
-	
-	
+
+
 }

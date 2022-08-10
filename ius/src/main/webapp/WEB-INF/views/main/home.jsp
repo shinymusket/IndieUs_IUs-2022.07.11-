@@ -8,10 +8,52 @@
 <meta charset="UTF-8">
 <title>index</title>
 <link type="text/css" rel="stylesheet" href="${path}/resources/css/articleF.css?">
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+	function getInfo() {
+		let today = new Date();
+		let year = today.getFullYear();
+		let month = today.getMonth() + 1;
+		let date = today.getDate();
+		let day = today.getDay();
+		
+		var today_date = year + "/" + month + "/" + date;
+		
+		$.ajax({
+			url : "/ius/main/get_Info",
+			type : "POST",
+			data : {
+				today_date : today_date
+			},
+			success : function(data) {
+				$("#titleTbl").text("");
+				values = data.noticeList;
+				output = "";
+				$.each(values, function(index, value) {
+					
+					output += "<tr>";
+					output += "<td id='notice_title_td'><a href='../notice/notice_info?notice_num=" + value.notice_num + "'>" + value.notice_title + "</a></td>";
+					output += "<td id='notice_writeDate'>" + value.notice_writeDate + "</td>";
+					output += "</tr>";
+				});
+				$("#titleTbl").html(output);
+				
+			}
+		});
+		
+		
+		
+		
+		
+		
+	}
+
+	getInfo();
+</script>
 </head>
 <style>
 	.mainDiv {
-		border : 1px solid;
+		border : 3px solid #cfd8dc;
 		width : 700px;
 		height : 300px;
 		float : left;
@@ -31,6 +73,21 @@
 		color : blue;;
 	}
 	
+	.contentDiv {
+		margin : 30px 15px;
+	}
+	
+	#titleTbl {
+		width : 660px;
+	}
+	
+	#titleTbl #notice_writeDate {
+		text-align : right;
+	}
+	
+	#titleTbl #notice_title_td a:hover {
+		text-decoration: underline;
+	}
 </style>
 <body>
 <%@include file="../include/header.jsp" %>
@@ -38,7 +95,6 @@
 
 	<article>
 			<div id="title_bar">
-				<h3>식단 관리</h3>
 			</div>
 	
 			
@@ -48,19 +104,39 @@
 			<section>
 				<div id="content">
 					<div class="mainDiv" id="notice">
-						<a href="#"><h1 class="title">공지사항</h1></a>
-						<table id="titleTbl" border="1">
-						</table>
+						<a href="../notice/notice_list"><h1 class="title">공지사항</h1></a>
+						<div class="contentDiv">
+							<table id="titleTbl">
+								<%-- <c:if test="${noticeList != null}">
+									<c:forEach items="${noticeList}" var="notice">
+										<tr>
+											<td id="notice_title_td">
+												<a href="../notice/notice_info?notice_num=${notice.notice_num}">${notice.notice_title}</a>
+											</td>
+											<td id="notice_writeDate">
+												${notice.notice_writeDate}
+											</td>
+										</tr>
+									</c:forEach>
+								</c:if> --%>
+							</table>
+						</div>
 					</div>
 					<div class="mainDiv" id="event">
-						<a href="#"><h1 class="title">오늘의 일정</h1></a>
+						<a href="../event/event_list"><h1 class="title">오늘의 일정</h1></a>
+						<div class="contentDiv">
+							<input type="hidden" value="${now}" id="todayDate">
+						</div> 
 					</div>
 					<div class="mainDiv" id="eWorks">
 						<a href="#"><h1 class="title">전자결재</h1></a>
-						<p>결재대기중인 문서 :</p>
+						<div class="contentDiv">
+						</div>
 					</div>
 					<div class="mainDiv" id="meal">
-						<a href="#"><h1 class="title">오늘 식단</h1></a>
+						<a href="../meal/meal_list"><h1 class="title">오늘 식단</h1></a>
+						<div class="contentDiv">
+						</div>
 					</div>	
 				</div>
 			</section>

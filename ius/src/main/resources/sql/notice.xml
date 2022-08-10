@@ -83,4 +83,17 @@
 	<delete id="delete_reply" parameterType="hashmap">
 		DELETE FROM noticeReply WHERE reply_num = #{reply_num}
 	</delete>
+	
+	<!-- 메인글에 게시하기 위한 최신 공지글 8개 가져오기 -->
+	<select id="select_notice_list_for_main" resultType="noticeVO">
+		SELECT *
+				FROM (
+						SELECT ROWNUM RN, A.*
+								FROM (
+										SELECT notice_num, notice_title, TO_CHAR(notice_writeDate, 'YYYY-MM-DD') AS "notice_writeDate" FROM notice
+                                        ORDER BY notice_num DESC
+										) A
+								)
+		WHERE RN BETWEEN 1 AND 8
+	</select>
 </mapper>

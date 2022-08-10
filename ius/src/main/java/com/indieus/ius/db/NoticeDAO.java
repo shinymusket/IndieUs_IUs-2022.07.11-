@@ -14,8 +14,8 @@ public class NoticeDAO {
 
 	@Autowired
 	private SqlSession sqlsession;
-	
-	
+
+
 	// 전체 공지사항 게시물 불러오기
 	public List<NoticeVO> getNoticeList() throws Exception {
 		return sqlsession.selectList("notice.select_all_notice_list");
@@ -31,7 +31,7 @@ public class NoticeDAO {
 	@Transactional
 	public void addReadCount(int notice_num) throws Exception {
 		sqlsession.insert("notice.update_read_count", notice_num);
-		
+
 	}
 
 	// 공지사항 조회
@@ -65,9 +65,9 @@ public class NoticeDAO {
 	@Transactional
 	public void addReply(Map<String, Object> map) throws Exception {
 		sqlsession.insert("notice.insert_reply", map);
-		
+
 	}
-	
+
 	// 댓글 수정이나 삭제를 위해 뷰로 가져오기
 	public NoticeReplyVO getReplyInfo(Map<String, Object> map) throws Exception {
 		return sqlsession.selectOne("notice.select_reply_info", map);
@@ -77,7 +77,7 @@ public class NoticeDAO {
 	@Transactional
 	public void updateReply(Map<String, Object> map) throws Exception {
 		sqlsession.update("notice.update_reply", map);
-		
+
 	}
 
 	// 댓글 삭제
@@ -85,7 +85,12 @@ public class NoticeDAO {
 	public void deleteReply(Map<String, Object> map) throws Exception{
 		sqlsession.delete("notice.delete_reply", map);
 	}
-	
+
+	// 메인에 게시하기 위한 최신 공지글 8개 가져오기
+	public List<NoticeVO> getNoticeListForMain() throws Exception {
+		return sqlsession.selectList("notice.select_notice_list_for_main");
+	}
+
 
 
 }

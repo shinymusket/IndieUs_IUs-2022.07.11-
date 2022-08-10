@@ -35,8 +35,8 @@ public class EventServiceImpl implements EventService {
 		data.put("eventList", eventList);
 		return data;
 	}
-	
-		
+
+
 	// 행사 번호로 행사명 가져오기 Ajax
 	@Override
 	public Object getEventNameByNum(Map<String, Object> map) throws Exception {
@@ -70,9 +70,9 @@ public class EventServiceImpl implements EventService {
 		eVo.setEvent_date(event_date);
 		eVo.setEvent_name(event_name);
 		eVo.setStaff_id(staff_id);
-		
+
 		manager.eventRegister(eVo);
-		
+
 	}
 
 

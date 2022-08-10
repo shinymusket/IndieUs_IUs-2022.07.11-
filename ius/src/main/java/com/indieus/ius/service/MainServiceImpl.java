@@ -2,6 +2,7 @@ package com.indieus.ius.service;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -13,8 +14,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.indieus.ius.db.AuthorityDAO;
 import com.indieus.ius.db.MainDAO;
+import com.indieus.ius.db.NoticeDAO;
 import com.indieus.ius.utils.UploadFileUtils;
 import com.indieus.ius.vo.AuthorityVO;
+import com.indieus.ius.vo.NoticeVO;
 import com.indieus.ius.vo.StaffIdVO;
 import com.indieus.ius.vo.StaffVO;
 
@@ -24,6 +27,8 @@ public class MainServiceImpl implements MainService {
 	private MainDAO manager;
 	@Inject
 	private AuthorityDAO authManager;
+	@Inject
+	private NoticeDAO noticeManager;
 
 	@Value("${host.smtp.id}")
 	private String hostSMTPid;
@@ -178,6 +183,17 @@ public class MainServiceImpl implements MainService {
 	public int updatePassword(Map<String, Object> map) throws Exception {
 		int result = manager.updatePassword(map);
 		return result;
+	}
+
+	// 초기 메인 화면에 띄울 정보 가져오기 Ajax
+	@Override
+	public Object getInfo(Map<String, Object> map) throws Exception {
+		List<NoticeVO> noticeList = noticeManager.getNoticeListForMain();
+		
+		Map<String, Object> data = new HashMap();
+		data.put("noticeList", noticeList);
+
+		return data;
 	}
 
 }

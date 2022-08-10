@@ -1,24 +1,23 @@
 package com.indieus.ius.vo;
 
 public class NoticeVO {
-	
+
 	private int notice_num;
 	private String staff_id;
 	private String notice_title;
 	private String notice_content;
 	private String notice_writeDate;
 	private int notice_readCount;
-	
+
 	private String staff_name;
-	
-	
+
 	public String getStaff_name() {
 		return staff_name;
 	}
 	public void setStaff_name(String staff_name) {
 		this.staff_name = staff_name;
 	}
-	
+
 	public int getNotice_num() {
 		return notice_num;
 	}
@@ -55,8 +54,8 @@ public class NoticeVO {
 	public void setNotice_readCount(int notice_readCount) {
 		this.notice_readCount = notice_readCount;
 	}
-	
-	
-	
-	
+
+
+
+
 }
