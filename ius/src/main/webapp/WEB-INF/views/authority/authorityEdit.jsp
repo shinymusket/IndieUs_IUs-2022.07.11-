@@ -54,7 +54,7 @@
 					<table id="authorityInfo" border="1" style="float: left; display: none;">
 						<tr>
 							<th>권한</th>
-							<td>여부</td>
+							<td>부여</td>
 						</tr>
 						<tr>
 							<th>관리자</th>

@@ -12,10 +12,6 @@
 	font-size: 14px;
 }
 
-#authorityInfo {
-	margin-left: 20px;
-}
-
 #finalAccount {
 	clear: both;
 	margin-bottom: 20px;
@@ -29,9 +25,16 @@ table, th, tr, td {
 	padding: 7px;
 }
 
+#classInfo {
+	margin-left : 20px;
+}
+
+#classKinder {
+	margin-top : 10px;
+}
+
 .list {
 	font-size: 14px;
-	width : 450px;
 }
 
 .list td {
@@ -39,6 +42,19 @@ table, th, tr, td {
 	text-align: center;
 }
 
+#staffInfo {
+	margin-left : 20px;
+}
+
+#attendanceInfo {
+	margin-left: 20px;
+	font-size: 14px;
+}
+
+#attendanceInfo td {
+	font-size: 13px;
+	text-align: center;
+}
 th{
 	font-size: 14px;
 	background-color: #486890;
