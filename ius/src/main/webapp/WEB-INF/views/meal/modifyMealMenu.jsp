@@ -11,7 +11,6 @@
 <link rel="stylesheet" href="${path}/resources/css/mealCss/addMeal.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-
 function openlAllergy(name){
 	window.open("./allergyInfo", name, "width=300, height=500");
 }
@@ -98,25 +97,33 @@ document.addEventListener('keydown', function(event) {
 	    });
 	
 	    $(wrapper).on("click", "#deleteInput", function(e) {
+	    	
+	    	var dietitian = getCookie("dietitian");
+	    	
 	        e.preventDefault();
 	        
- 			var num = $(this).parent('#input-menu').find('.menuN').val();
-	        
-	        $.ajax({
-	        	url : "/ius/meal/meal_delete",
-	        	type : "POST",
-	        	data : {
-	        		menu_num : num
-	        	},
-	        	success : function(data) {
-	        		alert("삭제되었습니다.");
-	        		
-	        	}
-	        })
+	        if (dietitian == "N") { // 권한이 없는 경우.
+	        	alert("권한이 없습니다.");
+	        	return;
+	        } else if (dietitian == "Y") {
+	        	var num = $(this).parent('#input-menu').find('.menuN').val();
+		        $.ajax({
+		        	url : "/ius/meal/meal_delete",
+		        	type : "POST",
+		        	data : {
+		        		menu_num : num
+		        	},
+		        	success : function(data) {
+		        		alert("삭제되었습니다.");
+		        		
+		        	}
+		        })
 
+		        
+		        $(this).parent('#input-menu').remove();
+		        x--;
+	        }
 	        
-	        $(this).parent('#input-menu').remove();
-	        x--;
 	    })
 	});
 	
@@ -165,6 +172,8 @@ document.addEventListener('keydown', function(event) {
 	        x--;
 	    })
 	});
+	
+	
 	
 </script>
 </head>

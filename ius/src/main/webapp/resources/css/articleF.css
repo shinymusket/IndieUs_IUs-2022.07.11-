@@ -44,7 +44,7 @@ header{
 }
 
 #logInfo {
-    width: 200px;
+    width: 300px;
     height: 100px;
     float: right;
     text-align: right;
@@ -243,7 +243,6 @@ nav::-webkit-scrollbar-track {
         width: 1300px;
         clear: both;
         padding: 30px;
-        /* background-color: aqua; */
     }
 
     /* ÇªÅÍ¤Ã¤Ã¤Ã */
@@ -330,9 +329,7 @@ article {
 #content{
     clear: both;
     padding: 30px;
-  /*   background-color: aqua; */
 }
-
 
 /************ ÇªÅÍ ************/
 
@@ -351,4 +348,9 @@ article {
         text-align: center;
         font-size: 14px;
     }
-}
+
+/* Ajax ÆäÀÌÂ¡ */
+.clickable {cursor: pointer;}
+.hover {text-decoration: underline;}
+.active{ width:10px; height:10px; background:#f60; color:white;}
+

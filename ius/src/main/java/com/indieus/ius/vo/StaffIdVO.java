@@ -10,7 +10,14 @@ public class StaffIdVO {
 	private Date reg_date;
 	private Date log_date;
 
+	private String staff_name;
 
+	public String getStaff_name() {
+		return staff_name;
+	}
+	public void setStaff_name(String staff_name) {
+		this.staff_name = staff_name;
+	}
 	public String getAuth_code() {
 		return auth_code;
 	}

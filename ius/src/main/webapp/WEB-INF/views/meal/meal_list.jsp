@@ -38,19 +38,51 @@ int newLine = 0;
 <HEAD>
 <TITLE>캘린더</TITLE>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<link rel="stylesheet" href="${path}/resources/css/articleF.css">
-<link rel="stylesheet" href="${path}/resources/css/mealCss/meal.css">
-<script type="text/javaScript" language="javascript"></script>
+<link rel="stylesheet" href="${path}/resources/css/article.css">
+<link rel="stylesheet" href="${path}/resources/css/meal.css">
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javaScript">
+function getCookie(name) {	// 저장된 쿠키 가져오기
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+};
+
+$(function(){
+	var dietitian = getCookie("dietitian");
+	if (dietitian == "N") {
+		$(".menu_info").removeAttr("href");
+	}
+	
+	$("#mealRegister").click(function(){ // 식단 등록은 관리자나 영양사만 가능
+		
+		var dietitian = getCookie("dietitian");
+		if (dietitian == "N") { // 마스터 권한의 경우 등록시 모든 권한이 함께 등록되므로 영양사 권한만 체크하면 됨.
+			alert("권한이 없습니다.");
+			return;
+		} else if (dietitian == "Y") {
+			location.href='../meal/addMealMenu';
+		}	
+	});
+	
+})
+
+</script>
 </HEAD>
 <BODY>
-	<%@include file="../include/header.jsp"%>
-	<%@include file="../include/nav.jsp"%>
-	<article>
-		<!-- 왼쪽 소제목 박스 -->
-		<div id="title_bar">
-			<p>경영 정보</p>
-			<h3>식단 관리</h3>
-		</div>
+<%@include file="../include/header.jsp" %>
+<%@include file="../include/nav.jsp" %>
+<article>
+                <!-- 왼쪽 소제목 박스 -->
+                    <div id="title_bar">
+                        <p>경영 정보</p>
+                        <h3>식단 관리</h3>
+                    </div>
 
 		<!-- 오른쪽 기능 박스 (검색)-->
 		<div id="title_top">
@@ -62,33 +94,32 @@ int newLine = 0;
 		<section>
 			<div id="content">
 
-				<!-- <DIV id="content" style="width:900px"> -->
 				<table width="100%" border="0" cellspacing="1" cellpadding="1">
 					<tr>
-						<td align="right"><input type="button"
-							onclick="location.href='./meal_list'" value="오늘" /> <input
-							type="button" onclick="location.href='../meal/addMealMenu'"
-							value="식단 등록" /></td>
-
+						<td align="right">
+							<input type="button" onclick="location.href='./meal_list'" value="오늘" />
+							<input type="button" id="mealRegister" value="식단 등록" />
+						</td>
 					</tr>
 				</table>
 
+
 				<!--날짜 네비게이션  -->
+
 
 				<table class="calendar_nav">
 					<tr>
 						<td align="center">
-							<!-- 이전 년도 --> <a
-							href="<c:url value='./meal_list' />?year=<%=year - 1%>&amp;month=<%=month%>"
-							target="_self"> <b>&lt;&lt;</b>
-						</a> <!-- 이전 달 --> <%
+							<!-- 이전 년도 -->
+							<a href="<c:url value='./meal_list' />?year=<%=year - 1%>&amp;month=<%=month%>" target="_self"> <b>&lt;&lt;</b></a>
+							<!-- 이전 달 --> 
+							<%
 					 if (month > 0) {
-					 %> <a
-							href="<c:url value='./meal_list' />?year=<%=year%>&amp;month=<%=month - 1%>"
-							target="_self"> <b>&lt;</b>
-						</a> <%} else {%> <b>&lt;</b> <%
- }
- %> &nbsp;&nbsp; <%=year%>년 <%=month + 1%>월
+					 %> <a href="<c:url value='./meal_list' />?year=<%=year%>&amp;month=<%=month - 1%>" target="_self"> <b>&lt;</b>
+						</a>
+					<%} else {%>
+					<b>&lt;</b>
+					<% } %> &nbsp;&nbsp; <%=year%>년 <%=month + 1%>월
 							&nbsp;&nbsp; <!-- 다음 달 --> <%
  if (month < 11) {
  %> <a

@@ -62,5 +62,12 @@
 			t1.meal_menu, t1.menu_edate, t1.menu_calorie, t1.allergy_num, sysdate)
 	</update>
 	
+	<!-- 메인뷰에 띄울 오늘의 식단 정보 가져오기 -->
+	<select id="select_today_menu_for_main" parameterType="String" resultType="mealMenuVO">
+		SELECT meal_code, meal_menu, allergy_num
+		FROM menu_tbl
+		WHERE menu_edate = #{today_date}
+	</select>
+	
 	<!--https://kutar37.tistory.com/entry/mybatis-%EB%8B%A4%EC%A4%91-insert  -->
 </mapper>

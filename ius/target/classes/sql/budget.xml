@@ -49,6 +49,10 @@
   		SELECT * FROM budget WHERE budget_num = #{budget_num}
   	</select>
   	
+  	<select id="count_finance_from_budget" parameterType="hashmap" resultType="int">
+  		SELECT COUNT(*) FROM finance WHERE budget_num = #{budget_num}
+  	</select>
+  	
   	<!-- 예산 항목 삭제 -->
   	<delete id="delete_budget_by_num" parameterType="String">
   		DELETE FROM budget WHERE budget_num = #{budget_num}

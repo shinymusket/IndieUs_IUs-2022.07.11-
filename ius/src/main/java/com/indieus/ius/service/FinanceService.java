@@ -14,6 +14,8 @@ public interface FinanceService {
 
 	public List<String> selectAllFinanceEyear() throws Exception;
 
+	public Object getBudgetList(Map<String, Object> map) throws Exception;
+
 	public Object getFinanceListByYear(Map<String, Object> map) throws Exception;
 
 	public int selectFinanceSeq() throws Exception;
@@ -29,5 +31,7 @@ public interface FinanceService {
 	public List<PurchaseVO> selectPurchaseFromNum(String finance_num) throws Exception;
 
 	public int selectPurchaseSumFromNum(String finance_num) throws Exception;
+
+	public Object searchFinance(Map<String, Object> map) throws Exception;
 
 }
