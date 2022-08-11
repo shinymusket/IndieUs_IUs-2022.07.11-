@@ -18,7 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.indieus.ius.service.KinderServiceImpl;
 import com.indieus.ius.vo.KinderVO;
-import com.indieus.ius.vo.ShuttleVO;
+import com.indieus.ius.vo.ShuttleVOP;
 import com.indieus.ius.vo.StaffVO;
 
 @Controller
@@ -45,7 +45,7 @@ public class KinderController {
 	@RequestMapping(value = "/kinder_register_form", method = RequestMethod.GET)
 	public String kinderRegisterForm(Model model) throws Exception {
 		int nextKinderSeq = service.selectNextKinderSeq();
-		List<ShuttleVO> shuttleList = service.selectAllShuttleList();
+		List<ShuttleVOP> shuttleList = service.selectAllShuttleList();
 		List<StaffVO> homeTeacherList = service.selectHomeTeacherForKinder();
 
 		model.addAttribute("nextKinderSeq", nextKinderSeq);

@@ -1,0 +1,48 @@
+@charset "UTF-8";
+
+#busInfo{
+	width: 500px;
+	margin-bottom: 40px;
+	text-align: center;
+}
+
+#busInfo td {
+	font-size: 14px;
+}
+#busInfo, #busInfo tr, #busInfo th, #busInfo td {
+	border: 1px solid #ccc;
+	border-collapse: collapse;
+	padding: 6px;
+}
+
+
+#routeInfo {
+	width: 700px;
+	text-align: center;
+	word-wrap:break-word;
+	word-break:break-all;
+	margin-top: 20px;
+	font-size: 14px;
+}
+
+.time_hour {
+	width: 40%;
+	word-wrap:break-word;
+	word-break:break-all;
+}
+
+.time_minute {
+	word-wrap:break-word;
+	word-break:break-all;
+}
+
+#routeInfo, #routeInfo tr, #routeInfo th, #routeInfo td {
+	border: 1px solid #ccc;
+	border-collapse: collapse;
+	padding: 6px;
+}
+
+#routeInfo th, #busInfo th {
+	background-color: #486890;
+	color: white;
+}

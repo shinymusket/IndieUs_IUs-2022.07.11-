@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.indieus.ius.vo.KinderVO;
-import com.indieus.ius.vo.ShuttleVO;
+import com.indieus.ius.vo.ShuttleVOP;
 import com.indieus.ius.vo.StaffVO;
 
 public interface KinderService {
@@ -17,7 +17,7 @@ public interface KinderService {
 
 	public int selectNextKinderSeq() throws Exception;
 
-	public List<ShuttleVO> selectAllShuttleList() throws Exception;
+	public List<ShuttleVOP> selectAllShuttleList() throws Exception;
 
 	public List<StaffVO> selectHomeTeacherForKinder() throws Exception;
 

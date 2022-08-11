@@ -1,19 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>      
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>     
+<c:set var="path" value="${pageContext.request.contextPath}" /> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>재정 상세 보기</title>
+<link rel="stylesheet" href="${path}/resources/css/articleF.css">
+<link rel="stylesheet" href="${path}/resources/css/finance/financeInfo.css">
 </head>
 <body>
-	<h1>재정 상세 보기</h1>
-	<input type="button" value="목록" onclick="location.href='../finance/finance_list'">
-	<input type="button" value="수정" onclick="location.href='../finance/finance_update_form?finance_num=${finance.finance_num}'">
-	<input type="button" value="삭제" onclick="location.href='../finance/finance_delete?finance_num=${finance.finance_num}'">
-	<table border="1">
+<%@include file="../include/header.jsp"%>
+<%@include file="../include/nav.jsp"%>
+
+<article>
+	<!-- 왼쪽 소제목 박스 -->
+	<div id="title_bar">
+		<p>경영 정보</p>
+		<h3>재정 상세 보기</h3>
+	</div>
+
+	<!-- 오른쪽 기능 박스 (검색)-->
+	<div id="title_top">
+	</div>
+		<!-- 내용 구간 -->
+	<section>
+		<div id="content">
+			<div id="button_box">
+				<input type="button" value="목록" onclick="location.href='../finance/finance_list'">
+				<input type="button" value="수정" onclick="location.href='../finance/finance_update_form?finance_num=${finance.finance_num}'">
+				<input type="button" value="삭제" onclick="location.href='../finance/finance_delete?finance_num=${finance.finance_num}'">
+			</div>
+	<table border="1" id="finance_detail">
 		<tr>
 			<th>재정 코드</th>
 			<td>${finance.finance_num}</td>
@@ -41,7 +61,7 @@
 		</tr>
 		<tr>
 			<th colspan="2">집행 금액</th>
-			<td colspan="2">
+			<td colspan="2" id="amountbox">
 				<fmt:formatNumber value="${finance.finance_amount}" maxFractionDigits="3"/>원
 			</td>
 		</tr>
@@ -50,8 +70,8 @@
 		</table>
 		
 		<c:if test="${purchaseList != null}">
-			<h3>재정 사용 내역</h3>
-			<table border="1">
+			<h3 id="sub_title">재정 사용 내역</h3>
+			<table id="finance_history">
 			
 			<tr>
 				<th>구매 번호</th>
@@ -76,7 +96,7 @@
 			</c:forEach>
 			</table>
 			
-			<table border="1">
+			<table id="finance_amount">
 				<tr>
 					<th>총액</th>
 					<th>지출액</th>
@@ -95,6 +115,9 @@
 				</tr>
 			</table>	
 		</c:if>
-
+	</div>
+		</section>
+	</article>
+<%@include file="../include/footer.jsp" %>
 </body>
 </html>

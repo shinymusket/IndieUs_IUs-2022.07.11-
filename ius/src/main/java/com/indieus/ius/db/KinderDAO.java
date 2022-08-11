@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.indieus.ius.vo.KinderVO;
-import com.indieus.ius.vo.ShuttleVO;
+import com.indieus.ius.vo.ShuttleVOP;
 import com.indieus.ius.vo.StaffVO;
 
 @Repository
@@ -29,7 +29,7 @@ public class KinderDAO {
 	}
 
 	// 원생 등록을 위한 버스 리스트 가져오기
-	public List<ShuttleVO> selectAllShuttleList() throws Exception {
+	public List<ShuttleVOP> selectAllShuttleList() throws Exception {
 		return sqlsession.selectList("kinder.select_all_shuttle_List");
 	}
 

@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.indieus.ius.db.KinderDAO;
 import com.indieus.ius.utils.UploadFileUtils;
 import com.indieus.ius.vo.KinderVO;
-import com.indieus.ius.vo.ShuttleVO;
+import com.indieus.ius.vo.ShuttleVOP;
 import com.indieus.ius.vo.StaffVO;
 
 public class KinderServiceImpl implements KinderService {
@@ -92,7 +92,7 @@ public class KinderServiceImpl implements KinderService {
 
 	// 원생 등록을 위한 버스 리스트 가져오기
 	@Override
-	public List<ShuttleVO> selectAllShuttleList() throws Exception {
+	public List<ShuttleVOP> selectAllShuttleList() throws Exception {
 		return manager.selectAllShuttleList();
 	}
 
