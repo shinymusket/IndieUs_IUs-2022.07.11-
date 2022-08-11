@@ -172,7 +172,7 @@ public class KinderServiceImpl implements KinderService {
 
 	// 원생 등록을 위한 버스 리스트 가져오기
 	@Override
-	public List<ShuttleVOP> selectAllShuttleList() throws Exception {
+	public List<ShuttleVO> selectAllShuttleList() throws Exception {
 		return manager.selectAllShuttleList();
 	}
 
