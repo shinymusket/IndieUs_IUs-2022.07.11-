@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-input[type="button"]{
+input[type="button"], input[type="reset"] {
 	padding: 3px;
 }
 input[type="button"]:hover {

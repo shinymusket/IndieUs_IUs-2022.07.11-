@@ -1,31 +1,21 @@
 @charset "UTF-8";
 
-input[type="button"]{
+input[type="button"], input[type="reset"] {
 	padding: 3px;
 }
 input[type="button"]:hover {
 	cursor: pointer;
 }
-#finance_detail {
-	width: 100%;
-	margin-bottom: 30px;
-}
 
-#finance_detail td, #finance_detail th {
-	padding: 10px;
+#staff_addr {
+	width : 400px;
 }
-
-#finance_detail td {
-	font-size: 14px;
+#staff_email {
+	width : 300px;
 }
 
 #amountbox{
 	text-align: center !important;	
-}
-#finance_history {
-	width: 100%;
-	margin-bottom: 20px;
-	text-align: center;
 }
 
 #button_box {

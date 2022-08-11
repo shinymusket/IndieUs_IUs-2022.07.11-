@@ -18,7 +18,7 @@ public interface MealMenuService {
 //	public int inputMenu(String menu_edate, @RequestParam(value="meal_code[]") String[] meal_code, @RequestParam(value="menu[]") String[] menu, @RequestParam(value="kcal[]") int[] kcal, @RequestParam(value="allergy[]") String[] allergy) throws Exception;
 
 	public int inputMenu (HttpServletRequest request) throws Exception;
-	
+
 	public List<MealMenuVO> menuSelectByMenuNum(String menu_edate) throws Exception;
 
 	public void mealDelete(@RequestParam Map<String, Object> map) throws Exception;

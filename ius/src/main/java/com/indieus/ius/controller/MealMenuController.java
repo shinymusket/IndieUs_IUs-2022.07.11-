@@ -60,7 +60,7 @@ public class MealMenuController {
 		service.inputMenu(request);
 		return "redirect:./meal_list";
 	}
-	
+
 	// 식단 수정 폼 이동
 	@RequestMapping(value ="/menuSelectByMenuNum", method = RequestMethod.GET)
 	public String menuSelectByMenuNum(String menu_edate, Model model) throws Exception {
@@ -80,7 +80,7 @@ public class MealMenuController {
 
 	@RequestMapping(value = "/modifyMealMenu", method = RequestMethod.POST)
 	public String modifyUpdateMenu(HttpServletRequest request) throws Exception {
-		
+
 		service.modifyUpdateMenu(request);
 		return "redirect:./meal_list";
 	}

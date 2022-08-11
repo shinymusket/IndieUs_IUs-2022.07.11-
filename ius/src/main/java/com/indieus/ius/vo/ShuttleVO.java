@@ -12,7 +12,7 @@ public class ShuttleVO {
 	String shuttle_hour;
 	String shuttle_minute;
 	String bus_stop;
-	
+
 	public String getShuttle_num() {
 		return shuttle_num;
 	}
@@ -73,7 +73,7 @@ public class ShuttleVO {
 	public void setRoute_id(String route_id) {
 		this.route_id = route_id;
 	}
-	
-	
-	
+
+
+
 }

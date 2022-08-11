@@ -1,7 +1,6 @@
 package com.indieus.ius.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -23,14 +22,14 @@ public class ShuttleBusController {
 
 	@Autowired
 	private ShuttleBusServiceImpl service;
-	
+
 	@RequestMapping(value = "/shuttle_bus", method = RequestMethod.GET)
 	public String shuttleBus(Model model) throws Exception {
 		List<ShuttleVO> list = service.allShuttleInfo();
 		model.addAttribute("busList", list);
 		return "/bus/shuttleList";
 	}
-	
+
 	@RequestMapping(value = "/shuttle_bus_reg")
 	public String shuttleBusRegister(Model model) throws Exception {
 		List<StaffVO> list = service.getDriverData();
@@ -40,20 +39,20 @@ public class ShuttleBusController {
 		model.addAttribute("driverList", list);
 		return "/bus/shuttleBusRegisterForm";
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value ="/get_driver_tel", method = RequestMethod.POST)
 	public Object getDriverTell(@RequestParam("staff_num") String staff_num) throws Exception {
 		return service.getDriverTel(staff_num);
 	}
-	
+
 	@RequestMapping(value = "/input_bus_route", method = RequestMethod.POST)
 	public String inputBusRoute(HttpServletRequest request) throws Exception {
 		service.inputBusInfo(request);
 		service.inputBusRoute(request);
 		return "redirect:./shuttle_bus";
 	}
-	
+
 	@RequestMapping(value = "/modify_route", method = RequestMethod.GET)
 	public String selectRouteByShuttleId(@RequestParam String shuttle_num, Model model) throws Exception {
 		ShuttleVO shuttleInfo = service.selectRouteByShuttleId(shuttle_num);
@@ -64,26 +63,26 @@ public class ShuttleBusController {
 		model.addAttribute("driverList", list);
 		return "/bus/routeInfo";
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/get_route_by_shuttle_id", method = RequestMethod.POST)
 	public Object getRouteByShuttleId(@RequestParam("shuttle_num") String shuttle_num) throws Exception {
 		return service.getRouteByShuttleId(shuttle_num);
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/route_delete")
 	public void routeDelete(@RequestParam("route_id") String route_id) throws Exception {
 		service.routeDelete(route_id);
 	}
-	
+
 	@RequestMapping(value = "/modify_bus_route", method = RequestMethod.POST)
 	public String modifyBusRoute(HttpServletRequest request) throws Exception {
 		service.modifyBusInfo(request);
 		service.modifyBusRoute(request);
 		return "redirect:./shuttle_bus";
 	}
-	
+
 	@RequestMapping(value = "/delete_bus_info")
 	public String deleteBusInfo(@RequestParam String shuttle_num) throws Exception {
 		service.deleteBusInfo(shuttle_num);

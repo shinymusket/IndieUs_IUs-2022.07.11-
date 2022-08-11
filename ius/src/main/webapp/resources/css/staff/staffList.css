@@ -4,17 +4,12 @@
 	margin-bottom: 10px;
 }
 
-#finance_sel_bar {
-	width: 500px;
-	float: left;
+#searchDiv {
 	margin-bottom: 20px;
 }
 
-#finance_button_bar {
-	width: 500px;
-	float: right;
-	text-align: right;
-	margin-bottom: 20px;
+#searchDiv label {
+	font-size: 14px;
 }
 
 #finalAccount {
@@ -30,17 +25,22 @@ table, th, tr, td {
 	padding: 7px;
 }
 
-#list {
-	width: 100%;
+.list {
 	font-size: 14px;
+	width : 450px;
 }
 
-#list td {
+.list td {
 	font-size: 13px;
 	text-align: center;
 }
 
+#staffInfo {
+	margin-left : 20px;
+}
+
 th{
+	font-size: 14px;
 	background-color: #486890;
 	color: white;
 }

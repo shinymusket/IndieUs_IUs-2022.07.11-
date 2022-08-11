@@ -68,14 +68,14 @@ public class MealMenuServiceImpl implements MealMenuService {
 
 	@Override
 	public int inputMenu (HttpServletRequest request) throws Exception {
-		
+
 		String[] menu_num = request.getParameterValues("menu_num[]");
 		String[] meal_code = request.getParameterValues("meal_code[]");
 		String[] menu = request.getParameterValues("menu[]");
 		String[] kcal = request.getParameterValues("kcal[]");
 		String[] allergy = request.getParameterValues("allergy[]");
 		String menu_edate = request.getParameter("menu_edate");
-		
+
 		List<MealMenuVO> list = new ArrayList<>();
 		for(int i=0; i < menu.length; i++) {
 			MealMenuVO mmVo = new MealMenuVO();
@@ -93,7 +93,7 @@ public class MealMenuServiceImpl implements MealMenuService {
 
 		return manager.inputMenu(map);
 	}
-	
+
 	// 날짜 식단 정보 불러오기 //
 	@Override
 	public List<MealMenuVO> menuSelectByMenuNum(String menu_edate) throws Exception {
@@ -107,37 +107,37 @@ public class MealMenuServiceImpl implements MealMenuService {
 		manager.mealDelete(map);
 	}
 
-	
+
 	@Override
 	public int modifyUpdateMenu(HttpServletRequest request) throws Exception {
-		
+
 		String[] menu_num = request.getParameterValues("menu_num[]");
 		String[] meal_code = request.getParameterValues("meal_code[]");
 		String[] menu = request.getParameterValues("menu[]");
 		String[] kcal = request.getParameterValues("kcal[]");
 		String[] allergy = request.getParameterValues("allergy[]");
 		String menu_edate = request.getParameter("menu_edate");
-				
-		List<MealMenuVO> list = new ArrayList<MealMenuVO>();
-		
+
+		List<MealMenuVO> list = new ArrayList<>();
+
 		for(int i=0; i < meal_code.length; i++) {
-			
+
 			MealMenuVO mmVo = new MealMenuVO();
-			
+
 			mmVo.setMenu_num(menu_num[i]);
 			mmVo.setMeal_code(meal_code[i]);
 			mmVo.setMenu_edate(menu_edate);
 			mmVo.setMeal_menu(menu[i]);
 			mmVo.setMenu_calorie(Integer.parseInt(kcal[i]));
 			mmVo.setAllergy_num(allergy[i]);
-		
+
 			System.out.println(menu_num[i]+ ", " + meal_code[i]+ ", " +menu_edate+ ", " + menu[i]+ ", " + kcal[i]+ ", " +allergy[i]);
 			list.add(mmVo);
 		}
 
-		
+
 		return manager.modifyUpdateMenu(list);
-		
+
 	}
 
 }

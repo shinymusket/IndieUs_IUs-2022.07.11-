@@ -37,7 +37,7 @@ public class ShuttleBusDAO {
 	public List<ShuttleVO> allShuttleInfo() throws Exception {
 		return sqlsession.selectList("shuttle.all_shuttle_info");
 	}
-	
+
 	public int selectNextShuttleSeq() throws Exception {
 		return sqlsession.selectOne("shuttle.select_next_shuttle_seq");
 	}
@@ -47,7 +47,7 @@ public class ShuttleBusDAO {
 		int s_id = Integer.parseInt(shuttle_num);
 		Map<String, Object> map = new HashMap();
 		map.put("shuttle_num", shuttle_num);
-		
+
 		return sqlsession.selectOne("shuttle.select_route_by_shuttle_id", s_id);
 	}
 
@@ -81,6 +81,6 @@ public class ShuttleBusDAO {
 		return sqlsession.delete("shuttle.delete_bus_info", s_num);
 	}
 
-	
-	
+
+
 }

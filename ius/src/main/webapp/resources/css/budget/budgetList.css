@@ -4,16 +4,7 @@
 	margin-bottom: 10px;
 }
 
-#finance_sel_bar {
-	width: 500px;
-	float: left;
-	margin-bottom: 20px;
-}
-
-#finance_button_bar {
-	width: 500px;
-	float: right;
-	text-align: right;
+#searchDiv {
 	margin-bottom: 20px;
 }
 
