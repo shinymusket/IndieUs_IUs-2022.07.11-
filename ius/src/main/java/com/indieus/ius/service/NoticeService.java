@@ -1,6 +1,5 @@
 package com.indieus.ius.service;
 
-import java.util.List;
 import java.util.Map;
 
 import com.indieus.ius.vo.NoticeVO;
@@ -28,6 +27,6 @@ public interface NoticeService {
 	public void updateReply(Map<String, Object> map) throws Exception;
 
 	public void deleteReply(Map<String, Object> map) throws Exception;
-	
+
 
 }

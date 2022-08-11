@@ -13,10 +13,16 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.indieus.ius.db.AuthorityDAO;
+import com.indieus.ius.db.EventDAO;
+import com.indieus.ius.db.KinderDAO;
 import com.indieus.ius.db.MainDAO;
+import com.indieus.ius.db.MealMenuDAO;
 import com.indieus.ius.db.NoticeDAO;
 import com.indieus.ius.utils.UploadFileUtils;
+import com.indieus.ius.vo.AllergyInfoVO;
 import com.indieus.ius.vo.AuthorityVO;
+import com.indieus.ius.vo.EventVO;
+import com.indieus.ius.vo.MealMenuVO;
 import com.indieus.ius.vo.NoticeVO;
 import com.indieus.ius.vo.StaffIdVO;
 import com.indieus.ius.vo.StaffVO;
@@ -29,7 +35,13 @@ public class MainServiceImpl implements MainService {
 	private AuthorityDAO authManager;
 	@Inject
 	private NoticeDAO noticeManager;
-
+	@Inject
+	private EventDAO eventManager;
+	@Inject
+	private MealMenuDAO mealManager;
+	@Inject
+	private KinderDAO kinderManager;
+	
 	@Value("${host.smtp.id}")
 	private String hostSMTPid;
 	@Value("${host.smtp.pwd}")
@@ -188,14 +200,24 @@ public class MainServiceImpl implements MainService {
 	// 초기 메인 화면에 띄울 정보 가져오기 Ajax
 	@Override
 	public Object getInfo(Map<String, Object> map) throws Exception {
-		List<NoticeVO> noticeList = noticeManager.getNoticeListForMain();
+		String today_date = (String) map.get("today_date");
 		
+		List<NoticeVO> noticeList = noticeManager.getNoticeListForMain();
+		List<EventVO> eventList = eventManager.getEventListForMain(today_date);
+		
+		// 오늘의 식단 메뉴 가져옴.
+		List<MealMenuVO> mealList = mealManager.getTodayMenuForMain(today_date);
+
 		Map<String, Object> data = new HashMap();
 		data.put("noticeList", noticeList);
-
+		data.put("eventList", eventList);
+		data.put("mealList", mealList);
+		
 		return data;
 	}
 
+	
+	
 }
 
 

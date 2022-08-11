@@ -180,6 +180,5 @@
 		</if>
 		WHERE kinder_num = #{kinder_num}
 	</update>
-	
 
 </mapper>

@@ -31,7 +31,14 @@ function getList() {
 			values = data.kinderList;
 			output = "<tr><th>원생 이름</th><th>부 성명</th><th>모 성명</th></tr>";				
 			$.each(values, function(index, value) {
-	
+				
+				if (value.father_name == null) {
+					value.father_name = "";
+				};
+				if (value.mather_name == null) {
+					value.mather_name = "";
+				};
+
 				output += "<tr>";
 				output += "<td><a href=\"javascript:view(" + value.kinder_num + ");\">" + value.kinder_name + "</a></td>";
 				output += "<td>" + value.father_name + "</td>";

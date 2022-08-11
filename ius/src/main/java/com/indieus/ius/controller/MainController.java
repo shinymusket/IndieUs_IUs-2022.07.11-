@@ -1,6 +1,5 @@
 package com.indieus.ius.controller;
 
-import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,7 +36,7 @@ public class MainController {
 
 	@Autowired
 	private StaffServiceImpl staffService;
-	
+
 	@Autowired
 	private NoticeServiceImpl noticeService;
 
@@ -47,7 +46,7 @@ public class MainController {
 		if (session.getAttribute("staff") == null) {
 			return "/index";
 		}
-		
+
 		return "/main/home";
 	}
 
@@ -73,7 +72,7 @@ public class MainController {
 		} catch(NullPointerException e) {
 
 		}
-		
+
 		return "/main/home";
 	}
 
@@ -164,13 +163,13 @@ public class MainController {
 
 		return "redirect:./logout";
 	}
-	
+
 	// 초기 메인 화면에 띄울 정보 가져오기 Ajax
 	@ResponseBody
 	@RequestMapping(value = "/main/get_Info", method = RequestMethod.POST)
 	public Object getInfo(@RequestParam Map<String, Object> map) throws Exception {
 		return service.getInfo(map);
 	}
-	
+
 
 }

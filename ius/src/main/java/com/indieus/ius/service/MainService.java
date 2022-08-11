@@ -22,6 +22,6 @@ public interface MainService {
 	public Object checkOriginPassword(Map<String, Object> map) throws Exception;
 
 	public int updatePassword(Map<String, Object> map) throws Exception;
-	
+
 	public Object getInfo(Map<String, Object> map) throws Exception;
 }

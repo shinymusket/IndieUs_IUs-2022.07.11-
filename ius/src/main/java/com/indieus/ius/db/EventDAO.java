@@ -51,4 +51,9 @@ public class EventDAO {
 
 	}
 
+	// 메인 화면에 띄울 행사 리스트 정보(최대 8개까지) 가져오기
+	public List<EventVO> getEventListForMain(String today_date) throws Exception {
+		return sqlsession.selectList("event.select_event_list_for_main", today_date);
+	}
+
 }

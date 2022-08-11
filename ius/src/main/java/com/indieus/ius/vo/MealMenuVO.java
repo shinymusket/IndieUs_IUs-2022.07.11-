@@ -12,8 +12,16 @@ public class MealMenuVO {
 	private int menu_calorie;
 	private String allergy_num;
 	private Date menu_wdate;
-
-
+	
+	private String allergy_Yn;
+	
+	
+	public String getAllergy_Yn() {
+		return allergy_Yn;
+	}
+	public void setAllergy_Yn(String allergy_Yn) {
+		this.allergy_Yn = allergy_Yn;
+	}
 	public String getMenu_num() {
 		return menu_num;
 	}

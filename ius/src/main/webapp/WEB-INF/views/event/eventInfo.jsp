@@ -256,7 +256,7 @@ getInfo();
 							</tr>
 							<tr>
 								<td>
-									<input type="text" value="${staff_id}" id="staff_id"> <!-- 현재 로그인한 사람의 아이디 -->
+									<input type="hidden" value="${staff_id}" id="staff_id"> <!-- 현재 로그인한 사람의 아이디 -->
 									<input type="date" value="${event_date}" id="event_date">
 								</td>
 							</tr>
@@ -268,7 +268,7 @@ getInfo();
 								<td>
 									<input type="text" id="event_num" readonly="readonly">
 									<input type="text" id="event_name">
-									<input type="text" id="register_staff_id"> <!-- 등록한 사람의 아이디  --> 
+									<input type="hidden" id="register_staff_id"> <!-- 등록한 사람의 아이디  --> 
 								</td>
 							</tr>
 							<tr>

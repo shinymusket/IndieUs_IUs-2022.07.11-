@@ -135,9 +135,6 @@ public class KinderDAO {
 	public int updateKinder(KinderVO kVo) throws Exception {
 		return sqlsession.update("kinder.update_kinder", kVo);
 	}
-
-
-
-
+	
 
 }
