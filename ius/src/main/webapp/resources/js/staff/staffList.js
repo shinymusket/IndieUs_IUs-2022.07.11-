@@ -1,3 +1,4 @@
+
 function addComma(value){
 	result = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); 
     return result;
@@ -5,6 +6,7 @@ function addComma(value){
 
 
 function view(staff_num) {
+
 	var staff_num = staff_num;
 		
 		$.ajax({
@@ -35,7 +37,8 @@ function view(staff_num) {
 					data.staff.staff_picture = "\\imgUpload\\no_image.jpg";
 				}
 				
-				$("#staff_picture").html("<img src='" + data.staff.staff_picture + "' width='94.4px' height='113.3px'>");
+				/* $("#staff_picture").html("<img src='" + data.staff.staff_picture + "' width='94.4px' height='113.3px'>"); */
+				$("#staff_picture").html("<img src='" + "<spring:url value='/resources'/>" + data.staff.staff_picture + "' width='94.4px' height='113.3px'>");
 				$("#staff_rrn1").val(data.staff.staff_rrn1);
 				$("#staff_rrn2").val(data.staff.staff_rrn2);
 				$("#staff_addr").val(data.staff.staff_addr);
