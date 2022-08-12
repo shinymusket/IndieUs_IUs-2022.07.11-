@@ -11,7 +11,7 @@
 <script type="text/javascript" src="${path}/resources/js/staff/staffList.js"></script>
 <title>교직원 관리</title>
 <link type="text/css" rel="stylesheet" href="${path}/resources/css/articleF.css">
-<link type="text/css" rel="stylesheet" href="${path}/resources/css/staff/staffList.css">
+<link type="text/css" rel="stylesheet" href="${path}/resources/css/staff/staffList.css?">
 </head>
 <body>
 <%@include file="../include/header.jsp" %>

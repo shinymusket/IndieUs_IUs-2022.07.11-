@@ -354,3 +354,8 @@ article {
 .hover {text-decoration: underline;}
 .active{ width:10px; height:10px; background:#f60; color:white;}
 
+#content:after {
+	content: "";
+	display: block;
+	clear: both;
+}

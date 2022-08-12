@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -80,7 +81,8 @@ public class KinderController {
 
 	// 원생 등록 - 알러지 정보 입력 페이지 이동
 	@RequestMapping(value = "/select_allergy", method = RequestMethod.GET)
-	public String selectAllergy() throws Exception {
+	public String selectAllergy(@RequestParam(value = "allergy_code", required = false) int allergy_code, Model model) throws Exception {
+		model.addAttribute("allergy_code", allergy_code);
 		return "kinder/selectAllergy";
 	}
 
@@ -133,8 +135,6 @@ public class KinderController {
 		return service.getAllergyCheck(map);
 	}
 
-
-
 	// 원생 정보 수정
 	@RequestMapping(value = "/update_kinder", method = RequestMethod.POST)
 	public String updateKinder(@ModelAttribute KinderVO kVo, @RequestParam MultipartFile kinder_picFile, RedirectAttributes rttr) throws Exception {
@@ -142,4 +142,6 @@ public class KinderController {
 		return "redirect:./kinder_list";
 	}
 
+	
+	
 }

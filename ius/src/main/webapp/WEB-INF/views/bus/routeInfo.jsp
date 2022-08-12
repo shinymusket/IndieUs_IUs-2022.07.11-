@@ -9,71 +9,8 @@
 <link rel="stylesheet" href="${path}/resources/css/articleF.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script>
-$(document).ready(function() {
-	
-	var wrapper = $("#bus_route");
-	var add_button = $(".add_bus_button");
-
-	$(add_button).click(function(e) {
-	    e.preventDefault();
-	        $(wrapper).append("<tr class='input_route'>"
-	                +"<td><input type='hidden' name='route_id[]' class='route_id'><select class='hour' name='shuttle_hour[]'>"
-	                +"<c:forEach var='h' begin='0' end='24'><c:choose><c:when test='${h < 10 }'><option value='0${h}'>0${h}</option>"
-	    			+"</c:when><c:otherwise><option value='${h}'>${h}</option></c:otherwise></c:choose></c:forEach></select> 시"
-	                +"<select class='minute' name='shuttle_minute[]'><c:forEach var='m' begin='0' end='59'><c:choose><c:when test='${m < 10}'><option value='0${m}'>0${m}</option>"
-	                +"</c:when><c:otherwise><option value='${m}'>${m}</option></c:otherwise></c:choose></c:forEach></select> 분</td>"
-	                +"<td><input type='text' name='bus_stop[]' required='required'></td>"
-	                +"<td class='del_button'>&times;</td><tr>");
-		});
-
-	  $("#bus_route").on("click", ".deleteInput", function(e) {
-	        e.preventDefault();
-	        
-			var num = $(this).parent('.input_route').find('.route_id').val();
-	        
-	        $.ajax({
-	        	url : "/ius/bus/route_delete",
-	        	type : "POST",
-	        	data : {
-	        		route_id : num
-	        	},
-	        	success : function(data) {
-	        		alert("삭제되었습니다.");
-	        	}
-	        })
-
-	        $(this).parent('.input_route').remove();
-	  });
-	  
-	  $("#bus_route").on("click", ".del_button", function(e){
-		  e.preventDefault();
-		  $(this).parent('.input_route').remove();
-	  });
-});
-
- </script>
-<script type="text/javascript">
-
-function d_Value(target) {
-	  // 선택한 option의 value 값
-	  const driverValue = target.value;
-	  console.log(target.value);
-	  
-		$.ajax({
-			url : "/ius/bus/get_driver_tel",
-			type : "POST",
-			data : {
-				staff_num : driverValue
-			},
-			success: function(data){
-				console.log(data.staff_tel);
-				$("#driver_tel").val(data.staff_tel);
-			}
-		})
-	};
-</script>
-
+<script type="text/javascript" src="${path}/resources/js/shuttle/routeInfo.js"></script>
+<link rel="stylesheet" href="${path}/resources/css/shuttle/shuttleBusRegisterForm.css">
 </head>
 <body>
 <%@include file="../include/header.jsp"%>
@@ -82,7 +19,7 @@ function d_Value(target) {
 		<!-- 왼쪽 소제목 박스 -->
 		<div id="title_bar">
 			<p>경영 정보</p>
-			<h3>식단 관리</h3>
+			<h3>셔틀버스 수정</h3>
 		</div>
 
 		<!-- 오른쪽 기능 박스 (검색)-->
@@ -93,9 +30,10 @@ function d_Value(target) {
 		<!-- 내용 넣으면 길이 알아서 늘어나요(아마도) -->
 		<section>
 			<div id="content">
+				<input type="button" value="목록으로" onclick="location.href='./shuttle_bus'">
 				<form action="./modify_bus_route" method="POST">
 				<input type="hidden" name="shuttle_num" value="${bus.shuttle_num}">
-						<table border="1">
+						<table border="1" id="busInfo">
 							<tr>
 								<th>구  분</th>
 								<td><input type="text" name="shuttle_name" value="${bus.shuttle_name}"></td>
@@ -183,7 +121,6 @@ function d_Value(target) {
 					</table>
 					<input type="submit" value="등록">
 					<input type="button" value="삭제" onclick="location.href='./delete_bus_info?shuttle_num=${bus.shuttle_num}'">
-					<input type="button" value="목록으로" onclick="location.href='./shuttle_bus'">
 				</form>
 			</div>
 		</section>
