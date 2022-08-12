@@ -31,7 +31,7 @@ function loadData() {
 			output = "<thead><tr><th>구매 번호</th><th>재정 코드</th><th>구매자</th><th>구매 자산 번호</th><th>구매 자산 명</th><th>구매 일자</th><th>구매 가격</th><th>구매 수량</th></tr></thead>";
 			$.each(values, function(index, value) {
 				
-				output += "<tr>";
+				output += "<tbody><tr>";
 				output += "<td>" + value.purchase_num + "</td>";
 				output += "<td>" + value.finance_num + "</td>";
 				output += "<td>" + value.staff_name + "</td>";
@@ -40,7 +40,7 @@ function loadData() {
 				output += "<td>" + value.purchase_date + "</td>";
 				output += "<td>" + addComma(value.purchase_price) + "</td>";
 				output += "<td>" + value.purchase_count + "</td>";
-				output += "</tr>";
+				output += "</tr></tbody>";
 			});
 			
 			$("#purchaseList").html(output);
@@ -202,7 +202,7 @@ $(function(){
 				output = "<thead><tr><th>구매 번호</th><th>재정 코드</th><th>구매자</th><th>구매 자산 번호</th><th>구매 자산 명</th><th>구매 일자</th><th>구매 가격</th><th>구매 수량</th></tr></thead>";
 				$.each(values, function(index, value) {
 					
-					output += "<tr>";
+					output += "<tbody><tr>";
 					output += "<td>" + value.purchase_num + "</td>";
 					output += "<td>" + value.finance_num + "</td>";
 					output += "<td>" + value.staff_name + "</td>";
@@ -211,7 +211,7 @@ $(function(){
 					output += "<td>" + value.purchase_date + "</td>";
 					output += "<td>" + addComma(value.purchase_price) + "</td>";
 					output += "<td>" + value.purchase_count + "</td>";
-					output += "</tr>";
+					output += "</tr></tbody>";
 				});
 				
 				$("#purchaseList").html(output);

@@ -123,7 +123,7 @@ function page(){
 					$("#list").text("");			
 
 					values = data.budgetList;
-					output = "<tr><th>예산 번호</th><th>년도</th><th>구분</th><th>항목</th><th>총액</th></tr>";				
+					output = "<thead><tr><th>예산 번호</th><th>년도</th><th>구분</th><th>항목</th><th>총액</th></tr></thead>";				
 					$.each(values, function(index, value) {
 						
 						if (value.budget_iE == 'In') {
@@ -132,13 +132,13 @@ function page(){
 							budgetType = '지출';
 						}
 						
-						output += "<tr>";
+						output += "<tbody><tr>";
 						output += "<td>" + value.budget_num + "</td>";
 						output += "<td>" + value.budget_year + "</td>";
 						output += "<td>" + budgetType + "</td>";
 						output += "<td><a href='../budget/budget_info?budget_num=" + value.budget_num + "'>" + value.budget_cls + "</a></td>";
 						output += "<td>" + addComma(value.budget_total) + "</td>";
-						output += "</tr>";
+						output += "</tr></tbody>";
 					});
 					$("#list").html(output);
 					page();
@@ -182,7 +182,7 @@ function page(){
 					balance = (totalIncome-totalExpense);
 		
 
-					output = "<tr><th>예산 번호</th><th>년도</th><th>구분</th><th>항목</th><th>총액</th></tr>";				
+					output = "<thead><tr><th>예산 번호</th><th>년도</th><th>구분</th><th>항목</th><th>총액</th></tr></thead>";				
 					$.each(values, function(index, value) {
 						if (value.budget_iE == 'In') {
 							budgetType = '수입';
@@ -191,13 +191,13 @@ function page(){
 						}
 						
 						
-						output += "<tr>";
+						output += "<tbody><tr>";
 						output += "<td>" + value.budget_num + "</td>";
 						output += "<td>" + value.budget_year + "</td>";
 						output += "<td>" + budgetType + "</td>";
 						output += "<td><a href='../budget/budget_info?budget_num=" + value.budget_num + "'>" + value.budget_cls + "</a></td>";
 						output += "<td>" + addComma(value.budget_total) + "</td>";
-						output += "</tr>";
+						output += "</tr></tbody>";
 					});
 					
 					$("#budgetYear").html(budgetYear);

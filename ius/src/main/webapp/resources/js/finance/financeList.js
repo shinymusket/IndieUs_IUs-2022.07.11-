@@ -283,7 +283,7 @@ $(function(){
 			success: function(data) {
 				$("#list").text("");
 				values = data.financeList;
-				output = "<tr><th>재정 코드</th><th>회계 년도</th><th>예산 항목</th><th>교직원명</th><th>집행 날짜</th><th>항목</th><th>구분</th><th>집행 금액</th></tr>";				
+				output = "<thead><tr><th>재정 코드</th><th>회계 년도</th><th>예산 항목</th><th>교직원명</th><th>집행 날짜</th><th>항목</th><th>구분</th><th>집행 금액</th></tr></thead>";				
 				$.each(values, function(index, value) {
 					
 					if (value.finance_iE == 'In') {
@@ -292,7 +292,7 @@ $(function(){
 						financeType = '지출';
 					}
 					
-					output += "<tr class='bgc' onclick='getInfo(" + value.finance_num + ")'>";
+					output += "<tbody><tr class='bgc' onclick='getInfo(" + value.finance_num + ")'>";
 					output += "<td>" + value.finance_num + "</td>";
 					output += "<td>" + value.finance_eYear + "</td>";
 					output += "<td>" + value.budget_cls + "</td>";
@@ -301,7 +301,7 @@ $(function(){
 					output += "<td>" + value.finance_cls + "</td>";
 					output += "<td>" + financeType + "</td>";
 					output += "<td>" + addComma(value.finance_amount) + "</td>";
-					output += "</tr>";
+					output += "</tr></tbody>";
 				});
 				
 				$("#list").html(output);
@@ -356,7 +356,7 @@ $(function(){
 					totalExpense = retVal.totalExpense;
 					balance = (totalIncome-totalExpense);
 					
-					output = "<tr><th>재정 코드</th><th>회계 년도</th><th>예산 항목</th><th>교직원명</th><th>집행 날짜</th><th>항목</th><th>구분</th><th>집행 금액</th></tr>";				
+					output = "<thead><tr><th>재정 코드</th><th>회계 년도</th><th>예산 항목</th><th>교직원명</th><th>집행 날짜</th><th>항목</th><th>구분</th><th>집행 금액</th></tr></thead>";				
 					$.each(values, function(index, value) {
 						if (value.finance_iE == 'In') {
 							financeType = '수입';
@@ -365,7 +365,7 @@ $(function(){
 						}
 						
 						
-						output += "<tr class='bgc' onclick='getInfo(" + value.finance_num + ")'>";
+						output += "<tbody><tr class='bgc' onclick='getInfo(" + value.finance_num + ")'>";
 						output += "<td>" + value.finance_num + "</td>";
 						output += "<td>" + value.finance_eYear + "</td>";
 						output += "<td>" + value.budget_cls + "</td>";
@@ -374,7 +374,7 @@ $(function(){
 						output += "<td>" + value.finance_cls + "</td>";
 						output += "<td>" + financeType + "</td>";
 						output += "<td>" + addComma(value.finance_amount) + "</td>";
-						output += "</tr>";
+						output += "</tr></tbody>";
 					});
 					
 					$("#totalIncome").html(addComma(totalIncome));
@@ -411,7 +411,7 @@ $(function(){
 						alert("조회할 데이터가 없습니다.");
 					}
 					
-					output = "<tr><th>재정 코드</th><th>회계 년도</th><th>예산 항목</th><th>교직원명</th><th>집행 날짜</th><th>항목</th><th>구분</th><th>집행 금액</th></tr>";				
+					output = "<thead><tr><th>재정 코드</th><th>회계 년도</th><th>예산 항목</th><th>교직원명</th><th>집행 날짜</th><th>항목</th><th>구분</th><th>집행 금액</th></tr></thead>";				
 					$.each(values, function(index, value) {
 						if (value.finance_iE == 'In') {
 							financeType = '수입';
@@ -420,7 +420,7 @@ $(function(){
 						}
 						
 						
-						output += "<tr class='bgc' onclick='getInfo(" + value.finance_num + ")'>";
+						output += "<tbody><tr class='bgc' onclick='getInfo(" + value.finance_num + ")'>";
 						output += "<td>" + value.finance_num + "</td>";
 						output += "<td>" + value.finance_eYear + "</td>";
 						output += "<td>" + value.budget_cls + "</td>";
@@ -429,7 +429,7 @@ $(function(){
 						output += "<td>" + value.finance_cls + "</td>";
 						output += "<td>" + financeType + "</td>";
 						output += "<td>" + addComma(value.finance_amount) + "</td>";
-						output += "</tr>";
+						output += "</tr></tbody>";
 					});
 					
 					$("#totalIncome").html(addComma(totalIncome));

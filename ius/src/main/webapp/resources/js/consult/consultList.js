@@ -150,17 +150,17 @@ function view(kinder_num) { // 원생별 상담내역 조회
 			values = data.consultInfo;
 			$("#consult_tbl").text("");
 			if(values.length != 0) {
-				output = "<tr><th>상담 일시</th><th>상담자</th><th>원생 이름</th><th>가족 관계</th><th>내담자</th><th style='width : 480px; height : auto;'>상담 내용</th></tr>";
+				output = "<thead><tr><th>상담 일시</th><th>상담자</th><th>원생 이름</th><th>가족 관계</th><th>내담자</th><th style='width : 480px; height : auto;'>상담 내용</th></tr></thead>";
 				$.each(values, function(index, value) {
 					
-					output += "<tr>";
+					output += "<tbody><tr>";
 					output += "<td>" + value.consult_date + "</td>";
 					output += "<td>" + value.staff_name + "</td>";
 					output += "<td>" + value.kinder_name + "</td>";
 					output += "<td>" + value.relation + "</td>";
 					output += "<td>" + value.parent_name + "</td>";
 					output += "<td><a href=\"javascript:getConsult(" + value.consult_code + ");\">" + value.consult_content + "</a></td>";
-					output += "</tr>";
+					output += "</tr></tbody>";
 				});
 				
 				
@@ -285,17 +285,17 @@ $(function(){
 				} else {
 					alert("성공적으로 데이터를 조회했습니다.");
 					
-					output = "<tr><th>상담 일시</th><th>상담자</th><th>원생 이름</th><th>가족 관계</th><th>내담자</th><th style='width : 480px; height : auto;'>상담 내용</th></tr>";				
+					output = "<thead><tr><th>상담 일시</th><th>상담자</th><th>원생 이름</th><th>가족 관계</th><th>내담자</th><th style='width : 480px; height : auto;'>상담 내용</th></tr></thead>";				
 					$.each(values, function(index, value) {
 						
-						output += "<tr>";
+						output += "<tbody><tr>";
 						output += "<td>" + value.consult_date + "</td>";
 						output += "<td>" + value.staff_name + "</td>";
 						output += "<td>" + value.kinder_name + "</td>";
 						output += "<td>" + value.relation + "</td>";
 						output += "<td>" + value.parent_name + "</td>";
 						output += "<td><a href=\"javascript:getConsult(" + value.consult_code + ");\">" + value.consult_content + "</a></td>";
-						output += "</tr>";
+						output += "</tr></tbody>";
 					});
 					
 					$("#consult_tbl").html(output);

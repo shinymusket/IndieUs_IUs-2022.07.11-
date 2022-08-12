@@ -105,7 +105,7 @@ function getList() {
 		success: function(data) {
 			$("#kinder_list_tbl").text("");
 			values = data.kinderList;
-			output = "<tr><th>일시</th><th>출결 정보</th><th>등원시간</th><th>하원시간</th></tr>";			
+			output = "<tr><th>원생 번호</th><th>원생 이름</th><th>학급명</th><th>담당 교사</th></tr>";			
 			$.each(values, function(index, value) {
 				output += "<tr class='bgc' onclick='view(" + value.kinder_num + ")'>";
 				output += "<td>" + value.kinder_num + "</td>";
@@ -137,7 +137,7 @@ function view(kinder_num) {
 			$("#attendance").hide();
 			$("#attendance_tbl").text("");
 			values = data.attendanceList;
-			output = "<tr><th>일시</th><th>출결 정보</th><th>등원시간</th><th>하원시간</th></tr>";				
+			output = "<thead><tr><th>일시</th><th>출결 정보</th><th>등원시간</th><th>하원시간</th></tr></thead>";				
 			$.each(values, function(index, value) {
 				
 				attend_info = value.attend_info;
@@ -160,12 +160,12 @@ function view(kinder_num) {
 				};
 				
 				
-				output += "<tr>";
+				output += "<tbody><tr>";
 				output += "<td>" + value.attend_date + "</td>";
 				output += "<td>" + attend_info + "</td>";
 				output += "<td>" + value.in_time + "</td>";
 				output += "<td>" + value.out_time + "</td>";
-				output += "</tr>";
+				output += "</tr></tbody>";
 			});
 			
 			$("#attendance_tbl").html(output);
@@ -237,7 +237,7 @@ $(function(){
 				$("#attendance").hide();
 				$("#attendance_tbl").text("");
 				values = data.attendanceList;
-				output = "<tr><th>일시</th><th>출결 정보</th><th>등원시간</th><th>하원시간</th></tr>";				
+				output = "<thead><tr><th>일시</th><th>출결 정보</th><th>등원시간</th><th>하원시간</th></tr></thead>";				
 				$.each(values, function(index, value) {
 					
 					attend_info = value.attend_info;
@@ -259,12 +259,12 @@ $(function(){
 						value.out_time = "";
 					};
 					
-					output += "<tr>";
+					output += "<tbody><tr>";
 					output += "<td>" + value.attend_date + "</td>";
 					output += "<td>" + attend_info + "</td>";
 					output += "<td>" + value.in_time + "</td>";
 					output += "<td>" + value.out_time + "</td>";
-					output += "</tr>";
+					output += "</tr></tbody>";
 				});
 				
 				$("#attendance_tbl").html(output);

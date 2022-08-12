@@ -159,17 +159,17 @@ function view(kinder_num) { // 원생별 수납내역 조회
 			
 			values = data.receiptInfo;
 			if(values.length != 0) {
-				output = "<tr><th>수납 일시</th><th>원생 이름</th><th>가족 관계</th><th>수납자</th><th style='width : 480px; height : auto;'>수납 내용</th><th>수납 금액</th></tr>";
+				output = "<thead><tr><th>수납 일시</th><th>원생 이름</th><th>가족 관계</th><th>수납자</th><th style='width : 480px; height : auto;'>수납 내용</th><th>수납 금액</th></tr></thead>";
 				$.each(values, function(index, value) {
 					
-					output += "<tr class='bgc' onclick='getReceipt(" + value.receipt_code + ")'>";
+					output += "<tbody><tr class='bgc' onclick='getReceipt(" + value.receipt_code + ")'>";
 					output += "<td>" + value.receipt_date + "</td>";
 					output += "<td>" + value.kinder_name + "</td>";
 					output += "<td>" + value.relation + "</td>";
 					output += "<td>" + value.parent_name + "</td>";
 					output += "<td>" + value.receipt_content + "</td>";
 					output += "<td>" + addComma(value.receipt_price) + "원</td>";
-					output += "</tr>";
+					output += "</tr></tbody>";
 				});
 				
 				
@@ -329,17 +329,17 @@ $(function(){
 				} else {
 					alert("성공적으로 데이터를 조회했습니다.");
 					
-					output = "<tr><th>수납 일시</th><th>원생 이름</th><th>가족 관계</th><th>수납자</th><th style='width : 480px; height : auto;'>수납 내용</th><th>수납 금액</th></tr>";
+					output = "<thead><tr><th>수납 일시</th><th>원생 이름</th><th>가족 관계</th><th>수납자</th><th style='width : 480px; height : auto;'>수납 내용</th><th>수납 금액</th></tr></thead>";
 					$.each(values, function(index, value) {
 						
-						output += "<tr class='bgc' onclick='getReceipt(" + value.receipt_code + ")'>";
+						output += "<tbody><tr class='bgc' onclick='getReceipt(" + value.receipt_code + ")'>";
 						output += "<td>" + value.receipt_date + "</td>";
 						output += "<td>" + value.kinder_name + "</td>";
 						output += "<td>" + value.relation + "</td>";
 						output += "<td>" + value.parent_name + "</td>";
 						output += "<td>" + value.receipt_content + "</td>";
 						output += "<td>" + addComma(value.receipt_price) + "원</td>";
-						output += "</tr>";
+						output += "</tr></tbody>";
 					});
 					
 					$("#receipt_tbl").html(output);

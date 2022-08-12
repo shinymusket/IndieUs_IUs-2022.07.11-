@@ -123,16 +123,16 @@ $(function(){
 			success : function(data) {
 				$("#noticeTbl").text("");
 				values = data.noticeList;
-				output = "<tr><th>번호</th><th>작성자</th><th>제목</th><th>작성일</th><th>조회수</th></tr>";
+				output = "<thead><tr><th>번호</th><th>작성자</th><th>제목</th><th>작성일</th><th>조회수</th></tr></thead>";
 				$.each(values, function(index, value) {
 					
-					output += "<tr class='bgc' onclick='getInfo(" + value.notice_num + ")'>";
+					output += "<tbody><tr class='bgc' onclick='getInfo(" + value.notice_num + ")'>";
 					output += "<td>" + value.notice_num + "</td>";
 					output += "<td>" + value.staff_name + "</td>";
 					output += "<td>" + value.notice_title + "</td>";
 					output += "<td>" + value.notice_writeDate + "</td>";
 					output += "<td>" + value.notice_readCount + "</a></td>";
-					output += "</tr>";
+					output += "</tr></tbody>";
 				});
 				$("#noticeTbl").html(output);
 				page();
@@ -176,15 +176,15 @@ $(function(){
 				} else {
 					alert("성공적으로 데이터를 조회했습니다.");
 					
-					output = "<tr><th>번호</th><th>작성자</th><th>제목</th><th>작성일</th><th>조회수</th></tr>";
+					output = "<thead><tr><th>번호</th><th>작성자</th><th>제목</th><th>작성일</th><th>조회수</th></tr></thead>";
 					$.each(values, function(index, value) {
-						output += "<tr class='bgc' onclick='getInfo(" + value.notice_num + ")'>";
+						output += "<tbody><tr class='bgc' onclick='getInfo(" + value.notice_num + ")'>";
 						output += "<td>" + value.notice_num + "</td>";
 						output += "<td>" + value.staff_name + "</td>";
 						output += "<td>" + value.notice_title + "</td>";
 						output += "<td>" + value.notice_writeDate + "</td>";
 						output += "<td>" + value.notice_readCount + "</a></td>";
-						output += "</tr>";
+						output += "</tr></tbody>";
 					});
 					$("#noticeTbl").html(output);
 					page();
