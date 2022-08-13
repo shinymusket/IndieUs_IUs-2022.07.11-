@@ -2,7 +2,7 @@ $(function(){
 	
 	var allergy_code = $("#allergy_code").val();
 	
-	if (allergy_code != "") { // 기존의 알러지 정보가 있을 때(원생 정보 수정일시)
+	if (allergy_code != 0) { // 기존의 알러지 정보가 있을 때(원생 정보 수정일시)
 		
 	$.ajax({
 		url : "/ius/kinder/get_allergy_info",

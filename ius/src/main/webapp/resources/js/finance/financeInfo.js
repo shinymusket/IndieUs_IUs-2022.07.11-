@@ -38,7 +38,6 @@ function getCookie(name) {	// 저장된 쿠키 가져오기
 		 	var input = confirm("정말 삭제하시겠습니까?")
 		 	
 		 	if (input === true) {
-		 		alert("삭제되었습니다.");
 		 		location.href="../finance/finance_delete?finance_num=" + finance_num;
 		 	} else {
 		 		alert("취소되었습니다.");

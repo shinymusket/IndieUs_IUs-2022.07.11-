@@ -39,10 +39,10 @@
 					<input type="button" value="목록" onclick="location.href='../finance/finance_list'">
 					
 					<form action="./finance_register" method="POST">
-						<table border="1">
+						<table border="1" id="financeRegisterTbl">
 							<tr>
-								<th colspan="2">재정 코드</th>
-								<td colspan="2">
+								<th>재정 코드</th>
+								<td>
 									<input type="text" name="finance_num" id="finance_num" value="${finance_num}" readonly="readonly">
 								</td>
 							</tr>
@@ -51,6 +51,8 @@
 								<td>
 									<input type="number" name="finance_eYear" id="finance_eYear" value="2022">
 								</td>
+							</tr>
+							<tr>
 								<th>예산 항목</th>
 								<td>
 									<select name="budget_num" id="budget_num">
@@ -66,9 +68,11 @@
 							<tr>
 								<th>교직원명</th>
 								<td>
-									<input type="text" id="staff_num" name="staff_num" readonly="readonly" value="${staffInfo.staff_num}">
+									<input type="hidden" id="staff_num" name="staff_num" value="${staffInfo.staff_num}">
 									<input type="text" id="staff_name" name="staff_name" readonly="readonly" value="${staffInfo.staff_name}">
 								</td>
+							</tr>
+							<tr>
 								<th>집행 날짜</th>
 								<td>
 									<input type="date" name="finance_eDate" id="finance_eDate">
@@ -79,6 +83,8 @@
 								<td>
 									<input type="text" name="finance_cls" id="finance_cls" >
 								</td>
+							</tr>
+							<tr>
 								<th>구분</th>
 								<td>
 									<c:if test="${iE == 'In'}">
@@ -93,13 +99,13 @@
 								</td>	
 							</tr>
 							<tr>
-								<th colspan="2">집행 금액</th>
-								<td colspan="2">
+								<th>집행 금액</th>
+								<td>
 									<input type="text" name="finance_amount" id="finance_amount">
 								</td>
 							</tr>
 							<tr>
-								<td colspan="4">
+								<td colspan="2" id="button_box">
 									<input type="button" id="register" value="등록">
 									<input type="reset" value="취소">
 								</td>

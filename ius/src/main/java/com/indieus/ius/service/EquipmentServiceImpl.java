@@ -49,6 +49,14 @@ public class EquipmentServiceImpl implements EquipmentService {
 		return manager.searchEquipment(searchInfo);
 	}
 
+	// 시설(비품) 검색 Ajax
+	public Object searchEquipmentList(Map<String, Object> map) throws Exception {
+		List<EquipmentVO> equipmentList = manager.searchEquipmentList(map);
+		
+		Map<String, Object> data = new HashMap();
+		data.put("equipmentList", equipmentList);
+		return data;
+	}
 
 
 	// 시설(비품) 리스트 가져오기 Ajax
@@ -269,6 +277,8 @@ public class EquipmentServiceImpl implements EquipmentService {
 	public int updatePurchase(PurchaseVO pVo) throws Exception {
 		return manager.updatePurchase(pVo);
 	}
+
+	
 
 
 

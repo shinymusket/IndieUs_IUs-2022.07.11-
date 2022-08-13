@@ -22,11 +22,6 @@ input[type="button"]:hover {
 #amountbox{
 	text-align: center !important;	
 }
-#finance_history {
-	width: 100%;
-	margin-bottom: 20px;
-	text-align: center;
-}
 
 #button_box {
 	margin-bottom: 20px;
@@ -34,7 +29,20 @@ input[type="button"]:hover {
 }
 
 .info {
-	width : 50%;
+	width : 400px;
+	text-align : center;
+}
+
+.info th {
+	width : 140px;
+}
+
+#equipment_num {
+	width : 100%;
+}
+
+#btnsTd {
+	text-align : cetner;
 }
 
 table {

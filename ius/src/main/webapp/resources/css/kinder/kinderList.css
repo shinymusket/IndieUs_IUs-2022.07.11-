@@ -33,6 +33,11 @@ table, th, tr, td {
 	margin-left : 20px;
 }
 
+#kinder_num, #kinder_name, #class_name, #staff_name, #shuttle_num, #kinder_addr, #kinder_tel, #kinder_regdate, #kinder_retireDate, #allergy_info {
+	width : 100%;
+}
+
+
 #parent {
 	margin-left : 10px;
 } 
@@ -61,6 +66,6 @@ select {
 	padding: 3px;
 }
 
-input[type="button"], input[type="text"]{
+input[type="button"], input[type="text"], input[type="date"]{
 	padding: 3px;
 }

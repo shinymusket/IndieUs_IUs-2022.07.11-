@@ -25,12 +25,12 @@ table, th, tr, td {
 	padding: 7px;
 }
 
-.list {
+#equipmentList {
 	font-size: 14px;
 	width : 100%;
 }
 
-.list td {
+#equipmentList td {
 	font-size: 13px;
 	text-align: center;
 }

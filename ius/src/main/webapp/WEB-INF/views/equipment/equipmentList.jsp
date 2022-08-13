@@ -35,7 +35,7 @@
 					</div>	
 					
 					<div id="searchDiv">
-						<form action="./equipment_search" method="POST">
+						<form action="" method="POST">
 							<select id="searchType" name="searchType" onchange="changeSearchType()">
 								<option value="equipment_num">자산 번호</option>
 								<option value="staff_name">등록자</option>
@@ -58,55 +58,14 @@
 								<option value="purchase">구매품</option>
 							</select>
 								
-							<input type="submit" value="검색">
+							<input type="button" value="검색" id="searchBtn">
 						</form>
 					</div> 
-						
+									
 					
-					
-					
-					
-					<table id="equipmentList" border="1" class="list">
-						<tr>
-							<th>자산 번호</th>
-							<th>등록자</th>
-							<th>분류</th>
-							<th>비품명</th>
-							<th>수량</th>
-							<th>취득 일자</th>
-							<th>구분</th>		
-						</tr>
-						<c:forEach items="${viewAll}" var="list">
-							<tr class="bgc" onclick="getInfo(${list.equipment_num})">
-								<td>${list.equipment_num}</td>
-								<td>${list.staff_name}</td>
-								<td>${list.equip_cls_name}</td>
-								<td>${list.equipment_name}</td>
-								<td>${list.equipment_count}</td>
-								<td>${list.equipment_regdate}</td>
-								<td>${list.equipment_cate}</td>
-							</tr>					
-						</c:forEach>	
+					<table id="equipmentList" border="1" class="paginated">
 					</table>
-					
-					<div style="display : block; text-algin: center;">
-							<c:if test="${paging.startPage != 1 }">
-								<a href="../equipment/equipment_list?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
-							</c:if>
-							<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
-								<c:choose>
-									<c:when test="${p == paging.nowPage }">
-										<b>${p }</b>
-									</c:when>
-									<c:when test="${p != paging.nowPage }">
-										<a href="../equipment/equipment_list?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
-									</c:when>
-								</c:choose>
-							</c:forEach>
-							<c:if test="${paging.endPage != paging.lastPage}">
-								<a href="../equipment/equipment_list?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
-							</c:if>
-					</div>		
+	
 				</div>
 			</section>
 	</article>	

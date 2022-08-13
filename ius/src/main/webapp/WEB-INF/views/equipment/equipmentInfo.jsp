@@ -31,10 +31,11 @@
 					<input type="button" value="목록으로" onclick="location.href='../equipment/equipment_list'">
 					<table border="1" class="info">
 						<tr>
-							<th colspan="2">시설(비품) 자산 코드</th>
-							<td colspan="2">
+							<th>시설(비품) 자산 코드</th>
+							<td>
 								<input type="hidden" id="log_staff_id" value="${staff_id}">
-								<input type="text" id="equipment_num" value="${equipment.equipment_num}" readonly="readonly">
+								${equipment.equipment_num}
+								<input type="hidden" id="equipment_num" value="${equipment.equipment_num}" readonly="readonly">
 							</td>
 						</tr>
 						<tr>
@@ -43,26 +44,30 @@
 							${equipment.staff_name}
 							<input type="hidden" id="staff_id" value="${equipment.staff_id}">
 							</td>
+						</tr>
+						<tr>
 							<th>분류항목</th>
 							<td>${equipment.equip_cls_name}</td>
 						</tr>
 						<tr>
 							<th>시설(비품) 명</th>
 							<td>${equipment.equipment_name}</td>
+						</tr>
+						<tr>
 							<th>수량</th>
 							<td>${equipment.equipment_count}</td>
 						</tr>
 						<tr>
-							<th colspan="2">등록 날짜</th>
-							<td colspan="2">${equipment.equipment_regdate}</td>
+							<th>등록 날짜</th>
+							<td>${equipment.equipment_regdate}</td>
 						</tr>
 						<c:if test="${equipment.equipment_cate eq '구매품'}">
 							<tr>
-								<td colspan="4">구매품</td>
+								<td colspan="2">구매품</td>
 							</tr>
 						</c:if>
 						<tr>
-							<td colspan="4">
+							<td colspan="2" id="btnsTd">
 								<input type="button" value="수정" id="update">
 								<input type="button" value="삭제" id="delete">
 							</td>

@@ -41,7 +41,9 @@ function view(kinder_num) {
 				
 				$("#shuttle_num").val(data.kinder.shuttle_num);
 				$("#kinder_rrn1").val(data.kinder.kinder_rrn1);
-				$("#kinder_rrn2").val(data.kinder.kinder_rrn2);
+				
+				rrn2 = String(data.kinder.kinder_rrn2).substr(0, 1) + "******";
+				$("#kinder_rrn2").val(rrn2);
 				$("#kinder_addr").val(data.kinder.kinder_addr);
 				$("#kinder_zipcode").val(data.kinder.kinder_zipcode);
 				$("#kinder_tel").val(data.kinder.kinder_tel);

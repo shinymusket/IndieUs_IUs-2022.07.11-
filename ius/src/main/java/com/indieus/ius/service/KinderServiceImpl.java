@@ -329,9 +329,21 @@ public class KinderServiceImpl implements KinderService {
 	// 원생 정보 수정 - 알러지 보유자 유무 확인 Ajax
 	@Override
 	public Object getAllergyCheck(Map<String, Object> map) throws Exception {
-		int allergy_code  = Integer.parseInt((String) map.get("allergy_code"));
-		int noAllergyCode = manager.checkAllergy();
-
+		int allergy_code;
+		
+		try {
+			allergy_code = Integer.parseInt((String) map.get("allergy_code"));
+		} catch(NumberFormatException e) {
+			allergy_code = -1;
+		}
+		
+		int noAllergyCode;
+		try {
+			noAllergyCode = manager.checkAllergy();
+		} catch(NullPointerException e) {
+			noAllergyCode = manager.createNoAllergyCode();
+		}
+		
 		String allergy_info = "";
 		if (allergy_code == noAllergyCode) {
 			allergy_info = "보유 알러지 없음";

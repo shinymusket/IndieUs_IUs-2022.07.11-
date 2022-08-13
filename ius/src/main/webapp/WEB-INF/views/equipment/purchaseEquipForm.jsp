@@ -10,7 +10,7 @@
 <script type="text/javascript" src="${path}/resources/js/equipment/purchaseEquipForm.js"></script>
 <title>구매품 등록</title>
 <link type="text/css" rel="stylesheet" href="${path}/resources/css/articleF.css">
-<link type="text/css" rel="stylesheet" href="${path}/resources/css/equipment/equipmentRegisterForm.css">
+<link type="text/css" rel="stylesheet" href="${path}/resources/css/equipment/purchaseEquipForm.css">
 </head>
 <body>
 <%@include file="../include/header.jsp" %>
@@ -48,8 +48,8 @@
 							<tr>
 								<th>구매자</th>
 								<td>
-									<input type="text" id="staff_name" name="staff_name" value="${staff_name}" readonly="readonly">
-									<input type="hidden" id="staff_num" name="staff_num" value="${staff_num}">
+									<input type="text" id="staff_name" name="staff_name" value="${pur_staff_name}" readonly="readonly">
+									<input type="hidden" id="staff_num" name="staff_num" value="${pur_staff_num}">
 								</td>
 							</tr>
 							<tr>
@@ -91,7 +91,7 @@
 								</td>
 							</tr>
 							<tr>
-								<td colspan="2">
+								<td colspan="2" id="btnsTd">
 									<input type="button" value="등록" id="register">
 								</td>
 							</tr>	

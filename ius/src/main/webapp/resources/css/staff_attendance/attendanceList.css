@@ -66,6 +66,6 @@ select {
 	padding: 3px;
 }
 
-input[type="button"]{
+input[type="button"], input[type="text"], input[type="date"]{
 	padding: 3px;
 }

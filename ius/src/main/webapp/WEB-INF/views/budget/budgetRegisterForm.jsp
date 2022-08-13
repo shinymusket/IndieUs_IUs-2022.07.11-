@@ -55,7 +55,7 @@
 								</td>
 							</tr>
 							<tr>
-								<td colspan="4">
+								<td colspan="4" id="button_box">
 									<input type="button" value="등록" id="register">
 								</td>
 							</tr>

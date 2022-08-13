@@ -54,6 +54,10 @@ select {
 	padding: 3px;
 }
 
+#btnsTd {
+	text-align : center;
+}
+
 input[type="button"]{
 	padding: 3px;
 }

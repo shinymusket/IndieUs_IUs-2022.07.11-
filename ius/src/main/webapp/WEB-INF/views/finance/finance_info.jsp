@@ -46,7 +46,7 @@
 					<td>${finance.budget_cls}</td>
 				</tr>
 				<tr>
-					<th>[직원 코드]교직원명</th>
+					<th>교직원명</th>
 					<td>${finance.staff_name}</td>
 					<th>집행 날짜</th>
 					<td>${finance.finance_eDate}</td>
@@ -65,8 +65,8 @@
 					</td>
 				</tr>
 				<tr>
-					<th colspan="2">집행 금액</th>
-					<td colspan="2">
+					<th colspan="1">집행 금액</th>
+					<td colspan="3">
 						<fmt:formatNumber value="${finance.finance_amount}" maxFractionDigits="3"/>원
 					</td>
 				</tr>

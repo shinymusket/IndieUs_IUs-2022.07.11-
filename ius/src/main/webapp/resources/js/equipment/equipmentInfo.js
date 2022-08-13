@@ -48,7 +48,6 @@ $(function(){
 		if(master == "Y") { // 마스터(관리자) 권한이 있는 경우
 			var input = confirm("정말 삭제하시겠습니까?");
 			if (input === true) {
-				alert("삭제 되었습니다.");
 				location.href = "../equipment/equipment_delete?equipment_num=" + equipment_num;
 			};
 			
@@ -63,7 +62,6 @@ $(function(){
 				} else {
 					var input = confirm("정말 삭제하시겠습니까?");
 					if (input === true) {
-						alert("삭제 되었습니다.");
 						location.href = "../equipment/equipment_delete?equipment_num=" + equipment_num;
 					};
 				}

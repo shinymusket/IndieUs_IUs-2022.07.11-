@@ -45,6 +45,7 @@ function view(staff_num) {
 				$("#staff_zipcode").val(data.staff.staff_zipcode);
 				$("#staff_tel").val(data.staff.staff_tel);
 				$("#staff_hireD").val(data.staff.staff_hireD);
+				
 				$("#staff_retireD").val(data.staff.staff_retireD);
 				$("#staff_workYn").val(data.staff.staff_workYn);
 				$("#staff_salary").val(addComma(data.staff.staff_salary));

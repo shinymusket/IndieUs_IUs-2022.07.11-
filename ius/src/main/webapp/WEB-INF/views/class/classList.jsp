@@ -34,7 +34,7 @@
 						<table id="classList" class="list" border="1" style="float : left;"></table>
 						
 						<div id="classInfo" style="float : left; display : none;">
-							<table border="1" >
+							<table border="1" id="classInfoTbl">
 								<tr>
 									<th colspan="1">학급 번호</th>
 									<td colspan="3">
@@ -61,7 +61,7 @@
 									</td>
 								</tr>
 								<tr>
-									<td colspan="4">
+									<td colspan="4" id="btnsTd">
 										<input type="button" value="학급 정보 수정" id="updateForm">
 										<input type="button" value="정보 수정 등록" id="update" style="display : none">
 										<input type="button" value="취소" id="cancel" style="display : none">

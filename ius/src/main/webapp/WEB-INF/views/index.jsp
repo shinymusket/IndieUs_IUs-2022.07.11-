@@ -7,20 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript">
-	$(function(){
-		$("#searchPwd").click(function(){
-			var popupWidth = 600;
-			var popupHeight = 250;
-			var popupX = (window.screen.width/2) - (popupWidth/2);
-			var popupY = (window.screen.height/2) - (popupHeight/2);
-				
-			let url = "./main/search_password";
-			window.open(url, '', 'status=no, height=' + popupHeight  + ', width=' + popupWidth  + ', left='+ popupX + ', top='+ popupY);
-		})
-	})
-
-</script>
+<script type="text/javascript" src="${path}/resources/js/index.js"></script>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>유치원 관리 프로그램</title>

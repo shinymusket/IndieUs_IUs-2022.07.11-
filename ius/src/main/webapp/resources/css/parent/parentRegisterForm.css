@@ -11,8 +11,16 @@ input[type="button"]:hover {
 	width : 300px;
 }
 
+#parent_birth {
+	width : 156px;
+}
+
 #amountbox{
 	text-align: center !important;	
+}
+
+#btnsTd {
+	text-align : center;
 }
 
 #button_box {

@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-input[type="button"], input[type="reset"] {
+input[type="button"], input[type="reset"], input[type="text"], input[type="number"], select {
 	padding: 3px;
 }
 input[type="button"]:hover {
@@ -30,7 +30,7 @@ input[type="button"]:hover {
 
 #button_box {
 	margin-bottom: 20px;
-	text-align: right;
+	text-align: center;
 }
 
 table {

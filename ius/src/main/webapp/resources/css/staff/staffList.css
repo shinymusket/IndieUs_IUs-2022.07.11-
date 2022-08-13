@@ -47,6 +47,11 @@ table, th, tr, td {
 	width : 300px;
 }
 
+#staff_num, #staff_name, #job_Kname, #class_name, #staff_id, #staff_sex, #staff_birth, #staff_addr, #staff_tel, #staff_hireD, #staff_retireD, #staff_salary, #staff_email {
+	width : 100%;
+}
+
+
 th{
 	font-size: 14px;
 	background-color: #486890;
@@ -62,6 +67,6 @@ select {
 	padding: 3px;
 }
 
-input[type="button"]{
+input[type="button"], input[type="text"], input[type="date"]{
 	padding: 3px;
 }

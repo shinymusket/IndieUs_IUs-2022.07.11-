@@ -6,6 +6,13 @@ input[type="button"], input[type="reset"] {
 input[type="button"]:hover {
 	cursor: pointer;
 }
+
+input[type="text"], input[type="date"], input[type="number"], select{
+	width : 100%;
+	padding: 3px;
+}
+
+
 #finance_detail {
 	width: 100%;
 	margin-bottom: 30px;
@@ -28,9 +35,19 @@ input[type="button"]:hover {
 	text-align: center;
 }
 
+#financeRegisterTbl {
+	width : 400px;
+	text-align : center;
+}
+
+#financeRegisterTbl th {
+	width : 140px;
+}
+
+
 #button_box {
 	margin-bottom: 20px;
-	text-align: right;
+	text-align: center;
 }
 
 table {
@@ -55,11 +72,6 @@ tr, th, td {
 
 td {
 	font-size: 13px;
-}
-
-#finance_amount {	
-	width: 500px;
-	text-align: center;
 }
 
 #sub_title{

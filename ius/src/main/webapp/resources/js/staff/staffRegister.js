@@ -71,7 +71,7 @@ $(function(){
 				window.open(url, "_blank_1", "toolbar=no, menubar=no, scrollbar=yes, resizeable=no, width=450, height=200");
 					
 			});
-			
+
 			$("#staff_email").change(function(){
 				var staff_email = $("#staff_email").val();
 				
@@ -143,6 +143,12 @@ $(function(){
 				return;
 			};
 			
+			if ($("#staff_salary").val() == "") {
+				alert("월급을 입력해주세요.");
+				$("#staff_salary").val().focus();
+				return;
+			};
+				
 			if (email == "") {
 				alert("이메일은 필수 입력 항목입니다.");
 				$("#staff_email").val().focus();
@@ -167,8 +173,8 @@ $(function(){
 			
 			
 			value = cf_getNumberOnly ($("#staff_salary").val());
-			
 			$("#staff_salary").val(value);
+			alert("교직원 등록이 완료되었습니다.");
 			$("form").submit();
 			
 		});

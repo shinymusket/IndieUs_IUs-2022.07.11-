@@ -105,7 +105,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td colspan="2">
+							<td colspan="2" id="btnsTd">
 								<input type="hidden" id="staff_num">
 								<input type="button" id="register" value="등록">
 							</td>

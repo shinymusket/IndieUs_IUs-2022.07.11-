@@ -49,3 +49,7 @@ td {
 	margin-bottom: 20px;
 	padding-right: 5px;
 }
+
+#btnsTd {
+	text-align : center;
+}

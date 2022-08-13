@@ -80,7 +80,7 @@
 								</td>
 							</tr>
 							<tr>
-								<td colspan="2">
+								<td colspan="2" id="btnsTd">
 									<input type="button" value="등록" id="register">
 								</td>
 							</tr>

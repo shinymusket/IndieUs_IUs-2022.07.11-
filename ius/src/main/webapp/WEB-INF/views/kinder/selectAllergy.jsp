@@ -12,7 +12,7 @@
 <script type="text/javascript" src="${path}/resources/js/kinder/selectAllergy.js"></script>
 </head>
 <body>
-<input type="hidden" value="<c:if test="${allergy_code != null}">${allergy_code}</c:if>" id="allergy_code">
+<input type="hidden" value="<c:if test="${allergy_code != 0}">${allergy_code}</c:if>" id="allergy_code">
 <form name="allergy">
 	<div id="allergy_box">
 		<ul>

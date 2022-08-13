@@ -25,11 +25,20 @@ table, th, tr, td {
 	padding: 7px;
 }
 
+#classList {
+	width : 300px;
+}
+
+#class_number, #class_name {
+	width : 100%;	
+}
+
 #classInfo {
 	margin-left : 20px;
 }
 
 #classKinder {
+	width : 250px;
 	margin-top : 10px;
 }
 
@@ -40,6 +49,10 @@ table, th, tr, td {
 .list td {
 	font-size: 13px;
 	text-align: center;
+}
+#homeTeacher {
+	margin-top : 2px;
+	width : 100%;
 }
 
 #staffInfo {
@@ -55,6 +68,11 @@ table, th, tr, td {
 	font-size: 13px;
 	text-align: center;
 }
+
+#btnsTd {
+	text-align : center;	
+}
+
 th{
 	font-size: 14px;
 	background-color: #486890;
@@ -70,6 +88,6 @@ select {
 	padding: 3px;
 }
 
-input[type="button"]{
+input[type="button"], input[type="text"]{
 	padding: 3px;
 }

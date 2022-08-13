@@ -28,7 +28,7 @@ function loadData() {
 		success : function(data) {
 			$("#purchaseList").text("");
 			values = data.purchaseList;
-			output = "<thead><tr><th>구매 번호</th><th>재정 코드</th><th>구매자</th><th>구매 자산 번호</th><th>구매 자산 명</th><th>구매 일자</th><th>구매 가격</th><th>구매 수량</th></tr></thead>";
+			output = "<thead><tr><th>구매 번호</th><th>재정 코드</th><th>구매자</th><th>구매 자산 번호</th><th>구매 자산 명</th><th>구매 일자</th><th>총 구매 가격</th><th>구매 수량</th></tr></thead>";
 			$.each(values, function(index, value) {
 				
 				output += "<tbody><tr>";
@@ -60,7 +60,7 @@ loadData();
 		success: function(data) {
 			$("#purchaseList").text("");
 			values = data.purchaseList;
-			output = "<tr><th>구매 번호</th><th>재정 코드</th><th>구매자</th><th>구매 자산 번호</th><th>구매 자산 명</th><th>구매 일자</th><th>구매 가격</th><th>구매 수량</th></tr>";
+			output = "<tr><th>구매 번호</th><th>재정 코드</th><th>구매자</th><th>구매 자산 번호</th><th>구매 자산 명</th><th>구매 일자</th><th>총 구매 가격</th><th>구매 수량</th></tr>";
 			$.each(values, function(index, value) {
 				
 				output += "<tr>";
@@ -199,7 +199,7 @@ $(function(){
 			success : function(data) {
 				$("#purchaseList").text("");
 			 	values = data.purchaseList;
-				output = "<thead><tr><th>구매 번호</th><th>재정 코드</th><th>구매자</th><th>구매 자산 번호</th><th>구매 자산 명</th><th>구매 일자</th><th>구매 가격</th><th>구매 수량</th></tr></thead>";
+				output = "<thead><tr><th>구매 번호</th><th>재정 코드</th><th>구매자</th><th>구매 자산 번호</th><th>구매 자산 명</th><th>구매 일자</th><th>총 구매 가격</th><th>구매 수량</th></tr></thead>";
 				$.each(values, function(index, value) {
 					
 					output += "<tbody><tr>";

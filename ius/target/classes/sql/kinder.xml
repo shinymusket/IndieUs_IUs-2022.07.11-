@@ -180,5 +180,11 @@
 		</if>
 		WHERE kinder_num = #{kinder_num}
 	</update>
+	
+	<!-- 노 알러지 코드 생성 -->
+	<insert id="create_no_allergy_code">
+		INSERT INTO allergyInfo VALUES (0, 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N')
+	</insert>
+	
 
 </mapper>

@@ -39,8 +39,9 @@
 							<th>총액</th>
 						</tr>
 						<tr>
-							<td>	
-								<input type="text" id="budget_num" readonly="readonly" value="${budget.budget_num}">
+							<td>
+								${budget.budget_num}	
+								<input type="hidden" id="budget_num" readonly="readonly" value="${budget.budget_num}">
 							</td>
 							<td>${budget.budget_year}</td>
 							<td>

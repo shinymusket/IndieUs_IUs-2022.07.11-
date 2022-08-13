@@ -20,7 +20,7 @@ function getAllergyCheck() {
 	
 }
 
-/* getAllergyCheck(); */
+getAllergyCheck();
 
 
 $(function(){
@@ -38,7 +38,7 @@ $(function(){
 	$("#kinder_regdate").val(currentDate);
 	
 	$("#allergySel").click(function(){
-		url = "./select_allergy";
+		url = "./select_allergy?allergy_code=0";
 		window.open(url, "_blank_1", "toolbar=no, menubar=no, scrollbar=yes, resizeable=no, width=300, height=500");
 	});
 
