@@ -77,7 +77,7 @@ function route_view(shuttle_num, shuttle_name) {
 							<td>${list.shuttle_carnum}</td>
 							<td>${list.staff_name}</td>
 							<td>${list.staff_tel}</td>
-							<td><input type="button" value="수정" onclick="location.href='./modify_route?shuttle_num=${list.shuttle_num}'"></td>
+							<td><a href="./modify_route?shuttle_num=${list.shuttle_num}">수정</a></td>
 						</tr>
 					</c:forEach>
 				</table>

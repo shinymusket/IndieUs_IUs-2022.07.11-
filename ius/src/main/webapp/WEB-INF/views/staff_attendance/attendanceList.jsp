@@ -126,7 +126,7 @@ function getInfo(id, name) {
 			
 			values = data.attendInfo;
 			
-			output = "<tr><th>일시</th><th>출결 정보</th><th>출근시간</th><th>퇴근시간</th></tr>";
+			output = "<thead><tr><th>일시</th><th>출결 정보</th><th>출근시간</th><th>퇴근시간</th></tr></thead>";
 			$.each(values, function(index, value) {
 				
 				attend_info = value.attend_info
@@ -143,12 +143,12 @@ function getInfo(id, name) {
 					attend_info = "휴가";
 				};
 				
-				output += "<tr>";
+				output += "<tbody><tr>";
 				output += "<td>"+ value.attend_date +"</td>";
 				output += "<td>"+ attend_info +"</td>";
 				output += "<td>"+ value.in_time +"</td>";
 				output += "<td>"+ value.out_time +"</td>";
-				output += "</tr>";
+				output += "</tr></tbody>";
 			});
 			
 			$("#attendanceInfo").show();
@@ -192,7 +192,7 @@ function getInfo(id, name) {
 					
 					values = retVal.attendInfo;
 					
-					output = "<tr><th>일시</th><th>출결 정보</th><th>출근시간</th><th>퇴근시간</th></tr>";
+					output = "<thead><tr><th>일시</th><th>출결 정보</th><th>출근시간</th><th>퇴근시간</th></tr></thead>";
 					$.each(values, function(index, value) {
 						
 						attend_info = value.attend_info;
@@ -209,11 +209,11 @@ function getInfo(id, name) {
 							attend_info = "휴가";
 						};
 						
-						output += "<tr>";
+						output += "<tbody><tr>";
 						output += "<td>"+ value.attend_date +"</td>";
 						output += "<td>"+ attend_info +"</td>";
 						output += "<td>"+ value.in_time +"</td>";
-						output += "<td>"+ value.out_time +"</td>";	
+						output += "<td>"+ value.out_time +"</td><tbody>";	
 					});
 					
 					$("#attendanceInfo").show();
@@ -280,8 +280,10 @@ function getInfo(id, name) {
 						</table>
 					</c:if>
 					
-					<table id="attendanceInfo" class="tbl paginated" style="float: left; display: none;" border="1"></table>
-					
+					<table id="attendanceInfo" class="tbl paginated" style="float: left; display: none;" border="1">
+						<thead><tr><th>일시</th><th>출결 정보</th><th>출근시간</th><th>퇴근시간</th></tr></thead>
+					</table>
+						
 				</div>
 			</section>
 	</article> 

@@ -384,8 +384,6 @@ $(function(){
 	});
 	
 	
-	
-	
 })
 
 
@@ -591,8 +589,6 @@ $(function(){
 					<div id="allergy" style="float : left; display : none;">
 						<table id=allergyDetailInfo border="1"></table>
 					</div>
-					
-					
 					
 				</div>
 			</section>

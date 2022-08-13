@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
@@ -11,6 +12,7 @@
 <link rel="stylesheet" href="${path}/resources/css/articleF.css">
 <link rel="stylesheet" href="${path}/resources/css/mealCss/addMeal.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.0/jquery.validate.min.js" ></script>
 <script>
 
 function openlAllergy(name){
@@ -44,7 +46,7 @@ function inNumber(){
 	        e.preventDefault();
 	        if (x < max_fields) {
 	            x++;
-	            $(wrapper).append("<tr id='input-menu'><td><input type='hidden' name='meal_code[]' value='L'><input type='text' name='menu[]' required='required' placeholder='음식명'></td><td><input type='text' name='kcal[]' required='required' placeholder='칼로리'> kcal</td><td><input type='text' id='lallergy"+x+"' name='allergy[]' readonly='readonly' placeholder='알레르기 정보를 선택하세요'><input type='button' class='allchoice' value='선택' onclick='openlAllergy(`lallergy"+x+"`)'></td> <td id='deleteInput' class='AutoInput' title='Delete'>&times;</td></tr>");
+	            $(wrapper).append("<tr id='input-menu'><td><input type='hidden' name='meal_code[]' value='L'><input type='text' class='menu' name='menu[]' required='required' placeholder='음식명'></td><td><input type='text' class='kcal' name='kcal[]' required='required' placeholder='칼로리'> kcal</td><td><input type='text' id='lallergy"+x+"' name='allergy[]' readonly='readonly' placeholder='알레르기 정보를 선택하세요'><input type='button' class='allchoice' value='선택' onclick='openlAllergy(`lallergy"+x+"`)'></td> <td id='deleteInput' class='AutoInput' title='Delete'>&times;</td></tr>");
 	        } else {
 	            alert('6개를 초과할 수 없습니다.')
 	        }
@@ -68,7 +70,7 @@ function inNumber(){
 	        e.preventDefault();
 	        if (x < max_fields) {
 	            x++;
-	            $(wrapper).append("<tr id='input-menu'><td><input type='hidden' name='meal_code[]' value='B'><input type='text' name='menu[]' required='required' placeholder='음식명'></td><td><input type='text' name='kcal[]' required='required' placeholder='칼로리'> kcal</td><td><input type='text' id='ballergy"+x+"' name='allergy[]' readonly='readonly' placeholder='알레르기 정보를 선택하세요'><input type='button' class='allchoice' value='선택' onclick='openlAllergy(`ballergy"+x+"`)'></td> <td id='deleteInput' class='AutoInput' title='Delete'>&times;</td></tr>");
+	            $(wrapper).append("<tr id='input-menu'><td><input type='hidden' name='meal_code[]' value='B'><input type='text' class='menu' name='menu[]' required='required' placeholder='음식명'></td><td><input type='text' class='kcal' name='kcal[]' required='required' placeholder='칼로리'> kcal</td><td><input type='text' id='ballergy"+x+"' name='allergy[]' readonly='readonly' placeholder='알레르기 정보를 선택하세요'><input type='button' class='allchoice' value='선택' onclick='openlAllergy(`ballergy"+x+"`)'></td> <td id='deleteInput' class='AutoInput' title='Delete'>&times;</td></tr>");
 	        } else {
 	            alert('아침 간식은 2개를 초과할 수 없습니다.')
 	        }
@@ -93,7 +95,7 @@ function inNumber(){
 	        e.preventDefault();
 	        if (x < max_fields) {
 	            x++;
-	            $(wrapper).append("<tr id='input-menu'><td><input type='hidden' name='meal_code[]' value='S'><input type='text' name='menu[]' required='required' placeholder='음식명'></td><td><input type='text' name='kcal[]' required='required' placeholder='칼로리'> kcal</td><td><input type='text' id='sallergy"+x+"' name='allergy[]' readonly='readonly' placeholder='알레르기 정보를 선택하세요'><input type='button' class='allchoice' value='선택' onclick='openlAllergy(`sallergy"+x+"`)'></td> <td id='deleteInput' class='AutoInput' title='Delete'>&times;</td></tr>");
+	            $(wrapper).append("<tr id='input-menu'><td><input type='hidden' name='meal_code[]' value='S'><input type='text' class='menu' name='menu[]' required='required' placeholder='음식명'></td><td><input type='text' class='kcal' name='kcal[]' required='required' placeholder='칼로리'> kcal</td><td><input type='text' id='sallergy"+x+"' name='allergy[]' readonly='readonly' placeholder='알레르기 정보를 선택하세요'><input type='button' class='allchoice' value='선택' onclick='openlAllergy(`sallergy"+x+"`)'></td> <td id='deleteInput' class='AutoInput' title='Delete'>&times;</td></tr>");
 	        } else {
 	            alert('오후 간식은 2개를 초과할 수 없습니다.')
 	        }
@@ -105,7 +107,31 @@ function inNumber(){
 	        x--;
 	    })
 	});
-	
+ 
+</script>
+<script>
+	$(document).ready(function(){
+		 $("#register").click(function(){
+			
+			if($("input[name='menu[]']").length == 0){
+				alert("메뉴 입력 후 등록이 가능합니다.");
+				return;
+			};
+			
+			if($(".menu").val() == ""){
+				alert("메뉴를 입력해 주세요.");
+				return;
+			}
+			if($(".kcal").val() == ""){
+				alert("칼로리를 입력해 주세요.");
+				return;
+			}
+ 
+			$("form").submit(); 
+			 
+		}); 
+	});
+
 </script>
 </head>
 <body>
@@ -152,14 +178,15 @@ function inNumber(){
 						<tr id='input-menu'>
 							<td>
 								<input type='hidden' name='meal_code[]' value='B'>
-								<input type='text' name='menu[]' required='required' placeholder='음식명'>
+								<input type='text' class='menu' name='menu[]' required='required' placeholder='음식명'>
 							</td>
-							<td><input type='text' name='kcal[]' required='required' placeholder='칼로리' onkeypress="inNumber();"> kcal</td>
+							<td><input type='text' class='kcal' name='kcal[]' required='required' placeholder='칼로리' onkeypress="inNumber();"> kcal</td>
 							<td>
 								<input type='text' id='ballergy1' name='allergy[]' readonly='readonly' placeholder='알레르기 정보를 선택하세요'>
 								<input type='button' class='allchoice' value='선택' onclick='openlAllergy(`ballergy1`)'>
 							</td>
-							<td id='deleteInput' class='AutoInput' title='Delete'>&times;</td>
+							<td>
+							</td>
 						</tr>
 					</table>
 						
@@ -170,14 +197,15 @@ function inNumber(){
 							<tr id='input-menu'>
 							<td>
 								<input type='hidden' name='meal_code[]' value='L'>
-								<input type='text' name='menu[]' required='required' placeholder='음식명'>
+								<input type='text' class='menu' name='menu[]' required='required' placeholder='음식명'>
 							</td>
-							<td><input type='text' name='kcal[]' required='required' placeholder='칼로리' onkeypress="inNumber();"> kcal</td>
+							<td><input type='text' class='kcal' name='kcal[]' required='required' placeholder='칼로리' onkeypress="inNumber();"> kcal</td>
 							<td>
 								<input type='text' id='lallergy1' name='allergy[]' readonly='readonly' placeholder='알레르기 정보를 선택하세요'>
 								<input type='button' class='allchoice' value='선택' onclick='openlAllergy(`lallergy1`)'>
 							</td>
-							<td id='deleteInput' class='AutoInput' title='Delete'>&times;</td>
+							<td>
+							</td>
 						</tr>
 					</table>
 						
@@ -188,18 +216,19 @@ function inNumber(){
 						<tr id='input-menu'>
 							<td>
 								<input type='hidden' name='meal_code[]' value='S'>
-								<input type='text' name='menu[]' required='required' placeholder='음식명'>
+								<input type='text' class='menu' name='menu[]' required='required' placeholder='음식명'>
 							</td>
-							<td><input type='text' name='kcal[]' required='required' placeholder='칼로리' onkeypress="inNumber();"> kcal</td>
+							<td><input type='text' class='kcal' name='kcal[]' required='required' placeholder='칼로리' onkeypress="inNumber();"> kcal</td>
 							<td>
 								<input type='text' id='sallergy1' name='allergy[]' readonly='readonly' placeholder='알레르기 정보를 선택하세요'>
 								<input type='button' class='allchoice' value='선택' onclick='openlAllergy(`sallergy1`)'>
 							</td>
-							<td id='deleteInput' class='AutoInput' title='Delete'>&times;</td>
+							<td>
+							</td>
 						</tr>
 					</table>
 					
-					<input type="submit" value="등　  록">
+					<input type="submit" id="register" value="등　  록">
 					<input type="reset" value="다시 작성">
 					<input type="button" class="turnList" value="돌아가기" onclick="location.href='./meal_list'">
 					
