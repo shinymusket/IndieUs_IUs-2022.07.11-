@@ -23,10 +23,15 @@ input[type="button"] {
 	text-align: center;
 }
 
+
+#busInfo td {
+	font-size: 13px;
+}
+
 #busInfo, #busInfo tr, #busInfo th, #busInfo td {
 	border: 1px solid #ccc;
 	border-collapse: collapse;
-	padding: 6px;
+	padding: 5px;
 }
 
 
@@ -64,4 +69,10 @@ tr.bgc:hover {
 #routeInfo th, #busInfo th {
 	background-color: #486890;
 	color: white;
+}
+
+input[value='수정']{
+	border: none;
+	padding: 5px;
+	background-color: #white;
 }

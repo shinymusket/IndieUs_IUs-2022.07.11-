@@ -62,6 +62,7 @@
 					<table id="attendanceInfo" class="tbl paginated" style="float: left; display: none;" border="1">
 					</table>
 					
+
 				</div>
 			</section>
 	</article> 

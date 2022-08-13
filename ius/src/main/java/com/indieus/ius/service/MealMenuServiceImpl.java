@@ -76,22 +76,30 @@ public class MealMenuServiceImpl implements MealMenuService {
 		String[] allergy = request.getParameterValues("allergy[]");
 		String menu_edate = request.getParameter("menu_edate");
 
-		List<MealMenuVO> list = new ArrayList<>();
-		for(int i=0; i < menu.length; i++) {
-			MealMenuVO mmVo = new MealMenuVO();
+		
+		try {
+			List<MealMenuVO> list = new ArrayList<>();
+			for(int i=0; i < menu.length; i++) {
+				MealMenuVO mmVo = new MealMenuVO();
 
-			mmVo.setMenu_edate(menu_edate);
-			mmVo.setMeal_code(meal_code[i]);
-			mmVo.setMeal_menu(menu[i]);
-			mmVo.setMenu_calorie(Integer.parseInt(kcal[i]));
-			mmVo.setAllergy_num(allergy[i]);
+				mmVo.setMenu_edate(menu_edate);
+				mmVo.setMeal_code(meal_code[i]);
+				mmVo.setMeal_menu(menu[i]);
+				mmVo.setMenu_calorie(Integer.parseInt(kcal[i]));
+				mmVo.setAllergy_num(allergy[i]);
 
-			list.add(mmVo);
+				list.add(mmVo);
+			}
+			Map<String, Object> map = new HashMap();
+			map.put("list", list);
+			
+			return manager.inputMenu(map);
+			
+		}catch(NullPointerException e) {
+			return 0;
 		}
-		Map<String, Object> map = new HashMap();
-		map.put("list", list);
 
-		return manager.inputMenu(map);
+		
 	}
 
 	// 날짜 식단 정보 불러오기 //

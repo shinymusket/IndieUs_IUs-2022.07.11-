@@ -71,6 +71,7 @@ function view(staff_num) {
 	};
 	
 
+
 function getList() {
 	$.ajax({
 		url : "/ius/staff/get_staff_list",
@@ -172,7 +173,7 @@ getList();
 			<p>경영 정보</p>
 			<h3>교직원 관리</h3>
 		</div>
-
+		
 		<!-- 오른쪽 기능 박스 (검색 등등 필요없으면 div 안에 내용 지워도 무방)-->
 		<div id="title_top">
 		</div>

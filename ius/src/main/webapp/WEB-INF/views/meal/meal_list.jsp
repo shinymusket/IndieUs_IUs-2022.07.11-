@@ -19,7 +19,6 @@ int date = cal.get(Calendar.DATE);
 if (strYear != null) {
 	year = Integer.parseInt(strYear);
 	month = Integer.parseInt(strMonth);
-
 }
 
 //년도 / 월 셋팅
@@ -30,9 +29,6 @@ int endDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
 int start = cal.get(Calendar.DAY_OF_WEEK);
 int newLine = 0;
 
-// 오늘 날짜 저장
-/* 	SimpleDateFormat dateFormet = new SimpleDateFormat("yyyyMMdd");
-	String intToday = dateFormet.format(cal.getTime()); */
 %>
 <html lang="ko">
 <HEAD>
@@ -46,62 +42,41 @@ int newLine = 0;
 	<%@include file="../include/header.jsp"%>
 	<%@include file="../include/nav.jsp"%>
 	<article>
-		<!-- 왼쪽 소제목 박스 -->
 		<div id="title_bar">
 			<p>경영 정보</p>
 			<h3>식단 관리</h3>
 		</div>
 
-		<!-- 오른쪽 기능 박스 (검색)-->
-		<div id="title_top">
-			
+		<div id="title_top">			
 		</div>
 
-		<!-- 내용 구간 -->
-		<!-- 내용 넣으면 길이 알아서 늘어나요(아마도) -->
 		<section>
 			<div id="content">
-
-				<!-- <DIV id="content" style="width:900px"> -->
-				<table width="100%" border="0" cellspacing="1" cellpadding="1">
-					<tr>
-						<td align="right"><input type="button"
-							onclick="location.href='./meal_list'" value="오늘" /> <input
-							type="button" onclick="location.href='../meal/addMealMenu'"
-							value="식단 등록" /></td>
-
-					</tr>
-				</table>
-
 				<!--날짜 네비게이션  -->
-
 				<table class="calendar_nav">
 					<tr>
 						<td align="center">
-							<!-- 이전 년도 --> <a
-							href="<c:url value='./meal_list' />?year=<%=year - 1%>&amp;month=<%=month%>"
-							target="_self"> <b>&lt;&lt;</b>
-						</a> <!-- 이전 달 --> <%
-					 if (month > 0) {
-					 %> <a
-							href="<c:url value='./meal_list' />?year=<%=year%>&amp;month=<%=month - 1%>"
-							target="_self"> <b>&lt;</b>
-						</a> <%} else {%> <b>&lt;</b> <%
- }
- %> &nbsp;&nbsp; <%=year%>년 <%=month + 1%>월
-							&nbsp;&nbsp; <!-- 다음 달 --> <%
- if (month < 11) {
- %> <a
-							href="<c:url value='./meal_list' />?year=<%=year%>&amp;month=<%=month + 1%>"
-							target="_self"> <b>&gt;</b>
-						</a> <%
- } else {
- %> <b>&gt;</b> <%
- }
- %> <!-- 다음 년도 --> <a
-							href="<c:url value='./meal_list' />?year=<%=year + 1%>&amp;month=<%=month%>"
-							target="_self"> <b>&gt;&gt;</b>
-						</a>
+							<!-- 이전 년도 -->
+							<a href="<c:url value='./meal_list' />?year=<%=year - 1%>&amp;month=<%=month%>" target="_self">&lt;&lt;</a>
+							<!-- 이전 달 -->
+							 <% if (month > 0) { %> 
+							<a href="<c:url value='./meal_list' />?year=<%=year%>&amp;month=<%=month - 1%>" target="_self">&lt;</a>
+							<%} else {%> &lt; <% } %> 
+							
+							<%=year%>년 <%=month + 1%>월 
+							
+							<!-- 다음 달 -->
+							<% if (month < 11) { %>
+							<a href="<c:url value='./meal_list' />?year=<%=year%>&amp;month=<%=month + 1%>" target="_self">&gt;</a>
+							<%} else { %>&gt; <%} %>
+							<!-- 다음 년도 --> 
+							<a href="<c:url value='./meal_list' />?year=<%=year + 1%>&amp;month=<%=month%>" target="_self">&gt;&gt;</a>
+						</td>
+					</tr>
+					<tr>
+						<td align="right">
+							<input type="button" id="todayButton" onclick="location.href='./meal_list'" value="오늘" />
+							<input type="button" id="addButton" onclick="location.href='../meal/addMealMenu'" value="식단등록" />
 						</td>
 					</tr>
 				</table>
@@ -109,23 +84,23 @@ int newLine = 0;
 				<br>
 
 				<table class="meal_calendar">
-					<THEAD>
-						<TR bgcolor="#eee">
-							<TD><font color="red">일</font></TD>
-							<TD>월</TD>
-							<TD>화</TD>
-							<TD>수</TD>
-							<TD>목</TD>
-							<TD>금</TD>
-							<TD><font color="#529dbc">토</font></TD>
-						</TR>
-					</THEAD>
-					<TBODY>
-						<TR>
+					<thead>
+						<tr bgcolor="#eee">
+							<td><font color="red">일</font></td>
+							<TD>월</td>
+							<td>화</td>
+							<td>수</td>
+							<td>목</td>
+							<td>금</td>
+							<td><font color="#529dbc">토</font></td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
 							<%
 							// 달력 시작 빈공란 표시
 							for (int index = 1; index < start; index++) {
-								out.println("<TD class='mealdatebox'>&nbsp;</TD>");
+								out.println("<td class='mealdatebox'></TD>");
 								newLine++;
 							}
 
@@ -138,8 +113,7 @@ int newLine = 0;
 									color = "#529dbc";
 								} else {
 									color = "BLACK";
-								}
-								;
+								};
 
 								String thisDate = Integer.toString(year);
 
@@ -157,18 +131,17 @@ int newLine = 0;
 								: "-" + Integer.toString(index);
 								request.setAttribute("search_date", search_date);
 
-								out.println("<TD valign='top' nowrap>");
+								out.println("<td valign='top' nowrap>");
 							%>
 
-							<a style="color:<%=color%>"
-								href="../meal/menuSelectByMenuNum?menu_edate=<%=search_date%>"><b><%=index%></b></a>
+							<a style="color:<%=color%>" href="../meal/menuSelectByMenuNum?menu_edate=<%=search_date%>"><b><%=index%></b></a>
 
 							<div class="break_menu">
 								<span class="menu_title"><b>오전 간식</b></span><br>
 								<c:forEach items="${menuList}" var="list">
 									<c:if test="${list.menu_edate eq thisDate}">
 										<c:if test="${list.meal_code eq 'B'}">
-						${list.meal_menu} ${list.allergy_num}<br>
+											${list.meal_menu} ${list.allergy_num}<br>
 										</c:if>
 									</c:if>
 								</c:forEach>
@@ -178,7 +151,7 @@ int newLine = 0;
 								<c:forEach items="${menuList}" var="list">
 									<c:if test="${list.menu_edate eq thisDate}">
 										<c:if test="${list.meal_code eq 'L'}">
-						${list.meal_menu} ${list.allergy_num}<br>
+											${list.meal_menu} ${list.allergy_num}<br>
 										</c:if>
 									</c:if>
 								</c:forEach>
@@ -188,7 +161,7 @@ int newLine = 0;
 								<c:forEach items="${menuList}" var="list">
 									<c:if test="${list.menu_edate eq thisDate}">
 										<c:if test="${list.meal_code eq 'S'}">
-						${list.meal_menu} ${list.allergy_num}<br>
+											${list.meal_menu} ${list.allergy_num}<br>
 										</c:if>
 									</c:if>
 								</c:forEach>
@@ -196,33 +169,37 @@ int newLine = 0;
 
 
 							<%
-							out.println("</TD>");
+							out.println("</td>");
 							newLine++;
 
 							// 일주일 표시
-							if (newLine == 7) {
-								out.println("</TR>");
-								if (index <= endDay) {
-									out.println("<TR>");
-								}
+								if (newLine == 7) {
+									out.println("</tr>");
+									if (index <= endDay) {
+										out.println("<tr>");
+									}
 								newLine = 0;
-							}
-
-							}
+								};
+							};
 
 							// 달 마지막 공란 Loop 그리기
 							while (newLine > 0 && newLine < 7) {
-							out.println("<TD></TD>");
-							newLine++;
-							}
+								out.println("<td></td>");
+								newLine++;
+							};
 							%>
-						</TR>
-						<tr>
-							<td colspan="7">알러지 정보 :</td>
 						</tr>
-					</TBODY>
-				</TABLE>
-				<!-- </DIV> -->
+						<tr>
+							<td>식품 알레르기 표시 정보</td>
+							<td colspan="6">
+							①난류 ②우유 ③메밀 ④땅콩 ⑤대두
+							⑥밀 ⑦고등어 ⑧게 ⑨새우 ⑩돼지고기 ⑪복숭아 ⑫토마토 ⑬아황산염 ⑭호두 ⑮닭고기 ⑯쇠고기
+							⑰오징어 ⑱조개류(굴, 전복, 홍합 포함)
+							<p>확실한 증상이 있는 학생들이 해당 식품을 섭취하지 않도록 지도해 주시기 바랍니다.</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</section>
 	</article>
