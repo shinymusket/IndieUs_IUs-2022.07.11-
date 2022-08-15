@@ -130,7 +130,7 @@
 						<tr>
 							<th>주소</th>
 							<td>
-								<input type="text" name="staff_addr" id="staff_addr" readonly="readonly">
+								<input type="text" name="staff_addr" id="staff_addr">
 								<input type="button" value="우편번호 찾기" id="select_addr" onclick="selectAddr()"> 
 							</td>
 							<th>우편번호</th>

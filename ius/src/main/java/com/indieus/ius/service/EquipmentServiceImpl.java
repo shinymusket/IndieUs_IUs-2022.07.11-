@@ -50,9 +50,10 @@ public class EquipmentServiceImpl implements EquipmentService {
 	}
 
 	// 시설(비품) 검색 Ajax
+	@Override
 	public Object searchEquipmentList(Map<String, Object> map) throws Exception {
 		List<EquipmentVO> equipmentList = manager.searchEquipmentList(map);
-		
+
 		Map<String, Object> data = new HashMap();
 		data.put("equipmentList", equipmentList);
 		return data;
@@ -278,7 +279,7 @@ public class EquipmentServiceImpl implements EquipmentService {
 		return manager.updatePurchase(pVo);
 	}
 
-	
+
 
 
 
