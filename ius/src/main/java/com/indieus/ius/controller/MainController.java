@@ -122,7 +122,7 @@ public class MainController {
 		} catch(NullPointerException e) {
 			return "redirect:./logout";
 		}
-		
+
 		StaffVO staffInfo = staffService.selectStaffInfoStaffId(staff_id);
 		String staff_num  = staffInfo.getStaff_num();
 		StaffVO sVo = staffService.selectStaffInfo(staff_num);

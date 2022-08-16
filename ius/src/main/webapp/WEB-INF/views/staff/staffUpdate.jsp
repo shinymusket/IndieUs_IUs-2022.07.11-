@@ -119,7 +119,7 @@ function selectAddr() {
 							</td>
 							<th>주소</th>
 							<td>
-								<input type="text" name="staff_addr" id="staff_addr" value="${staff.staff_addr}" readonly="readonly">
+								<input type="text" name="staff_addr" id="staff_addr" value="${staff.staff_addr}">
 								<input type="button" onclick="selectAddr()" value="우편번호 찾기">
 							</td>
 						</tr>

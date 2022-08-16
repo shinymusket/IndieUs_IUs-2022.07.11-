@@ -169,5 +169,5 @@ public class StaffController {
 		rttr.addFlashAttribute("result", service.updateStaff(sVo, staff_picFile));
 		return "redirect:./staff_list";
 	}
-	
+
 }

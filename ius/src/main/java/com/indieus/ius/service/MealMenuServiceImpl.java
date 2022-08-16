@@ -76,7 +76,7 @@ public class MealMenuServiceImpl implements MealMenuService {
 		String[] allergy = request.getParameterValues("allergy[]");
 		String menu_edate = request.getParameter("menu_edate");
 
-		
+
 		try {
 			List<MealMenuVO> list = new ArrayList<>();
 			for(int i=0; i < menu.length; i++) {
@@ -92,14 +92,14 @@ public class MealMenuServiceImpl implements MealMenuService {
 			}
 			Map<String, Object> map = new HashMap();
 			map.put("list", list);
-			
+
 			return manager.inputMenu(map);
-			
+
 		}catch(NullPointerException e) {
 			return 0;
 		}
 
-		
+
 	}
 
 	// 날짜 식단 정보 불러오기 //

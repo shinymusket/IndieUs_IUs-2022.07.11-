@@ -442,8 +442,10 @@ $(function(){
 						<input type="button" value="검색" id="search">
 					</div>
 					
-					<table id="kinderList" class="list" border="1" style="float : left;"></table>
-	
+					<div id="kinderBox" style="float : left;">
+					<table id="kinderList" class="list" border="1" ></table>
+					</div>
+					
 					<table id="kinderInfo" class="list" border="1" style="float : left; display : none;">
 						<tbody>
 								<tr>

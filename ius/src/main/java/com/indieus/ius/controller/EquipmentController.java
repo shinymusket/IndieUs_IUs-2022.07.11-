@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.indieus.ius.service.EquipmentServiceImpl;
-import com.indieus.ius.utils.PagingVO;
 import com.indieus.ius.vo.EquipClsVO;
 import com.indieus.ius.vo.EquipmentVO;
 import com.indieus.ius.vo.PurchaseVO;
@@ -49,7 +48,7 @@ public class EquipmentController {
 	public Object searchEquipmentList(@RequestParam Map<String, Object> map) throws Exception {
 		return service.searchEquipmentList(map);
 	}
-	
+
 	// 시설(비품) 리스트 가져오기 Ajax
 	@ResponseBody
 	@RequestMapping(value = "/get_equipment_list", method = RequestMethod.POST)
