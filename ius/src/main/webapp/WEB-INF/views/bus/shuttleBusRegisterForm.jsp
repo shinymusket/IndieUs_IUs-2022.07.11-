@@ -45,7 +45,7 @@ function d_Value(target) {
                         +"<select class='minute' name='shuttle_minute[]'><c:forEach var='m' begin='0' end='59'><c:choose><c:when test='${m < 10}'><option value='0${m}'>0${m}</option>"
                         +"</c:when><c:otherwise><option value='${m}'>${m}</option></c:otherwise></c:choose></c:forEach></select> 분</td>"
                         +"<td><input type='text' name='bus_stop[]' required='required'></td>"
-                        +"<td class='del_button'><input type='button' value='삭제'></td><tr>");
+                        +"<td class='del_button'>&times;</td></tr>");
         });
         
         $(wrapper).on("click", ".del_button", function(e) {
@@ -84,7 +84,7 @@ function d_Value(target) {
 					<table border="1" class="list">
 						<tr>
 							<th>구  분</th>
-							<td><input type="text" name="shuttle_name"></td>
+							<td><input type="text" name="shuttle_name" placeholder="ex)1호차"></td>
 						</tr>
 						<tr>
 							<th>차량 번호</th>
@@ -93,7 +93,7 @@ function d_Value(target) {
 						<tr>
 							<th>담당 기사</th>
 							<td>
-								<select name="staff_num" onchange="d_Value(this)">
+								<select name="staff_num" id="driver_sel" onchange="d_Value(this)">
 									<option value="none" disabled selected>==선 택==</option>
 									<c:forEach items="${driverList}" var="dL">
 										<option value="${dL.staff_num}">${dL.staff_name}</option>
@@ -110,11 +110,11 @@ function d_Value(target) {
 						</table>
 						<table border="1" id="bus_list" class="list">
 							<tr>
-								<th colspan="2">노선<input name="addButton" class="add_bus_button" type="button" value="+"></th>
+								<th colspan="3">노선<input name="addButton" class="add_bus_button" type="button" value="+"></th>
 							</tr>
 							<tr>
 								<th>시간</th>
-								<th>승하차장</th>
+								<th colspan="2">승하차장</th>
 							</tr>
 							<tr>
 								<td>
@@ -148,8 +148,7 @@ function d_Value(target) {
 								<td>
 									<input type="text" name="bus_stop[]" required="required">
 								</td>
-								<td class='del_button'>
-								</td>
+								<td class='del_button'>&times;</td>
 							</tr>
 						</table>
 						<input type="submit" value="등록">

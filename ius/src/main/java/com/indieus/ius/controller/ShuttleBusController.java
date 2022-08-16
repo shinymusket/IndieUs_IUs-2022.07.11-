@@ -80,6 +80,7 @@ public class ShuttleBusController {
 	public String modifyBusRoute(HttpServletRequest request) throws Exception {
 		String[] bus_stop = request.getParameterValues("bus_stop[]");
 		if(bus_stop == null) {
+			service.modifyBusInfo(request);
 			return "redirect:./shuttle_bus";
 		} else {		
 		service.modifyBusInfo(request);
