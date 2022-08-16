@@ -16,14 +16,7 @@
 <script>
 
 function openlAllergy(name){
-	var popupWidth = 300;
-	var popupHeight = 500;
-
-	var popupX = (window.screen.width / 2) - (popupWidth / 2);
-	// 만들 팝업창 width 크기의 1/2 만큼 보정값으로 빼주었음
-	var popupY= (window.screen.height / 2) - (popupHeight / 2);
-	
-	window.open("./allergyInfo", name, 'status=no, height=' + popupHeight  + ', width=' + popupWidth  + ', left='+ popupX + ', top='+ popupY);
+	window.open("./allergyInfo", name, "width=300, height=500");
 }
 
 // 엔터 누를 시 이벤트 발생 안되게 
@@ -128,6 +121,30 @@ function inNumber(){
 	});
  
 </script>
+<script>
+	$(document).ready(function(){
+		 $("#register").click(function(){
+			
+			if($("input[name='menu[]']").length == 0){
+				alert("메뉴 입력 후 등록이 가능합니다.");
+				return;
+			};
+			
+			if($(".menu").val() == ""){
+				alert("메뉴를 입력해 주세요.");
+				return;
+			}
+			if($(".kcal").val() == ""){
+				alert("칼로리를 입력해 주세요.");
+				return;
+			}
+ 
+			$("form").submit(); 
+			 
+		}); 
+	});
+
+</script>
 </head>
 <body>
 <%@include file="../include/header.jsp"%>
@@ -180,7 +197,8 @@ function inNumber(){
 								<input type='text' id='ballergy1' name='allergy[]' readonly='readonly' placeholder='알레르기 정보를 선택하세요'>
 								<input type='button' class='allchoice' value='선택' onclick='openlAllergy(`ballergy1`)'>
 							</td>
-							<td id='deleteInput' class='AutoInput' title='Delete'>&times;</td>
+							<td>
+							</td>
 						</tr>
 					</table>
 						
@@ -198,7 +216,8 @@ function inNumber(){
 								<input type='text' id='lallergy1' name='allergy[]' readonly='readonly' placeholder='알레르기 정보를 선택하세요'>
 								<input type='button' class='allchoice' value='선택' onclick='openlAllergy(`lallergy1`)'>
 							</td>
-							<td id='deleteInput' class='AutoInput' title='Delete'>&times;</td>
+							<td>
+							</td>
 						</tr>
 					</table>
 						
@@ -216,7 +235,8 @@ function inNumber(){
 								<input type='text' id='sallergy1' name='allergy[]' readonly='readonly' placeholder='알레르기 정보를 선택하세요'>
 								<input type='button' class='allchoice' value='선택' onclick='openlAllergy(`sallergy1`)'>
 							</td>
-							<td id='deleteInput' class='AutoInput' title='Delete'>&times;</td>
+							<td>
+							</td>
 						</tr>
 					</table>
 					

@@ -32,25 +32,28 @@
 						<input type="button" value="교직원 관리" onclick="location.href='../staff/staff_list'">
 					</div>
 					
-					<table id="staffInfo" class="list" border="1" style="float: left;">
-						<tr>
-							<th>교직원 코드</th>
-							<th>교직원 이름</th>
-							<th>교직원 아이디</th>
-							<th>직무</th>
-						</tr>
-						<c:if test="${staffList != null}">
-							<c:forEach items="${staffList}" var="staff">
-								<tr class="bgc" onclick="getInfo(${staff.staff_num})">
-									<td>${staff.staff_num}</td>
-									<td>${staff.staff_name}</td>
-									<td>${staff.staff_id}</td>
-									<td>${staff.job_Kname}</td>
-								</tr>
-							</c:forEach>
-						</c:if>	
-					</table>
-				
+					<div id="staffBox" style="float: left;">
+						<table id="staffInfo" class="list" border="1">
+							<tr>
+								<th>교직원 코드</th>
+								<th>교직원 이름</th>
+								<th>교직원 아이디</th>
+								<th>직무</th>
+							</tr>
+							
+							<c:if test="${staffList != null}">
+								<c:forEach items="${staffList}" var="staff">
+									<tr class="bgc" onclick="getInfo(${staff.staff_num})">
+										<td>${staff.staff_num}</td>
+										<td>${staff.staff_name}</td>
+										<td>${staff.staff_id}</td>
+										<td>${staff.job_Kname}</td>
+									</tr>
+								</c:forEach>
+							</c:if>	
+						</table>		
+					</div>
+	
 					<table id="authorityInfo" border="1" style="float: left; display: none;">
 						<tr>
 							<th>권한</th>

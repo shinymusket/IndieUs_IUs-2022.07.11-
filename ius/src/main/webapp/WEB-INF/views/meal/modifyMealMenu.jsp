@@ -12,14 +12,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 function openlAllergy(name){
-	var popupWidth = 300;
-	var popupHeight = 500;
-
-	var popupX = (window.screen.width / 2) - (popupWidth / 2);
-	// 만들 팝업창 width 크기의 1/2 만큼 보정값으로 빼주었음
-	var popupY= (window.screen.height / 2) - (popupHeight / 2);
-	
-	window.open("./allergyInfo", name, 'status=no, height=' + popupHeight  + ', width=' + popupWidth  + ', left='+ popupX + ', top='+ popupY);
+	window.open("./allergyInfo", name, "width=300, height=500");
 }
 
 // 엔터 누를 시 이벤트 발생 안되게 

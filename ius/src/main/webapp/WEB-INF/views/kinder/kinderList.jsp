@@ -90,7 +90,7 @@ function view(kinder_num) {
 					});
 				}
 				
-				consultInfo = data.consultInfo;
+				consultInfo = data.consultInfo; // 최근 상담 내역
 				$("#kinderInfo>tbody").append("<tr class='consultTr'><th colspan='4'>최근 상담 기록</th></tr>");
 				if(consultInfo != null) {
 					$("#kinderInfo>tbody").append("<tr class='consultTr'><td colspan='4'>"+ consultInfo.consult_content + "</td></tr>");
@@ -443,7 +443,7 @@ $(function(){
 					</div>
 					
 					<div id="kinderBox" style="float : left;">
-					<table id="kinderList" class="list" border="1" ></table>
+						<table id="kinderList" class="list" border="1" ></table>
 					</div>
 					
 					<table id="kinderInfo" class="list" border="1" style="float : left; display : none;">

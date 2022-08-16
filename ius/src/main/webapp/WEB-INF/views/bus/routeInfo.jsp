@@ -28,7 +28,7 @@ $(document).ready(function() {
 	                +"<select class='minute' name='shuttle_minute[]'><c:forEach var='m' begin='0' end='59'><c:choose><c:when test='${m < 10}'><option value='0${m}'>0${m}</option>"
 	                +"</c:when><c:otherwise><option value='${m}'>${m}</option></c:otherwise></c:choose></c:forEach></select> 분</td>"
 	                +"<td><input type='text' name='bus_stop[]' required='required'></td>"
-	                +"<td class='del_button'>&times;</td></tr>");
+	                +"<td class='del_button'>&times;</td><tr>");
 		});
 
 	  $("#bus_route").on("click", ".deleteInput", function(e) {
@@ -108,7 +108,7 @@ $(document).ready(function() {
 							<tr>
 								<th>연락처</th>
 								<td>
-									<input type="text" value="${bus.staff_tel}" id="driver_tel" readonly="readonly">
+									<input type="tel" value="${bus.staff_tel}" id="driver_tel">
 								</td>
 							</tr>
 							</table>

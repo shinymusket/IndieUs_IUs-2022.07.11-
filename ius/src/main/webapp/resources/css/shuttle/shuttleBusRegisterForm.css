@@ -1,34 +1,12 @@
 @charset "UTF-8";
 
 input[type="button"], input[type="reset"], input[type="submit"] {
-	padding-left: 2px;
-	padding-right: 2px;
+	padding: 3px;
 }
 input[type="button"]:hover {
 	cursor: pointer;
 }
 
-input[class="add_bus_button"]{
-	border: none;
-	padding: 3px;
-	margin-left: 3px;
-	line-height: 10px;
-}
-
-input[type='text']{
-	padding: 4px;
-	width: 100%;
-}
-
-select[name='staff_num'] {
-	width: 100%;
-	padding: 4px;
-}
-
-#driver_tel {
-	border: none;
-	outline: none;
-}
 .list {
 	font-size: 14px;
 }
@@ -46,14 +24,6 @@ select[name='staff_num'] {
 
 #bus_list {
 	margin-bottom: 10px;
-	width: 400px;
-}
-
-#bus_route {
-	width: 400px;
-}
-#bus_list tr > td:last-child{
-	border-left: white;
 }
 
 #busInfo {
@@ -92,17 +62,4 @@ td {
 	text-align: right;
 	margin-bottom: 20px;
 	padding-right: 5px;
-}
-
-select {
-	border-style: none;
-	outline: none;
-}
-
-select:hover {
-	cursor: pointer;
-}
-
-.del_button:hover{
-	cursor: pointer;
 }

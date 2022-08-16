@@ -211,8 +211,10 @@ getList();
 					</div>
 				</div>
 				
+			<div id="staffBox" style="float : left;">
+				<table id="staffList" class="list" border="1"></table>
+			</div>
 			
-			<table id="staffList" class="list" border="1" style="float : left;"></table>
 			<table id="staffInfo" border="1" style="float : left; display : none;">
 				<tr>
 					<th colspan="2">교직원 코드</th>

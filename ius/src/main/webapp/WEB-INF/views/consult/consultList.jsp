@@ -44,8 +44,10 @@
 								<input type="button" value="검색" id="searchBtn">
 							</div>
 						</div>
-	
-						<table id="kinder_list_tbl" class="list" border="1"></table>
+						
+						<div id="kinderBox">
+							<table id="kinder_list_tbl" class="list" border="1"></table>
+						</div>
 					</div>
 					
 					<div id="consult" style="float: left; display:none;">
@@ -61,9 +63,9 @@
 								<th>상담자</th>
 								<td> <!-- 현재 로그인 되어 있는 아이디의 세션 값으로 가져오기 -->
 									<input type="hidden" id="consult_code" name="consult_code">
-									<input type="text" id="staff_name" name="staff_name" value="${staffInfo.staff_name}" readonly="readonly" style='text-align : center;'>
+									<input type="hidden" id="staff_name" name="staff_name" value="${staffInfo.staff_name}" readonly="readonly" style='text-align : center;'>
 									<input type="hidden" id="staff_num" name="staff_num" value="${staffInfo.staff_num}">
-									<input type="hidden" id="login_staff_name" value="${staffInfo.staff_name}">
+									<input type="text" id="login_staff_name" value="${staffInfo.staff_name}" readonly="readonly">
 									<input type="hidden" id="login_staff_num" value="${staffInfo.staff_num}">
 								</td>
 								<th>원생명</th>

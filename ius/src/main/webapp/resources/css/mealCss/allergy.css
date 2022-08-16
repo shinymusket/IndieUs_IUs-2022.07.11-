@@ -2,7 +2,6 @@
 
 #allergy_box {
 	width: 270px;
-	margin: 0 auto;
 }
 
 ul {
@@ -26,7 +25,6 @@ input[id="showFilter"]{
 	margin-bottom: 15px;
 	border: none;
 	letter-spacing: 2px;
-	font-size: 12px;
 }
 
 input[type="button"]{
@@ -34,22 +32,10 @@ input[type="button"]{
 	height: 30px;
 	border: none;
 	border-radius: 5px;
-	background-color: #486890;
+	background-color: darkblue;
 	color: #fff;
 	font-weight: bold;
 	letter-spacing: -1px;
-}
-
-input[type="button"]:hover {
-	cursor: pointer;
-}
-
-input[type='checkbox']{
-	accent-color:#486890;
-}
-
-label:hover {
-	cursor: pointer;
 }
 
 #but_box {

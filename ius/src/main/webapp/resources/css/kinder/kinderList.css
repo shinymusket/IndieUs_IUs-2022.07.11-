@@ -58,10 +58,13 @@ table, th, tr, td {
 	margin-left : 20px;
 }
 
-#kinder_num, #kinder_name, #class_name, #staff_name, #shuttle_num, #kinder_addr, #kinder_tel, #kinder_regdate, #kinder_retireDate, #allergy_info {
+#kinder_num, #kinder_name, #class_name, #staff_name, #shuttle_num, #kinder_addr, #kinder_tel, #kinder_regdate, #kinder_retireDate {
 	width : 100%;
 }
 
+#allergy_info {
+	width : 200px;
+}
 
 #parent {
 	margin-left : 10px;
