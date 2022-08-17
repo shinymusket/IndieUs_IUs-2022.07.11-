@@ -20,7 +20,6 @@ function openlAllergy(name){
 	var popupHeight = 500;
 
 	var popupX = (window.screen.width / 2) - (popupWidth / 2);
-	// 만들 팝업창 width 크기의 1/2 만큼 보정값으로 빼주었음
 	var popupY= (window.screen.height / 2) - (popupHeight / 2);
 	
 	window.open("./allergyInfo", name, 'status=no, height=' + popupHeight  + ', width=' + popupWidth  + ', left='+ popupX + ', top='+ popupY);
@@ -55,7 +54,7 @@ function inNumber(){
 	            x++;
 	            $(wrapper).append("<tr id='input-menu'><td><input type='hidden' name='meal_code[]' value='L'>"
 	            		+"<input type='text' class='menu' name='menu[]' required='required' placeholder='음식명'></td>"
-	            		+"<td><input type='text' class='kcal' name='kcal[]' required='required' placeholder='칼로리'> kcal</td>"
+	            		+"<td><input type='text' class='kcal' name='kcal[]' required='required' placeholder='칼로리' onkeypress='inNumber();'> kcal</td>"
 	            		+"<td><input type='text' id='lallergy"+x+"' name='allergy[]' readonly='readonly' placeholder='알레르기 정보를 선택하세요'>"
 	            		+"<input type='button' class='allchoice' value='선택' onclick='openlAllergy(`lallergy"+x+"`)'></td> <td id='deleteInput' class='AutoInput' title='Delete'>&times;</td></tr>");
 	        } else {
@@ -83,7 +82,7 @@ function inNumber(){
 	            x++;
 	            $(wrapper).append("<tr id='input-menu'><td><input type='hidden' name='meal_code[]' value='B'>"
 	            		+"<input type='text' class='menu' name='menu[]' required='required' placeholder='음식명'></td>"
-	            		+"<td><input type='text' class='kcal' name='kcal[]' required='required' placeholder='칼로리'> kcal</td>"
+	            		+"<td><input type='text' class='kcal' name='kcal[]' required='required' placeholder='칼로리' onkeypress='inNumber();'> kcal</td>"
 	            		+"<td><input type='text' id='ballergy"+x+"' name='allergy[]' readonly='readonly' placeholder='알레르기 정보를 선택하세요'>"
 	            		+"<input type='button' class='allchoice' value='선택' onclick='openlAllergy(`ballergy"+x+"`)'></td> <td id='deleteInput' class='AutoInput' title='Delete'>&times;</td></tr>");
 	        } else {
@@ -112,9 +111,10 @@ function inNumber(){
 	            x++;
 	            $(wrapper).append("<tr id='input-menu'><td><input type='hidden' name='meal_code[]' value='S'>"
 	            		+"<input type='text' class='menu' name='menu[]' required='required' placeholder='음식명'></td>"
-	            		+"<td><input type='text' class='kcal' name='kcal[]' required='required' placeholder='칼로리'> kcal</td>"
+	            		+"<td><input type='text' class='kcal' name='kcal[]' required='required' placeholder='칼로리' onkeypress='inNumber();'> kcal</td>"
 	            		+"<td><input type='text' id='sallergy"+x+"' name='allergy[]' readonly='readonly' placeholder='알레르기 정보를 선택하세요'>"
-	            		+"<input type='button' class='allchoice' value='선택' onclick='openlAllergy(`sallergy"+x+"`)'></td> <td id='deleteInput' class='AutoInput' title='Delete'>&times;</td></tr>");
+	            		+"<input type='button' class='allchoice' value='선택' onclick='openlAllergy(`sallergy"+x+"`)'></td>"
+	            		+"<td id='deleteInput' class='AutoInput' title='Delete'>&times;</td></tr>");
 	        } else {
 	            alert('오후 간식은 2개를 초과할 수 없습니다.')
 	        }
