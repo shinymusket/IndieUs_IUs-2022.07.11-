@@ -17,61 +17,61 @@
 	<div id="allergy_box">
 		<ul>
 			<li>
-				<label for="na"><input type="checkbox" id="na">알러지 없음</label>
+				<input type="checkbox" id="na">알러지 없음
 			</li>
 			<li>
-				<label for="a1"><input type="checkbox" id="a1">난류(가금류)</label>
+				<input type="checkbox" id="a1">난류(가금류)
 			</li>
 			<li>
-				<label for="a2"><input type="checkbox" id="a2">우유</label>
+				<input type="checkbox" id="a2">우유
 			</li>
 			<li>
-				<label for="a3"><input type="checkbox" id="a3">메밀</label>
+				<input type="checkbox" id="a3">메밀
 			</li>
 			<li>
-				<label for="a4"><input type="checkbox" id="a4">땅콩</label>
+				<input type="checkbox" id="a4">땅콩
 			</li>
 			<li>
-				<label for="a5"><input type="checkbox" id="a5">대두</label>
+				<input type="checkbox" id="a5">대두
 			</li>
 			<li>
-				<label for="a6"><input type="checkbox" id="a6">밀</label>
+				<input type="checkbox" id="a6">밀
 			</li>
 			<li>
-				<label for="a7"><input type="checkbox" id="a7">고등어</label>
+				<input type="checkbox" id="a7">고등어
 			</li>
 			<li>
-				<label for="a8"><input type="checkbox" id="a8">게</label>
+				<input type="checkbox" id="a8">게
 			</li>
 			<li>
-				<label for="a9"><input type="checkbox" id="a9">새우</label>
+				<input type="checkbox" id="a9">새우
 			</li>
 			<li>
-				<label for="a10"><input type="checkbox" id="a10">돼지고기</label>
+				<input type="checkbox" id="a10">돼지고기
 			</li>
 			<li>
-				<label for="a11"><input type="checkbox" id="a11">복숭아</label>
+				<input type="checkbox" id="a11">복숭아
 			</li>
 			<li>
-				<label for="a12"><input type="checkbox" id="a12">토마토</label>
+				<input type="checkbox" id="a12">토마토
 			</li>
 			<li>
-				<label for="a13"><input type="checkbox" id="a13">아황산염</label>
+				<input type="checkbox" id="a13">아황산염
 			</li>
 			<li>
-				<label for="a14"><input type="checkbox" id="a14">호두</label>
+				<input type="checkbox" id="a14">호두
 			</li>
 			<li>
-				<label for="a15"><input type="checkbox" id="a15">닭고기</label>
+				<input type="checkbox" id="a15">닭고기
 			</li>
 			<li>
-				<label for="a16"><input type="checkbox" id="a16">쇠고기</label>
+				<input type="checkbox" id="a16">쇠고기
 			</li>
 			<li>
-				<label for="a17"><input type="checkbox" id="a17">오징어</label>
+				<input type="checkbox" id="a17">오징어
 			</li>
 			<li>
-				<label for="a18"><input type="checkbox" id="a18">조개류</label>
+				<input type="checkbox" id="a18">조개류
 			</li>
 		</ul>
 		<div id="but_box">

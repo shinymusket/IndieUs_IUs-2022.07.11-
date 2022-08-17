@@ -15,14 +15,14 @@
 		<ul>
 				<c:forEach items="${allergyList}" var="all">
 					<li>
-						<label for="allergy_num${all.allergy_Num}"><input type="checkbox" id="allergy_num${all.allergy_Num}" name="allergy_Num" value="${all.allergy_Num}" onchange="makeFilter(this);">${all.allergy_Name}</label>
+							<input type="checkbox" id="allergy_num" name="allergy_Num" value="${all.allergy_Num}" onchange="makeFilter(this);">${all.allergy_Name}
 					</li>
 				</c:forEach>
 		</ul>
 		<div id="but_box">
 			<input type="text" id="showFilter" readonly><br>
 			<input type="button" value="확인" onclick="addAllergy()">
-			<input type="button" value="닫기" onclick="closeWindow()">
+			<input type="button" value="닫기">
 		</div>
 	</div>
 </form>
@@ -95,9 +95,7 @@ function addAllergy(){
 	
 }
 
-function closeWindow(){
-	window.close();
-}
+
 
 </script>
 </body>

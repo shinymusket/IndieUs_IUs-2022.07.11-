@@ -107,6 +107,15 @@ function view(kinder_num) {
 			success: function(data) {
 				$("#kinderInfo").hide();
 				
+				$("#father .update").show();
+				$("#father .updateRegister").hide();
+				$("#father .updateCancel").hide();
+				
+				$("#mather .update").show();
+				$("#mather .updateRegister").hide();
+				$("#mather .updateCancel").hide();
+				
+
 				$("#father").hide();
 				$("#mather").hide();
 				

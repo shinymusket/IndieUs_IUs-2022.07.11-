@@ -39,7 +39,9 @@
 						</select>
 					</div>
 					
-					<table id="kinderList" class="list" border="1" style="float : left;"></table>
+					<div id="kinderBox" style="float : left;">
+						<table id="kinderList" class="list" border="1"></table>
+					</div>
 					
 					<table id="kinderInfo" class="list" border="1" style="float : left; display : none;">
 						<tr>
@@ -153,6 +155,7 @@
 								<td colspan="2">
 									<input type="button" value="정보 수정" class="update">
 									<input type="button" value="수정 정보 등록" class="updateRegister" style="display : none;">
+									<input type="button" value="정보 수정 취소" class="updateCancel" style="display : none;">
 									<input type="button" value="삭제" class="delete">
 								</td>
 							</tr>

@@ -128,6 +128,30 @@ function inNumber(){
 	});
  
 </script>
+<script>
+	$(document).ready(function(){
+		 $("#register").click(function(){
+			
+			if($("input[name='menu[]']").length == 0){
+				alert("메뉴 입력 후 등록이 가능합니다.");
+				return;
+			};
+			
+			if($(".menu").val() == ""){
+				alert("메뉴를 입력해 주세요.");
+				return;
+			}
+			if($(".kcal").val() == ""){
+				alert("칼로리를 입력해 주세요.");
+				return;
+			}
+ 
+			$("form").submit(); 
+			 
+		}); 
+	});
+
+</script>
 </head>
 <body>
 <%@include file="../include/header.jsp"%>
@@ -180,7 +204,8 @@ function inNumber(){
 								<input type='text' id='ballergy1' name='allergy[]' readonly='readonly' placeholder='알레르기 정보를 선택하세요'>
 								<input type='button' class='allchoice' value='선택' onclick='openlAllergy(`ballergy1`)'>
 							</td>
-							<td id='deleteInput' class='AutoInput' title='Delete'>&times;</td>
+							<td>
+							</td>
 						</tr>
 					</table>
 						
@@ -198,7 +223,8 @@ function inNumber(){
 								<input type='text' id='lallergy1' name='allergy[]' readonly='readonly' placeholder='알레르기 정보를 선택하세요'>
 								<input type='button' class='allchoice' value='선택' onclick='openlAllergy(`lallergy1`)'>
 							</td>
-							<td id='deleteInput' class='AutoInput' title='Delete'>&times;</td>
+							<td>
+							</td>
 						</tr>
 					</table>
 						
@@ -216,7 +242,8 @@ function inNumber(){
 								<input type='text' id='sallergy1' name='allergy[]' readonly='readonly' placeholder='알레르기 정보를 선택하세요'>
 								<input type='button' class='allchoice' value='선택' onclick='openlAllergy(`sallergy1`)'>
 							</td>
-							<td id='deleteInput' class='AutoInput' title='Delete'>&times;</td>
+							<td>
+							</td>
 						</tr>
 					</table>
 					

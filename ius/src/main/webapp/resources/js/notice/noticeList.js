@@ -182,6 +182,7 @@ $(function(){
 						output += "<td>" + value.notice_num + "</td>";
 						output += "<td class='n_title'>" + value.notice_title + "</td>";
 						output += "<td>" + value.staff_name + "</td>";
+
 						output += "<td>" + value.notice_writeDate + "</td>";
 						output += "<td>" + value.notice_readCount + "</a></td>";
 						output += "</tr></tbody>";
