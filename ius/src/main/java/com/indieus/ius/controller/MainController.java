@@ -66,8 +66,8 @@ public class MainController {
 			String auth_code = staff.getAuth_code();
 			AuthorityVO auth_info = service.selectAuthByCode(auth_code);
 			model.addAttribute("auth_info" , auth_info);
-			model.addAttribute("log_staff_name", staff_name);
-			model.addAttribute("log_staff_id", staff_id);
+			model.addAttribute("staff_name", staff_name);
+			model.addAttribute("staff_id", staff_id);
 
 		} catch(NullPointerException e) {
 

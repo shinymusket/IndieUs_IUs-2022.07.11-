@@ -42,28 +42,27 @@
 						<input type="button" id="search" value="조회">
 					</div>
 					
-					<div id="staffBox"  style="float: left;">
-						<c:if test="${staffList != null}">
-							<table border="1" class="list" id="staff_list">
+					<c:if test="${staffList != null}">
+						<table style="float: left;" border="1" class="list" id="staff_list">
+							<tr>
+								<th>사번</th>
+								<th>교직원 이름</th>
+								<th>직무</th>
+							</tr>
+							<c:forEach items="${staffList}" var="staff">
 								<tr>
-									<th>사번</th>
-									<th>교직원 이름</th>
-									<th>직무</th>
+									<td>${staff.staff_num}</td>
+									<td><a href="javascript:getInfo('${staff.staff_id}', '${staff.staff_name}');">${staff.staff_name}</a></td>
+									<td>${staff.job_Kname}</td>
 								</tr>
-								<c:forEach items="${staffList}" var="staff">
-									<tr>
-										<td>${staff.staff_num}</td>
-										<td><a href="javascript:getInfo('${staff.staff_id}', '${staff.staff_name}');">${staff.staff_name}</a></td>
-										<td>${staff.job_Kname}</td>
-									</tr>
-								</c:forEach>
-							</table>
-						</c:if>
-					</div>
+							</c:forEach>
+						</table>
+					</c:if>
 					
 					<table id="attendanceInfo" class="tbl paginated" style="float: left; display: none;" border="1">
 					</table>
-				
+					
+
 				</div>
 			</section>
 	</article> 

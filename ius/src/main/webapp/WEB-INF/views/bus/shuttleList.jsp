@@ -34,26 +34,24 @@
 				<div id="controllBtns">
 					<input type="button" value="등록" onclick="location.href='../bus/shuttle_bus_reg'">
 				</div>
-				<div id="busBox">
-					<table id="busInfo" class="list">
-						<tr>
-							<th>구  분</th>
-							<th>차량 번호</th>
-							<th>담당 기사</th>
-							<th>연락처</th>
-							<th></th>
+				<table id="busInfo" class="list">
+					<tr>
+						<th>구  분</th>
+						<th>차량 번호</th>
+						<th>담당 기사</th>
+						<th>연락처</th>
+						<th></th>
+					</tr>
+					<c:forEach items="${busList}" var="list">
+						<tr class="bgc" onclick="route_view(${list.shuttle_num},'${list.shuttle_name}')" style="cursor:pointer;">
+							<td>${list.shuttle_name}</td>
+							<td>${list.shuttle_carnum}</td>
+							<td>${list.staff_name}</td>
+							<td>${list.staff_tel}</td>
+							<td><a href="./modify_route?shuttle_num=${list.shuttle_num}">수정</a></td>
 						</tr>
-						<c:forEach items="${busList}" var="list">
-							<tr class="bgc" onclick="route_view(${list.shuttle_num},'${list.shuttle_name}')" style="cursor:pointer;">
-								<td>${list.shuttle_name}</td>
-								<td>${list.shuttle_carnum}</td>
-								<td>${list.staff_name}</td>
-								<td>${list.staff_tel}</td>
-								<td><a href="./modify_route?shuttle_num=${list.shuttle_num}">수정</a></td>
-							</tr>
-						</c:forEach>
-					</table>
-				</div>
+					</c:forEach>
+				</table>
 				<h2 id="routeTitle"></h2>
 				<table id="routeInfo" style="display: none;">
 				</table>

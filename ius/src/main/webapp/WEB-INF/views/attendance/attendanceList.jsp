@@ -42,10 +42,7 @@
 							<input type="text" id="searchContent">
 							<input type="button" value="검색" id="searchBtn">
 						</div>
-						
-						<div id="kinderBox">
-							<table id="kinder_list_tbl" class="list" border="1"></table>
-						</div>
+						<table id="kinder_list_tbl" border="1"></table>
 					</div>
 					
 					<div id="attendance" style="float: left; display:none;">

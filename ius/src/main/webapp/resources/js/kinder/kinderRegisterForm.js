@@ -20,6 +20,9 @@ function getAllergyCheck() {
 	
 }
 
+getAllergyCheck();
+
+
 $(function(){
 	$("#kinder_picFile").change(function(){
 		if(this.files && this.files[0]) {
