@@ -8,7 +8,7 @@
 		WHERE k.staff_num = s.staff_num
 		AND c.kinder_num = k.kinder_num
 		AND k.delete_column = 'N'
-		ORDER BY kinder_num ASC
+		ORDER BY TO_NUMBER(kinder_num) ASC
 	</select>
 	
 	<!-- 원생 등록을 위한 다음 시퀀스 번호 가져오기 -->
