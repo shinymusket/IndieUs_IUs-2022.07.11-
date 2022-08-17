@@ -184,7 +184,7 @@ function selectAddr() {
 								<th>보유 알러지 정보</th>
 								<td>
 									<input type="text" id="allergy_info" readonly="readonly" style='text-align:center'>
-									<input type="text" id="allergy_code" name="allergy_code">
+									<input type="hidden" id="allergy_code" name="allergy_code">
 									<input type="button" value="입력" id="allergySel">
 								</td>
 							</tr>

@@ -59,7 +59,7 @@ public class MealMenuController {
 		String[] menu = request.getParameterValues("menu[]");
 		if(menu != null) {
 			service.inputMenu(request);
-			return "redirect:./meal_list";	
+			return "redirect:./meal_list";
 		} else {
 			return "redirect:./meal_list";
 		}

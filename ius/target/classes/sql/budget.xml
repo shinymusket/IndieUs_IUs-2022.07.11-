@@ -3,7 +3,7 @@
 <mapper namespace="budget">
 	<!-- 전체 예산 항목 조회 -->
   	<select id="select_all_budget" resultType="budgetVO">
-  		SELECT * FROM budget
+  		SELECT * FROM budget ORDER BY TO_NUMBER(budget_num) DESC
   	</select>
   
   	<!-- 년도별 총수입 예산 조회 -->
