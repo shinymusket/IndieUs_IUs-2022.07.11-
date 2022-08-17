@@ -141,6 +141,7 @@ function view(kinder_num) { // 원생별 상담내역 조회
 			$("#date_to").val("");
 			$("#staff_name").val(login_staff_name);
 			$("#staff_num").val(login_staff_num);
+
 			$("#kinder_name").val(data.kinder_name);
 			$("#relation").val("");
 			$("#parent_num").val("");

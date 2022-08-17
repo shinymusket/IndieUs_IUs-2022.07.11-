@@ -115,6 +115,7 @@ function view(kinder_num) {
 				$("#mather .updateRegister").hide();
 				$("#mather .updateCancel").hide();
 				
+
 				$("#father").hide();
 				$("#mather").hide();
 				

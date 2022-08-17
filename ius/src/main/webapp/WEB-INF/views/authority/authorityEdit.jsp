@@ -54,6 +54,7 @@
 						</table>		
 					</div>
 	
+
 					<table id="authorityInfo" border="1" style="float: left; display: none;">
 						<tr>
 							<th>권한</th>

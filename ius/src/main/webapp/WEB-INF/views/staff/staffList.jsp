@@ -210,7 +210,7 @@ getList();
 						<input type="button" id="search" value="검색">
 					</div>
 				</div>
-				
+
 			<div id="staffBox" style="float : left;">
 				<table id="staffList" class="list" border="1"></table>
 			</div>

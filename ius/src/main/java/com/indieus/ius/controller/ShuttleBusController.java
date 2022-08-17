@@ -86,6 +86,7 @@ public class ShuttleBusController {
 		service.modifyBusRoute(request);
 		return "redirect:./shuttle_bus";
 		}
+
 	}
 
 	@RequestMapping(value = "/delete_bus_info")

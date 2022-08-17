@@ -48,6 +48,7 @@
 						<div id="kinderBox">
 							<table id="kinder_list_tbl" class="list" border="1"></table>
 						</div>
+
 					</div>
 					
 					<div id="consult" style="float: left; display:none;">

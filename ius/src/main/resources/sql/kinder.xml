@@ -32,6 +32,7 @@
 	
 	<!-- 기존의 해당하는 알러지 코드가 있는지 유무 확인  -->
 	<select id="check_allergy_info" parameterType="hashmap" resultType="int">
+
 		SELECT COUNT(*) FROM allergyInfo WHERE a1 = #{a1} AND a2 = #{a2} AND a3 = #{a3} AND a4 = #{a4} AND a5 = #{a5} AND a6 = #{a6} AND a7 = #{a7} AND a8 = #{a8} 
 		AND a9 = #{a9} AND a10 = #{a10} AND a11 = #{a11} AND a12 = #{a12} AND a13 = #{a13} AND a14 = #{a14}
 		AND a15 = #{a15} AND a16 = #{a16} AND a17 = #{a17} AND a18 = #{a18}

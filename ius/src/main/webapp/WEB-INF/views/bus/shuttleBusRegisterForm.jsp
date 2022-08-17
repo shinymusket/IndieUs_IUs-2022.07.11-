@@ -55,7 +55,6 @@ function d_Value(target) {
              
 });
 </script>
-
 </head>
 <body>
 <%@include file="../include/header.jsp"%>

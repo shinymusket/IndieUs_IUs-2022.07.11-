@@ -28,6 +28,7 @@ table, th, tr, td {
 #kinderList {
 	width : 450px;
 }
+
 #kinderBox {
 	height: 500px;
 	overflow: auto;

@@ -192,6 +192,7 @@ document.addEventListener('keydown', function(event) {
 		</div>
 
 		<!-- 내용 구간 -->
+
 		<section>
 			<div id="content">
 				<form name="addMenu" id="addMenu" action="./modifyMealMenu" method="POST">

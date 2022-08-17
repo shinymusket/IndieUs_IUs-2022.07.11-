@@ -57,6 +57,7 @@ $(document).ready(function() {
 	  
 });
 </script>
+
 <body>
 <%@include file="../include/header.jsp"%>
 <%@include file="../include/nav.jsp"%>
