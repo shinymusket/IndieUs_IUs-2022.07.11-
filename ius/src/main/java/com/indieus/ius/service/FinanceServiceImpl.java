@@ -8,10 +8,10 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
-
 import javax.servlet.http.HttpServletResponse;
 
 import com.indieus.ius.db.FinanceDAO;
+import com.indieus.ius.vo.BudgetVO;
 import com.indieus.ius.vo.FinanceVO;
 import com.indieus.ius.vo.PurchaseVO;
 
@@ -49,6 +49,18 @@ public class FinanceServiceImpl implements FinanceService {
 
 		return retVal;
 	}
+
+	// 예산 항목 리스트 가져오기 Ajax
+	@Override
+	public Object getBudgetList(Map<String, Object> map) throws Exception {
+		List<BudgetVO> budgetList = manager.getBudgetList(map);
+
+		Map<String, Object> data = new HashMap();
+		data.put("budgetList", budgetList);
+		return data;
+	}
+
+
 
 	// 전체 재정 회계 년도 조회
 	@Override
@@ -112,5 +124,16 @@ public class FinanceServiceImpl implements FinanceService {
 	public int selectPurchaseSumFromNum(String finance_num) throws Exception {
 		return manager.selectPurchaseSumFromNum(finance_num);
 	}
+
+	// 재정 검색 기능
+	@Override
+	public Object searchFinance(Map<String, Object> map) throws Exception {
+		List<FinanceVO> financeList = manager.searchFinance(map);
+
+		Map<String, Object> data = new HashMap();
+		data.put("financeList", financeList);
+		return data;
+	}
+
 
 }

@@ -7,14 +7,14 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
-
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.indieus.ius.db.EquipmentDAO;
+import com.indieus.ius.utils.PagingVO;
 import com.indieus.ius.vo.EquipClsVO;
+import com.indieus.ius.vo.EquipmentSearchVO;
 import com.indieus.ius.vo.EquipmentVO;
-
 import com.indieus.ius.vo.FinanceVO;
 import com.indieus.ius.vo.PurchaseVO;
 import com.indieus.ius.vo.StaffIdVO;
@@ -24,6 +24,41 @@ public class EquipmentServiceImpl implements EquipmentService {
 
 	@Inject
 	private EquipmentDAO manager;
+
+	// 리스트 총 갯수
+	@Override
+	public int countEquipment() throws Exception {
+		return manager.countEquipment();
+	}
+
+	// 페이징 처리 게시글 조회
+	@Override
+	public List<EquipmentVO> selectEquipment(PagingVO vo) throws Exception {
+		return manager.selectEquipment(vo);
+	}
+
+	// 검색된 리스트 총 갯수
+	@Override
+	public int countSearchEquipment(EquipmentSearchVO searchInfo) throws Exception {
+		return manager.countSearchEquipment(searchInfo);
+	}
+
+	// 검색된 리스트 페이징 처리 조회
+	@Override
+	public List<EquipmentVO> searchEquipment(EquipmentSearchVO searchInfo) throws Exception {
+		return manager.searchEquipment(searchInfo);
+	}
+
+	// 시설(비품) 검색 Ajax
+	@Override
+	public Object searchEquipmentList(Map<String, Object> map) throws Exception {
+		List<EquipmentVO> equipmentList = manager.searchEquipmentList(map);
+
+		Map<String, Object> data = new HashMap();
+		data.put("equipmentList", equipmentList);
+		return data;
+	}
+
 
 	// 시설(비품) 리스트 가져오기 Ajax
 	@Override
@@ -157,6 +192,11 @@ public class EquipmentServiceImpl implements EquipmentService {
 
 	}
 
+	// 검색 기능을 위한 분류 항목 리스트 가져오기
+	@Override
+	public List<EquipClsVO> selEquipmentClsList() throws Exception {
+		return manager.selectEquipClsList();
+	}
 
 
 
@@ -211,6 +251,16 @@ public class EquipmentServiceImpl implements EquipmentService {
 		return data;
 	}
 
+	// 구매 리스트 검색하기 Ajax
+	@Override
+	public Object searchPurchaseList(Map<String, Object> map) throws Exception {
+		List<PurchaseVO> purchaseList = manager.searchPurchaseList(map);
+		Map<String, Object> data = new HashMap();
+		data.put("purchaseList", purchaseList);
+		return data;
+	}
+
+
 	// 구매 정보 상세보기
 	@Override
 	public PurchaseVO getPurchaseInfo(String purchase_num) throws Exception {
@@ -228,4 +278,13 @@ public class EquipmentServiceImpl implements EquipmentService {
 	public int updatePurchase(PurchaseVO pVo) throws Exception {
 		return manager.updatePurchase(pVo);
 	}
+
+
+
+
+
+
+
+
+
 }

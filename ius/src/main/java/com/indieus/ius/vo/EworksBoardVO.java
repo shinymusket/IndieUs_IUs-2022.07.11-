@@ -1,12 +1,28 @@
 package com.indieus.ius.vo;
 
 public class EworksBoardVO {
-
+	
 		private int workNum;
 		private String workCategory;
 		private String workUpDate;
 		private String workDownDate;
 		private int docNum;
+		private String doc_Sub;
+		private String status;
+		
+		
+		public String getStatus() {
+			return status;
+		}
+		public void setStatus(String status) {
+			this.status = status;
+		}
+		public String getDoc_Sub() {
+			return doc_Sub;
+		}
+		public void setDoc_Sub(String doc_Sub) {
+			this.doc_Sub = doc_Sub;
+		}
 		private String staff_num;
 		private int doc_cat_num;
 		

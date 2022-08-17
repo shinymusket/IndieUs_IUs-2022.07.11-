@@ -17,6 +17,25 @@
 		<typeAlias alias="purchaseVO" type="com.indieus.ius.vo.PurchaseVO"/>
 		<typeAlias alias="kinderVO" type="com.indieus.ius.vo.KinderVO"/>
 		<typeAlias alias="shuttleVO" type="com.indieus.ius.vo.ShuttleVO"/>
+		<typeAlias alias="classVO" type="com.indieus.ius.vo.ClassVO"/>
+		<typeAlias alias="parentVO" type="com.indieus.ius.vo.ParentVO"/>
+		<typeAlias alias="allergyInfoVO" type="com.indieus.ius.vo.AllergyInfoVO"/>
+		<typeAlias alias="attendanceVO" type="com.indieus.ius.vo.AttendanceVO"/>
+		<typeAlias alias="consultVO" type="com.indieus.ius.vo.ConsultVO"/>
+		<typeAlias alias="receiptVO" type="com.indieus.ius.vo.ReceiptVO"/>
+		<typeAlias alias="pagingVO" type="com.indieus.ius.utils.PagingVO"/>
+		<typeAlias alias="equipmentSearchVO" type="com.indieus.ius.vo.EquipmentSearchVO"/>
+		<typeAlias alias="eventVO" type="com.indieus.ius.vo.EventVO"/>
+		<typeAlias alias="noticeVO" type="com.indieus.ius.vo.NoticeVO"/>
+		<typeAlias alias="noticeReplyVO" type="com.indieus.ius.vo.NoticeReplyVO"/>
+		<typeAlias alias="buyorderDocDraftVO" type="com.indieus.ius.vo.BuyorderDocDraftVO"/>
+		<typeAlias alias="spendVO" type="com.indieus.ius.vo.SpendVO"/>
+		<typeAlias alias="vacationVO" type="com.indieus.ius.vo.VacationVO"/>
 	</typeAliases>
+	
+<typeHandlers>
+	<typeHandler handler="com.indieus.ius.typehandler.MyLongTypeHandler" jdbcType="LONGVARCHAR" javaType="java.lang.String"/>
+</typeHandlers>
+
 
 </configuration>
