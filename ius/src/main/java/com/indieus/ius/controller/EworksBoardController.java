@@ -116,7 +116,7 @@ public class EworksBoardController {
 	public String vacationRequest(Model model) throws Exception {
 		return "/board/vacationRequest";
 	}
-	
+
 
 	//구매신청서 폼 이동
 	@RequestMapping(value = "/buy_draft_form", method = RequestMethod.GET)

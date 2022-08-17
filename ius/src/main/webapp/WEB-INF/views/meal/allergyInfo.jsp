@@ -28,11 +28,11 @@
 </form>
 <script>
 
-var allerArr = new Array(); //필터 내용을 저장하는 배열
-var showFilterValue = document.getElementById("showFilter");//필터입력값 보여주기 위한 text
+var allerArr = new Array(); //알러지 내용을 저장하는 배열
+var showFilterValue = document.getElementById("showFilter");//알러지 입력값 보여주기 위한 text
 
 console.log(window.name)
-//필터 내용을 저장하는 function
+//알러지 내용을 저장하는 function
 function makeFilter(target){
 
     var allVal = target.value; //check value
@@ -58,8 +58,8 @@ function makeFilter(target){
     return allerArr;
 }
 
-
 function addAllergy(){
+	
 	if(window.name== "lallergy1"){
 		opener.document.addMenu.lallergy1.value = document.allergy.showFilter.value;
 		self.close();
