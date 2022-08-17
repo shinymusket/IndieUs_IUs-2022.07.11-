@@ -1,4 +1,4 @@
-@charset "EUC-KR";
+@charset "UTF-8";
 
 #allergy_box {
 	width: 270px;
@@ -28,14 +28,26 @@ input[id="showFilter"]{
 }
 
 input[type="button"]{
-	width: 60px;
+		width: 60px;
 	height: 30px;
 	border: none;
 	border-radius: 5px;
-	background-color: darkblue;
+	background-color: #486890;
 	color: #fff;
 	font-weight: bold;
 	letter-spacing: -1px;
+}
+
+input[type="button"]:hover {
+	cursor: pointer;
+}
+
+input[type='checkbox']{
+	accent-color:#486890;
+}
+
+label:hover {
+	cursor: pointer;
 }
 
 #but_box {

@@ -60,3 +60,7 @@ select, input[type="text"] {
 input[type="button"] {
 	padding: 3px;
 }
+
+#noticeTbl tr:last-child {
+	border: none;
+}

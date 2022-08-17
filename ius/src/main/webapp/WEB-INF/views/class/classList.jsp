@@ -30,9 +30,8 @@
 						<input type="button" value="교직원 관리" onclick="location.href='../staff/staff_list'">
 						<input type="button" value="학급 등록" onclick="location.href='../class/class_register_form'">
 					</div>
-						<div id="classBox" style="float : left;">
-							<table id="classList" class="list" border="1"></table>
-						</div>
+					
+						<table id="classList" class="list" border="1" style="float : left;"></table>
 						
 						<div id="classInfo" style="float : left; display : none;">
 							<table border="1" id="classInfoTbl">

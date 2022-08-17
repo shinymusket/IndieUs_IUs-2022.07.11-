@@ -17,7 +17,7 @@
 <%@include file="../include/nav.jsp" %>
 	<article>
 			<div id="title_bar">
-				<p>원생 관리</p>
+				<p>원생 관라</p>
 				<h3>수납 관리</h3>
 			</div>
 	
@@ -42,10 +42,7 @@
 							<input type="text" id="searchContent">
 							<input type="button" value="검색" id="searchBtn">
 						</div>
-						
-						<div id="kinderBox">
-							<table id="kinder_list_tbl" class="list" border="1"></table>
-						</div>
+						<table id="kinder_list_tbl" class="list" border="1"></table>
 					</div>
 					
 					<div id="receipt" style="float: left; display:none;">

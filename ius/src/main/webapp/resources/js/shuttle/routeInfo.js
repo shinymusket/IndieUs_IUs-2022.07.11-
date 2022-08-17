@@ -15,4 +15,3 @@ function d_Value(target) {
 			}
 		})
 };
-

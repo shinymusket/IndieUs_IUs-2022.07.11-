@@ -56,9 +56,13 @@ public class MealMenuController {
 
 	@RequestMapping(value = "/addMenu", method = RequestMethod.POST)
 	public String inputMenu(HttpServletRequest request) throws Exception {
-
-		service.inputMenu(request);
-		return "redirect:./meal_list";
+		String[] menu = request.getParameterValues("menu[]");
+		if(menu != null) {
+			service.inputMenu(request);
+			return "redirect:./meal_list";	
+		} else {
+			return "redirect:./meal_list";
+		}
 	}
 
 	// 식단 수정 폼 이동
@@ -80,9 +84,13 @@ public class MealMenuController {
 
 	@RequestMapping(value = "/modifyMealMenu", method = RequestMethod.POST)
 	public String modifyUpdateMenu(HttpServletRequest request) throws Exception {
-
-		service.modifyUpdateMenu(request);
-		return "redirect:./meal_list";
+		String[] menu = request.getParameterValues("menu[]");
+		if(menu == null) {
+			return "redirect:./meal_list";
+		} else {
+			service.modifyUpdateMenu(request);
+			return "redirect:./meal_list";
+		}
 	}
 
 
