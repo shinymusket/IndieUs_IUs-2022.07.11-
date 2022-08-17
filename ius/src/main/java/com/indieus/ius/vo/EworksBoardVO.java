@@ -1,7 +1,7 @@
 package com.indieus.ius.vo;
 
 public class EworksBoardVO {
-	
+
 		private int workNum;
 		private String workCategory;
 		private String workUpDate;
@@ -9,8 +9,8 @@ public class EworksBoardVO {
 		private int docNum;
 		private String doc_Sub;
 		private String status;
-		
-		
+
+
 		public String getStatus() {
 			return status;
 		}

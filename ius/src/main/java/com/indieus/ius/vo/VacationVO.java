@@ -11,7 +11,7 @@ public class VacationVO {
 	private String workUpDate;
 	private String status;
 	private String workDownpdate;
-	
+
 	public String getWorkDownpdate() {
 		return workDownpdate;
 	}
@@ -72,6 +72,6 @@ public class VacationVO {
 	public void setWorkUpDate(String workUpDate) {
 		this.workUpDate = workUpDate;
 	}
-	
-	
+
+
 }
