@@ -79,7 +79,7 @@
 								</td>
 							</tr>
 							<tr>
-								<th>구매 가격</th>
+								<th>총 구매 가격</th>
 								<td>
 									<input type="text" id="purchase_price" name="purchase_price">
 								</td>
