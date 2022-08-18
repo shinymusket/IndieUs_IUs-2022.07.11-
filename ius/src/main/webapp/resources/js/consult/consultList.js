@@ -127,6 +127,8 @@ getList();
 function view(kinder_num) { // 원생별 상담내역 조회
 	var kinder_num = kinder_num;
 	$("#kinder_num").val(kinder_num);
+	var login_staff_name = document.getElementById('login_staff_name').value;
+	var login_staff_num = document.getElementById('login_staff_num').value;
 	
 	$.ajax({
 		url : "/ius/consult/get_consult_by_kinder_num",
@@ -137,9 +139,9 @@ function view(kinder_num) { // 원생별 상담내역 조회
 		success : function(data) {
 			$("#date_from").val("");
 			$("#date_to").val("");
-			$("#staff_name").val("");
-			$("#staff_name").val($("#login_staff_name").val());
-			$("#staff_num").val($("#login_staff_num").val());
+			$("#staff_name").val(login_staff_name);
+			$("#staff_num").val(login_staff_num);
+
 			$("#kinder_name").val(data.kinder_name);
 			$("#relation").val("");
 			$("#parent_num").val("");

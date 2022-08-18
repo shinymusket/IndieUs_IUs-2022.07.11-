@@ -1,7 +1,7 @@
 package com.indieus.ius.vo;
 
 public class BuyorderDocDraftVO {
-	
+
 	private int workNum;
 	private String doc_Sub;
 	private String product_name;
@@ -14,9 +14,9 @@ public class BuyorderDocDraftVO {
 	private String status;
 	private String workUpdate;
 	private String workDowndate;
-	
-	
-	
+
+
+
 	public String getWorkDowndate() {
 		return workDowndate;
 	}
@@ -41,20 +41,20 @@ public class BuyorderDocDraftVO {
 	public void setStaff_num(String staff_num) {
 		this.staff_num = staff_num;
 	}
-	
+
 	public String getEtc() {
 		return etc;
-		
+
 	}
-	
+
 	public void setEtc(String etc) {
 		this.etc = etc;
-		
+
 	}
 	private String workUpDate;
-	
-	
-	
+
+
+
 	public int getWorkNum() {
 		return workNum;
 	}
@@ -91,7 +91,7 @@ public class BuyorderDocDraftVO {
 	public void setProduct_money(String product_money) {
 		this.product_money = product_money;
 	}
-	
+
 	public String getStaff_name() {
 		return staff_name;
 	}
@@ -104,11 +104,11 @@ public class BuyorderDocDraftVO {
 	public void setWorkUpDate(String workUpDate) {
 		this.workUpDate = workUpDate;
 	}
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
 }

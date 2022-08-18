@@ -15,7 +15,7 @@
 table, th, tr, td {
 	border: 1px solid #ccc;
 	border-collapse: collapse;
-	padding: 7px;
+	padding: 10px;
 }
 
 .list {
@@ -29,7 +29,7 @@ table, th, tr, td {
 }
 
 #noticeTbl {
-	width : 80%;
+	width : 100%;
 	font-size: 14px;
 }
 
@@ -38,6 +38,9 @@ table, th, tr, td {
 	text-align: center;
 }
 
+.n_title {
+	text-align: left !important; 
+}
 
 th{
 	font-size: 14px;

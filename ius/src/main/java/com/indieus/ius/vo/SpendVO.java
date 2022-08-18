@@ -2,7 +2,7 @@ package com.indieus.ius.vo;
 
 public class SpendVO {
 
-	
+
 	private int workNum;
 	private String doc_Sub;
 	private String spend_day;
@@ -13,7 +13,7 @@ public class SpendVO {
 	private String staff_name;
 	private String workUpDate;
 	private String workDowndate;
-	
+
 	public String getWorkDowndate() {
 		return workDowndate;
 	}
@@ -23,10 +23,10 @@ public class SpendVO {
 	private String etc;
 	private String spend_reason;
 	private String status;
-	
-	
-	
-	
+
+
+
+
 	public String getStatus() {
 		return status;
 	}
@@ -99,6 +99,6 @@ public class SpendVO {
 	public void setSpend_reason(String spend_reason) {
 		this.spend_reason = spend_reason;
 	}
-	
-	
+
+
 }

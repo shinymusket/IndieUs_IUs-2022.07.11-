@@ -122,13 +122,13 @@
 			<TD width='100px'>
 			<font color="red">일</font>
 			</TD>
-			<TD width='100px'>월</TD>
-			<TD width='100px'>화</TD>
-			<TD width='100px'>수</TD>
-			<TD width='100px'>목</TD>
-			<TD width='100px'>금</TD>
+			<TD width='100px'><font color="white">월</font></TD>
+			<TD width='100px'><font color="white">화</font></TD>
+			<TD width='100px'><font color="white">수</font></TD>
+			<TD width='100px'><font color="white">목</font></TD>
+			<TD width='100px'><font color="white">금</font></TD>
 			<TD width='100px'>
-			<font color="white">토</font>
+			<font color="#529dbc">토</font>
 			</TD>
 		</TR>
 	</THEAD>

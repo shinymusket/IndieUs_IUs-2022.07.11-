@@ -11,7 +11,7 @@ function getCookie(name) {	// 저장된 쿠키 가져오기
 
 function getList() {
 	$.ajax({
-		url : "/ius/parent/get_kinder_list",
+		url : "/ius/kinder/get_kinder_list",
 		type : "POST",
 		data : {
 			
@@ -19,20 +19,14 @@ function getList() {
 		success: function(data) {
 			$("#kinderList").text("");
 			values = data.kinderList;
-			output = "<tr><th>원생 이름</th><th>부 성명</th><th>모 성명</th></tr>";				
+			output = "<tr><th>원생 번호</th><th>원생 이름</th><th>학급명</th><th>담당 교사</th></tr>";				
 			$.each(values, function(index, value) {
-				
-				if (value.father_name == null) {
-					value.father_name = "";
-				};
-				if (value.mather_name == null) {
-					value.mather_name = "";
-				};
 
 				output += "<tr class='bgc' onclick='view(" + value.kinder_num + ")'>";
+				output += "<td>" + value.kinder_num + "</td>";
 				output += "<td>" + value.kinder_name + "</td>";
-				output += "<td>" + value.father_name + "</td>";
-				output += "<td>" + value.mather_name + "</td>";
+				output += "<td>" + value.class_name + "</td>";
+				output += "<td>" + value.staff_name + "</td>";
 				output += "</tr>";
 			});
 			
@@ -69,20 +63,14 @@ function select_by_class() { // 반 별로 조회하기
 			success: function(data) {
 				$("#kinderList").text("");
 				values = data.kinderList;
-				output = "<tr><th>원생 이름</th><th>부 성명</th><th>모 성명</th></tr>";				
+				output = "<tr><th>원생 번호</th><th>원생 이름</th><th>학급명</th><th>담당 교사</th></tr>";				
 				$.each(values, function(index, value) {
-		
-					if (value.father_name == null) {
-						value.father_name = "";
-					};
-					if (value.mather_name == null) {
-						value.mather_name = "";
-					};
-		
+				
 					output += "<tr class='bgc' onclick='view(" + value.kinder_num + ")'>";
+					output += "<td>" + value.kinder_num + "</td>";
 					output += "<td>" + value.kinder_name + "</td>";
-					output += "<td>" + value.father_name + "</td>";
-					output += "<td>" + value.mather_name + "</td>";
+					output += "<td>" + value.class_name + "</td>";
+					output += "<td>" + value.staff_name + "</td>";
 					output += "</tr>";
 				});
 				
@@ -107,6 +95,15 @@ function view(kinder_num) {
 			success: function(data) {
 				$("#kinderInfo").hide();
 				
+				$("#father .update").show();
+				$("#father .updateRegister").hide();
+				$("#father .updateCancel").hide();
+				
+				$("#mather .update").show();
+				$("#mather .updateRegister").hide();
+				$("#mather .updateCancel").hide();
+				
+
 				$("#father").hide();
 				$("#mather").hide();
 				

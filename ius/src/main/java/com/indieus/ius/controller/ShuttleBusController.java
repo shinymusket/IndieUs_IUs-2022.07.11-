@@ -78,9 +78,15 @@ public class ShuttleBusController {
 
 	@RequestMapping(value = "/modify_bus_route", method = RequestMethod.POST)
 	public String modifyBusRoute(HttpServletRequest request) throws Exception {
+		String[] bus_stop = request.getParameterValues("bus_stop[]");
+		if(bus_stop == null) {
+			return "redirect:./shuttle_bus";
+		} else {
 		service.modifyBusInfo(request);
 		service.modifyBusRoute(request);
 		return "redirect:./shuttle_bus";
+		}
+
 	}
 
 	@RequestMapping(value = "/delete_bus_info")

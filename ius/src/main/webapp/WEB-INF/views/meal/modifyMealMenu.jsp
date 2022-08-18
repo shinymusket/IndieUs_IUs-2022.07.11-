@@ -40,7 +40,7 @@ document.addEventListener('keydown', function(event) {
 	        e.preventDefault();
 	        if (x < max_fields) {
 	            x++;
-	            $(wrapper).append("<tr id='input-menu'><td><input type='hidden' name='menu_num[]' class='menuN'><input type='hidden' name='meal_code[]' value='L'><input type='text' name='menu[]' required='required'></td><td><input type='text' name='kcal[]' required='required'> kcal</td><td><input type='text' id='lallergy"+x+"' name='allergy[]' readonly='readonly'><input type='button' value='선택' onclick='openlAllergy(`lallergy"+x+"`)'></td> <td id='deleteInput' class='AutoInput' title='Delete'>&times;</td></tr>");
+	            $(wrapper).append("<tr id='input-menu'><td><input type='hidden' name='menu_num[]' class='menuN'><input type='hidden' name='meal_code[]' value='L'><input type='text' name='menu[]' required='required'></td><td><input type='text' name='kcal[]' required='required'> kcal</td><td><input type='text' id='lallergy"+x+"' name='allergy[]' readonly='readonly'><input type='button' class='allchoice' value='선택' onclick='openlAllergy(`lallergy"+x+"`)'></td> <td id='deleteInput' class='AutoInput' title='Delete'>&times;</td></tr>");
 	        } else {
 	            alert('6개를 초과할 수 없습니다.')
 	        }
@@ -90,7 +90,7 @@ document.addEventListener('keydown', function(event) {
 	        e.preventDefault();
 	        if (x < max_fields) {
 	            x++;
-	            $(wrapper).append("<tr id='input-menu'><td><input type='hidden' name='menu_num[]' class='menuN'><input type='hidden' name='meal_code[]' value='B'><input type='text' name='menu[]' required='required'></td><td><input type='text' name='kcal[]' required='required'> kcal</td><td><input type='text' id='ballergy"+x+"' name='allergy[]' readonly='readonly'><input type='button' value='선택' onclick='openlAllergy(`ballergy"+x+"`)'></td> <td id='deleteInput' class='AutoInput' title='Delete'>&times;</td></tr>");
+	            $(wrapper).append("<tr id='input-menu'><td><input type='hidden' name='menu_num[]' class='menuN'><input type='hidden' name='meal_code[]' value='B'><input type='text' name='menu[]' required='required'></td><td><input type='text' name='kcal[]' required='required'> kcal</td><td><input type='text' id='ballergy"+x+"' name='allergy[]' readonly='readonly'><input type='button' value='선택' class='allchoice' onclick='openlAllergy(`ballergy"+x+"`)'></td> <td id='deleteInput' class='AutoInput' title='Delete'>&times;</td></tr>");
 	        } else {
 	            alert('아침 간식은 2개를 초과할 수 없습니다.')
 	        }
@@ -144,7 +144,7 @@ document.addEventListener('keydown', function(event) {
 	        e.preventDefault();
 	        if (x < max_fields) {
 	            x++;
-	            $(wrapper).append("<tr id='input-menu'><td><input type='hidden' name='menu_num[]' class='menuN'><input type='hidden' name='meal_code[]' value='S'><input type='text' name='menu[]' required='required'></td><td><input type='text' name='kcal[]' required='required'> kcal</td><td><input type='text' id='sallergy"+x+"' name='allergy[]' readonly='readonly'><input type='button' value='선택' onclick='openlAllergy(`sallergy"+x+"`)'></td> <td id='deleteInput' class='AutoInput' title='Delete'>&times;</td></tr>");
+	            $(wrapper).append("<tr id='input-menu'><td><input type='hidden' name='menu_num[]' class='menuN'><input type='hidden' name='meal_code[]' value='S'><input type='text' name='menu[]' required='required'></td><td><input type='text' name='kcal[]' required='required'> kcal</td><td><input type='text' id='sallergy"+x+"' name='allergy[]' readonly='readonly'><input type='button' value='선택' class='allchoice' onclick='openlAllergy(`sallergy"+x+"`)'></td> <td id='deleteInput' class='AutoInput' title='Delete'>&times;</td></tr>");
 	        } else {
 	            alert('오후 간식은 2개를 초과할 수 없습니다.')
 	        }
@@ -189,20 +189,17 @@ document.addEventListener('keydown', function(event) {
 
 		<!-- 오른쪽 기능 박스 (검색)-->
 		<div id="title_top">
-			<input type="text" name=""> <input type="button" value="검색">
-			<input type="button" value="등록"> <input type="button"
-				value="삭제">
 		</div>
 
 		<!-- 내용 구간 -->
-		<!-- 내용 넣으면 길이 알아서 늘어나요(아마도) -->
+
 		<section>
 			<div id="content">
 				<form name="addMenu" id="addMenu" action="./modifyMealMenu" method="POST">
 					<table id="navAddMenu">
 						<tr>
 							<th>급식 일자</th>
-							<td colspan="3">
+							<td colspan="3" style="text-align:left">
 								<input type="date" name="menu_edate" value="${menu_edate}">
 							</td>
 						</tr>
@@ -229,7 +226,7 @@ document.addEventListener('keydown', function(event) {
 									<input type='text' name='menu[]' class="breakCount"required='required' value="${meal.meal_menu}"></td>
 									<td><input type='text' name='kcal[]' required='required' value="${meal.menu_calorie}"> kcal</td>
 									<td><input type='text' id='ballergy${i}' name='allergy[]' readonly='readonly' value="${meal.allergy_num}">
-									<input type='button' value='선택' onclick='openlAllergy(`ballergy${i}`)'></td>
+									<input type='button' value='선택' class='allchoice' onclick='openlAllergy(`ballergy${i}`)'></td>
 									<td id='deleteInput' class='AutoInput' title='Delete'>&times;</td>
 								</tr>
 							</c:if>
@@ -249,7 +246,7 @@ document.addEventListener('keydown', function(event) {
 										<input type='text' name='menu[]' class="lunchCount" required='required' value="${meal.meal_menu}"></td>
 										<td><input type='text' name='kcal[]' required='required' value="${meal.menu_calorie}"> kcal</td>
 										<td><input type='text' id='lallergy${j}' name='allergy[]' readonly='readonly' value="${meal.allergy_num}">
-										<input type='button' value='선택' onclick='openlAllergy(`lallergy${j}`)'></td>
+										<input type='button' value='선택' class='allchoice' onclick='openlAllergy(`lallergy${j}`)'></td>
 										<td id='deleteInput' class='AutoInput' title='Delete'>&times;</td>
 									</tr>
 								</c:if>
@@ -269,7 +266,7 @@ document.addEventListener('keydown', function(event) {
 									<input type='text' name='menu[]' class="snackCount" required='required' value="${meal.meal_menu}"></td>
 									<td><input type='text' name='kcal[]' required='required' value="${meal.menu_calorie}"> kcal</td>
 									<td><input type='text' id='sallergy${k}' name='allergy[]' readonly='readonly' value="${meal.allergy_num}">
-									<input type='button' value='선택' onclick='openlAllergy(`sallergy${k}`)'></td>
+									<input type='button' value='선택' class='allchoice' onclick='openlAllergy(`sallergy${k}`)'></td>
 									<td id='deleteInput' class='AutoInput' title='Delete'>&times;</td>
 								</tr>
 							</c:if>

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-<c:set var="path" value="${pageContext.request.contextPath}"/>
+<c:set var="path" value="${pageContext.request.contextPath}"/>     
 
 <!DOCTYPE html>
 <html>
@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <title>전자 결재</title>
 <link type="text/css" rel="stylesheet" href="${path}/resources/css/articleF.css">
-<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>	
 <script type="text/javascript">
 
 function getEworksList() {
@@ -209,6 +209,7 @@ margin: 1rem;
 				<p>경영 정보</p>
 				<h3>전자 결재</h3>
 			</div>
+
 			<div id="title_top">
 			</div>
 				

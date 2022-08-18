@@ -1,7 +1,7 @@
 package com.indieus.ius.vo;
 
 public class EworksBoardVO {
-	
+
 		private int workNum;
 		private String workCategory;
 		private String workUpDate;
@@ -9,8 +9,8 @@ public class EworksBoardVO {
 		private int docNum;
 		private String doc_Sub;
 		private String status;
-		
-		
+
+
 		public String getStatus() {
 			return status;
 		}
@@ -25,9 +25,9 @@ public class EworksBoardVO {
 		}
 		private String staff_num;
 		private int doc_cat_num;
-		
+
 		private String staff_name;
-		
+
 
 		public String getStaff_name() {
 			return staff_name;
@@ -78,7 +78,7 @@ public class EworksBoardVO {
 			this.workDownDate = workDownDate;
 		}
 
-		
+
 	}
-	
+
 
